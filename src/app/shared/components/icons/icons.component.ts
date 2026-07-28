@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { IconName, Icons } from '../../models/icons.interface';
+import { iconsArch } from '../../constants/icons.constant';
 
 @Component({
   selector: 'app-icons',
@@ -13,7 +14,5 @@ export class IconsComponent {
   readonly width = input.required<number>();
   readonly height = input.required<number>();
   readonly classes = input<string>('');
-  readonly iconArch: Icons = {
-    search: '/icons/search-icon.svg',
-  };
+  readonly allIcons: Icons = iconsArch
 }

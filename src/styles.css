@@ -13,4 +13,40 @@
   --section-padding-y: 96px;
   --hero-nav-top-spacing: 20px;
   --hero-nav-spacing: calc(2 * var(--hero-nav-top-spacing) + 80px);
+  --animate-float-medium: 5s ease-in-out infinite float;
+  --animate-float-slow: 8s ease-in-out infinite float;
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0)rotate(0)
+    }
+
+    50% {
+      transform: translateY(-15px)rotate(1deg)
+    }
+  }
+}
+
+@layer base {
+  body {
+    font-family: "Inter", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Space Grotesk", sans-serif;
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    display: flex;
+    place-items: center;
+  }
 }

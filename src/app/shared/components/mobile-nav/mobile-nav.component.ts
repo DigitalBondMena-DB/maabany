@@ -1,5 +1,6 @@
 import { Component, input, output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { IconsComponent } from "../icons/icons.component";
 
 export interface NavLink {
   label: string;
@@ -8,7 +9,7 @@ export interface NavLink {
 
 @Component({
   selector: 'app-mobile-nav',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, IconsComponent],
   templateUrl: './mobile-nav.component.html',
 })
 export class MobileNavComponent {

@@ -3,44 +3,34 @@
   <section #heroRef
     class="relative w-full min-h-[calc(100vh-48px)] flex flex-col overflow-hidden py-2 bg-neutral-950 transition-all duration-200 shadow-2xl"
     style="border-radius: var(--hero-border-radius);">
-    <!-- Cinematic Background Video -->
     <video #videoPlayer [src]="bgVideoUrl" autoplay muted loop playsinline preload="metadata"
       class="absolute inset-0 w-full h-full object-cover transition-all duration-300"
       style="transform: scale(var(--video-scale)); filter: blur(var(--hero-video-blur));"></video>
 
-    <!-- Dark Overlay with customized opacity -->
     <div class="absolute inset-0 pointer-events-none transition-opacity duration-300"
       style="background-color: rgba(10, 10, 10, var(--hero-overlay-opacity));"></div>
 
-    <!-- Hero content - Centered over video -->
     <div
       class="relative max-w-350 w-full mx-auto px-5 md:px-6 lg:px-7 xl:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-10 my-auto py-6 transition-all duration-200"
       style="padding-top: var(--hero-nav-spacing);">
-      <!-- Left: Editorial Headline -->
       <div class="lg:col-span-7 text-left relative py-4">
-        <!-- Subtle backdrop blur circle -->
         <div class="absolute -inset-10 md:-inset-16 pointer-events-none z-0 rounded-[60px]"
           style="background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0) 100%); backdrop-filter: blur(10px); mask-image: radial-gradient(circle, black 30%, transparent 85%);">
         </div>
 
         <div class="relative z-10 space-y-6">
-          <div class="space-y-1 text-left">
-            <h1
-              class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-none text-left"
-              style="text-shadow: 0 2px 12px rgba(0,0,0,0.18)">
+          <h1
+            class="space-y-1 uppercase text-white text-left text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold">
+            <span class="text-shadow-[0_2px_12px_#0000002e]">
               BUILDING
-            </h1>
-            <h1
-              class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-none -mt-1 text-left"
-              style="text-shadow: 0 2px 12px rgba(0,0,0,0.18)">
+            </span>
+            <span class="text-shadow-[0_2px_12px_#0000002e]">
               THE FUTURE OF
-            </h1>
-            <h1
-              class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#EA8A22] tracking-tighter uppercase leading-none -mt-1 text-left"
-              style="text-shadow: 0 2px 12px rgba(0,0,0,0.18)">
+            </span>
+            <span class="text-[#EA8A22] text-shadow-[0_2px_12px_#0000002e]">
               TOMORROW
-            </h1>
-          </div>
+            </span>
+          </h1>
 
           <p class="text-neutral-200 text-sm sm:text-base md:text-lg font-normal leading-relaxed max-w-2xl text-left">
             Tier-one construction & engineering delivering iconic mega-structures, sustainable infrastructure, and
@@ -56,67 +46,24 @@
         </div>
       </div>
 
-      <!-- Right: Floating Stats Cards -->
-      <div class="lg:col-span-5 relative flex flex-col gap-4 py-8">
-        <!-- Card 1: Experience -->
+      <div class="lg:col-span-5 relative flex flex-col gap-4 py-8 max-w-130 mx-auto w-full">
+        @for (stat of stats; track stat.label; let even = $even) {
         <div
-          class="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-start w-64 animate-float-slow relative overflow-hidden group hover:border-[#EA8A22]/50 transition-all duration-300">
+          class="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl w-64 relative overflow-hidden group hover:border-[#EA8A22]/50 transition-all duration-300"
+          [class.self-start]="even" [class.self-end]="!even" [class.animate-float-slow]="even"
+          [class.animate-float-medium]="!even">
           <div class="absolute top-0 right-0 w-24 h-24 bg-[#EA8A22]/5 rounded-bl-full pointer-events-none"></div>
           <div class="flex items-center gap-3">
-            <div class="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22] font-bold text-xl">
-              ⏱
+            <div class="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22] font-bold text-xl  flex-center">
+              <app-icons [icon]="stat.icon" [width]="24" [height]="24" />
             </div>
             <div>
-              <h3 class="text-3xl font-black text-neutral-900 font-mono">25+</h3>
-              <p class="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">Years of Excellence</p>
+              <h3 class="text-3xl font-black text-neutral-900 font-mono">{{ stat.value }}</h3>
+              <p class="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">{{ stat.label }}</p>
             </div>
           </div>
         </div>
-
-        <!-- Card 2: Completed Projects -->
-        <div
-          class="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-end w-64 animate-float-medium relative overflow-hidden group hover:border-[#EA8A22]/50 transition-all duration-300">
-          <div class="absolute top-0 right-0 w-24 h-24 bg-[#EA8A22]/5 rounded-bl-full pointer-events-none"></div>
-          <div class="flex items-center gap-3">
-            <div class="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22] font-bold text-xl">
-              🏢
-            </div>
-            <div>
-              <h3 class="text-3xl font-black text-neutral-900 font-mono">450+</h3>
-              <p class="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">Megaprojects Completed</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3: Sovereign Countries -->
-        <div
-          class="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-start w-64 animate-float-slow relative overflow-hidden group hover:border-[#EA8A22]/50 transition-all duration-300">
-          <div class="absolute top-0 right-0 w-24 h-24 bg-[#EA8A22]/5 rounded-bl-full pointer-events-none"></div>
-          <div class="flex items-center gap-3">
-            <div class="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22] font-bold text-xl">
-              🌐
-            </div>
-            <div>
-              <h3 class="text-3xl font-black text-neutral-900 font-mono">3</h3>
-              <p class="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">Sovereign Countries</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4: Satisfaction -->
-        <div
-          class="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-end w-64 animate-float-medium relative overflow-hidden group hover:border-[#EA8A22]/50 transition-all duration-300">
-          <div class="absolute top-0 right-0 w-24 h-24 bg-[#EA8A22]/5 rounded-bl-full pointer-events-none"></div>
-          <div class="flex items-center gap-3">
-            <div class="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22] font-bold text-xl">
-              👥
-            </div>
-            <div>
-              <h3 class="text-3xl font-black text-neutral-900 font-mono">99%</h3>
-              <p class="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">Satisfaction Index</p>
-            </div>
-          </div>
-        </div>
+        }
       </div>
     </div>
   </section>

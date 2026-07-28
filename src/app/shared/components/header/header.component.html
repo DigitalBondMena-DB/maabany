@@ -34,8 +34,8 @@
 
         <!-- Language Toggle -->
         <button (click)="toggleLang()"
-          class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full font-mono text-xs font-bold text-neutral-600 hover:bg-neutral-100 transition-colors">
-          🌐 <span>{{ currentLang() }}</span>
+          class="hidden md:flex cursor-pointer items-center gap-1.5 px-3 py-1.5 rounded-full font-mono text-xs font-bold text-neutral-600 hover:bg-neutral-100 transition-colors">
+          <app-icons icon="i18n" [width]="20" [height]="20" /> <span>{{ currentLang() }}</span>
         </button>
 
         <!-- Request a Quote CTA Button -->
@@ -46,8 +46,13 @@
 
         <!-- Mobile Menu Hamburger -->
         <button (click)="toggleMenu()"
-          class="xl:hidden w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center text-[#142b52] font-bold transition-colors">
-          {{ menuOpen() ? '✕' : '☰' }}
+          class="xl:hidden w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors cursor-pointer"
+          aria-label="Toggle navigation menu">
+          <div class="flex flex-col justify-between w-4 h-3.5">
+            <span class="w-full h-0.5 bg-[#142b52] rounded-full"></span>
+            <span class="w-full h-0.5 bg-[#142b52] rounded-full"></span>
+            <span class="w-full h-0.5 bg-[#142b52] rounded-full"></span>
+          </div>
         </button>
       </div>
     </div>
