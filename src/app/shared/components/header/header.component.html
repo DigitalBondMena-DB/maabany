@@ -1,0 +1,68 @@
+<header class="fixed top-0 left-0 right-0 z-50 pointer-events-none w-full">
+  <div
+    class="relative w-full max-w-350 mx-auto px-5 md:px-6 pt-(--hero-nav-top-spacing) lg:px-7 xl:px-8 transition-transform duration-300"
+    [class]="isScrolled() ? 'translate-y-0':'translate-y-5'">
+    <!-- Nav Pill Container -->
+    <div
+      class="pointer-events-auto w-full rounded-full bg-white/95 backdrop-blur-md border border-neutral-200 py-3 px-6 md:px-8 flex items-center justify-between shadow-xl">
+      <!-- Brand Logo -->
+      <a routerLink="/" class="relative flex items-center w-40 h-10 md:w-52 md:h-11 group">
+        <img src="/main-logo.png" width="125" height="52" loading="lazy" decoding="async"
+          alt="Maabany Integrated Building Solutions"
+          class="h-11.25 md:h-13 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden xl:flex items-center gap-2 xl:gap-3">
+        @for (link of navLinks; track link.path) {
+        <a [routerLink]="link.path" routerLinkActive="text-[#EA8A22] font-bold"
+          [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+          class="px-3 py-1.5 rounded-full text-[13px] font-semibold text-[#142b52] hover:text-[#EA8A22] transition-colors relative">
+          {{ link.label }}
+        </a>
+        }
+      </nav>
+
+      <!-- Right Action Items -->
+      <div class="flex items-center gap-3">
+        <!-- Search Trigger -->
+        <button (click)="toggleSearch()"
+          class="flex items-center justify-center p-2.5 rounded-full bg-transparent hover:bg-neutral-100 cursor-pointer transition-colors"
+          title="Search structural projects">
+          <app-icons icon="search" [width]="20" [height]="20" />
+        </button>
+
+        <!-- Language Toggle -->
+        <button (click)="toggleLang()"
+          class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full font-mono text-xs font-bold text-neutral-600 hover:bg-neutral-100 transition-colors">
+          🌐 <span>{{ currentLang() }}</span>
+        </button>
+
+        <!-- Request a Quote CTA Button -->
+        <a href="#"
+          class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 bg-[#EA8A22] hover:bg-[#EA8A22]/90 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-lg shadow-[#EA8A22]/20 hover:shadow-[#EA8A22]/30 transition-all font-mono">
+          Request A Quote
+        </a>
+
+        <!-- Mobile Menu Hamburger -->
+        <button (click)="toggleMenu()"
+          class="xl:hidden w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center text-[#142b52] font-bold transition-colors">
+          {{ menuOpen() ? '✕' : '☰' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Overlay Box -->
+    @if (searchOpen()) {
+    <div animate.enter="enter-animation" animate.leave="leaving"
+      class="pointer-events-auto mt-3 rounded-2xl border border-neutral-200 bg-white/95 backdrop-blur-xl p-4 shadow-2xl">
+      <app-header-search (close)="searchOpen.set(false)" />
+    </div>
+    }
+
+  </div>
+
+  <!-- Mobile Offcanvas Navigation Component (outside transformed container for full viewport coverage) -->
+  <app-mobile-nav [isOpen]="menuOpen()" [navLinks]="navLinks" [currentLang]="currentLang()"
+    (close)="menuOpen.set(false)" (toggleLang)="toggleLang()" />
+</header>

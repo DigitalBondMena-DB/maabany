@@ -1,0 +1,94 @@
+<section class="py-24 bg-slate-900 text-white border-t border-slate-800">
+  <div class="max-w-7xl mx-auto px-6">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+      <div>
+        <span class="text-amber-400 font-bold tracking-wider text-sm uppercase mb-3 block">Engineering Capabilities</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight">Integrated Structural & Technical Solutions</h2>
+      </div>
+      <a routerLink="/solutions" class="inline-flex items-center gap-2 text-amber-400 font-bold hover:text-amber-300 transition-colors">
+        View All Solutions →
+      </a>
+    </div>
+
+    <!-- Solution Navigation Tabs -->
+    <div class="flex flex-wrap gap-4 mb-12 border-b border-slate-800 pb-4">
+      @for (sol of dataService.solutions(); track sol.id; let idx = $index) {
+        <button
+          (click)="selectSolution(idx)"
+          class="px-6 py-3 rounded-xl font-bold transition-all duration-300 flex items-center gap-3"
+          [class.bg-gradient-to-r]="activeSolutionIndex() === idx"
+          [class.from-amber-500]="activeSolutionIndex() === idx"
+          [class.to-orange-600]="activeSolutionIndex() === idx"
+          [class.text-white]="activeSolutionIndex() === idx"
+          [class.shadow-lg]="activeSolutionIndex() === idx"
+          [class.shadow-amber-500\/20]="activeSolutionIndex() === idx"
+          [class.bg-slate-800\/60]="activeSolutionIndex() !== idx"
+          [class.text-slate-400]="activeSolutionIndex() !== idx"
+          [class.hover:text-white]="activeSolutionIndex() !== idx"
+        >
+          <span>{{ sol.title }}</span>
+        </button>
+      }
+    </div>
+
+    <!-- Active Solution Detail Panel -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center bg-slate-950 p-8 md:p-12 rounded-3xl border border-slate-800">
+      <!-- Info Column -->
+      <div>
+        <div class="inline-block px-3 py-1 rounded-md bg-amber-500/10 text-amber-400 font-semibold text-sm mb-4">
+          {{ activeSolution().stats }}
+        </div>
+        <h3 class="text-2xl md:text-4xl font-extrabold mb-4 leading-tight">{{ activeSolution().title }}</h3>
+        <p class="text-slate-300 text-lg font-light mb-6 leading-relaxed">{{ activeSolution().desc }}</p>
+        <p class="text-slate-400 text-sm font-light mb-8 leading-relaxed">{{ activeSolution().details }}</p>
+
+        <!-- Features list -->
+        <div class="grid sm:grid-cols-2 gap-3 mb-8">
+          @for (feat of activeSolution().features; track feat) {
+            <div class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+              <span>{{ feat }}</span>
+            </div>
+          }
+        </div>
+
+        <div class="flex items-center gap-4">
+          <button (click)="toggleCivilExpand()" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold transition-colors">
+            {{ isCivilExpanded() ? 'Hide Technical Specifications' : 'View Technical Specifications' }}
+          </button>
+        </div>
+
+        <!-- Expanded Spec details -->
+        @if (isCivilExpanded()) {
+          <div class="mt-6 p-6 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-sm animate-fadeIn">
+            <h4 class="font-bold text-amber-400 mb-2">Quality Standard Assurance:</h4>
+            <p>Certified ISO 9001:2015, ISO 14001:2015, and OHSAS 18001 compliance. All material tests performed in accredited third-party laboratories prior to installation.</p>
+          </div>
+        }
+      </div>
+
+      <!-- Image Column with Slider controls for MEP -->
+      <div class="relative rounded-2xl overflow-hidden group min-h-[350px]">
+        <img
+          [src]="activeSolutionIndex() === 1 ? mepImages[mepSlideIdx()] : activeSolution().image"
+          [alt]="activeSolution().title"
+          class="w-full h-full object-cover rounded-2xl min-h-[350px] transition-all duration-500"
+        />
+
+        @if (activeSolutionIndex() === 1) {
+          <!-- Slider Controls -->
+          <div class="absolute bottom-4 right-4 flex items-center gap-2 bg-slate-950/80 backdrop-blur-md p-2 rounded-xl border border-slate-800">
+            <button (click)="prevMepSlide()" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 text-white flex items-center justify-center font-bold transition-colors">
+              ‹
+            </button>
+            <span class="text-xs text-slate-300 font-mono px-2">{{ mepSlideIdx() + 1 }} / {{ mepImages.length }}</span>
+            <button (click)="nextMepSlide()" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 text-white flex items-center justify-center font-bold transition-colors">
+              ›
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,3 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+@theme {
+  --outer-padding-x: 24px;
+  --outer-padding-top: 16px;
+  --outer-padding-bottom: 4px;
+  --hero-border-radius: 40px;
+  --video-scale: 1.35;
+  --hero-video-blur: 0px;
+  --hero-overlay-opacity: 0.15;
+  --section-padding-y: 96px;
+  --hero-nav-top-spacing: 20px;
+  --hero-nav-spacing: calc(2 * var(--hero-nav-top-spacing) + 80px);
+}

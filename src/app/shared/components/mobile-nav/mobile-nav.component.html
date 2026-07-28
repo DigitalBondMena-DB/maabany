@@ -1,0 +1,50 @@
+@if (isOpen()) {
+<!-- Backdrop Overlay -->
+<div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 pointer-events-auto transition-opacity "
+    (click)="close.emit()" aria-hidden="true"></div>
+
+<!-- Offcanvas Drawer Panel -->
+<aside
+    class="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white/98 backdrop-blur-2xl z-50 shadow-2xl flex flex-col pointer-events-auto transform transition-transform duration-300 ease-out"
+    role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+    <!-- Offcanvas Header -->
+    <div class="px-6 py-5 border-b border-neutral-100 flex items-center justify-between">
+        <span class="font-mono text-xs font-bold uppercase tracking-wider text-neutral-400">
+            Navigation
+        </span>
+        <button (click)="close.emit()"
+            class="w-9 h-9 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center text-neutral-600 font-bold transition-colors cursor-pointer"
+            aria-label="Close navigation menu">
+            ✕
+        </button>
+    </div>
+
+    <!-- Language Switcher Bar inside Offcanvas -->
+    <div class="px-6 py-3.5 bg-neutral-50/80 border-b border-neutral-100 flex items-center justify-between">
+        <span class="text-xs font-semibold text-neutral-600">Language / اللغة</span>
+        <button (click)="toggleLang.emit()"
+            class="flex items-center gap-1.5 px-3 py-1.5 rounded-full font-mono text-xs font-bold text-neutral-700 bg-white border border-neutral-200 hover:bg-neutral-100 transition-colors cursor-pointer shadow-xs">
+            🌐 <span>{{ currentLang() }}</span>
+        </button>
+    </div>
+
+    <!-- Scrollable Navigation Links -->
+    <nav class="flex-1 overflow-y-auto px-4 py-4 space-y-1">
+        @for (link of navLinks(); track link.path) {
+        <a [routerLink]="link.path" (click)="close.emit()" routerLinkActive="text-[#EA8A22] bg-orange-50/80 font-bold"
+            [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+            class="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-neutral-700 hover:text-[#EA8A22] hover:bg-neutral-50 transition-colors">
+            <span>{{ link.label }}</span>
+        </a>
+        }
+    </nav>
+
+    <!-- Offcanvas Footer CTA -->
+    <div class="p-6 border-t border-neutral-100 bg-neutral-50/50">
+        <a href="#" (click)="close.emit()"
+            class="w-full inline-flex items-center justify-center px-5 py-3.5 bg-[#EA8A22] hover:bg-[#EA8A22]/90 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-[#EA8A22]/20 transition-all font-mono text-center">
+            Request A Quote
+        </a>
+    </div>
+</aside>
+}
