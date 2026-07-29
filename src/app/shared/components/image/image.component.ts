@@ -31,7 +31,7 @@ import { NgOptimizedImage } from '@angular/common';
         [class.opacity-0]="!isLoaded()"
         [class.opacity-100]="isLoaded()"
         [class]="classes()"
-        class="transition-opacity duration-300 w-full h-full"
+        class="w-full h-full"
         (load)="onLoad()"
         (error)="onError()"
       />
@@ -47,7 +47,7 @@ import { NgOptimizedImage } from '@angular/common';
         [style.object-fit]="objectFit()"
         [class.opacity-0]="!isLoaded()"
         [class.opacity-100]="isLoaded()"
-        class="transition-opacity duration-300"
+        
         [class]="classes()"
         (load)="onLoad()"
         (error)="onError()"

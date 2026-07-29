@@ -1,0 +1,73 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "ABOUT": "About",
+    "SOLUTIONS": "Solutions",
+    "PROJECTS": "Projects",
+    "INDUSTRIES": "Industries We Serve",
+    "CLIENTS_PARTNERS": "Clients & Partners",
+    "BLOGS": "Blogs",
+    "CONTACT": "Contact Us",
+    "REQUEST_QUOTE": "Request a Quote",
+    "SWITCH_LANG": "ع"
+  },
+  "HERO": {
+    "TITLE_PREFIX": "Building The Infrastructure Of",
+    "TITLE_HIGHLIGHT": "Tomorrow",
+    "DESCRIPTION": "Tier-one construction & engineering delivering iconic mega-structures, sustainable infrastructure, and master-planned developments across Saudi Arabia & the Middle East.",
+    "STAT_1_NUMBER": "25+",
+    "STAT_1_LABEL": "Years of Excellence",
+    "STAT_2_NUMBER": "450+",
+    "STAT_2_LABEL": "Megaprojects Completed",
+    "STAT_3_NUMBER": "3",
+    "STAT_3_LABEL": "Sovereign Countries",
+    "STAT_4_NUMBER": "99%",
+    "STAT_4_LABEL": "Satisfaction Index"
+  },
+  "PROJECTS": {
+    "SUBTITLE": "FEATURED PORTFOLIO",
+    "TITLE": "Featured Projects",
+    "EXPLORE_ALL": "Explore All Projects"
+  },
+  "SOLUTIONS": {
+    "SUBTITLE": "OUR CORE CAPABILITIES",
+    "TITLE": "Integrated Building Solutions",
+    "DESCRIPTION": "End-to-end engineering excellence from concept design to turnkey execution.",
+    "EXPLORE_ALL": "Explore All Solutions"
+  },
+  "BLOGS": {
+    "SUBTITLE": "INSIGHTS & NEWS",
+    "TITLE": "Latest Industry Insights",
+    "EXPLORE_ALL": "View All Blogs"
+  },
+  "CONTACT": {
+    "SUBTITLE": "REGIONAL HEADQUARTERS",
+    "TITLE": "Inquire About Your Project",
+    "ROUTING_SA": "RIYADH OFFICE ROUTING",
+    "ROUTING_EG": "CAIRO OFFICE ROUTING",
+    "ROUTING_LY": "TRIPOLI OFFICE ROUTING",
+    "NAME_LABEL": "Your Name *",
+    "NAME_PLACEHOLDER": "e.g. Khalid Al-Faisal",
+    "EMAIL_LABEL": "Email Address *",
+    "EMAIL_PLACEHOLDER": "e.g. khalid@example.com",
+    "PHONE_LABEL": "Phone Number *",
+    "PROJECT_TYPE_LABEL": "Project Type *",
+    "MESSAGE_LABEL": "How can we help you? *",
+    "MESSAGE_PLACEHOLDER": "Tell us a bit about your project or what you need...",
+    "PRIVACY_AGREE": "I agree to the Privacy Policy and consent to data routing.",
+    "SUBMIT_BTN": "SEND MESSAGE",
+    "SENDING_BTN": "SENDING INQUIRY...",
+    "SUCCESS_TITLE": "Inquiry Received Successfully!",
+    "SUCCESS_DESC": "Thank you. Your inquiry has been routed. Our engineering team will contact you within 24 hours."
+  },
+  "FOOTER": {
+    "BRAND_DESC": "Maabany Integrated Building Solutions delivers innovative engineering, construction, and facility management services across the Kingdom of Saudi Arabia (KSA) with a commitment to quality, precision, and long-term value.",
+    "QUICK_LINKS": "Quick Links",
+    "RESOURCES": "Resources",
+    "CONTACT_US": "Contact Us",
+    "PROFILE_DOWNLOAD": "Company Profile ↓",
+    "DOWNLOADING": "Downloading Profile...",
+    "RIGHTS_RESERVED": "All Rights Reserved © 2026",
+    "POWERED_BY": "Powered by"
+  }
+}

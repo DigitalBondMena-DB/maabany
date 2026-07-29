@@ -17,52 +17,48 @@
     <div
       class="relative max-w-350 w-full mx-auto px-5 md:px-6 lg:px-7 xl:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-10 my-auto py-6 transition-all duration-200"
       style="padding-top: var(--hero-nav-spacing);">
-      <div class="lg:col-span-7 text-left relative py-4">
+      <div class="lg:col-span-7 text-left relative py-4 rtl:text-right">
         <div class="absolute -inset-10 md:-inset-16 pointer-events-none z-0 rounded-[60px]"
           style="background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0) 100%); backdrop-filter: blur(10px); mask-image: radial-gradient(circle, black 30%, transparent 85%);">
         </div>
 
         <div class="relative z-10 space-y-6">
           <h1
-            class="space-y-1 uppercase text-white text-left text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold">
-            <span class="text-shadow-[0_2px_12px_#0000002e]">
-              BUILDING
-            </span>
-            <span class="text-shadow-[0_2px_12px_#0000002e]">
-              THE FUTURE OF
+            class="space-y-1 uppercase text-white text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold">
+            <span class="block text-shadow-[0_2px_12px_#0000002e]">
+              {{ 'HERO.TITLE_PREFIX' | translate }}
             </span>
             <span class="text-[#EA8A22] text-shadow-[0_2px_12px_#0000002e]">
-              TOMORROW
+              {{ 'HERO.TITLE_HIGHLIGHT' | translate }}
             </span>
           </h1>
 
-          <p class="text-neutral-200 text-sm sm:text-base md:text-lg font-normal leading-relaxed max-w-2xl text-left">
-            Tier-one construction & engineering delivering iconic mega-structures, sustainable infrastructure, and
-            master-planned developments across Saudi Arabia & the Middle East.
+          <p class="text-neutral-200 text-sm sm:text-base md:text-lg font-normal leading-relaxed max-w-2xl">
+            {{ 'HERO.DESCRIPTION' | translate }}
           </p>
 
           <div class="flex flex-wrap items-center gap-4 pt-2">
             <a app-button href="#" variant="primary" size="md" [showArrow]="true">
-              Request a Quote
+              {{ 'NAV.REQUEST_QUOTE' | translate }}
             </a>
           </div>
         </div>
       </div>
 
       <div class="lg:col-span-5 relative flex flex-col gap-4 py-8 max-w-130 mx-auto w-full">
-        @for (stat of stats; track stat.label; let even = $even) {
+        @for (stat of stats; track stat.labelKey; let even = $even) {
         <div
           class="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl w-64 relative overflow-hidden group hover:border-[#EA8A22]/50 transition-all duration-300"
           [class.self-start]="even" [class.self-end]="!even" [class.animate-float-slow]="even"
           [class.animate-float-medium]="!even">
           <div class="absolute top-0 right-0 w-24 h-24 bg-[#EA8A22]/5 rounded-bl-full pointer-events-none"></div>
           <div class="flex items-center gap-3">
-            <div class="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22] font-bold text-xl  flex-center">
+            <div class="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22] font-bold text-xl flex-center">
               <app-icons [icon]="stat.icon" [width]="24" [height]="24" />
             </div>
             <div>
-              <h3 class="text-3xl font-black text-neutral-900 font-mono">{{ stat.value }}</h3>
-              <p class="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">{{ stat.label }}</p>
+              <h3 class="text-3xl font-black text-neutral-900 font-mono">{{ stat.valueKey | translate }}</h3>
+              <p class="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">{{ stat.labelKey | translate }}</p>
             </div>
           </div>
         </div>

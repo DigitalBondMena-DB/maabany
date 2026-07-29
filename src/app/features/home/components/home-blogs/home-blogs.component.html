@@ -1,0 +1,54 @@
+<section id="blogs" class="bg-white relative overflow-hidden z-10 transition-all duration-200 py-12 md:py-20 lg:py-24">
+  <!-- Decorative structural dimension bar and annotations -->
+  <div class="absolute right-8 top-12 w-40 h-16 opacity-[0.04] pointer-events-none hidden lg:block select-none text-[#EA8A22]">
+    <svg viewBox="0 0 100 40" class="w-full h-full">
+      <line x1="10" y1="20" x2="90" y2="20" stroke="currentColor" stroke-width="0.5" />
+      <line x1="10" y1="12" x2="10" y2="28" stroke="currentColor" stroke-width="0.5" />
+      <line x1="90" y1="12" x2="90" y2="28" stroke="currentColor" stroke-width="0.5" />
+      <line x1="6" y1="24" x2="14" y2="16" stroke="currentColor" stroke-width="0.5" />
+      <line x1="86" y1="24" x2="94" y2="16" stroke="currentColor" stroke-width="0.5" />
+      <text x="50" y="15" class="text-[5px] font-mono fill-current text-center" text-anchor="middle">12,400 mm [TYP]</text>
+    </svg>
+  </div>
+
+  <div class="absolute left-6 bottom-12 w-48 h-48 opacity-[0.04] pointer-events-none hidden xl:block select-none text-[#142b52]">
+    <svg viewBox="0 0 100 100" class="w-full h-full">
+      <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="0.25" stroke-dasharray="4 4" />
+      <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" stroke-width="0.5" />
+      <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" stroke-width="0.25" />
+      <text x="15" y="15" class="text-[4px] font-mono fill-current">STRUCT_C-1</text>
+    </svg>
+  </div>
+
+  <div class="max-w-350 mx-auto transition-all duration-200 px-(--outer-padding-x)">
+    <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
+      <span class="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
+        {{ 'INSIGHTS & NEWS' | translate }}
+      </span>
+      <h2 class="text-3xl md:text-5xl font-black text-neutral-900 uppercase tracking-tight">
+        {{ 'Latest Industry Insights' | translate }}
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (post of blogs; track post.slug) {
+        <app-media-card
+          [title]="post.title"
+          [desc]="post.desc"
+          [image]="post.image"
+          [link]="'/blogs/' + post.slug"
+          [badge]="post.date"
+          badgePosition="bottom-left"
+          imageHeight="h-48"
+        />
+      }
+    </div>
+
+    <!-- Explore All Insights CTA -->
+    <div class="mt-16 flex justify-center">
+      <a routerLink="/blogs" app-button [showArrow]="true" variant="outline">
+        {{ 'View All Blogs' | translate }}
+      </a>
+    </div>
+  </div>
+</section>

@@ -17,7 +17,7 @@
         <a [routerLink]="link.path" routerLinkActive="text-[#EA8A22] font-bold"
           [routerLinkActiveOptions]="{ exact: link.path === '/' }"
           class="px-3 py-1.5 rounded-full text-[13px] font-semibold text-[#142b52] hover:text-[#EA8A22] transition-colors relative">
-          {{ link.label }}
+          {{ link.label | translate }}
         </a>
         }
       </nav>
@@ -34,12 +34,13 @@
         <!-- Language Toggle -->
         <button (click)="toggleLang()"
           class="hidden md:flex cursor-pointer items-center gap-1.5 px-3 py-1.5 rounded-full font-mono text-xs font-bold text-neutral-600 hover:bg-neutral-100 transition-colors">
-          <app-icons icon="i18n" [width]="20" [height]="20" /> <span>{{ currentLang() }}</span>
+          <app-icons icon="i18n" [width]="20" [height]="20" />
+          <span>{{ 'NAV.SWITCH_LANG' | translate }}</span>
         </button>
 
         <!-- Request a Quote CTA Button -->
         <a app-button href="#" variant="primary" size="sm" customClass="hidden sm:inline-flex">
-          Request A Quote
+          {{ 'NAV.REQUEST_QUOTE' | translate }}
         </a>
 
         <!-- Mobile Menu Hamburger -->
@@ -65,7 +66,7 @@
 
   </div>
 
-  <!-- Mobile Offcanvas Navigation Component (outside transformed container for full viewport coverage) -->
-  <app-mobile-nav [isOpen]="menuOpen()" [navLinks]="navLinks" [currentLang]="currentLang()"
+  <!-- Mobile Offcanvas Navigation Component -->
+  <app-mobile-nav [isOpen]="menuOpen()" [navLinks]="navLinks" [currentLang]="languageService.currentLang() === 'en' ? 'EN' : 'AR'"
     (close)="menuOpen.set(false)" (toggleLang)="toggleLang()" />
 </header>

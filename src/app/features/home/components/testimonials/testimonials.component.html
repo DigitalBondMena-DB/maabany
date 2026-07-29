@@ -1,0 +1,165 @@
+<section id="testimonials"
+  class="relative bg-[#fdfdfd] overflow-hidden z-10 transition-all duration-200 py-12 md:py-16 lg:py-20">
+  <!-- Premium Background Elements -->
+  <div class="absolute inset-0 bg-blueprint opacity-[0.03] pointer-events-none"></div>
+  <div
+    class="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#142b52] rounded-full opacity-[0.04] blur-[150px] pointer-events-none">
+  </div>
+  <div
+    class="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-[#EA8A22] rounded-full opacity-[0.03] blur-[120px] pointer-events-none">
+  </div>
+  <div class="absolute inset-0 bg-linear-to-b from-white via-transparent to-[#fdfdfd] pointer-events-none"></div>
+
+  <!-- Floating geometric shapes (3D animated) -->
+  <div class="absolute top-[10%] left-[5%] w-64 h-64 opacity-15 pointer-events-none hidden xl:block z-0">
+    @defer (on viewport) {
+    <app-floating-wireframe shape="octahedron" color="#142b52" />
+    } @placeholder {
+    <div class="w-64 h-64"></div>
+    }
+  </div>
+
+  <div class="absolute bottom-[10%] right-[5%] w-72 h-72 opacity-15 pointer-events-none hidden xl:block z-0">
+    @defer (on viewport) {
+    <app-floating-wireframe shape="icosahedron" color="#EA8A22" />
+    } @placeholder {
+    <div class="w-72 h-72"></div>
+    }
+  </div>
+
+  <!-- Floating decorative rings -->
+  <div
+    class="absolute top-[20%] left-[10%] w-32 h-32 border border-[#142b52]/10 rounded-full pointer-events-none animate-pulse">
+  </div>
+  <div
+    class="absolute bottom-[20%] right-[10%] w-48 h-48 border border-[#EA8A22]/10 rounded-full pointer-events-none animate-pulse">
+  </div>
+
+  <div class="max-w-350 mx-auto relative z-10 px-(--outer-padding-x) transition-all duration-200">
+    <!-- Header -->
+    <div class="text-center space-y-2 mb-8 md:mb-12">
+      <span class="text-[#142b52] font-mono text-xs uppercase font-bold tracking-[0.3em] block">
+        Client Success Stories
+      </span>
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-neutral-900 uppercase tracking-tighter">
+        Trusted by Global Leaders
+      </h2>
+    </div>
+
+    <!-- Premium Testimonial Card Panel -->
+    <div class="max-w-3xl mx-auto relative">
+      <!-- Navigation Buttons (Desktop floating outside) -->
+      <div class="absolute top-1/2 -left-4 md:-left-12 -translate-y-1/2 z-20 hidden md:block">
+        <button type="button" (click)="prev()"
+          class="w-14 h-14 rounded-full bg-white backdrop-blur-md border border-neutral-200 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-[#142b52] hover:border-[#142b52] transition-all duration-300 shadow-[0_10px_20px_rgba(20,43,82,0.05)] hover:shadow-[0_10px_20px_rgba(20,43,82,0.2)] group cursor-pointer"
+          aria-label="Previous testimonial">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="w-6 h-6 group-hover:-translate-x-1 transition-transform">
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 z-20 hidden md:block">
+        <button type="button" (click)="next()"
+          class="w-14 h-14 rounded-full bg-white backdrop-blur-md border border-neutral-200 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-[#142b52] hover:border-[#142b52] transition-all duration-300 shadow-[0_10px_20px_rgba(20,43,82,0.05)] hover:shadow-[0_10px_20px_rgba(20,43,82,0.2)] group cursor-pointer"
+          aria-label="Next testimonial">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="w-6 h-6 group-hover:translate-x-1 transition-transform">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Glassmorphism Panel -->
+      <div
+        class="bg-white/80 backdrop-blur-2xl border border-neutral-200/60 p-6 sm:p-8 lg:p-10 rounded-3xl relative shadow-[0_20px_40px_-15px_rgba(20,43,82,0.08)] hover:shadow-[0_30px_60px_-15px_rgba(20,43,82,0.15)] hover:border-[#142b52]/20 transition-all duration-500 group overflow-hidden">
+        <div
+          class="absolute inset-0 bg-linear-to-br from-white/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+        </div>
+
+        <!-- Background SVG quote mark (Subtle & responsive size) -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+          class="absolute top-3 left-3 md:top-6 md:left-6 w-10 h-10 md:w-14 md:h-14 text-[#142b52]/[0.03] group-hover:text-[#142b52]/[0.06] transition-colors duration-500 pointer-events-none rotate-180">
+          <path
+            d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h3c0 2.5-1 4.5-4 5.5V21zm13 0c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h3c0 2.5-1 4.5-4 5.5V21z" />
+        </svg>
+
+        <div class="relative z-10 flex flex-col items-center">
+          <div class="space-y-6 md:space-y-8 w-full max-w-[620px] transition-all duration-500">
+            <!-- Quote text with CSS variables staggered word animation -->
+            <div
+              class="text-center min-h-[110px] sm:min-h-[100px] flex items-center justify-center px-2 sm:px-4 pt-2 md:pt-0">
+              @if (isAnimating()) {
+              <p
+                class="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[19px] text-neutral-800 font-normal leading-[1.7] md:leading-[1.65] tracking-tight">
+                @for (word of words(); track $index) {
+                <span class="animate-word mr-[0.25em]" [style.--i]="$index"
+                  [class.text-[#EA8A22]]="isHighlightedWord(word)" [class.font-medium]="isHighlightedWord(word)">{{ word
+                  }}</span>
+                }
+              </p>
+              }
+            </div>
+
+            <!-- Profile Block -->
+            <div
+              class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 sm:pt-5 border-t border-neutral-200/60">
+              <div class="relative">
+                <div
+                  class="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center bg-[#f8f9fa] border border-[#142b52]/20 group-hover:border-[#142b52]/50 transition-colors duration-500">
+                  <span class="text-sm md:text-base font-bold text-[#142b52]">
+                    {{ activeItem().initials }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="text-center sm:text-left">
+                <div class="flex items-center justify-center sm:justify-start gap-2 mb-0.5">
+                  <h4 class="text-sm md:text-base font-semibold text-neutral-900 tracking-tight">
+                    {{ activeItem().name }}
+                  </h4>
+                </div>
+                <p class="text-xs md:text-sm text-neutral-500/80 font-normal">
+                  {{ activeItem().role }} — <span class="text-neutral-700 font-medium">{{ activeItem().company }}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Bar Navigation -->
+          <div class="w-full max-w-[120px] mt-6 md:mt-8 flex gap-2 relative z-10">
+            @for (t of testimonials; track $index) {
+            <button type="button" (click)="select($index)"
+              [class]="'flex-1 h-1.5 rounded-full relative overflow-hidden transition-all duration-300 cursor-pointer ' + ($index === currentIndex() ? 'bg-[#142b52]' : 'bg-neutral-200 hover:bg-neutral-300')"
+              [attr.aria-label]="'Go to slide ' + ($index + 1)">
+            </button>
+            }
+          </div>
+
+          <!-- Mobile Navigation Arrows -->
+          <div class="flex justify-center gap-4 mt-6 md:hidden relative z-10">
+            <button type="button" (click)="prev()"
+              class="w-12 h-12 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-neutral-500 hover:text-white hover:bg-[#142b52] hover:border-[#142b52] transition-colors cursor-pointer"
+              aria-label="Previous testimonial">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+            <button type="button" (click)="next()"
+              class="w-12 h-12 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-neutral-500 hover:text-white hover:bg-[#142b52] hover:border-[#142b52] transition-colors cursor-pointer"
+              aria-label="Next testimonial">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

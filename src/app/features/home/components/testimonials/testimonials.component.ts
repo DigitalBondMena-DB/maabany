@@ -1,68 +1,131 @@
-import { Component, inject, signal, computed } from '@angular/core';
-import { HomeDataService } from '../../services/home-data.service';
+import { Component, signal, computed, OnInit, OnDestroy, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { FloatingWireframeComponent } from '../../../../shared/components/floating-wireframe/floating-wireframe.component';
+
+export interface TestimonialItem {
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+  initials: string;
+}
 
 @Component({
   selector: 'app-testimonials',
-  imports: [],
-  template: `
-    <section class="py-24 bg-slate-900 text-white border-t border-slate-800 z-1 relative">
-      <div class="max-w-7xl mx-auto px-6">
-        <!-- Header -->
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <span class="text-amber-400 font-bold tracking-wider text-sm uppercase mb-3 block">Testimonials & Client Feedback</span>
-          <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight">Endorsed By Regional Visionaries</h2>
-        </div>
+  imports: [FloatingWireframeComponent],
+  templateUrl: './testimonials.component.html',
+  styles: [`
+    @keyframes wordFadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(8px) scale(0.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
 
-        <!-- Active Testimonial Card -->
-        <div class="max-w-4xl mx-auto p-8 md:p-12 rounded-3xl bg-slate-950 border border-slate-800 relative">
-          <div class="flex items-center gap-1 mb-6">
-            @for (star of [1, 2, 3, 4, 5]; track star) {
-              <span class="text-amber-400 text-xl">★</span>
-            }
-          </div>
-
-          <blockquote class="text-xl md:text-2xl text-slate-200 font-light leading-relaxed mb-8">
-            "{{ activeItem().content }}"
-          </blockquote>
-
-          <div class="flex items-center justify-between flex-wrap gap-4 border-t border-slate-800 pt-6">
-            <div class="flex items-center gap-4">
-              <img [src]="activeItem().avatar" [alt]="activeItem().name" class="w-14 h-14 rounded-full object-cover border-2 border-amber-500" />
-              <div>
-                <div class="font-bold text-lg text-white">{{ activeItem().name }}</div>
-                <div class="text-slate-400 text-sm">{{ activeItem().title }} — <span class="text-amber-400">{{ activeItem().company }}</span></div>
-              </div>
-            </div>
-
-            <!-- Controls -->
-            <div class="flex items-center gap-3">
-              <button (click)="prev()" class="w-12 h-12 rounded-xl bg-slate-800 hover:bg-amber-500 text-white flex items-center justify-center font-bold transition-colors">
-                ←
-              </button>
-              <button (click)="next()" class="w-12 h-12 rounded-xl bg-slate-800 hover:bg-amber-500 text-white flex items-center justify-center font-bold transition-colors">
-                →
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  `
+    .animate-word {
+      display: inline-block;
+      opacity: 0;
+      animation: wordFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: calc(var(--i, 0) * 32ms);
+      will-change: transform, opacity;
+    }
+  `]
 })
-export class TestimonialsComponent {
-  readonly dataService = inject(HomeDataService);
-  readonly currentIndex = signal<number>(0);
+export class TestimonialsComponent implements OnInit, OnDestroy {
+  private readonly platformId = inject(PLATFORM_ID);
 
-  readonly activeItem = computed(() => {
-    const list = this.dataService.testimonials();
-    return list[this.currentIndex()] || list[0];
-  });
+  readonly currentIndex = signal<number>(0);
+  readonly isAnimating = signal<boolean>(true);
+  private timerId?: any;
+
+  readonly testimonials: TestimonialItem[] = [
+    {
+      quote: 'Maabany delivered our premium enterprise headquarters 3 months ahead of schedule without sacrificing a single layer of architectural complexity. Their standard of execution is truly unprecedented.',
+      name: 'Eng. Abdulrahman Al-Saud',
+      role: 'VP of Urban Development',
+      company: 'Riyadh Vision Group',
+      initials: 'AA',
+    },
+    {
+      quote: 'The engineering team at Maabany tackled our complex robotic facility constraints with outstanding ingenuity. Their digital twin models kept us informed of every load test.',
+      name: 'Sarah Lindqvist',
+      role: 'Operations Lead',
+      company: 'Nexa Industrial Labs',
+      initials: 'SL',
+    },
+    {
+      quote: 'For high-scale public infrastructure, trust is non-negotiable. Maabany demonstrated unparalleled structural discipline and clean green-concrete compliance.',
+      name: 'Marcus Thorne',
+      role: 'Principal Director',
+      company: 'Global Cities Consortium',
+      initials: 'MT',
+    },
+  ];
+
+  readonly activeItem = computed(() => this.testimonials[this.currentIndex()] || this.testimonials[0]);
+  readonly words = computed(() => this.activeItem().quote.split(' '));
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.startAutoSlide();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.stopAutoSlide();
+  }
+
+  private startAutoSlide(): void {
+    this.stopAutoSlide();
+    this.timerId = setInterval(() => {
+      this.next();
+    }, 7000);
+  }
+
+  private stopAutoSlide(): void {
+    if (this.timerId) {
+      clearInterval(this.timerId);
+      this.timerId = undefined;
+    }
+  }
+
+  private triggerReanimation(action: () => void): void {
+    this.isAnimating.set(false);
+    action();
+    if (isPlatformBrowser(this.platformId)) {
+      requestAnimationFrame(() => {
+        this.isAnimating.set(true);
+      });
+    } else {
+      this.isAnimating.set(true);
+    }
+  }
 
   next(): void {
-    this.currentIndex.update(idx => (idx + 1) % this.dataService.testimonials().length);
+    this.triggerReanimation(() => {
+      this.currentIndex.update((idx) => (idx + 1) % this.testimonials.length);
+    });
   }
 
   prev(): void {
-    this.currentIndex.update(idx => (idx - 1 + this.dataService.testimonials().length) % this.dataService.testimonials().length);
+    this.triggerReanimation(() => {
+      this.currentIndex.update((idx) => (idx - 1 + this.testimonials.length) % this.testimonials.length);
+    });
+  }
+
+  select(idx: number): void {
+    if (this.currentIndex() === idx) return;
+    this.triggerReanimation(() => {
+      this.currentIndex.set(idx);
+    });
+  }
+
+  isHighlightedWord(word: string): boolean {
+    const clean = word.toLowerCase();
+    return ['unprecedented', 'ingenuity', 'unparalleled'].some((k) => clean.includes(k));
   }
 }

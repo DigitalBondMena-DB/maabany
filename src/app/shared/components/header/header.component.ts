@@ -3,24 +3,35 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { fromEvent, asyncScheduler } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TranslatePipe } from '@ngx-translate/core';
 import { IconsComponent } from '../icons/icons.component';
 import { HeaderSearchComponent } from '../header-search/header-search.component';
 import { MobileNavComponent } from '../mobile-nav/mobile-nav.component';
 import { ImageComponent } from "../image/image.component";
 import { ButtonComponent } from '../button/button.component';
+import { LanguageService } from '../../../core/services/language.service';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, IconsComponent, HeaderSearchComponent, MobileNavComponent, ImageComponent, ButtonComponent],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    IconsComponent,
+    HeaderSearchComponent,
+    MobileNavComponent,
+    ImageComponent,
+    ButtonComponent,
+    TranslatePipe,
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
   private readonly destroyRef = inject(DestroyRef);
+  readonly languageService = inject(LanguageService);
 
   readonly menuOpen = signal<boolean>(false);
   readonly searchOpen = signal<boolean>(false);
-  readonly currentLang = signal<'EN' | 'AR'>('EN');
   readonly isScrolled = signal<boolean>(false);
 
   constructor() {
@@ -44,14 +55,14 @@ export class HeaderComponent {
   }
 
   readonly navLinks = [
-    { label: 'Home', path: '/' },
-    { label: 'About', path: '/about' },
-    { label: 'Solutions', path: '/solutions' },
-    { label: 'Projects', path: '/projects' },
-    { label: 'Industries We Serve', path: '/industries' },
-    { label: 'Clients & Partners', path: '/clients-partners' },
-    { label: 'Blogs', path: '/blogs' },
-    { label: 'Contact Us', path: '/contact' }
+    { label: 'NAV.HOME', path: '/' },
+    { label: 'NAV.ABOUT', path: '/about' },
+    { label: 'NAV.SOLUTIONS', path: '/solutions' },
+    { label: 'NAV.PROJECTS', path: '/projects' },
+    { label: 'NAV.INDUSTRIES', path: '/industries' },
+    { label: 'NAV.CLIENTS_PARTNERS', path: '/clients-partners' },
+    { label: 'NAV.BLOGS', path: '/blogs' },
+    { label: 'NAV.CONTACT', path: '/contact' }
   ];
 
   toggleMenu(): void {
@@ -63,6 +74,6 @@ export class HeaderComponent {
   }
 
   toggleLang(): void {
-    this.currentLang.update(l => l === 'EN' ? 'AR' : 'EN');
+    this.languageService.toggleLanguage();
   }
 }

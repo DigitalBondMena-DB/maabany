@@ -6,7 +6,9 @@ import { SolutionsSliderComponent } from './components/solutions-slider/solution
 import { ClientMarqueeComponent } from './components/client-marquee/client-marquee.component';
 import { FeaturedProjectsComponent } from './components/featured-projects/featured-projects.component';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
-import { BranchContactComponent } from './components/branch-contact/branch-contact.component';
+import { HomeBlogsComponent } from './components/home-blogs/home-blogs.component';
+import { CtaBannerComponent } from '../../shared/components/cta-banner/cta-banner.component';
+import { ContactSectionComponent } from './components/contact-section/contact-section.component';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +20,9 @@ import { BranchContactComponent } from './components/branch-contact/branch-conta
     ClientMarqueeComponent,
     FeaturedProjectsComponent,
     TestimonialsComponent,
-    BranchContactComponent
+    HomeBlogsComponent,
+    CtaBannerComponent,
+    ContactSectionComponent
   ],
   templateUrl: './home.component.html',
 })

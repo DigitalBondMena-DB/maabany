@@ -1,47 +1,87 @@
-import { Component, inject } from '@angular/core';
-import { HomeDataService } from '../../services/home-data.service';
+import { Component, computed, input } from '@angular/core';
+
+export interface MarqueeItem {
+  name: string;
+  text: string;
+}
 
 @Component({
   selector: 'app-client-marquee',
-  imports: [],
-  template: `
-    <section class="py-12 bg-slate-950 border-t border-slate-900 overflow-hidden z-10 relative">
-      <div class="max-w-7xl mx-auto px-6 mb-8 text-center">
-        <span class="text-slate-400 text-xs uppercase font-bold tracking-widest">Trusted By Government Entities & Industry Leaders</span>
-      </div>
-
-      <!-- Infinite Marquee Track -->
-      <div class="flex whitespace-nowrap overflow-hidden relative">
-        <div class="flex items-center gap-12 animate-marquee">
-          @for (client of dataService.clients(); track client.name) {
-            <div class="flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-900/40 border border-slate-800 text-slate-300 font-bold tracking-wider hover:border-amber-500/40 hover:text-amber-400 transition-all">
-              <span class="w-3 h-3 rounded-full bg-amber-500"></span>
-              <span>{{ client.text }}</span>
-            </div>
-          }
-          <!-- Duplicated set for smooth infinite loop -->
-          @for (client of dataService.clients(); track 'dup-' + client.name) {
-            <div class="flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-900/40 border border-slate-800 text-slate-300 font-bold tracking-wider hover:border-amber-500/40 hover:text-amber-400 transition-all">
-              <span class="w-3 h-3 rounded-full bg-amber-500"></span>
-              <span>{{ client.text }}</span>
-            </div>
-          }
-        </div>
-      </div>
-    </section>
-  `,
+  templateUrl: './client-marquee.component.html',
   styles: [`
-    @keyframes marquee {
+    @keyframes marquee-left {
       0% { transform: translateX(0%); }
       100% { transform: translateX(-50%); }
     }
-    .animate-marquee {
+
+    @keyframes marquee-right {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0%); }
+    }
+
+    .animate-marquee-left {
       display: flex;
-      width: 200%;
-      animation: marquee 25s linear infinite;
+      width: max-content;
+      animation: marquee-left 30s linear infinite;
+    }
+
+    .animate-marquee-right {
+      display: flex;
+      width: max-content;
+      animation: marquee-right 30s linear infinite;
+    }
+
+    .animate-marquee-left:hover,
+    .animate-marquee-right:hover {
+      animation-play-state: paused;
     }
   `]
 })
 export class ClientMarqueeComponent {
-  readonly dataService = inject(HomeDataService);
+  readonly customPartners = input<MarqueeItem[]>();
+  readonly customClients = input<MarqueeItem[]>();
+
+  readonly defaultPartners: MarqueeItem[] = [
+    { name: 'Ministry of Housing', text: 'MINISTRY OF HOUSING' },
+    { name: 'Diriyah Gate Development', text: 'DIRIYAH GATE' },
+    { name: 'Royal Commission for Riyadh', text: 'RCRC RIYADH' },
+    { name: 'MODON Industrial Cities', text: 'MODON CITIES' },
+    { name: 'KAFD Financial District', text: 'KAFD RIYADH' },
+    { name: 'SABIC Industrial', text: 'SABIC CORP' },
+  ];
+
+  readonly defaultClients: MarqueeItem[] = [
+    { name: 'ROSHN Development', text: 'ROSHN' },
+    { name: 'Red Sea Global', text: 'RED SEA GLOBAL' },
+    { name: 'NEOM Smart Cities', text: 'NEOM' },
+    { name: 'Saudi Aramco', text: 'SAUDI ARAMCO' },
+    { name: 'Emaar Properties', text: 'EMAAR' },
+  ];
+
+  // Base speed factor: seconds per item to guarantee equal linear speed (pixels/sec)
+  private readonly SECONDS_PER_ITEM = 1.3;
+
+  // Safe minimum item threshold to prevent empty space gaps on 4K / ultra-wide screens
+  private readonly SAFE_MIN_ITEMS = 24;
+
+  private createSafeMarqueeTrack(items: MarqueeItem[]): MarqueeItem[] {
+    if (!items || items.length === 0) return [];
+    const reps = Math.ceil(this.SAFE_MIN_ITEMS / items.length);
+    const evenReps = reps % 2 === 0 ? reps : reps + 1;
+    const result: MarqueeItem[] = [];
+    for (let i = 0; i < evenReps; i++) {
+      result.push(...items);
+    }
+    return result;
+  }
+
+  readonly partnersList = computed(() => this.customPartners() || this.defaultPartners);
+  readonly clientsList = computed(() => this.customClients() || this.defaultClients);
+
+  readonly repeatedPartners = computed(() => this.createSafeMarqueeTrack(this.partnersList()));
+  readonly repeatedClients = computed(() => this.createSafeMarqueeTrack(this.clientsList()));
+
+  // Dynamically computed durations ensuring identical linear speed
+  readonly partnersDuration = computed(() => `${(this.repeatedPartners().length * this.SECONDS_PER_ITEM).toFixed(1)}s`);
+  readonly clientsDuration = computed(() => `${(this.repeatedClients().length * this.SECONDS_PER_ITEM).toFixed(1)}s`);
 }

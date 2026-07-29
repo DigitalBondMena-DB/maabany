@@ -1,21 +1,20 @@
-import { Component, viewChild, ElementRef, output, afterNextRender } from '@angular/core';
+import { Component, viewChild, ElementRef, output } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { IconsComponent } from '../../../../shared/components/icons/icons.component';
-import { FloatingWireframeComponent } from '../../../../shared/components/floating-wireframe/floating-wireframe.component';
 import { IconName } from '../../../../shared/models/icons.interface';
 import { HeroBg } from "../hero-bg/hero-bg";
+import { ButtonComponent } from '../../../../shared/components/button/button.component';
 
 export interface HeroStat {
   icon: IconName;
-  value: string;
-  label: string;
+  valueKey: string;
+  labelKey: string;
 }
-
-import { ButtonComponent } from '../../../../shared/components/button/button.component';
 
 @Component({
   selector: 'app-home-hero',
   templateUrl: './hero.component.html',
-  imports: [IconsComponent, HeroBg, ButtonComponent],
+  imports: [IconsComponent, HeroBg, ButtonComponent, TranslatePipe],
 })
 export class HomeHeroComponent {
   readonly openQuote = output<void>();
@@ -24,14 +23,11 @@ export class HomeHeroComponent {
   readonly bgVideoUrl = '/videos/Maabany-hero-video.mp4';
 
   readonly stats: HeroStat[] = [
-    { icon: 'orangeClock', value: '25+', label: 'Years of Excellence' },
-    { icon: 'orangeBuild', value: '450+', label: 'Megaprojects Completed' },
-    { icon: 'orangeI18n', value: '3', label: 'Sovereign Countries' },
-    { icon: 'orangeAvatar', value: '99%', label: 'Satisfaction Index' },
+    { icon: 'orangeClock', valueKey: 'HERO.STAT_1_NUMBER', labelKey: 'HERO.STAT_1_LABEL' },
+    { icon: 'orangeBuild', valueKey: 'HERO.STAT_2_NUMBER', labelKey: 'HERO.STAT_2_LABEL' },
+    { icon: 'orangeI18n', valueKey: 'HERO.STAT_3_NUMBER', labelKey: 'HERO.STAT_3_LABEL' },
+    { icon: 'orangeAvatar', valueKey: 'HERO.STAT_4_NUMBER', labelKey: 'HERO.STAT_4_LABEL' },
   ];
-
-
-
 
   scrollToNext(): void {
     const heroElement = this.heroRef()?.nativeElement;

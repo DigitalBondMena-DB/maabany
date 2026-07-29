@@ -1,0 +1,34 @@
+<section id="projects" class="bg-white relative z-10 py-12 md:py-20 lg:py-24">
+  <div class="absolute inset-e-12 top-12 w-80 h-80 opacity-15 pointer-events-none hidden xl:block">
+    <app-floating-wireframe shape="octahedron" color="#142b52"></app-floating-wireframe>
+  </div>
+
+  <div class="max-w-350 mx-auto relative z-10 px-(--outer-padding-x) transition-all duration-200">
+    <div class="mb-16 space-y-2">
+      <span class="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
+        {{ 'PROJECTS.SUBTITLE' | translate }}
+      </span>
+      <h2 class="text-3xl md:text-5xl font-black text-neutral-900 uppercase tracking-tight">{{ 'PROJECTS.TITLE' | translate }}</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (proj of projects; track proj.name) {
+        <app-media-card
+          [title]="proj.name"
+          [desc]="proj.desc"
+          [image]="proj.image"
+          [link]="'/projects'"
+          [badge]="proj.category"
+          badgePosition="top-left"
+          imageHeight="h-64"
+        />
+      }
+    </div>
+
+    <div class="mt-16 flex justify-center">
+      <a routerLink="/projects" app-button [showArrow]="true" variant="outline">
+        {{ 'PROJECTS.EXPLORE_ALL' | translate }}
+      </a>
+    </div>
+  </div>
+</section>
