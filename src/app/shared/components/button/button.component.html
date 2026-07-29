@@ -1,0 +1,16 @@
+@if (label()) {
+<span>{{ label() }}</span>
+}
+<ng-content />
+
+@if (showArrow()) {
+<app-icons
+  icon="orangeArrow"
+  [width]="20"
+  [height]="20"
+  [classes]="
+    'transition-all duration-300 rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 ' +
+    (variant() === 'primary' ? 'brightness-0 invert' : 'group-hover:brightness-0 group-hover:invert')
+  "
+/>
+}

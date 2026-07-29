@@ -18,34 +18,32 @@ interface Point3D {
   z: number;
 }
 
-interface Point2D {
-  x: number;
-  y: number;
-}
-
 interface Edge {
   from: number;
   to: number;
 }
 
+export type WireframeShape = 'dome' | 'tower' | 'icosahedron' | 'cube' | 'octahedron' | 'pyramid';
+
 @Component({
   selector: 'app-floating-wireframe',
   template: `
     <div class="relative w-full h-full flex items-center justify-center pointer-events-none select-none">
-      <svg #svgRef class="w-full h-full overflow-visible" viewBox="-1.8 -1.8 3.6 3.6">
+      <svg #svgRef class="w-full h-full overflow-visible" viewBox="0 0 300 300">
         @for (edge of edges; track $index) {
           <line
-            stroke-width="0.02"
-            opacity="0.55"
+            stroke-width="1.2"
+            stroke-opacity="0.85"
             stroke-linecap="round"
             [attr.stroke]="color()"
           />
         }
         @for (node of nodes; track $index) {
           <circle
-            r="0.035"
-            opacity="0.8"
-            [attr.fill]="color()"
+            r="3"
+            fill="white"
+            stroke-width="1.5"
+            [attr.stroke]="color()"
           />
         }
       </svg>
@@ -56,7 +54,7 @@ interface Edge {
   }
 })
 export class FloatingWireframeComponent implements OnInit, OnDestroy {
-  readonly shape = input<'dome' | 'tower' | 'icosahedron' | 'cube' | 'octahedron' | 'pyramid'>('icosahedron');
+  readonly shape = input<WireframeShape>('icosahedron');
   readonly color = input<string>('#EA8A22');
   readonly speed = input<number>(1);
 
@@ -75,7 +73,6 @@ export class FloatingWireframeComponent implements OnInit, OnDestroy {
 
   constructor() {
     effect(() => {
-      // Rebuild geometry when shape changes
       this.shape();
       this.buildGeometry();
       setTimeout(() => this.cacheDomElements(), 0);
@@ -113,110 +110,179 @@ export class FloatingWireframeComponent implements OnInit, OnDestroy {
       this.cacheDomElements();
     }
 
-    const a = this.angle;
-    const cosA = Math.cos(a);
-    const sinA = Math.sin(a);
-    const cosA2 = Math.cos(a * 0.7);
-    const sinA2 = Math.sin(a * 0.7);
+    const viewWidth = 300;
+    const viewHeight = 300;
+    const cx = viewWidth / 2;
+    const cy = viewHeight / 2;
 
-    const projected: Point2D[] = new Array(this.nodes.length);
+    const spacingX = 64;
+    const spacingY = 32;
+    const spacingZ = 64;
+
+    const cos = Math.cos(this.angle);
+    const sin = Math.sin(this.angle);
+
+    const projectedNodes = new Array<{ xScreen: number; yScreen: number }>(this.nodes.length);
     for (let i = 0; i < this.nodes.length; i++) {
-      const pt = this.nodes[i];
-      const x1 = pt.x * cosA - pt.z * sinA;
-      const z1 = pt.x * sinA + pt.z * cosA;
-      const y1 = pt.y;
+      const node = this.nodes[i];
+      const rx = node.x * cos - node.y * sin;
+      const ry = node.x * sin + node.y * cos;
 
-      const y2 = y1 * cosA2 - z1 * sinA2;
-      const z2 = y1 * sinA2 + z1 * cosA2;
+      const xScreen = cx + (rx - ry) * spacingX;
+      const yScreen = cy + (rx + ry) * spacingY - node.z * spacingZ;
 
-      const scale = 2.4 / (3 + z2);
-      projected[i] = { x: x1 * scale, y: y2 * scale };
+      projectedNodes[i] = { xScreen, yScreen };
     }
 
     for (let i = 0; i < this.edges.length; i++) {
       const edge = this.edges[i];
       const line = this.lineEls[i];
       if (line) {
-        const p1 = projected[edge.from];
-        const p2 = projected[edge.to];
-        if (p1 && p2) {
-          line.setAttribute('x1', p1.x.toFixed(4));
-          line.setAttribute('y1', p1.y.toFixed(4));
-          line.setAttribute('x2', p2.x.toFixed(4));
-          line.setAttribute('y2', p2.y.toFixed(4));
+        const fromNode = projectedNodes[edge.from];
+        const toNode = projectedNodes[edge.to];
+        if (fromNode && toNode) {
+          line.setAttribute('x1', fromNode.xScreen.toFixed(2));
+          line.setAttribute('y1', fromNode.yScreen.toFixed(2));
+          line.setAttribute('x2', toNode.xScreen.toFixed(2));
+          line.setAttribute('y2', toNode.yScreen.toFixed(2));
         }
       }
     }
 
     for (let i = 0; i < this.nodes.length; i++) {
       const circle = this.circleEls[i];
-      if (circle) {
-        const p = projected[i];
-        if (p) {
-          circle.setAttribute('cx', p.x.toFixed(4));
-          circle.setAttribute('cy', p.y.toFixed(4));
-        }
+      const node = projectedNodes[i];
+      if (circle && node) {
+        circle.setAttribute('cx', node.xScreen.toFixed(2));
+        circle.setAttribute('cy', node.yScreen.toFixed(2));
       }
     }
   }
 
   private buildGeometry(): void {
-    const type = this.shape();
+    const s = this.shape();
     this.nodes = [];
     this.edges = [];
 
-    if (type === 'icosahedron') {
-      const t = (1.0 + Math.sqrt(5.0)) / 2.0;
-      this.nodes = [
-        { x: -1, y: t, z: 0 }, { x: 1, y: t, z: 0 }, { x: -1, y: -t, z: 0 }, { x: 1, y: -t, z: 0 },
-        { x: 0, y: -1, z: t }, { x: 0, y: 1, z: t }, { x: 0, y: -1, z: -t }, { x: 0, y: 1, z: -t },
-        { x: t, y: 0, z: -1 }, { x: t, y: 0, z: 1 }, { x: -t, y: 0, z: -1 }, { x: -t, y: 0, z: 1 }
-      ].map(p => ({ x: p.x * 0.5, y: p.y * 0.5, z: p.z * 0.5 }));
+    if (s === 'dome') {
+      // 1. Geodesic Dome Structure
+      for (let i = 0; i < 8; i++) {
+        const theta = (i * Math.PI * 2) / 8;
+        this.nodes.push({ x: Math.cos(theta), y: Math.sin(theta), z: -0.4 });
+      }
+      for (let i = 0; i < 8; i++) {
+        const theta = (i * Math.PI * 2) / 8 + Math.PI / 8;
+        this.nodes.push({ x: 0.8 * Math.cos(theta), y: 0.8 * Math.sin(theta), z: 0.2 });
+      }
+      for (let i = 0; i < 4; i++) {
+        const theta = (i * Math.PI * 2) / 4;
+        this.nodes.push({ x: 0.4 * Math.cos(theta), y: 0.4 * Math.sin(theta), z: 0.8 });
+      }
+      this.nodes.push({ x: 0, y: 0, z: 1.3 });
 
+      for (let i = 0; i < 8; i++) this.edges.push({ from: i, to: (i + 1) % 8 });
+      for (let i = 0; i < 8; i++) this.edges.push({ from: 8 + i, to: 8 + ((i + 1) % 8) });
+      for (let i = 0; i < 4; i++) this.edges.push({ from: 16 + i, to: 16 + ((i + 1) % 4) });
+
+      for (let i = 0; i < 8; i++) {
+        this.edges.push({ from: i, to: 8 + i });
+        this.edges.push({ from: i, to: 8 + ((i - 1 + 8) % 8) });
+      }
+      for (let i = 0; i < 8; i++) {
+        this.edges.push({ from: 8 + i, to: 16 + (i % 4) });
+      }
+      for (let i = 0; i < 4; i++) {
+        this.edges.push({ from: 16 + i, to: 20 });
+      }
+
+    } else if (s === 'tower') {
+      // 2. Hyperboloid Lattice Tower
+      for (let i = 0; i < 8; i++) {
+        const theta = (i * Math.PI * 2) / 8;
+        this.nodes.push({ x: 1.2 * Math.cos(theta), y: 1.2 * Math.sin(theta), z: -0.8 });
+      }
+      for (let i = 0; i < 8; i++) {
+        const theta = (i * Math.PI * 2) / 8;
+        this.nodes.push({ x: 0.6 * Math.cos(theta), y: 0.6 * Math.sin(theta), z: 0.0 });
+      }
+      for (let i = 0; i < 8; i++) {
+        const theta = (i * Math.PI * 2) / 8;
+        this.nodes.push({ x: 0.9 * Math.cos(theta), y: 0.9 * Math.sin(theta), z: 0.8 });
+      }
+
+      for (let i = 0; i < 8; i++) {
+        this.edges.push({ from: i, to: (i + 1) % 8 });
+        this.edges.push({ from: 8 + i, to: 8 + ((i + 1) % 8) });
+        this.edges.push({ from: 16 + i, to: 16 + ((i + 1) % 8) });
+      }
+      for (let i = 0; i < 8; i++) {
+        this.edges.push({ from: i, to: 8 + ((i + 1) % 8) });
+        this.edges.push({ from: i, to: 8 + ((i - 1 + 8) % 8) });
+        this.edges.push({ from: 8 + i, to: 16 + ((i + 1) % 8) });
+        this.edges.push({ from: 8 + i, to: 16 + ((i - 1 + 8) % 8) });
+      }
+
+    } else if (s === 'icosahedron') {
+      // 3. Regular Icosahedron
+      const phi = 1.61803398875;
+      const rawNodes = [
+        { x: 0, y: 1, z: phi }, { x: 0, y: 1, z: -phi },
+        { x: 0, y: -1, z: phi }, { x: 0, y: -1, z: -phi },
+        { x: 1, y: phi, z: 0 }, { x: 1, y: -phi, z: 0 },
+        { x: -1, y: phi, z: 0 }, { x: -1, y: -phi, z: 0 },
+        { x: phi, y: 0, z: 1 }, { x: phi, y: 0, z: -1 },
+        { x: -phi, y: 0, z: 1 }, { x: -phi, y: 0, z: -1 }
+      ];
+      this.nodes = rawNodes.map(n => ({ x: n.x * 0.6, y: n.y * 0.6, z: n.z * 0.6 }));
       this.edges = [
-        { from: 0, to: 11 }, { from: 0, to: 5 }, { from: 0, to: 1 }, { from: 0, to: 7 }, { from: 0, to: 10 },
-        { from: 1, to: 5 }, { from: 1, to: 9 }, { from: 1, to: 8 }, { from: 1, to: 7 },
-        { from: 2, to: 11 }, { from: 2, to: 10 }, { from: 2, to: 6 }, { from: 2, to: 3 }, { from: 2, to: 4 },
-        { from: 3, to: 9 }, { from: 3, to: 4 }, { from: 3, to: 8 }, { from: 3, to: 6 },
-        { from: 4, to: 5 }, { from: 4, to: 9 }, { from: 4, to: 11 },
-        { from: 5, to: 9 }, { from: 5, to: 11 },
-        { from: 6, to: 7 }, { from: 6, to: 8 }, { from: 6, to: 10 },
-        { from: 7, to: 8 }, { from: 7, to: 10 },
+        { from: 0, to: 2 }, { from: 0, to: 8 }, { from: 0, to: 10 }, { from: 0, to: 4 }, { from: 0, to: 6 },
+        { from: 1, to: 3 }, { from: 1, to: 9 }, { from: 1, to: 11 }, { from: 1, to: 4 }, { from: 1, to: 6 },
+        { from: 2, to: 8 }, { from: 2, to: 10 }, { from: 2, to: 5 }, { from: 2, to: 7 },
+        { from: 3, to: 9 }, { from: 3, to: 11 }, { from: 3, to: 5 }, { from: 3, to: 7 },
+        { from: 4, to: 6 }, { from: 4, to: 8 }, { from: 4, to: 9 },
+        { from: 5, to: 7 }, { from: 5, to: 8 }, { from: 5, to: 9 },
+        { from: 6, to: 10 }, { from: 6, to: 11 },
+        { from: 7, to: 10 }, { from: 7, to: 11 },
         { from: 8, to: 9 }, { from: 10, to: 11 }
       ];
-    } else if (type === 'cube') {
+
+    } else if (s === 'cube') {
+      // 4. Cube
       this.nodes = [
-        { x: -0.6, y: -0.6, z: -0.6 }, { x: 0.6, y: -0.6, z: -0.6 },
-        { x: 0.6, y: 0.6, z: -0.6 }, { x: -0.6, y: 0.6, z: -0.6 },
-        { x: -0.6, y: -0.6, z: 0.6 }, { x: 0.6, y: -0.6, z: 0.6 },
-        { x: 0.6, y: 0.6, z: 0.6 }, { x: -0.6, y: 0.6, z: 0.6 }
+        { x: -0.7, y: -0.7, z: -0.7 }, { x: 0.7, y: -0.7, z: -0.7 },
+        { x: 0.7, y: 0.7, z: -0.7 }, { x: -0.7, y: 0.7, z: -0.7 },
+        { x: -0.7, y: -0.7, z: 0.7 }, { x: 0.7, y: -0.7, z: 0.7 },
+        { x: 0.7, y: 0.7, z: 0.7 }, { x: -0.7, y: 0.7, z: 0.7 }
       ];
       this.edges = [
         { from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 0 },
         { from: 4, to: 5 }, { from: 5, to: 6 }, { from: 6, to: 7 }, { from: 7, to: 4 },
         { from: 0, to: 4 }, { from: 1, to: 5 }, { from: 2, to: 6 }, { from: 3, to: 7 }
       ];
-    } else if (type === 'octahedron') {
+
+    } else if (s === 'octahedron') {
+      // 5. Octahedron
       this.nodes = [
-        { x: 0, y: 0.9, z: 0 }, { x: 0, y: -0.9, z: 0 },
-        { x: 0.9, y: 0, z: 0 }, { x: -0.9, y: 0, z: 0 },
-        { x: 0, y: 0, z: 0.9 }, { x: 0, y: 0, z: -0.9 }
+        { x: 0, y: 0, z: 1.1 }, { x: 0.9, y: 0, z: 0 },
+        { x: 0, y: 0.9, z: 0 }, { x: -0.9, y: 0, z: 0 },
+        { x: 0, y: -0.9, z: 0 }, { x: 0, y: 0, z: -1.1 }
       ];
       this.edges = [
-        { from: 0, to: 2 }, { from: 0, to: 3 }, { from: 0, to: 4 }, { from: 0, to: 5 },
-        { from: 1, to: 2 }, { from: 1, to: 3 }, { from: 1, to: 4 }, { from: 1, to: 5 },
-        { from: 2, to: 4 }, { from: 4, to: 3 }, { from: 3, to: 5 }, { from: 5, to: 2 }
-      ];
-    } else {
-      // Default dome/pyramid fallback
-      this.nodes = [
-        { x: 0, y: 0.9, z: 0 }, { x: -0.7, y: -0.7, z: -0.7 },
-        { x: 0.7, y: -0.7, z: -0.7 }, { x: 0.7, y: -0.7, z: 0.7 },
-        { x: -0.7, y: -0.7, z: 0.7 }
-      ];
-      this.edges = [
+        { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 4 }, { from: 4, to: 1 },
         { from: 0, to: 1 }, { from: 0, to: 2 }, { from: 0, to: 3 }, { from: 0, to: 4 },
-        { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 4 }, { from: 4, to: 1 }
+        { from: 5, to: 1 }, { from: 5, to: 2 }, { from: 5, to: 3 }, { from: 5, to: 4 }
+      ];
+
+    } else {
+      // 6. Pyramid
+      this.nodes = [
+        { x: -0.7, y: -0.7, z: -0.5 }, { x: 0.7, y: -0.7, z: -0.5 },
+        { x: 0.7, y: 0.7, z: -0.5 }, { x: -0.7, y: 0.7, z: -0.5 },
+        { x: 0, y: 0, z: 0.9 }
+      ];
+      this.edges = [
+        { from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 0 },
+        { from: 0, to: 4 }, { from: 1, to: 4 }, { from: 2, to: 4 }, { from: 3, to: 4 }
       ];
     }
   }

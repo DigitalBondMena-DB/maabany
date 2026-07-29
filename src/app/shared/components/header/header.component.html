@@ -7,9 +7,8 @@
       class="pointer-events-auto w-full rounded-full bg-white/95 backdrop-blur-md border border-neutral-200 py-3 px-6 md:px-8 flex items-center justify-between shadow-xl">
       <!-- Brand Logo -->
       <a routerLink="/" class="relative flex items-center w-40 h-10 md:w-52 md:h-11 group">
-        <img src="/main-logo.png" width="125" height="52" loading="lazy" decoding="async"
-          alt="Maabany Integrated Building Solutions"
-          class="h-11.25 md:h-13 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+        <app-image src="/main-logo.png" [width]="125" [height]="52" alt="Maabany Integrated Building Solutions"
+          objectFit="contain" />
       </a>
 
       <!-- Desktop Nav Links -->
@@ -39,8 +38,7 @@
         </button>
 
         <!-- Request a Quote CTA Button -->
-        <a href="#"
-          class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 bg-[#EA8A22] hover:bg-[#EA8A22]/90 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-lg shadow-[#EA8A22]/20 hover:shadow-[#EA8A22]/30 transition-all font-mono">
+        <a app-button href="#" variant="primary" size="sm" customClass="hidden sm:inline-flex">
           Request A Quote
         </a>
 

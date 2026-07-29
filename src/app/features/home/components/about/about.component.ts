@@ -1,109 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FloatingWireframeComponent } from '../../../../shared/components/floating-wireframe/floating-wireframe.component';
-import { RightContentWatermarkComponent } from '../../../../shared/components/watermark/watermark.component';
+import { ImageComponent } from "../../../../shared/components/image/image.component";
+import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { IconsComponent } from "../../../../shared/components/icons/icons.component";
 
 @Component({
   selector: 'app-home-about',
-  imports: [RouterLink, FloatingWireframeComponent, RightContentWatermarkComponent],
-  template: `
-    <section id="about" class="bg-white relative overflow-hidden z-10 py-12 md:py-20 lg:py-24">
-      <div class="absolute -left-12 top-24 w-80 h-80 opacity-15 pointer-events-none hidden xl:block">
-        <app-floating-wireframe shape="icosahedron" color="#142b52"></app-floating-wireframe>
-      </div>
-
-      <div
-        class="max-w-350 px-(--outer-padding-x) py-(--outer-padding-top) pb-(--outer-padding-bottom) mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center"
-      >
-        <div class="lg:col-span-6 relative">
-          <div class="relative group overflow-hidden rounded-3xl border border-neutral-200 shadow-xl">
-            <div
-              class="absolute inset-0 bg-neutral-950/10 group-hover:bg-transparent transition-colors duration-500 z-10"
-            ></div>
-            <img
-              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80"
-              alt="Maabany Construction Site Tower Cranes"
-              class="w-full h-125 object-cover transition-transform duration-[8s] group-hover:scale-105"
-            />
-            <div
-              class="absolute bottom-6 left-6 z-20 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-neutral-200/60 shadow-lg"
-            >
-              <span class="text-[10px] uppercase font-mono tracking-wider text-[#EA8A22] block mb-1">
-                CURRENTLY UNDERWAY
-              </span>
-              <span class="text-xs font-semibold text-neutral-900">Riyadh Financial Plaza II • 92% Complete</span>
-            </div>
-          </div>
-          <div
-            class="absolute -bottom-8 -right-8 w-60 h-44 hidden md:block rounded-2xl overflow-hidden border-4 border-white shadow-2xl"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=80"
-              alt="Engineers planning on construction site"
-              class="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-
-        <div class="lg:col-span-6 relative overflow-hidden rounded-3xl p-4 md:p-6">
-          <app-right-content-watermark></app-right-content-watermark>
-
-          <div class="relative z-10 space-y-6 text-neutral-900">
-            <div class="space-y-2">
-              <span class="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
-                About Us
-              </span>
-              <h2 class="text-3xl md:text-4xl font-black text-neutral-900 uppercase tracking-tight">
-                Engineering with Precision
-              </h2>
-            </div>
-
-            <p class="text-sm md:text-base text-neutral-600 leading-relaxed">
-              Maabany is a tier-one construction and engineering partner delivering iconic structures and
-              high-performance infrastructure across sectors. We combine industry-leading engineering,
-              state-of-the-art sustainability practices, and rigorous compliance to turn ambitious blueprints into
-              enduring physical realities.
-            </p>
-
-            <div class="space-y-4">
-              <div
-                class="flex gap-4 p-4 rounded-xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-sm"
-              >
-                <div class="p-2 rounded bg-[#EA8A22]/10 text-[#EA8A22] h-fit font-bold">🛡️</div>
-                <div>
-                  <h4 class="text-sm font-bold text-neutral-900 uppercase">Rigorous Security & Compliance</h4>
-                  <p class="text-xs text-[#4b4b4b] mt-1">
-                    ISO 9001, 14001, and 45001 certified. We practice deep-risk containment on every development level.
-                  </p>
-                </div>
-              </div>
-
-              <div
-                class="flex gap-4 p-4 rounded-xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-sm"
-              >
-                <div class="p-2 rounded bg-[#EA8A22]/10 text-[#EA8A22] h-fit font-bold">🏆</div>
-                <div>
-                  <h4 class="text-sm font-bold text-neutral-900 uppercase">Sustainability Certifications</h4>
-                  <p class="text-xs text-[#4b4b4b] mt-1">
-                    Specializing in LEED Platinum layouts. Integrating self-contained power and graywater
-                    infrastructure by default.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="pt-2">
-              <a
-                routerLink="/about"
-                class="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#EA8A22] text-[#EA8A22] font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-[#EA8A22] hover:text-white hover:shadow-lg transition-all"
-              >
-                <span>Read More About Us</span> →
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  `,
+  imports: [RouterLink, FloatingWireframeComponent, ImageComponent, ButtonComponent, IconsComponent],
+  templateUrl: './about.component.html'
 })
-export class HomeAboutComponent {}
+export class HomeAboutComponent { }

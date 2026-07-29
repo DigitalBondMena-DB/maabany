@@ -6,10 +6,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IconsComponent } from '../icons/icons.component';
 import { HeaderSearchComponent } from '../header-search/header-search.component';
 import { MobileNavComponent } from '../mobile-nav/mobile-nav.component';
+import { ImageComponent } from "../image/image.component";
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, IconsComponent, HeaderSearchComponent, MobileNavComponent],
+  imports: [RouterLink, RouterLinkActive, IconsComponent, HeaderSearchComponent, MobileNavComponent, ImageComponent, ButtonComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

@@ -1,6 +1,8 @@
 import { Component, viewChild, ElementRef, output, afterNextRender } from '@angular/core';
 import { IconsComponent } from '../../../../shared/components/icons/icons.component';
+import { FloatingWireframeComponent } from '../../../../shared/components/floating-wireframe/floating-wireframe.component';
 import { IconName } from '../../../../shared/models/icons.interface';
+import { HeroBg } from "../hero-bg/hero-bg";
 
 export interface HeroStat {
   icon: IconName;
@@ -8,15 +10,18 @@ export interface HeroStat {
   label: string;
 }
 
+import { ButtonComponent } from '../../../../shared/components/button/button.component';
+
 @Component({
   selector: 'app-home-hero',
   templateUrl: './hero.component.html',
-  imports: [IconsComponent],
+  imports: [IconsComponent, HeroBg, ButtonComponent],
 })
 export class HomeHeroComponent {
   readonly openQuote = output<void>();
   readonly videoRef = viewChild<ElementRef<HTMLVideoElement>>('videoPlayer');
-  readonly bgVideoUrl = '/hero/videos/Maabany-hero-video.mp4';
+  readonly heroRef = viewChild<ElementRef<HTMLElement>>('heroRef');
+  readonly bgVideoUrl = '/videos/Maabany-hero-video.mp4';
 
   readonly stats: HeroStat[] = [
     { icon: 'orangeClock', value: '25+', label: 'Years of Excellence' },
@@ -25,16 +30,14 @@ export class HomeHeroComponent {
     { icon: 'orangeAvatar', value: '99%', label: 'Satisfaction Index' },
   ];
 
-  constructor() {
-    afterNextRender(() => {
-      this.startVideo();
-    });
-  }
 
-  startVideo(): void {
-    const video = this.videoRef()?.nativeElement;
-    if (!video) return;
-    video.play();
-    video.muted = true;
+
+
+  scrollToNext(): void {
+    const heroElement = this.heroRef()?.nativeElement;
+    if (!heroElement) return;
+    const parentContainer = heroElement.parentElement || heroElement;
+    const targetY = parentContainer.getBoundingClientRect().bottom + window.scrollY;
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
   }
 }

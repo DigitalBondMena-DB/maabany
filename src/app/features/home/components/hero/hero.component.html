@@ -1,10 +1,14 @@
-<div class="w-full max-w-350 mx-auto transition-all duration-200"
+<div class="w-full max-w-350 mx-auto transition-all duration-200 "
   style="padding-left: var(--outer-padding-x); padding-right: var(--outer-padding-x); padding-top: var(--outer-padding-top); padding-bottom: var(--outer-padding-bottom);">
   <section #heroRef
     class="relative w-full min-h-[calc(100vh-48px)] flex flex-col overflow-hidden py-2 bg-neutral-950 transition-all duration-200 shadow-2xl"
     style="border-radius: var(--hero-border-radius);">
-    <video #videoPlayer [src]="bgVideoUrl" autoplay muted loop playsinline preload="metadata"
-      class="absolute inset-0 w-full h-full object-cover transition-all duration-300"
+    @defer (on timer(1000ms)) {
+    <app-hero-bg />
+    }
+
+    <video [src]="bgVideoUrl" autoplay muted loop playsinline preload="metadata"
+      class="absolute inset-0 w-full h-full object-cover transition-all duration-300 z-1"
       style="transform: scale(var(--video-scale)); filter: blur(var(--hero-video-blur));"></video>
 
     <div class="absolute inset-0 pointer-events-none transition-opacity duration-300"
@@ -38,9 +42,8 @@
           </p>
 
           <div class="flex flex-wrap items-center gap-4 pt-2">
-            <a href="#"
-              class="px-7 py-4 bg-[#EA8A22] hover:bg-[#EA8A22]/90 text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 shadow-xl shadow-[#EA8A22]/30 cursor-pointer flex items-center gap-2 font-mono whitespace-nowrap shrink-0">
-              <span>Request a Quote</span> →
+            <a app-button href="#" variant="primary" size="md" [showArrow]="true">
+              Request a Quote
             </a>
           </div>
         </div>
@@ -65,6 +68,11 @@
         </div>
         }
       </div>
+
     </div>
+    <button type="button" aria-label="Scroll to next section" (click)="scrollToNext()"
+      class="absolute bottom-4 z-10 left-1/2 -translate-x-1/2 w-5 h-8 border border-neutral-700 rounded-full flex justify-center p-1 bg-neutral-950/40 cursor-pointer hover:border-[#EA8A22] transition-colors">
+      <div class="w-1.5 h-1.5 bg-[#EA8A22] rounded-full animate-bounce"></div>
+    </button>
   </section>
 </div>

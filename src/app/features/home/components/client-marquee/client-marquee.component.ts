@@ -5,7 +5,7 @@ import { HomeDataService } from '../../services/home-data.service';
   selector: 'app-client-marquee',
   imports: [],
   template: `
-    <section class="py-12 bg-slate-950 border-t border-slate-900 overflow-hidden">
+    <section class="py-12 bg-slate-950 border-t border-slate-900 overflow-hidden z-10 relative">
       <div class="max-w-7xl mx-auto px-6 mb-8 text-center">
         <span class="text-slate-400 text-xs uppercase font-bold tracking-widest">Trusted By Government Entities & Industry Leaders</span>
       </div>
