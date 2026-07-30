@@ -1,0 +1,174 @@
+<div class="relative bg-white text-neutral-900 min-h-screen selection:bg-[#EA8A22] selection:text-white">
+  <!-- 1. Hero Header Section -->
+  <app-page-hero [title]="'Engineering Excellence' | translate" [categoryBadge]="'Our Projects' | translate"
+    titleHighlight="Projects"
+    [heroImage]="'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80'" />
+
+  <!-- 2. Our Projects Section -->
+  <section class="pt-20 md:pt-24 lg:pt-28 pb-12 md:pb-20 lg:pb-24 bg-white" id="projects-section">
+    <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
+
+      <!-- Section Header -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center mb-20 md:mb-24">
+        <div class="lg:col-span-7 space-y-4">
+          <div class="inline-flex items-center gap-2">
+            <span class="w-8 h-0.5 bg-[#EA8A22]"></span>
+            <span class="text-xs font-mono font-bold text-[#142b52] uppercase tracking-widest">
+              {{ 'OUR PROJECTS' | translate }}
+            </span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-900 tracking-tight uppercase font-mono">
+            {{ 'Completed Projects' | translate }}
+          </h2>
+          <p class="text-neutral-600 text-base md:text-lg font-light leading-relaxed">
+            Discover a selection of engineering and construction projects successfully delivered by Maabany across
+            multiple sectors, demonstrating our expertise, precision, and commitment to excellence.
+          </p>
+        </div>
+
+        <div class="lg:col-span-5 flex justify-center lg:justify-end">
+          <div class="w-full max-w-md">
+            @defer (on viewport) {
+            <app-interactive-blueprint />
+            } @placeholder {
+            <div class="w-full h-64 bg-neutral-50 rounded-2xl animate-pulse"></div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- WCAG AA Accessible Category Filter Bar (WAI-ARIA Tablist Pattern) -->
+      <div class="mb-12 max-w-full overflow-x-auto scrollbar-none -mx-5 px-5 md:mx-0 md:px-0">
+        <div role="tablist" aria-label="Project categories filter" aria-orientation="horizontal"
+          class="flex items-center gap-1.5 bg-white p-1.5 rounded-full border border-neutral-200 shadow-sm w-max focus-within:ring-2 focus-within:ring-[#EA8A22]/20">
+          @for (cat of categories(); track cat; let idx = $index) {
+          @let isSelected = selectedCategory() === cat;
+          <button #tabBtn type="button" role="tab" [id]="'tab-' + (cat | lowercase)" [attr.aria-selected]="isSelected"
+            aria-controls="projects-grid-panel" [attr.tabindex]="isSelected ? 0 : -1"
+            (keydown)="onTabKeyDown($event, idx)" (click)="selectCategory(cat)"
+            [class]="'px-5 py-2.5 rounded-full text-xs font-mono uppercase font-bold tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22] ' + 
+                (isSelected ? 'bg-[#EA8A22] text-white shadow-sm' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100')">
+            {{ cat | translate }}
+          </button>
+          }
+        </div>
+      </div>
+
+      <!-- Projects Grid Panel (Tabpanel) -->
+      <div id="projects-grid-panel" role="tabpanel" [attr.aria-labelledby]="'tab-' + (selectedCategory() | lowercase)"
+        tabindex="0" class="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22]/30 rounded-3xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
+          @for (proj of displayedProjects(); track proj.slug; let idx = $index) {
+          @let isTall = idx % 3 === 1;
+
+          <article animate.enter="enter-animation"
+            [class]="'group bg-white rounded-3xl overflow-hidden border border-neutral-200/90 hover:border-[#EA8A22] shadow-sm hover:shadow-2xl transition-[border-color,box-shadow] duration-500 flex flex-col relative ' + (isTall ? 'lg:translate-y-6 lg:h-135 h-122.5' : 'h-122.5')">
+            <!-- Card Navigation Link -->
+            <a [routerLink]="'/' + currentLang() + '/projects/' + proj.slug"
+              class="absolute inset-0 z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22] rounded-3xl"
+              [attr.aria-label]="proj.name"></a>
+
+            <!-- Orange Border Hover Glow -->
+            <div
+              class="absolute inset-0 border-[2.5px] border-[#EA8A22]/0 group-hover:border-[#EA8A22] transition-colors duration-500 rounded-3xl pointer-events-none z-30">
+            </div>
+
+            <!-- Image Frame -->
+            <div class="relative overflow-hidden w-full h-[62%] bg-neutral-950">
+              <app-image [src]="proj.image" [alt]="proj.name"
+                class="group-hover:scale-108 transition-transform duration-700 ease-out will-change-transform" />
+              <div
+                class="absolute inset-0 bg-linear-to-t from-neutral-950/40 via-transparent to-transparent pointer-events-none">
+              </div>
+
+              <!-- Category Badge -->
+              <div
+                class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-neutral-200/80 shadow-sm">
+                <span class="text-[10px] font-mono text-[#142b52] font-bold uppercase">
+                  {{ proj.category | translate }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="p-6 md:p-7 flex-1 flex flex-col justify-center bg-white">
+              <div class="relative z-10 space-y-2">
+                <h3
+                  class="text-xl font-bold text-neutral-900 uppercase font-mono transition-colors duration-300 line-clamp-1 group-hover:text-[#EA8A22]">
+                  {{ proj.name | translate }}
+                </h3>
+                <p class="text-xs text-neutral-500 font-light line-clamp-3 leading-relaxed">
+                  {{ proj.desc | translate }}
+                </p>
+              </div>
+            </div>
+          </article>
+          }
+        </div>
+
+        <!-- Empty State -->
+        @if (filteredProjects().length === 0) {
+        <div class="text-center py-20 bg-neutral-50 rounded-3xl border border-neutral-200">
+          <p class="text-lg font-bold uppercase font-mono text-neutral-700">
+            {{ 'No projects found' | translate }}
+          </p>
+          <p class="text-sm text-neutral-500 mt-1">
+            {{ 'There are no completed projects in this category.' | translate }}
+          </p>
+        </div>
+        }
+      </div>
+
+      <!-- WCAG AA Accessible Pagination Navigation Section -->
+      @if (filteredProjects().length > 0) {
+      <div class="mt-20 flex justify-center">
+        <nav aria-label="Projects pagination"
+          class="flex items-center gap-1.5 bg-white p-1.5 rounded-full border border-neutral-200 shadow-sm w-fit">
+          <!-- Prev Button -->
+          <button type="button" (click)="goToPage(currentPage() - 1)" [disabled]="currentPage() === 1"
+            aria-label="Previous page"
+            class="w-9 h-9 flex items-center justify-center rounded-full text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-neutral-600 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="w-4 h-4 rtl:rotate-180">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+
+          <!-- Page Numbers -->
+          @for (page of paginationRange(); track $index) {
+          @if (page === '...') {
+          <span className="w-9 h-9 flex items-center justify-center text-neutral-400 font-mono text-xs select-none">
+            ...
+          </span>
+          } @else {
+          @let isCurrent = currentPage() === page;
+          <button type="button" (click)="goToPage(+page)" [attr.aria-current]="isCurrent ? 'page' : null"
+            [attr.aria-label]="'Page ' + page"
+            [class]="'w-9 h-9 flex items-center justify-center rounded-full font-mono font-bold text-xs transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22] ' + 
+                    (isCurrent ? 'bg-[#EA8A22] text-white shadow-sm' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 cursor-pointer')">
+            {{ page }}
+          </button>
+          }
+          }
+
+          <!-- Next Button -->
+          <button type="button" (click)="goToPage(currentPage() + 1)" [disabled]="currentPage() === totalPages()"
+            aria-label="Next page"
+            class="w-9 h-9 flex items-center justify-center rounded-full text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-neutral-600 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="w-4 h-4 rtl:rotate-180">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+        </nav>
+      </div>
+      }
+
+    </div>
+  </section>
+
+  <!-- 3. CTA Banner Section -->
+  <app-cta-banner />
+</div>

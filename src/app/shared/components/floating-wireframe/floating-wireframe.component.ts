@@ -23,7 +23,7 @@ interface Edge {
   to: number;
 }
 
-export type WireframeShape = 'dome' | 'tower' | 'icosahedron' | 'cube' | 'octahedron' | 'pyramid';
+export type WireframeShape = 'dome' | 'tower' | 'icosahedron' | 'cube' | 'octahedron' | 'pyramid' | 'blueprint';
 
 @Component({
   selector: 'app-floating-wireframe',
@@ -303,6 +303,29 @@ export class FloatingWireframeComponent implements OnInit, OnDestroy {
         { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 4 }, { from: 4, to: 1 },
         { from: 0, to: 1 }, { from: 0, to: 2 }, { from: 0, to: 3 }, { from: 0, to: 4 },
         { from: 5, to: 1 }, { from: 5, to: 2 }, { from: 5, to: 3 }, { from: 5, to: 4 }
+      ];
+
+    } else if (s === 'blueprint') {
+      this.nodes = [
+        { x: -1, y: -1, z: -0.6 }, { x: 1, y: -1, z: -0.6 },
+        { x: 1, y: 1, z: -0.6 }, { x: -1, y: 1, z: -0.6 },
+        { x: -1, y: -1, z: 0.2 }, { x: 1, y: -1, z: 0.2 },
+        { x: 1, y: 1, z: 0.2 }, { x: -1, y: 1, z: 0.2 },
+        { x: 0, y: 0, z: 0.2 },
+        { x: -1, y: -1, z: 1.0 }, { x: 1, y: -1, z: 1.0 },
+        { x: 1, y: 1, z: 1.0 }, { x: -1, y: 1, z: 1.0 },
+        { x: 0, y: 0, z: 1.0 },
+        { x: -0.5, y: -0.5, z: 1.6 }, { x: 0.5, y: -0.5, z: 1.6 },
+        { x: 0.5, y: 0.5, z: 1.6 }, { x: -0.5, y: 0.5, z: 1.6 }
+      ];
+      this.edges = [
+        { from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 0 },
+        { from: 0, to: 4 }, { from: 1, to: 5 }, { from: 2, to: 6 }, { from: 3, to: 7 },
+        { from: 4, to: 5 }, { from: 5, to: 6 }, { from: 6, to: 7 }, { from: 7, to: 4 },
+        { from: 4, to: 9 }, { from: 5, to: 10 }, { from: 6, to: 11 }, { from: 7, to: 12 }, { from: 8, to: 13 },
+        { from: 9, to: 10 }, { from: 10, to: 11 }, { from: 11, to: 12 }, { from: 12, to: 9 },
+        { from: 9, to: 14 }, { from: 10, to: 15 }, { from: 11, to: 16 }, { from: 12, to: 17 },
+        { from: 14, to: 15 }, { from: 15, to: 16 }, { from: 16, to: 17 }, { from: 17, to: 14 }
       ];
 
     } else {

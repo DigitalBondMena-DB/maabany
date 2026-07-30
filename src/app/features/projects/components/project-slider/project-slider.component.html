@@ -1,0 +1,59 @@
+<section class="relative z-20 bg-white pt-8 pb-4">
+  <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- Primary Image Frame -->
+      <div
+        class="lg:col-span-12 relative rounded-3xl overflow-hidden aspect-square md:aspect-16/10 max-h-170 w-full shadow-xl border border-neutral-200/80 bg-neutral-950 group">
+        @if (images().length > 0) {
+        @let activeImage = images()[currentImgIndex()];
+        <app-image [src]="activeImage" [alt]="projectName() + ' Slide ' + (currentImgIndex() + 1)"
+          class="transition-opacity duration-500 ease-out" />
+        }
+
+        <div
+          class="absolute inset-0 bg-linear-to-t from-neutral-950/60 via-transparent to-neutral-950/10 pointer-events-none">
+        </div>
+
+        <!-- Slider Left Arrow Button -->
+        <button type="button" (click)="prevImage($event)"
+          class="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/90 hover:bg-[#EA8A22] text-neutral-800 hover:text-white shadow-lg transition-all duration-300 flex items-center justify-center hover:scale-110 active:scale-95 z-20 cursor-pointer md:opacity-0 md:group-hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22]"
+          aria-label="Previous image">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="rtl:rotate-180">
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+        </button>
+
+        <!-- Slider Right Arrow Button -->
+        <button type="button" (click)="nextImage($event)"
+          class="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/90 hover:bg-[#EA8A22] text-neutral-800 hover:text-white shadow-lg transition-all duration-300 flex items-center justify-center hover:scale-110 active:scale-95 z-20 cursor-pointer md:opacity-0 md:group-hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22]"
+          aria-label="Next image">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="rtl:rotate-180">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </button>
+
+        <!-- Text Info -->
+        <div class="absolute bottom-8 left-8 text-white z-10 pointer-events-none">
+          <h4 class="text-lg md:text-xl font-black font-mono uppercase tracking-tight text-white">
+            {{ projectName() }}
+          </h4>
+        </div>
+
+        <!-- Mini Dot Indicators -->
+        <div class="absolute bottom-8 right-8 flex items-center gap-1.5 z-20">
+          @for (img of images(); track $index) {
+          <button type="button" (click)="setIndex($index, $event)" [class]="'h-1.5 rounded-full transition-all duration-300 cursor-pointer ' + 
+                (currentImgIndex() === $index ? 'w-6 bg-[#EA8A22]' : 'w-1.5 bg-white/40 hover:bg-white/70')"
+            [attr.aria-label]="'Slide ' + ($index + 1)"></button>
+          }
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
