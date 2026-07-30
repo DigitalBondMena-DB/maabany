@@ -28,8 +28,8 @@ export type WireframeShape = 'dome' | 'tower' | 'icosahedron' | 'cube' | 'octahe
 @Component({
   selector: 'app-floating-wireframe',
   template: `
-    <div class="relative w-full h-full flex items-center justify-center pointer-events-none select-none">
-      <svg #svgRef class="w-full h-full overflow-visible" viewBox="0 0 300 300">
+    <div class="relative w-full h-full flex items-center justify-center pointer-events-none select-none will-change-transform">
+      <svg #svgRef class="w-full h-full overflow-visible transform-gpu" viewBox="0 0 300 300">
         @for (edge of edges; track $index) {
           <line
             stroke-width="1.2"
@@ -60,6 +60,7 @@ export class FloatingWireframeComponent implements OnInit, OnDestroy {
 
   private readonly platformId = inject(PLATFORM_ID);
   private readonly ngZone = inject(NgZone);
+  private readonly hostRef = inject(ElementRef<HTMLElement>);
 
   readonly svgRef = viewChild<ElementRef<SVGSVGElement>>('svgRef');
 
@@ -68,6 +69,8 @@ export class FloatingWireframeComponent implements OnInit, OnDestroy {
 
   private angle = 0;
   private animId?: number;
+  private observer?: IntersectionObserver;
+  private isVisible = false;
   private lineEls: SVGLineElement[] = [];
   private circleEls: SVGCircleElement[] = [];
 
@@ -82,19 +85,53 @@ export class FloatingWireframeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.buildGeometry();
     if (isPlatformBrowser(this.platformId)) {
-      this.ngZone.runOutsideAngular(() => {
-        const update = () => {
-          this.angle = (this.angle + 0.005 * this.speed()) % (Math.PI * 2);
-          this.renderFrame();
-          this.animId = requestAnimationFrame(update);
-        };
-        this.animId = requestAnimationFrame(update);
-      });
+      this.setupObserver();
     }
   }
 
   ngOnDestroy(): void {
-    if (this.animId) cancelAnimationFrame(this.animId);
+    this.stopAnimation();
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
+  private setupObserver(): void {
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          this.isVisible = true;
+          this.startAnimation();
+        } else {
+          this.isVisible = false;
+          this.stopAnimation();
+        }
+      },
+      { threshold: 0.05 }
+    );
+
+    this.observer.observe(this.hostRef.nativeElement);
+  }
+
+  private startAnimation(): void {
+    if (this.animId) return;
+    this.ngZone.runOutsideAngular(() => {
+      const update = () => {
+        if (!this.isVisible) return;
+        this.angle = (this.angle + 0.005 * this.speed()) % (Math.PI * 2);
+        this.renderFrame();
+        this.animId = requestAnimationFrame(update);
+      };
+      this.animId = requestAnimationFrame(update);
+    });
+  }
+
+  private stopAnimation(): void {
+    if (this.animId) {
+      cancelAnimationFrame(this.animId);
+      this.animId = undefined;
+    }
   }
 
   private cacheDomElements(): void {
@@ -141,10 +178,10 @@ export class FloatingWireframeComponent implements OnInit, OnDestroy {
         const fromNode = projectedNodes[edge.from];
         const toNode = projectedNodes[edge.to];
         if (fromNode && toNode) {
-          line.setAttribute('x1', fromNode.xScreen.toFixed(2));
-          line.setAttribute('y1', fromNode.yScreen.toFixed(2));
-          line.setAttribute('x2', toNode.xScreen.toFixed(2));
-          line.setAttribute('y2', toNode.yScreen.toFixed(2));
+          line.setAttribute('x1', fromNode.xScreen.toFixed(1));
+          line.setAttribute('y1', fromNode.yScreen.toFixed(1));
+          line.setAttribute('x2', toNode.xScreen.toFixed(1));
+          line.setAttribute('y2', toNode.yScreen.toFixed(1));
         }
       }
     }
@@ -153,8 +190,8 @@ export class FloatingWireframeComponent implements OnInit, OnDestroy {
       const circle = this.circleEls[i];
       const node = projectedNodes[i];
       if (circle && node) {
-        circle.setAttribute('cx', node.xScreen.toFixed(2));
-        circle.setAttribute('cy', node.yScreen.toFixed(2));
+        circle.setAttribute('cx', node.xScreen.toFixed(1));
+        circle.setAttribute('cy', node.yScreen.toFixed(1));
       }
     }
   }
@@ -165,7 +202,6 @@ export class FloatingWireframeComponent implements OnInit, OnDestroy {
     this.edges = [];
 
     if (s === 'dome') {
-      // 1. Geodesic Dome Structure
       for (let i = 0; i < 8; i++) {
         const theta = (i * Math.PI * 2) / 8;
         this.nodes.push({ x: Math.cos(theta), y: Math.sin(theta), z: -0.4 });
@@ -196,7 +232,6 @@ export class FloatingWireframeComponent implements OnInit, OnDestroy {
       }
 
     } else if (s === 'tower') {
-      // 2. Hyperboloid Lattice Tower
       for (let i = 0; i < 8; i++) {
         const theta = (i * Math.PI * 2) / 8;
         this.nodes.push({ x: 1.2 * Math.cos(theta), y: 1.2 * Math.sin(theta), z: -0.8 });
@@ -223,7 +258,6 @@ export class FloatingWireframeComponent implements OnInit, OnDestroy {
       }
 
     } else if (s === 'icosahedron') {
-      // 3. Regular Icosahedron
       const phi = 1.61803398875;
       const rawNodes = [
         { x: 0, y: 1, z: phi }, { x: 0, y: 1, z: -phi },
@@ -247,7 +281,6 @@ export class FloatingWireframeComponent implements OnInit, OnDestroy {
       ];
 
     } else if (s === 'cube') {
-      // 4. Cube
       this.nodes = [
         { x: -0.7, y: -0.7, z: -0.7 }, { x: 0.7, y: -0.7, z: -0.7 },
         { x: 0.7, y: 0.7, z: -0.7 }, { x: -0.7, y: 0.7, z: -0.7 },
@@ -261,7 +294,6 @@ export class FloatingWireframeComponent implements OnInit, OnDestroy {
       ];
 
     } else if (s === 'octahedron') {
-      // 5. Octahedron
       this.nodes = [
         { x: 0, y: 0, z: 1.1 }, { x: 0.9, y: 0, z: 0 },
         { x: 0, y: 0.9, z: 0 }, { x: -0.9, y: 0, z: 0 },
@@ -274,7 +306,6 @@ export class FloatingWireframeComponent implements OnInit, OnDestroy {
       ];
 
     } else {
-      // 6. Pyramid
       this.nodes = [
         { x: -0.7, y: -0.7, z: -0.5 }, { x: 0.7, y: -0.7, z: -0.5 },
         { x: 0.7, y: 0.7, z: -0.5 }, { x: -0.7, y: 0.7, z: -0.5 },

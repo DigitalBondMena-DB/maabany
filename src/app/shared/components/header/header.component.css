@@ -21,3 +21,23 @@
           opacity 500ms ease-out,
           transform 500ms ease-out;
   }
+
+  .nav-link {
+      position: relative;
+  }
+
+  .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      inset-inline-start: 0;
+      width: 0;
+      height: 2px;
+      background-color: #EA8A22;
+      transition: all 0.3s ease-in-out;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.router-link-active::after {
+      width: 100%;
+  }

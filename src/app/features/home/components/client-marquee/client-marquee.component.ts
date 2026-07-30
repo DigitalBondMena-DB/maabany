@@ -1,4 +1,5 @@
 import { Component, computed, input } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 export interface MarqueeItem {
   name: string;
@@ -7,6 +8,7 @@ export interface MarqueeItem {
 
 @Component({
   selector: 'app-client-marquee',
+  imports: [TranslatePipe],
   templateUrl: './client-marquee.component.html',
   styles: [`
     @keyframes marquee-left {
@@ -38,6 +40,14 @@ export interface MarqueeItem {
   `]
 })
 export class ClientMarqueeComponent {
+  readonly showHeading = input<boolean>(true);
+  readonly showPartners = input<boolean>(true);
+  readonly showClients = input<boolean>(true);
+  readonly sliderPadding = input<string>('py-4');
+  readonly sectionPadding = input<string>('py-12 md:py-20 lg:py-24');
+  readonly title = input<string>('Our Partners & Clients');
+  readonly subtitle = input<string>('AUTHORIZED ALLIANCES & TRUSTED RELATIONSHIPS');
+
   readonly customPartners = input<MarqueeItem[]>();
   readonly customClients = input<MarqueeItem[]>();
 
@@ -58,10 +68,7 @@ export class ClientMarqueeComponent {
     { name: 'Emaar Properties', text: 'EMAAR' },
   ];
 
-  // Base speed factor: seconds per item to guarantee equal linear speed (pixels/sec)
   private readonly SECONDS_PER_ITEM = 1.3;
-
-  // Safe minimum item threshold to prevent empty space gaps on 4K / ultra-wide screens
   private readonly SAFE_MIN_ITEMS = 24;
 
   private createSafeMarqueeTrack(items: MarqueeItem[]): MarqueeItem[] {
@@ -81,7 +88,6 @@ export class ClientMarqueeComponent {
   readonly repeatedPartners = computed(() => this.createSafeMarqueeTrack(this.partnersList()));
   readonly repeatedClients = computed(() => this.createSafeMarqueeTrack(this.clientsList()));
 
-  // Dynamically computed durations ensuring identical linear speed
   readonly partnersDuration = computed(() => `${(this.repeatedPartners().length * this.SECONDS_PER_ITEM).toFixed(1)}s`);
   readonly clientsDuration = computed(() => `${(this.repeatedClients().length * this.SECONDS_PER_ITEM).toFixed(1)}s`);
 }

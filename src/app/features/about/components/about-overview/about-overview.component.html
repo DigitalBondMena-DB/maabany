@@ -1,0 +1,64 @@
+<section class="py-12 md:py-20 lg:py-24 relative bg-white overflow-hidden">
+  <div class="absolute -left-12 top-24 w-80 h-80 opacity-15 pointer-events-none hidden xl:block">
+    @defer (on viewport) {
+    <app-floating-wireframe shape="icosahedron" color="#142b52"></app-floating-wireframe>
+    } @placeholder {
+    <div class="size-80"></div>
+    }
+  </div>
+  <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left Image -->
+      <div class="relative rounded-3xl overflow-hidden aspect-square md:aspect-[4/3] lg:aspect-[4/3] shadow-2xl">
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80"
+          alt="Maabany Architecture" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 border border-black/10 rounded-3xl z-10 pointer-events-none"></div>
+      </div>
+
+      <!-- Right Content -->
+      <div class="space-y-8 relative overflow-hidden rounded-3xl p-1 md:p-2">
+        <div class="relative z-10 space-y-8">
+          <div class="absolute inset-e-0 top-0 -z-10">
+            <app-image src="/images/home/about/about-bg.webp"
+              classes="w-[72%] sm:w-[68%] lg:w-[70%] max-w-[460px] h-auto max-h-[460px] opacity-[0.06] pointer-events-none select-none translate-y-[10px] translate-x-1 sm:translate-y-[8px] sm:translate-x-2"
+              [width]="440" [height]="400" alt="About Image" objectFit="contain" [placeholder]="false" />
+          </div>
+          <div>
+            <span class="text-[#142b52] font-mono text-sm tracking-[0.2em] font-bold uppercase block mb-4">
+              {{ 'ABOUT_PAGE.WHO_WE_ARE' | translate }}
+            </span>
+            <h2 class="text-4xl md:text-5xl font-black text-neutral-900 tracking-tighter uppercase leading-[1.1]">
+              {{ 'ABOUT_PAGE.ABOUT_MAABANY' | translate }}
+            </h2>
+            <p class="mt-6 text-neutral-600 leading-relaxed text-lg">
+              {{ 'ABOUT_PAGE.COMPANY_DESC' | translate }}
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            @for (item of features; track item.titleKey) {
+            <div
+              class="relative flex items-center gap-4 bg-white/80 backdrop-blur-sm border border-neutral-200/80 p-4 rounded-2xl overflow-hidden group transition-all duration-300 hover:border-[#EA8A22] hover:-translate-y-1 hover:shadow-xl">
+              <div
+                class="absolute -right-6 -top-6 w-20 h-20 bg-linear-to-br from-[#EA8A22]/8 to-transparent rounded-full blur-xl group-hover:scale-150 transition-transform duration-700 pointer-events-none">
+              </div>
+              <div
+                class="absolute -left-6 -bottom-6 w-20 h-20 bg-linear-to-tr from-[#142b52]/5 to-transparent rounded-full blur-xl group-hover:scale-150 transition-transform duration-700 pointer-events-none">
+              </div>
+
+              <div
+                class="relative z-10 flex items-center justify-center p-2.5 rounded-xl bg-neutral-50 border border-neutral-150 text-[#EA8A22] transition-all duration-300 group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 shadow-sm group-hover:shadow-[#EA8A22]/20">
+                <div [innerHTML]="item.iconSvg | safeHtml"></div>
+              </div>
+              <span class="relative z-10 text-sm font-semibold text-neutral-800 tracking-wide">
+                {{ item.titleKey | translate }}
+              </span>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

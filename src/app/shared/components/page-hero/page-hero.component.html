@@ -1,0 +1,56 @@
+<div class="w-full max-w-350 mx-auto transition-all duration-200"
+  style="padding-left: var(--outer-padding-x, 24px); padding-right: var(--outer-padding-x, 24px); padding-top: var(--outer-padding-top, 16px); padding-bottom: var(--outer-padding-bottom, 4px);">
+  <section
+    class="relative w-full h-[380px] md:h-[460px] lg:h-[540px] flex flex-col justify-center overflow-hidden bg-neutral-50 border border-neutral-200/60 shadow-xl shadow-neutral-100/40 transition-all duration-200"
+    style="border-radius: var(--hero-border-radius, 40px)">
+
+    <!-- Background Image with elegant overlay/gradient -->
+    <div class="absolute inset-0 z-0 select-none pointer-events-none">
+      <img [src]="heroImage()" alt="Hero Background"
+        class="w-full h-full object-cover opacity-18 scale-100 transition-all duration-1000" />
+
+      <!-- Subtle blueprints/lines grid style -->
+      <div
+        class="absolute inset-0 bg-[linear-gradient(to_right,#ea8a2204_1px,transparent_1px),linear-gradient(to_bottom,#ea8a2205_1px,transparent_1px)] bg-[size:32px_32px]">
+      </div>
+
+      <!-- Subtle warm orange glow -->
+      <div class="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-[#EA8A22]/5 blur-[120px] rounded-full mix-blend-multiply">
+      </div>
+      <div class="absolute -bottom-20 -right-20 w-96 h-96 border border-[#EA8A22]/5 rounded-full animate-pulse"></div>
+    </div>
+
+    <!-- Hero content wrapper -->
+    <div class="relative max-w-350 w-full mx-auto px-5 md:px-6 lg:px-7 xl:px-8 z-10 my-auto transition-all duration-200"
+      style="padding-top: var(--hero-nav-spacing, 120px)">
+      <div class="max-w-3xl space-y-4">
+
+        <!-- Breadcrumbs -->
+        <div class="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-bold text-neutral-400">
+          <a routerLink="/" class="hover:text-[#EA8A22] transition-colors">{{ 'NAV.HOME' | translate }}</a>
+          <span>/</span>
+          <span class="text-[#142b52] font-bold">{{ categoryBadge() | translate }}</span>
+        </div>
+
+        <!-- Premium Headline -->
+        <div>
+          <h1
+            class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-neutral-950 tracking-tighter uppercase leading-[0.95] ">
+            {{ title() | translate }}
+            @if (titleHighlight()) {
+            <br class="hidden sm:inline" />
+            <span class="text-[#EA8A22]">{{ titleHighlight() | translate }}</span>
+            }
+          </h1>
+        </div>
+
+        <!-- Description -->
+        @if (description()) {
+        <p class="text-neutral-600 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-2xl">
+          {{ description() | translate }}
+        </p>
+        }
+      </div>
+    </div>
+  </section>
+</div>
