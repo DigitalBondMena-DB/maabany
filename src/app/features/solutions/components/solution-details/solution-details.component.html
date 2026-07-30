@@ -1,0 +1,47 @@
+<section class="py-12 md:py-20 lg:py-24 bg-white relative">
+  <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+
+      <!-- Left Column: Overview & Description -->
+      <div class="lg:col-span-6 space-y-6 lg:sticky lg:top-28">
+        <div class="inline-flex items-center gap-2">
+          <span class="w-8 h-0.5 bg-[#EA8A22]"></span>
+          <span class="text-xs font-mono font-bold text-[#EA8A22] uppercase tracking-widest">
+            OVERVIEW
+          </span>
+        </div>
+
+        <h2
+          class="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-900 tracking-tight uppercase leading-tight font-mono">
+          {{ currentSolution().aboutTitle }}
+        </h2>
+
+        <div class="space-y-6 text-neutral-600 font-normal leading-relaxed text-base md:text-lg">
+          <p>
+            {{ currentSolution().aboutDesc }}
+          </p>
+          <p>
+            At Maabany, we utilize state-of-the-art technologies and robust engineering methodologies to ensure that
+            every stage of our work complies with the highest international protocols of quality, safety, and modern
+            performance standards.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Floating Inquiry Card (Shared app-contact-form matching exact SolutionDetails.tsx style) -->
+      <div class="lg:col-span-6">
+        <app-contact-form [showProjectType]="false" [presetProjectType]="currentSolution().title"
+          [formTitle]="'ASK ABOUT THIS SOLUTION'"
+          [formSubtitle]="'We\'re here to help. Complete the form and our experts will contact you soon.'"
+          [cardClasses]="'bg-white border border-neutral-200/90 rounded-3xl p-6 sm:p-8 md:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.06)] relative overflow-hidden h-full'" />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- The Maabany Standard / Why Choose Us Section -->
+<app-why-choose-us />
+
+<!-- Other Services Section -->
+<app-other-services [currentSlug]="slug()" />

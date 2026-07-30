@@ -6,15 +6,16 @@
     <div
       class="pointer-events-auto w-full rounded-full bg-white/95 backdrop-blur-md border border-neutral-200 py-3 px-6 md:px-8 flex items-center justify-between shadow-xl">
       <!-- Brand Logo -->
-      <a routerLink="/" class="relative flex items-center w-40 h-10 md:w-52 md:h-11 group">
+      <a [routerLink]="languageService.getLocalizedPath('/')"
+        class="relative flex items-center w-40 h-10 md:w-52 md:h-11 group">
         <app-image src="/main-logo.png" [width]="125" [height]="52" alt="Maabany Integrated Building Solutions"
           objectFit="contain" />
       </a>
 
       <!-- Desktop Nav Links -->
       <nav class="hidden xl:flex items-center gap-2 text-nowrap xl:gap-3">
-        @for (link of navLinks; track link.path) {
-        <a [routerLink]="link.path" routerLinkActive="text-[#EA8A22] font-bold router-link-active"
+        @for (link of links; track link.path) {
+        <a [routerLink]="['/',lang(),link.path]" routerLinkActive="text-[#EA8A22] font-bold router-link-active"
           [routerLinkActiveOptions]="{ exact: link.path === '/' }"
           class="px-3 py-1.5 rounded-full nav-link text-[13px] font-semibold text-[#142b52] hover:text-[#EA8A22] transition-colors relative">
           {{ link.label | translate }}
@@ -67,7 +68,7 @@
   </div>
 
   <!-- Mobile Offcanvas Navigation Component -->
-  <app-mobile-nav [isOpen]="menuOpen()" [navLinks]="navLinks"
+  <app-mobile-nav [isOpen]="menuOpen()" [navLinks]="links"
     [currentLang]="languageService.currentLang() === 'en' ? 'EN' : 'AR'" (close)="menuOpen.set(false)"
     (toggleLang)="toggleLang()" />
 </header>

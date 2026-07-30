@@ -71,6 +71,13 @@ export class ContactFormComponent {
   readonly selectedBranch = input<BranchCode>('SA');
   readonly selectBranch = output<BranchCode>();
 
+  // Configurable inputs for reuse across Home and Solution Details
+  readonly showProjectType = input<boolean>(true);
+  readonly presetProjectType = input<string>('');
+  readonly formTitle = input<string>('');
+  readonly formSubtitle = input<string>('');
+  readonly cardClasses = input<string>('');
+
   readonly formData = signal<ContactFormData>({
     name: '',
     email: '',
@@ -127,6 +134,13 @@ export class ContactFormComponent {
       else if (branch === 'EG') this.phoneCountry.set('+20');
       else if (branch === 'LY') this.phoneCountry.set('+218');
     });
+
+    effect(() => {
+      const preset = this.presetProjectType();
+      if (preset) {
+        this.projectType.set(preset);
+      }
+    });
   }
 
   onPhoneCountryChange(countryCode: string): void {
@@ -181,6 +195,7 @@ export class ContactFormComponent {
   });
 
   readonly projectTypeError = computed(() => {
+    if (!this.showProjectType()) return null;
     if (!this.projectType()) return 'Please select a project type.';
     return null;
   });

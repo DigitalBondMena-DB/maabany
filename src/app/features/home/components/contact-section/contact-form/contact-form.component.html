@@ -1,4 +1,4 @@
-<div class="bg-white rounded-3xl p-8 md:p-10 border border-neutral-200/80 shadow-md relative overflow-hidden h-full">
+<div [class]="cardClasses() || 'bg-white rounded-3xl p-8 md:p-10 border border-neutral-200/80 shadow-md relative overflow-hidden h-full'">
   <div class="absolute top-0 right-0 w-32 h-32 bg-[#EA8A22]/5 rounded-bl-[100px] pointer-events-none"></div>
 
   <!-- Success Notification Banner -->
@@ -14,14 +14,25 @@
 
   <form (submit)="submitForm($event)" class="space-y-7 relative z-10" novalidate>
     <div class="space-y-1.5 pb-1">
-      <span class="text-[#EA8A22] font-mono text-xs uppercase font-extrabold tracking-widest block">
-        @if (selectedBranch() === 'SA') { {{ 'RIYADH OFFICE ROUTING' | translate }} }
-        @else if (selectedBranch() === 'EG') { {{ 'CAIRO OFFICE ROUTING' | translate }} }
-        @else if (selectedBranch() === 'LY') { {{ 'TRIPOLI OFFICE ROUTING' | translate }} }
-      </span>
-      <h3 class="text-xl font-bold text-neutral-950 uppercase tracking-tight">
-        {{ 'Inquire About Your Project' | translate }}
-      </h3>
+      @if (formTitle()) {
+        <h3 class="text-xl sm:text-2xl font-black text-neutral-900 uppercase font-mono tracking-tight">
+          {{ formTitle() | translate }}
+        </h3>
+        @if (formSubtitle()) {
+          <p class="text-xs sm:text-sm text-neutral-500 font-light leading-relaxed">
+            {{ formSubtitle() | translate }}
+          </p>
+        }
+      } @else {
+        <span class="text-[#EA8A22] font-mono text-xs uppercase font-extrabold tracking-widest block">
+          @if (selectedBranch() === 'SA') { {{ 'RIYADH OFFICE ROUTING' | translate }} }
+          @else if (selectedBranch() === 'EG') { {{ 'CAIRO OFFICE ROUTING' | translate }} }
+          @else if (selectedBranch() === 'LY') { {{ 'TRIPOLI OFFICE ROUTING' | translate }} }
+        </span>
+        <h3 class="text-xl font-bold text-neutral-950 uppercase tracking-tight">
+          {{ 'Inquire About Your Project' | translate }}
+        </h3>
+      }
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-7">
@@ -116,7 +127,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-7">
       <!-- Realtime Tel Input -->
-      <div class="relative space-y-1.5 pb-6">
+      <div [class]="showProjectType() ? 'relative space-y-1.5 pb-6' : 'relative space-y-1.5 pb-6 md:col-span-2'">
         <div class="flex items-center justify-between">
           <label htmlFor="contact-phone" class="text-[10px] font-mono uppercase tracking-widest text-neutral-600 font-bold block">
             {{ 'Phone Number *' | translate }}
@@ -146,26 +157,28 @@
         }
       </div>
 
-      <!-- Project Type Selection -->
-      <div class="relative space-y-1.5 pb-6">
-        <label htmlFor="contact-segment" class="text-[10px] font-mono uppercase tracking-widest text-neutral-600 font-bold block">
-          {{ 'Project Type *' | translate }}
-        </label>
-        <div class="relative">
-          <select
-            id="contact-segment"
-            [value]="projectType()"
-            (change)="projectType.set($any($event.target).value)"
-            class="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-[#EA8A22] focus:bg-white text-neutral-700 pl-3.5 pr-10 py-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-[#EA8A22]/15 appearance-none cursor-pointer">
-            @for (type of projectTypes; track type) {
-              <option [value]="type">{{ type | translate }}</option>
-            }
-          </select>
-          <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="m6 9 6 6 6-6"/></svg>
+      <!-- Project Type Selection (Optional/Conditional) -->
+      @if (showProjectType()) {
+        <div class="relative space-y-1.5 pb-6">
+          <label htmlFor="contact-segment" class="text-[10px] font-mono uppercase tracking-widest text-neutral-600 font-bold block">
+            {{ 'Project Type *' | translate }}
+          </label>
+          <div class="relative">
+            <select
+              id="contact-segment"
+              [value]="projectType()"
+              (change)="projectType.set($any($event.target).value)"
+              class="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-[#EA8A22] focus:bg-white text-neutral-700 pl-3.5 pr-10 py-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-[#EA8A22]/15 appearance-none cursor-pointer">
+              @for (type of projectTypes; track type) {
+                <option [value]="type">{{ type | translate }}</option>
+              }
+            </select>
+            <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
           </div>
         </div>
-      </div>
+      }
     </div>
 
     <!-- How Can We Help You / Project Brief -->

@@ -3,6 +3,8 @@
 @import 'tailwindcss';
 
 @theme {
+  --font-main: "Inter", sans-serif;
+  --font-header: "Space Grotesk", sans-serif;
   --outer-padding-x: 24px;
   --outer-padding-top: 16px;
   --outer-padding-bottom: 4px;
@@ -30,8 +32,12 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-main);
   }
 
   h1,
@@ -40,7 +46,7 @@
   h4,
   h5,
   h6 {
-    font-family: "Space Grotesk", sans-serif;
+    font-family: var(--font-header);
   }
 }
 
@@ -48,5 +54,13 @@
   .flex-center {
     display: flex;
     place-items: center;
+  }
+
+  .main-font {
+    font-family: var(--font-main);
+  }
+
+  .header-font {
+    font-family: var(--font-header);
   }
 }

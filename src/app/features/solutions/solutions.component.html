@@ -1,14 +1,18 @@
 <div class="relative bg-white text-neutral-900 min-h-screen">
   <!-- 1. Shared Page Hero Section -->
   <app-page-hero 
-    title="Engineering"
+    [title]="heroTitle()"
     titleHighlight="Solutions"
     categoryBadge="Solutions"
     heroImage="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1920&q=80"
   />
 
-  <!-- 2. Solutions Grid Section ("What We Offer") -->
-  <app-solutions-grid />
+  <!-- 2. Middle Section: Either Grid with Services OR Solution Details with Shared Form -->
+  @if (hasSubcategories()) {
+    <app-solutions-grid [activeSlug]="slug()" />
+  } @else {
+    <app-solution-details [slug]="slug()!" />
+  }
 
   <!-- 3. Shared CTA Banner Section -->
   <app-cta-banner />

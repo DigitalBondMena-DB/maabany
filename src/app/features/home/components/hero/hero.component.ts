@@ -1,9 +1,10 @@
-import { Component, viewChild, ElementRef, output } from '@angular/core';
+import { Component, viewChild, ElementRef, output, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { IconsComponent } from '../../../../shared/components/icons/icons.component';
 import { IconName } from '../../../../shared/models/icons.interface';
 import { HeroBg } from "../hero-bg/hero-bg";
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { ViewportScroller } from '@angular/common';
 
 export interface HeroStat {
   icon: IconName;
@@ -17,9 +18,7 @@ export interface HeroStat {
   imports: [IconsComponent, HeroBg, ButtonComponent, TranslatePipe],
 })
 export class HomeHeroComponent {
-  readonly openQuote = output<void>();
-  readonly videoRef = viewChild<ElementRef<HTMLVideoElement>>('videoPlayer');
-  readonly heroRef = viewChild<ElementRef<HTMLElement>>('heroRef');
+  private readonly position = inject(ViewportScroller)
   readonly bgVideoUrl = '/videos/Maabany-hero-video.mp4';
 
   readonly stats: HeroStat[] = [
@@ -30,10 +29,6 @@ export class HomeHeroComponent {
   ];
 
   scrollToNext(): void {
-    const heroElement = this.heroRef()?.nativeElement;
-    if (!heroElement) return;
-    const parentContainer = heroElement.parentElement || heroElement;
-    const targetY = parentContainer.getBoundingClientRect().bottom + window.scrollY;
-    window.scrollTo({ top: targetY, behavior: 'smooth' });
+    this.position.scrollToAnchor('about');
   }
 }

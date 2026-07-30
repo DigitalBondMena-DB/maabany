@@ -1,8 +1,9 @@
-import { Component, inject, output } from '@angular/core';
-import { RouterLink, Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ProfileService } from '../../../core/services/profile.service';
 import { ImageComponent } from '../image/image.component';
+import { navLinks } from '../../constants/navigation-links.constant';
 
 export interface SocialLinkItem {
   name: string;
@@ -17,8 +18,6 @@ export interface SocialLinkItem {
 })
 export class FooterComponent {
   readonly profileService = inject(ProfileService);
-  private readonly router = inject(Router);
-  readonly openQuoteModal = output<void>();
 
   readonly socialLinks: SocialLinkItem[] = [
     {
@@ -48,44 +47,16 @@ export class FooterComponent {
     },
   ];
 
-  readonly quickLinks = [
-    { label: 'Home', path: '/' },
-    { label: 'About', path: '/about' },
-    { label: 'Solutions', path: '/solutions' },
-    { label: 'Projects', path: '/projects' },
-    { label: 'Industries', path: '/industries' },
-    { label: 'Clients & Partners', path: '/clients-partners' },
-    { label: 'Blogs', path: '/blogs' },
-  ];
+  readonly quickLinks = navLinks.filter((link) => link.path !== '/contact');
+
 
   readonly resourceLinks = [
-    { label: 'Company Profile ↓', path: '/about#profile' },
-    { label: 'Privacy Policy', path: '/privacy' },
-    { label: 'Contact Us', path: '/contact' },
+    { label: 'FOOTER.PROFILE_DOWNLOAD', path: '/about#profile' },
+    { label: 'FOOTER.PRIVACY_POLICY', path: '/privacy' },
+    { label: 'FOOTER.CONTACT_US', path: '/contact' },
   ];
 
   downloadProfile(): void {
     this.profileService.downloadProfile();
-  }
-
-  triggerQuote(): void {
-    this.openQuoteModal.emit();
-  }
-
-  handleFooterLinkClick(event: MouseEvent, path: string): void {
-    if (path.includes('#')) {
-      const [pagePath, hash] = path.split('#');
-      const currentUrl = this.router.url.split('#')[0];
-
-      if (currentUrl === pagePath || (pagePath === '' && currentUrl === '/')) {
-        const element = document.getElementById(hash);
-        if (element) {
-          event.preventDefault();
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
   }
 }

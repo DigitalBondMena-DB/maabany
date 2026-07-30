@@ -1,4 +1,4 @@
-import { Component, signal, inject, DestroyRef, afterNextRender } from '@angular/core';
+import { Component, signal, inject, computed, DestroyRef, afterNextRender } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { fromEvent, asyncScheduler } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { MobileNavComponent } from '../mobile-nav/mobile-nav.component';
 import { ImageComponent } from "../image/image.component";
 import { ButtonComponent } from '../button/button.component';
 import { LanguageService } from '../../../core/services/language.service';
+import { navLinks } from '../../constants/navigation-links.constant';
 
 @Component({
   selector: 'app-header',
@@ -29,10 +30,12 @@ import { LanguageService } from '../../../core/services/language.service';
 export class HeaderComponent {
   private readonly destroyRef = inject(DestroyRef);
   readonly languageService = inject(LanguageService);
-
+  readonly lang = computed(() => this.languageService.currentLang());
   readonly menuOpen = signal<boolean>(false);
   readonly searchOpen = signal<boolean>(false);
   readonly isScrolled = signal<boolean>(false);
+
+  readonly links = navLinks;
 
   constructor() {
     afterNextRender(() => {
@@ -53,17 +56,6 @@ export class HeaderComponent {
         }
       });
   }
-
-  readonly navLinks = [
-    { label: 'NAV.HOME', path: '/' },
-    { label: 'NAV.ABOUT', path: '/about' },
-    { label: 'NAV.SOLUTIONS', path: '/solutions' },
-    { label: 'NAV.PROJECTS', path: '/projects' },
-    { label: 'NAV.INDUSTRIES', path: '/industries' },
-    { label: 'NAV.CLIENTS_PARTNERS', path: '/clients-partners' },
-    { label: 'NAV.BLOGS', path: '/blogs' },
-    { label: 'NAV.CONTACT', path: '/contact' }
-  ];
 
   toggleMenu(): void {
     this.menuOpen.update(val => !val);

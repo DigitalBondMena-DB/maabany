@@ -26,7 +26,7 @@
     </div>
 
     @if (selectedCategory()) {
-      <!-- Subcategories Detail View -->
+      <!-- Subcategories Detail View for Categories with Services -->
       <div class="w-full animate-fadeIn">
         <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6 pb-8 border-b border-neutral-200">
           <div class="space-y-2">
@@ -38,18 +38,18 @@
             </h3>
           </div>
 
-          <button 
-            (click)="clearSelection()"
+          <a 
+            [routerLink]="'/' + currentLang() + '/solutions'"
             class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-neutral-300 text-neutral-700 hover:border-[#EA8A22] hover:text-[#EA8A22] font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer self-start md:self-auto">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 rtl:rotate-180"><path d="m15 18-6-6 6-6"/></svg>
             {{ 'All Solutions' | translate }}
-          </button>
+          </a>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
           @for (sub of selectedCategory()?.subcategories; track sub.slug; let sIdx = $index) {
             <a 
-              [routerLink]="'/solutions/' + sub.slug"
+              [routerLink]="'/' + currentLang() + '/solutions/' + sub.slug"
               class="group bg-white rounded-[32px] border border-neutral-200/85 hover:border-[#EA8A22] shadow-sm hover:shadow-[0_25px_50px_rgba(234,88,12,0.1)] hover:-translate-y-2 transition-all duration-700 flex flex-col sm:flex-row relative min-h-[300px] overflow-hidden cursor-pointer">
               
               <!-- Image Frame -->
@@ -102,14 +102,10 @@
         @for (solution of solutions; track solution.title; let idx = $index) {
           @let hasSubs = solution.subcategories.length > 0;
           
-          <div 
-            [class]="'group bg-white rounded-[24px] overflow-hidden border border-neutral-200 shadow-sm hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(234,88,12,0.08)] transition-all duration-500 relative flex flex-col cursor-pointer ' + (idx % 2 !== 0 ? 'md:mt-16' : '')"
-            (click)="hasSubs ? selectCategory(solution) : null">
+          <a 
+            [routerLink]="'/' + currentLang() + '/solutions/' + solution.slug"
+            [class]="'group bg-white rounded-[24px] overflow-hidden border border-neutral-200 shadow-sm hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(234,88,12,0.08)] transition-all duration-500 relative flex flex-col cursor-pointer ' + (idx % 2 !== 0 ? 'md:mt-16' : '')">
             
-            @if (!hasSubs) {
-              <a [routerLink]="'/solutions/' + solution.slug" class="absolute inset-0 z-30"></a>
-            }
-
             <div class="absolute inset-0 border-[1px] border-[#EA8A22] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[24px] z-20 pointer-events-none"></div>
             <div class="absolute inset-0 bg-[#EA8A22]/0 group-hover:bg-[#EA8A22]/5 transition-colors duration-500 z-10 pointer-events-none"></div>
             
@@ -148,7 +144,7 @@
                 </p>
               </div>
             </div>
-          </div>
+          </a>
         }
       </div>
     }

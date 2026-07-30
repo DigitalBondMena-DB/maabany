@@ -143,12 +143,12 @@
     <div class="lg:col-span-3 space-y-6">
       <h4
         class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-[#EA8A22]">
-        {{ 'Quick Links' | translate }}
+        {{ 'FOOTER.QUICK_LINKS' | translate }}
       </h4>
       <ul class="grid grid-cols-1 gap-3.5">
         @for (link of quickLinks; track link.path) {
         <li>
-          <a [routerLink]="link.path" (click)="handleFooterLinkClick($event, link.path)"
+          <a [routerLink]="link.path"
             class="text-[15px] text-white/80 hover:text-[#EA8A22] transition-all duration-300 inline-flex items-center gap-2 group relative py-1">
             <span
               class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#EA8A22] group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
@@ -166,7 +166,7 @@
     <div class="lg:col-span-2 space-y-6">
       <h4
         class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-[#EA8A22]">
-        {{ 'Resources' | translate }}
+        {{ 'FOOTER.RESOURCES' | translate }}
       </h4>
       <ul class="grid grid-cols-1 gap-3.5 mb-6">
         @for (link of resourceLinks; track link.path) {
@@ -184,7 +184,7 @@
             </span>
           </button>
           } @else {
-          <a [routerLink]="link.path" (click)="handleFooterLinkClick($event, link.path)"
+          <a [routerLink]="link.path"
             class="text-[15px] text-white/80 hover:text-[#EA8A22] transition-all duration-300 inline-flex items-center gap-2 group relative py-1">
             <span
               class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#EA8A22] group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
@@ -198,16 +198,16 @@
         </li>
         }
         <li>
-          <button (click)="triggerQuote()"
+          <a [routerLink]="'request-a-quote'"
             class="text-[15px] text-white/80 hover:text-[#EA8A22] text-left transition-all duration-300 inline-flex items-center gap-2 group cursor-pointer focus:outline-none relative py-1">
             <span
               class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#EA8A22] group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
             <span class="relative">
-              {{ 'Request a Quote' | translate }}
+              {{ 'NAV.REQUEST_QUOTE' | translate }}
               <span
                 class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#EA8A22] transition-all duration-300 group-hover:w-full"></span>
             </span>
-          </button>
+          </a>
         </li>
       </ul>
     </div>
@@ -216,7 +216,7 @@
     <div class="lg:col-span-3 space-y-6">
       <h4
         class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-[#EA8A22]">
-        {{ 'Contact Us' | translate }}
+        {{ 'FOOTER.CONTACT_US' | translate }}
       </h4>
       <div class="space-y-4 text-[14px] text-white/75 font-light">
         <div class="flex gap-3 items-start group">

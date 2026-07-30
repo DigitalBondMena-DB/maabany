@@ -1,0 +1,47 @@
+<section class="py-12 md:py-20 lg:py-24 bg-neutral-50 relative overflow-hidden">
+  <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
+    <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-16 gap-6">
+      <div>
+        <span class="text-[#142b52] font-mono text-xs tracking-[0.2em] font-bold uppercase block mb-3">
+          {{ 'DISCOVER MORE' | translate }}
+        </span>
+        <h2
+          class="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-900 tracking-tighter uppercase leading-none font-mono">
+          {{ 'Explore Related Solutions' | translate }}
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      @for (sol of otherSolutions(); track sol.slug) {
+      <div
+        class="group bg-white rounded-3xl overflow-hidden border border-neutral-200 hover:border-[#EA8A22] shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col relative">
+        <a [routerLink]="'/' + currentLang() + '/solutions/' + sol.slug" class="absolute inset-0 z-20"></a>
+
+        <div
+          class="absolute inset-0 border-2 border-[#EA8A22]/0 group-hover:border-[#EA8A22] transition-colors duration-500 rounded-3xl pointer-events-none z-30">
+        </div>
+
+        <div class="h-48 overflow-hidden relative">
+          <app-image [src]="sol.image" [alt]="sol.title"
+            class="group-hover:scale-110 will-change-transform transition-transform duration-700 ease-out" />
+          <div class="absolute inset-0 bg-neutral-900/10 pointer-events-none"></div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3
+              class="text-lg font-bold main-font text-neutral-900 uppercase  transition-colors group-hover:text-[#EA8A22] line-clamp-1 mb-2">
+              {{ sol.title | translate }}
+            </h3>
+
+            <p class="text-xs text-neutral-600 font-light leading-relaxed line-clamp-4">
+              {{ sol.desc | translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
