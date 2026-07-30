@@ -1,17 +1,16 @@
 <div class="w-full max-w-350 mx-auto transition-all duration-200"
   style="padding-left: var(--outer-padding-x, 24px); padding-right: var(--outer-padding-x, 24px); padding-top: var(--outer-padding-top, 16px); padding-bottom: var(--outer-padding-bottom, 4px);">
   <section
-    class="relative w-full h-[380px] md:h-[460px] lg:h-[540px] flex flex-col justify-center overflow-hidden bg-neutral-50 border border-neutral-200/60 shadow-xl shadow-neutral-100/40 transition-all duration-200"
+    class="relative w-full h-95 md:h-115 lg:h-135 flex flex-col justify-center overflow-hidden bg-neutral-50 border border-neutral-200/60 shadow-xl shadow-neutral-100/40 transition-all duration-200"
     style="border-radius: var(--hero-border-radius, 40px)">
 
     <!-- Background Image with elegant overlay/gradient -->
     <div class="absolute inset-0 z-0 select-none pointer-events-none">
-      <img [src]="heroImage()" alt="Hero Background"
-        class="w-full h-full object-cover opacity-18 scale-100 transition-all duration-1000" />
-
+      <app-image [src]="heroImage()" alt="Hero Background" [priority]="true"
+        class="object-cover opacity-18 scale-100 transition-all duration-1000" />
       <!-- Subtle blueprints/lines grid style -->
       <div
-        class="absolute inset-0 bg-[linear-gradient(to_right,#ea8a2204_1px,transparent_1px),linear-gradient(to_bottom,#ea8a2205_1px,transparent_1px)] bg-[size:32px_32px]">
+        class="absolute inset-0 bg-[linear-gradient(to_right,#ea8a2204_1px,transparent_1px),linear-gradient(to_bottom,#ea8a2205_1px,transparent_1px)] bg-size-[32px_32px]">
       </div>
 
       <!-- Subtle warm orange glow -->

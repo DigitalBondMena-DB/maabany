@@ -2,27 +2,31 @@
   <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 relative z-10">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       @for (panel of panels; track panel.titleKey) {
-        <div class="relative bg-white border border-neutral-200/80 p-10 rounded-[2.5rem] overflow-hidden group transition-all duration-300 hover:border-[#EA8A22] hover:-translate-y-2 hover:shadow-[0_30px_60px_-15px_rgba(234,138,34,0.15)] flex flex-col justify-between">
-          <div class="absolute -right-12 -top-12 w-36 h-36 bg-gradient-to-br from-[#EA8A22]/8 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
-          <div class="absolute -left-12 -bottom-12 w-36 h-36 bg-gradient-to-tr from-[#142b52]/5 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+      <div
+        class="relative bg-white border border-neutral-200/80 p-10 rounded-[2.5rem] overflow-hidden group transition-all duration-300 hover:border-[#EA8A22] hover:-translate-y-2 hover:shadow-[0_30px_60px_-15px_rgba(234,138,34,0.15)] flex flex-col justify-between">
+        <div
+          class="absolute -right-12 -top-12 w-36 h-36 bg-linear-to-br from-[#EA8A22]/8 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700 pointer-events-none">
+        </div>
+        <div
+          class="absolute -left-12 -bottom-12 w-36 h-36 bg-linear-to-tr from-[#142b52]/5 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700 pointer-events-none">
+        </div>
 
-          <div class="relative z-10 flex flex-col h-full justify-between">
-            <div>
-              <div class="w-16 h-16 rounded-[1.5rem] bg-neutral-50 border border-neutral-150 text-[#EA8A22] flex items-center justify-center mb-8 transition-all duration-300 group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 shadow-sm group-hover:shadow-[#EA8A22]/20">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
-                  <path [attr.d]="panel.iconSvg" />
-                </svg>
-              </div>
-              
-              <h3 class="text-xl font-extrabold text-neutral-950 tracking-wide uppercase mb-4 font-sans">
-                {{ panel.titleKey | translate }}
-              </h3>
-              <p class="text-neutral-600 leading-relaxed font-light text-sm">
-                {{ panel.descKey | translate }}
-              </p>
+        <div class="relative z-10 flex flex-col h-full justify-between">
+          <div>
+            <div [innerHTML]="panel.iconSvg | safeHtml"
+              class="w-16 h-16 rounded-3xl bg-neutral-50 border border-neutral-150 text-[#EA8A22] flex items-center justify-center mb-8 transition-all duration-300 group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 shadow-sm group-hover:shadow-[#EA8A22]/20">
+
             </div>
+
+            <h3 class="text-xl font-extrabold text-neutral-950 tracking-wide uppercase mb-4 font-sans">
+              {{ panel.titleKey | translate }}
+            </h3>
+            <p class="text-neutral-600 leading-relaxed font-light text-sm">
+              {{ panel.descKey | translate }}
+            </p>
           </div>
         </div>
+      </div>
       }
     </div>
   </div>

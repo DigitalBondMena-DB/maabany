@@ -5,8 +5,13 @@
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x divide-neutral-200 rtl:divide-x-reverse">
       @for (stat of stats; track stat.labelKey) {
         <div class="flex flex-col items-center text-center px-4">
-          <div class="text-4xl md:text-6xl font-black text-neutral-900 font-mono tracking-tight mb-2">
-            {{ stat.value }}
+          <div 
+            class="text-4xl md:text-6xl font-black text-neutral-900 font-mono tracking-tight mb-2"
+            [appCountUp]="stat.target"
+            [appCountUpSuffix]="stat.suffix"
+            [appCountUpDuration]="2000"
+          >
+            0{{ stat.suffix }}
           </div>
           <div class="text-xs md:text-sm font-bold text-[#EA8A22] uppercase tracking-widest font-mono">
             {{ stat.labelKey | translate }}

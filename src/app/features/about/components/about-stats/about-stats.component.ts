@@ -1,21 +1,23 @@
 import { Component } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
+import { CountUpDirective } from '../../../../shared/directives/count-up.directive';
 
 export interface StatItem {
-  value: string;
+  target: number;
+  suffix: string;
   labelKey: string;
 }
 
 @Component({
   selector: 'app-about-stats',
-  imports: [TranslatePipe],
+  imports: [TranslatePipe, CountUpDirective],
   templateUrl: './about-stats.component.html',
 })
 export class AboutStatsComponent {
   readonly stats: StatItem[] = [
-    { value: '13+', labelKey: 'ABOUT_PAGE.STAT_1' },
-    { value: '250+', labelKey: 'ABOUT_PAGE.STAT_2' },
-    { value: '40+', labelKey: 'ABOUT_PAGE.STAT_3' },
-    { value: '98%', labelKey: 'ABOUT_PAGE.STAT_4' },
+    { target: 13, suffix: '+', labelKey: 'ABOUT_PAGE.STAT_1' },
+    { target: 250, suffix: '+', labelKey: 'ABOUT_PAGE.STAT_2' },
+    { target: 40, suffix: '+', labelKey: 'ABOUT_PAGE.STAT_3' },
+    { target: 98, suffix: '%', labelKey: 'ABOUT_PAGE.STAT_4' },
   ];
 }

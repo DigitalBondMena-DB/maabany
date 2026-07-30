@@ -1,57 +1,56 @@
-<section id="partners-and-clients" [class]="'bg-white relative z-10 transition-all duration-200 ' + sectionPadding()">
+<section dir="ltr" id="partners-and-clients"
+  [class]="'bg-white relative z-10 transition-all duration-200 ' + sectionPadding()">
   <div class="max-w-350 mx-auto transition-all duration-200 px-(--outer-padding-x)">
     @if (showHeading()) {
-      <div class="text-center max-w-3xl mx-auto mb-16 space-y-2">
-        <span class="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
-          {{ subtitle() | translate }}
-        </span>
-        <h2 class="text-3xl md:text-5xl font-black text-neutral-900 uppercase tracking-tight">
-          {{ title() | translate }}
-        </h2>
-      </div>
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-2">
+      <span class="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
+        {{ subtitle() | translate }}
+      </span>
+      <h2 class="text-3xl md:text-5xl font-black text-neutral-900 uppercase tracking-tight">
+        {{ title() | translate }}
+      </h2>
+    </div>
     }
 
     <div class="flex flex-col gap-18">
       <!-- Partners Infinite Marquee Strip Left -->
       @if (showPartners()) {
-        <div [class]="'relative w-full overflow-hidden border-y border-neutral-200 bg-neutral-50/30 ' + sliderPadding()">
-          <div class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-          <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
-
-          <div class="animate-marquee-left flex gap-12 items-center" [style.animation-duration]="partnersDuration()">
-            <ng-content select="[partnerItem]">
-              @for (item of repeatedPartners(); track $index) {
-                <div class="flex items-center gap-2.5 text-neutral-500 hover:text-[#EA8A22] transition-colors duration-300 cursor-pointer group shrink-0">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="w-5 h-5 text-neutral-400 group-hover:text-[#EA8A22] transition-colors">
-                    <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5" />
-                  </svg>
-                  <span class="font-mono text-xs font-bold tracking-widest uppercase">{{ item.text }}</span>
-                </div>
-              }
-            </ng-content>
-          </div>
+      <div [class]="'relative w-full overflow-hidden border-y border-neutral-200 bg-neutral-50/80 ' + sliderPadding()">
+        <div class="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-white to-transparent z-10 pointer-events-none">
         </div>
+        <div class="absolute inset-y-0 right-0 w-24 bg-linear-to-l from-white to-transparent z-10 pointer-events-none">
+        </div>
+
+        <div class="animate-marquee-left flex gap-12 items-center" [style.animation-duration]="partnersDuration()">
+          @for (item of repeatedPartners(); track $index) {
+          <div
+            class="flex items-center gap-2.5 text-neutral-500 hover:text-[#EA8A22] transition-colors duration-300 cursor-pointer group shrink-0">
+            <app-image src="/main-logo.png" [width]="140" [height]="50" objectFit="contain" />
+          </div>
+          }
+        </div>
+      </div>
       }
 
       <!-- Clients Infinite Marquee Strip Right -->
       @if (showClients()) {
-        <div [class]="'relative w-full overflow-hidden border-y border-neutral-200 bg-neutral-50/30 ' + sliderPadding()">
-          <div class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-          <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
-
-          <div class="animate-marquee-right flex gap-12 items-center" [style.animation-duration]="clientsDuration()">
-            <ng-content select="[clientItem]">
-              @for (item of repeatedClients(); track $index) {
-                <div class="flex items-center gap-2.5 text-neutral-500 hover:text-[#EA8A22] transition-colors duration-300 cursor-pointer group shrink-0">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="w-5 h-5 text-neutral-400 group-hover:text-[#EA8A22] transition-colors">
-                    <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5" />
-                  </svg>
-                  <span class="font-mono text-xs font-bold tracking-widest uppercase">{{ item.text }}</span>
-                </div>
-              }
-            </ng-content>
-          </div>
+      <div [class]="'relative w-full overflow-hidden border-y border-neutral-200 bg-neutral-50/80 ' + sliderPadding()">
+        <div class="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-white to-transparent z-10 pointer-events-none">
         </div>
+        <div class="absolute inset-y-0 right-0 w-24 bg-linear-to-l from-white to-transparent z-10 pointer-events-none">
+        </div>
+
+        <div class="animate-marquee-right flex gap-12 items-center" [style.animation-duration]="clientsDuration()">
+          <ng-content select="[clientItem]">
+            @for (item of repeatedClients(); track $index) {
+            <div
+              class="flex items-center gap-2.5 text-neutral-500 hover:text-[#EA8A22] transition-colors duration-300 cursor-pointer group shrink-0">
+              <app-image src="/main-logo.png" [width]="140" [height]="50" objectFit="contain" />
+            </div>
+            }
+          </ng-content>
+        </div>
+      </div>
       }
     </div>
   </div>

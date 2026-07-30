@@ -1,10 +1,11 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+import { ImageComponent } from "../image/image.component";
 
 @Component({
   selector: 'app-page-hero',
-  imports: [RouterLink, TranslatePipe],
+  imports: [RouterLink, TranslatePipe, ImageComponent],
   templateUrl: './page-hero.component.html',
 })
 export class PageHeroComponent {

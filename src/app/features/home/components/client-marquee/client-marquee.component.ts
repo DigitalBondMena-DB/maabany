@@ -1,5 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
+import { ImageComponent } from "../../../../shared/components/image/image.component";
 
 export interface MarqueeItem {
   name: string;
@@ -8,7 +9,7 @@ export interface MarqueeItem {
 
 @Component({
   selector: 'app-client-marquee',
-  imports: [TranslatePipe],
+  imports: [TranslatePipe, ImageComponent],
   templateUrl: './client-marquee.component.html',
   styles: [`
     @keyframes marquee-left {

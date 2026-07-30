@@ -33,13 +33,13 @@
 
         <!-- Language Toggle -->
         <button (click)="toggleLang()"
-          class="hidden md:flex cursor-pointer items-center gap-1.5 px-3 py-1.5 rounded-full font-mono text-xs font-bold text-neutral-600 hover:bg-neutral-100 transition-colors">
+          class="hidden md:flex ltr:items-start cursor-pointer items-center gap-1.5 px-3 py-1.5 rounded-full font-mono text-xs font-bold text-neutral-600 hover:bg-neutral-100 transition-colors">
           <app-icons icon="i18n" [width]="20" [height]="20" />
           <span>{{ 'NAV.SWITCH_LANG' | translate }}</span>
         </button>
 
         <!-- Request a Quote CTA Button -->
-        <a app-button href="#" variant="primary" size="sm" customClass="hidden sm:inline-flex">
+        <a app-button href="#" variant="primary" size="sm" customClass="hidden! sm:inline-flex!">
           {{ 'NAV.REQUEST_QUOTE' | translate }}
         </a>
 

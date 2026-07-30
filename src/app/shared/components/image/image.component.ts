@@ -24,7 +24,7 @@ import { NgOptimizedImage } from '@angular/common';
         [ngSrc]="currentSrc()"
         [alt]="alt()"
         [priority]="priority()"
-        [loading]="priority() ? 'eager' : loading()"
+        [loading]="priority() ? undefined : loading()"
         [decoding]="priority() ? 'sync' : 'async'"
         fill
         [style.object-fit]="objectFit()"
@@ -40,14 +40,13 @@ import { NgOptimizedImage } from '@angular/common';
         [ngSrc]="currentSrc()"
         [alt]="alt()"
         [priority]="priority()"
-        [loading]="priority() ? 'eager' : loading()"
+        [loading]="priority() ? undefined : loading()"
         [decoding]="priority() ? 'sync' : 'async'"
         [width]="width()"
         [height]="height()"
         [style.object-fit]="objectFit()"
         [class.opacity-0]="!isLoaded()"
         [class.opacity-100]="isLoaded()"
-        
         [class]="classes()"
         (load)="onLoad()"
         (error)="onError()"
@@ -64,7 +63,7 @@ export class ImageComponent {
   readonly loading = input<'lazy' | 'eager'>('lazy');
   readonly decoding = input<'async' | 'sync' | 'auto'>('async');
   readonly placeholder = input(true);
-  readonly fallback = input('/assets/images/fallback.webp');
+  readonly fallback = input('/main-logo.png');
   readonly objectFit = input<'cover' | 'contain' | 'fill'>('cover');
   readonly classes = input<string>('');
 

@@ -121,7 +121,9 @@
       </div>
 
       <p class="text-[14px] text-white/80 leading-[1.8] font-light pr-4">
-        {{ 'Maabany Integrated Building Solutions delivers innovative engineering, construction, and facility management services across the Kingdom of Saudi Arabia (KSA) with a commitment to quality, precision, and long-term value.' | translate }}
+        {{ `Maabany Integrated Building Solutions delivers innovative engineering, construction, and facility management
+        services across the Kingdom of Saudi Arabia (KSA) with a commitment to quality, precision, and long-term value.`
+        | translate }}
       </p>
 
       <!-- Social Media Links -->
@@ -138,10 +140,9 @@
       </div>
     </div>
 
-    <!-- Column 2: Quick Links Navigation -->
     <div class="lg:col-span-3 space-y-6">
       <h4
-        class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-8 after:h-0.5 after:bg-[#EA8A22]">
+        class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-[#EA8A22]">
         {{ 'Quick Links' | translate }}
       </h4>
       <ul class="grid grid-cols-1 gap-3.5">
@@ -162,10 +163,9 @@
       </ul>
     </div>
 
-    <!-- Column 3: Resources -->
     <div class="lg:col-span-2 space-y-6">
       <h4
-        class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-8 after:h-0.5 after:bg-[#EA8A22]">
+        class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-[#EA8A22]">
         {{ 'Resources' | translate }}
       </h4>
       <ul class="grid grid-cols-1 gap-3.5 mb-6">
@@ -177,7 +177,8 @@
             <span
               class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#EA8A22] group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
             <span class="relative">
-              {{ profileService.isDownloading() ? ('Downloading Profile...' | translate) : ('Company Profile ↓' | translate) }}
+              {{ profileService.isDownloading() ? ('Downloading Profile...' | translate) : ('Company Profile ↓' |
+              translate) }}
               <span
                 class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#EA8A22] transition-all duration-300 group-hover:w-full"></span>
             </span>
@@ -214,7 +215,7 @@
     <!-- Column 4: Contact Us -->
     <div class="lg:col-span-3 space-y-6">
       <h4
-        class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-8 after:h-0.5 after:bg-[#EA8A22]">
+        class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-[#EA8A22]">
         {{ 'Contact Us' | translate }}
       </h4>
       <div class="space-y-4 text-[14px] text-white/75 font-light">
