@@ -1,17 +1,20 @@
 <section id="blogs" class="bg-white relative overflow-hidden z-10 transition-all duration-200 py-12 md:py-20 lg:py-24">
   <!-- Decorative structural dimension bar and annotations -->
-  <div class="absolute right-8 top-12 w-40 h-16 opacity-[0.04] pointer-events-none hidden lg:block select-none text-[#EA8A22]">
+  <div
+    class="absolute right-8 top-12 w-40 h-16 opacity-[0.04] pointer-events-none hidden lg:block select-none text-primary">
     <svg viewBox="0 0 100 40" class="w-full h-full">
       <line x1="10" y1="20" x2="90" y2="20" stroke="currentColor" stroke-width="0.5" />
       <line x1="10" y1="12" x2="10" y2="28" stroke="currentColor" stroke-width="0.5" />
       <line x1="90" y1="12" x2="90" y2="28" stroke="currentColor" stroke-width="0.5" />
       <line x1="6" y1="24" x2="14" y2="16" stroke="currentColor" stroke-width="0.5" />
       <line x1="86" y1="24" x2="94" y2="16" stroke="currentColor" stroke-width="0.5" />
-      <text x="50" y="15" class="text-[5px] font-mono fill-current text-center" text-anchor="middle">12,400 mm [TYP]</text>
+      <text x="50" y="15" class="text-[5px] font-mono fill-current text-center" text-anchor="middle">12,400 mm
+        [TYP]</text>
     </svg>
   </div>
 
-  <div class="absolute left-6 bottom-12 w-48 h-48 opacity-[0.04] pointer-events-none hidden xl:block select-none text-[#142b52]">
+  <div
+    class="absolute left-6 bottom-12 w-48 h-48 opacity-[0.04] pointer-events-none hidden xl:block select-none text-[#142b52]">
     <svg viewBox="0 0 100 100" class="w-full h-full">
       <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="0.25" stroke-dasharray="4 4" />
       <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" stroke-width="0.5" />
@@ -32,15 +35,8 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       @for (post of blogs; track post.slug) {
-        <app-media-card
-          [title]="post.title"
-          [desc]="post.desc"
-          [image]="post.image"
-          [link]="'/blogs/' + post.slug"
-          [badge]="post.date"
-          badgePosition="bottom-left"
-          imageHeight="h-48"
-        />
+      <app-media-card [title]="post.title" [desc]="post.desc" [image]="post.image" [link]="'/blogs/' + post.slug"
+        [badge]="post.date" badgePosition="bottom-left" imageHeight="h-48" />
       }
     </div>
 

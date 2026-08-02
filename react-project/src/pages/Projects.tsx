@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  ArrowRight, 
-  MapPin, 
-  Calendar, 
-  Grid, 
+import {
+  ArrowRight,
+  MapPin,
+  Calendar,
+  Grid,
   Layers,
   ChevronLeft,
   ChevronRight,
@@ -28,7 +28,7 @@ import { InteractiveBlueprint } from '../components/InteractiveBlueprint';
 
 export function Projects() {
   const setQuoteModalOpen = useQuoteModal();
-  
+
   // States
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -58,14 +58,14 @@ export function Projects() {
   const categories = ['All', ...Array.from(new Set(projects.map(p => p.category)))];
 
   // Filter projects
-  const filteredProjects = selectedCategory === 'All' 
-    ? projects 
+  const filteredProjects = selectedCategory === 'All'
+    ? projects
     : projects.filter(p => p.category.toLowerCase() === selectedCategory.toLowerCase());
 
   // Pagination Logic
   const totalItems = filteredProjects.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-  
+
   // Slice projects depending on pagination vs loadmore
   const displayedProjects = paginationMode === 'pagination'
     ? filteredProjects.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
@@ -81,7 +81,7 @@ export function Projects() {
   const renderPaginationRange = () => {
     const range: (number | string)[] = [];
     const maxVisiblePages = 3;
-    
+
     if (totalPages <= 5) {
       for (let i = 1; i <= totalPages; i++) range.push(i);
     } else {
@@ -117,11 +117,11 @@ export function Projects() {
   };
 
   return (
-    <div className="relative bg-white text-neutral-900 min-h-screen selection:bg-[#EA8A22] selection:text-white">
-      
+    <div className="relative bg-white text-neutral-900 min-h-screen selection:bg-primary selection:text-white">
+
       {/* 1. Hero Header Section */}
       <InternalPageHero
-        title={<>Engineering Excellence <br /> <span className="text-[#EA8A22]">Projects</span></>}
+        title={<>Engineering Excellence <br /> <span className="text-primary">Projects</span></>}
         categoryBadge="Our Projects"
         categoryIcon={Building2}
         description=""
@@ -132,12 +132,12 @@ export function Projects() {
       {/* 3. Our Projects Section */}
       <section className="pt-[104px] pb-12 md:pb-20 lg:pb-24 bg-white" id="projects-section">
         <div className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
-          
+
           {/* Section Header */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center mb-[104px]">
             <div className="lg:col-span-7 space-y-4">
               <div className="inline-flex items-center gap-2">
-                <span className="w-8 h-[1px] bg-[#EA8A22]" />
+                <span className="w-8 h-[1px] bg-primary" />
                 <span className="text-xs font-mono font-bold text-[#142b52] uppercase tracking-widest">
                   OUR PROJECTS
                 </span>
@@ -149,7 +149,7 @@ export function Projects() {
                 Discover a selection of engineering and construction projects successfully delivered by Maabany across multiple sectors, demonstrating our expertise, precision, and commitment to excellence.
               </p>
             </div>
-            
+
             <div className="lg:col-span-5 flex justify-center lg:justify-end">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -174,11 +174,10 @@ export function Projects() {
                     setCurrentPage(1);
                     setHasLoadedMore(false);
                   }}
-                  className={`px-5 py-2.5 rounded-full text-xs font-mono uppercase font-bold tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap shrink-0 ${
-                    selectedCategory === cat
-                      ? 'bg-[#EA8A22] text-white shadow-sm'
+                  className={`px-5 py-2.5 rounded-full text-xs font-mono uppercase font-bold tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap shrink-0 ${selectedCategory === cat
+                      ? 'bg-primary text-white shadow-sm'
                       : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100'
-                  }`}
+                    }`}
                 >
                   {cat}
                 </button>
@@ -192,7 +191,7 @@ export function Projects() {
               {displayedProjects.map((proj, idx) => {
                 // Alternating card heights to establish an elegant editorial masonry layout
                 const isTall = idx % 3 === 1;
-                
+
                 return (
                   <motion.div
                     key={proj.slug}
@@ -201,34 +200,33 @@ export function Projects() {
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true, margin: "-80px" }}
                     exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                    transition={{ 
-                      type: "spring", 
-                      stiffness: 100, 
+                    transition={{
+                      type: "spring",
+                      stiffness: 100,
                       damping: 18,
                       delay: (idx % 3) * 0.08
                     }}
-                    className={`group bg-white rounded-[24px] overflow-hidden border border-neutral-100 hover:border-[#EA8A22] shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col relative ${
-                      isTall ? 'lg:translate-y-6' : ''
-                    }`}
+                    className={`group bg-white rounded-[24px] overflow-hidden border border-neutral-100 hover:border-primary shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col relative ${isTall ? 'lg:translate-y-6' : ''
+                      }`}
                     style={{ height: isTall ? '540px' : '490px' }}
                   >
                     {/* Link to details (simulated with standard state or custom page slug routing) */}
                     <Link to={`/projects/${proj.slug}`} className="absolute inset-0 z-20" />
-                    
+
                     {/* Thin Orange border on hover */}
-                    <div className="absolute inset-0 border-[2.5px] border-[#EA8A22]/0 group-hover:border-[#EA8A22] transition-colors duration-500 rounded-[24px] pointer-events-none z-30" />
+                    <div className="absolute inset-0 border-[2.5px] border-primary/0 group-hover:border-primary transition-colors duration-500 rounded-[24px] pointer-events-none z-30" />
 
                     {/* Image Area - occupies ~65% of card */}
                     <div className="relative overflow-hidden w-full h-[62%] bg-neutral-950">
-                      <img 
-                        src={proj.image} 
-                        alt={proj.name} 
+                      <img
+                        src={proj.image}
+                        alt={proj.name}
                         className="w-full h-full object-cover filter brightness-[0.9] group-hover:scale-108 transition-transform duration-700 ease-out"
                         loading="lazy"
                       />
                       {/* Gradient overlay on image */}
                       <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/40 via-transparent to-transparent pointer-events-none" />
-                      
+
                       {/* Top Category Badge */}
                       <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-neutral-200/80 shadow-sm">
                         <span className="text-[10px] font-mono text-[#142b52] font-bold uppercase">
@@ -240,7 +238,7 @@ export function Projects() {
                     {/* Content Area - occupies rest */}
                     <div className="p-6 md:p-7 flex-1 flex flex-col justify-center">
                       <div className="relative z-10">
-                        <h3 className="text-xl font-bold text-neutral-900 uppercase font-mono transition-colors duration-300 line-clamp-1 group-hover:text-[#EA8A22]">
+                        <h3 className="text-xl font-bold text-neutral-900 uppercase font-mono transition-colors duration-300 line-clamp-1 group-hover:text-primary">
                           {proj.name}
                         </h3>
                         <p className="text-xs text-neutral-500 font-light mt-2 line-clamp-3 leading-relaxed">
@@ -277,12 +275,12 @@ export function Projects() {
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
-                  
+
                   {renderPaginationRange().map((page, index) => {
                     if (page === '...') {
                       return (
-                        <span 
-                          key={`ellipsis-${index}`} 
+                        <span
+                          key={`ellipsis-${index}`}
                           className="w-9 h-9 flex items-center justify-center text-neutral-400 font-mono text-xs"
                         >
                           ...
@@ -294,11 +292,10 @@ export function Projects() {
                       <button
                         key={`page-${page}`}
                         onClick={() => handlePageChange(Number(page))}
-                        className={`w-9 h-9 flex items-center justify-center rounded-full font-mono font-bold text-xs transition-all ${
-                          currentPage === page
-                            ? 'bg-[#EA8A22] text-white shadow-sm'
+                        className={`w-9 h-9 flex items-center justify-center rounded-full font-mono font-bold text-xs transition-all ${currentPage === page
+                            ? 'bg-primary text-white shadow-sm'
                             : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 cursor-pointer'
-                        }`}
+                          }`}
                       >
                         {page}
                       </button>
@@ -319,7 +316,7 @@ export function Projects() {
                 !hasLoadedMore && filteredProjects.length > itemsPerPage && (
                   <button
                     onClick={() => setHasLoadedMore(true)}
-                    className="px-8 py-4 bg-neutral-900 hover:bg-[#EA8A22] text-white text-xs font-mono font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow-md hover:scale-105 active:scale-95 flex items-center gap-2"
+                    className="px-8 py-4 bg-neutral-900 hover:bg-primary text-white text-xs font-mono font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow-md hover:scale-105 active:scale-95 flex items-center gap-2"
                   >
                     Load More Projects
                     <motion.div
@@ -343,9 +340,9 @@ export function Projects() {
           <div className="bg-[#0a0f1d] border border-neutral-800/80 p-10 md:p-16 rounded-[32px] shadow-2xl relative overflow-hidden group">
             {/* Premium Construction & Engineering Background Image */}
             <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80" 
-                alt="Construction and Engineering" 
+              <img
+                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80"
+                alt="Construction and Engineering"
                 className="w-full h-full object-cover opacity-[0.28] mix-blend-luminosity scale-[1.03] group-hover:scale-100 transition-transform duration-[1200ms] ease-out"
                 referrerPolicy="no-referrer"
               />
@@ -353,7 +350,7 @@ export function Projects() {
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0f1d]/30" />
             </div>
             <div className="absolute inset-0 translate-x-[-150%] skew-x-[-25deg] w-1/2 bg-gradient-to-r from-transparent via-white/5 to-transparent group-hover:animate-[sweep_2s_ease-in-out_infinite]" />
-            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-[#EA8A22]/15 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
             {/* Redesigned Architectural & Engineering Blueprint Background */}
             <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[50%] pointer-events-none select-none overflow-hidden opacity-[0.22] lg:opacity-[0.28]">
               {/* Subtle pulsing/drawing animation styles */}
@@ -413,22 +410,22 @@ export function Projects() {
                     <line x1="50" y1="140" x2="650" y2="140" strokeWidth="1.5" />
                     <line x1="50" y1="150" x2="650" y2="150" strokeWidth="0.5" strokeDasharray="2,2" />
                     <line x1="50" y1="130" x2="650" y2="130" strokeWidth="0.75" />
-                    
+
                     <line x1="50" y1="380" x2="650" y2="380" strokeWidth="1.5" />
                     <line x1="50" y1="390" x2="650" y2="390" strokeWidth="0.5" strokeDasharray="2,2" />
-                    
+
                     {/* Vertical Truss Columns */}
                     <rect x="180" y="80" width="30" height="440" strokeDasharray="4,4" strokeWidth="0.75" />
                     <rect x="480" y="80" width="30" height="440" strokeDasharray="4,4" strokeWidth="0.75" />
-                    
+
                     {/* Cross Structural Steel Framing (X-Bracing) */}
                     <line x1="180" y1="140" x2="480" y2="380" strokeWidth="1.2" />
                     <line x1="480" y1="140" x2="180" y2="380" strokeWidth="1.2" />
-                    
+
                     {/* Minor Truss lines */}
                     <line x1="180" y1="260" x2="480" y2="260" strokeWidth="0.75" strokeDasharray="4,2" />
                     <line x1="330" y1="140" x2="330" y2="380" strokeWidth="0.75" strokeDasharray="8,4" />
-                    
+
                     {/* Isometric Building Structure Outlines */}
                     <path d="M 400,430 L 520,380 L 640,430 L 520,480 Z" strokeWidth="1" />
                     <path d="M 400,310 L 520,260 L 640,310 L 520,360 Z" strokeWidth="1" />
@@ -441,11 +438,11 @@ export function Projects() {
                   <g className="bp-fade-slow" stroke="white" strokeWidth="0.75" opacity="0.7">
                     {/* Interior Wall partitions */}
                     <path d="M 80,180 L 220,180 L 220,290 L 360,290 L 360,420" />
-                    
+
                     {/* Door Arc and Swing Indicator */}
                     <path d="M 220,250 A 40,40 0 0,1 260,210" strokeDasharray="3,3" />
                     <line x1="220" y1="250" x2="220" y2="210" />
-                    
+
                     {/* Foundation / Pillar Blocks */}
                     <rect x="75" y="175" width="10" height="10" fill="white" fillOpacity="0.25" />
                     <rect x="215" y="175" width="10" height="10" fill="white" fillOpacity="0.25" />
@@ -459,12 +456,12 @@ export function Projects() {
                     <line x1="180" y1="60" x2="480" y2="60" />
                     <line x1="180" y1="54" x2="180" y2="66" />
                     <line x1="480" y1="54" x2="480" y2="66" />
-                    
+
                     {/* Vertical dimension bounds */}
                     <line x1="120" y1="140" x2="120" y2="380" />
                     <line x1="114" y1="140" x2="126" y2="140" />
                     <line x1="114" y1="380" x2="126" y2="380" />
-                    
+
                     {/* Annotation text markings */}
                     <text x="330" y="50" fill="#EA8A22" fontSize="10" fontFamily="monospace" textAnchor="middle" letterSpacing="1" stroke="none">
                       L = 12.00 m
@@ -472,7 +469,7 @@ export function Projects() {
                     <text x="95" y="265" fill="#EA8A22" fontSize="10" fontFamily="monospace" textAnchor="middle" letterSpacing="1" stroke="none" transform="rotate(-90 95 265)">
                       H = 6.40 m
                     </text>
-                    
+
                     {/* Section Cut Line Indicator */}
                     <path d="M 60,200 L 640,200" strokeDasharray="14,4,2,4" strokeWidth="1" />
                     <path d="M 60,192 L 60,208 M 640,192 L 640,208" strokeWidth="1.5" />
@@ -496,25 +493,25 @@ export function Projects() {
                 </svg>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
               {/* Left text column */}
               <div className="lg:col-span-7">
-                <span className="text-[#EA8A22] font-mono text-xs tracking-[0.25em] font-bold uppercase block mb-3">READY TO START?</span>
+                <span className="text-primary font-mono text-xs tracking-[0.25em] font-bold uppercase block mb-3">READY TO START?</span>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase leading-[1.1]">
                   Let's Build Your <br />Next Project Together
                 </h2>
               </div>
-              
+
               {/* Right buttons column */}
               <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-4">
                 <button
                   onClick={() => setQuoteModalOpen(true)}
-                  className="w-full px-8 py-5 bg-[#EA8A22] hover:bg-[#EA8A22] text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-[#EA8A22]/20 hover:shadow-[#EA8A22]/40 flex items-center justify-center gap-2 font-mono group whitespace-nowrap shrink-0"
+                  className="w-full px-8 py-5 bg-primary hover:bg-primary text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-primary/40 flex items-center justify-center gap-2 font-mono group whitespace-nowrap shrink-0"
                 >
                   Request a Quote <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
-                
+
                 <button
                   onClick={handleDownloadProfile}
                   disabled={downloadingProfile}
@@ -523,10 +520,10 @@ export function Projects() {
                   {downloadingProfile ? (
                     <span className="animate-pulse">Preparing file...</span>
                   ) : downloadSuccess ? (
-                    <span className="text-[#EA8A22]">Profile Downloaded ✔</span>
+                    <span className="text-primary">Profile Downloaded ✔</span>
                   ) : (
                     <>
-                      Download Company Profile 
+                      Download Company Profile
                       <FileDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
                     </>
                   )}

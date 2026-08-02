@@ -38,21 +38,21 @@
       <div class="lg:col-span-7 space-y-4">
         @for (feature of advantages; track feature.titleKey) {
         <div
-          class="group bg-white border border-neutral-200/80 p-6 rounded-[1.75rem] transition-all duration-300 relative overflow-hidden hover:border-[#EA8A22] hover:-translate-y-1 hover:shadow-xl cursor-default">
+          class="group bg-white border border-neutral-200/80 p-6 rounded-[1.75rem] transition-all duration-300 relative overflow-hidden hover:border-primary hover:-translate-y-1 hover:shadow-xl cursor-default">
           <div
-            class="absolute -right-8 -bottom-8 w-24 h-24 bg-linear-to-br from-[#EA8A22]/5 to-transparent rounded-full blur-xl group-hover:scale-150 transition-transform duration-500 pointer-events-none">
+            class="absolute -right-8 -bottom-8 w-24 h-24 bg-linear-to-br from-primary/5 to-transparent rounded-full blur-xl group-hover:scale-150 transition-transform duration-500 pointer-events-none">
           </div>
 
           <div class="flex gap-6 relative z-10 items-start sm:items-center">
             <div class="shrink-0">
               <div [innerHTML]="feature.iconSvg | safeHtml"
-                class="w-12 h-12 rounded-2xl bg-neutral-50 border border-neutral-150 text-[#EA8A22] flex items-center justify-center transition-all duration-300 group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 shadow-sm group-hover:shadow-[#EA8A22]/20">
+                class="w-12 h-12 rounded-2xl bg-neutral-50 border border-neutral-150 text-primary flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 shadow-sm group-hover:shadow-primary/20">
 
               </div>
             </div>
             <div>
               <h4
-                class="text-lg font-bold text-neutral-900 tracking-tight mb-1 group-hover:text-[#EA8A22] transition-colors">
+                class="text-lg font-bold text-neutral-900 tracking-tight mb-1 group-hover:text-primary transition-colors">
                 {{ feature.titleKey | translate }}
               </h4>
               <p class="text-neutral-600 text-sm leading-relaxed font-light">

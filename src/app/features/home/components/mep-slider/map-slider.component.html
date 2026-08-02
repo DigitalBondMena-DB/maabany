@@ -1,5 +1,5 @@
 <div
-    class="w-full h-full rounded-xl overflow-hidden border border-neutral-200/50 relative  shadow-xs group-hover:border-[#EA8A22]/30 transition-all duration-500">
+    class="w-full h-full rounded-xl overflow-hidden border border-neutral-200/50 relative  shadow-xs group-hover:border-primary/30 transition-all duration-500">
     @if (images().length > 0) {
     <app-image [src]="images()[activeIdx()]" alt="MEP Engineering Systems" fill
         classes="w-full h-full object-cover grayscale contrast-115 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out " />
@@ -31,7 +31,7 @@
         class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 bg-neutral-950/40 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/10">
         @for (img of images(); track $index) {
         <button type="button" (click)="select($index, $event)"
-            [class]="'h-1.5 rounded-full transition-all duration-300 cursor-pointer ' + ($index === activeIdx() ? 'bg-[#EA8A22] w-3.5' : 'bg-white/40 hover:bg-white/80 w-1.5')"
+            [class]="'h-1.5 rounded-full transition-all duration-300 cursor-pointer ' + ($index === activeIdx() ? 'bg-primary w-3.5' : 'bg-white/40 hover:bg-white/80 w-1.5')"
             [title]="'Image ' + ($index + 1)">
         </button>
         }

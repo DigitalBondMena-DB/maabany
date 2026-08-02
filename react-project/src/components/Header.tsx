@@ -14,7 +14,7 @@ export function Header({ isHeroVariant = true, activeSection = 'home' }: HeaderP
   const location = useLocation();
   const navigate = useNavigate();
   const setQuoteModalOpen = useQuoteModal();
-  
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -85,7 +85,7 @@ export function Header({ isHeroVariant = true, activeSection = 'home' }: HeaderP
   const navLinks = allNavigationItems.filter(item => item.type === 'standard');
 
   // Reusable keyboard focus classes for WCAG AA compliance
-  const focusRingClass = `focus-visible:ring-2 focus-visible:ring-[#EA8A22] focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-white`;
+  const focusRingClass = `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-white`;
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     if (location.pathname === path) {
@@ -106,32 +106,31 @@ export function Header({ isHeroVariant = true, activeSection = 'home' }: HeaderP
       id={isHeroVariant ? "hero-header" : "global-header"}
       className="fixed top-0 left-0 right-0 z-50 pointer-events-none w-full"
     >
-      <div 
+      <div
         className="relative w-full max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8 transition-all duration-300"
         style={{
-          paddingTop: scrolled 
-            ? '12px' 
-            : isHeroVariant 
-              ? 'calc(var(--hero-nav-top-spacing, 16px) + var(--outer-padding-top, 16px))' 
+          paddingTop: scrolled
+            ? '12px'
+            : isHeroVariant
+              ? 'calc(var(--hero-nav-top-spacing, 16px) + var(--outer-padding-top, 16px))'
               : 'calc(var(--outer-padding-top, 16px) + 12px)'
         }}
       >
         <div
           id="nav-pill"
-          className={`pointer-events-auto w-full rounded-full transition-all duration-300 flex items-center justify-between ${
-            scrolled
+          className={`pointer-events-auto w-full rounded-full transition-all duration-300 flex items-center justify-between ${scrolled
               ? 'bg-white/95 backdrop-blur-md border border-neutral-200 py-2.5 px-5 md:px-7'
               : 'bg-white border border-neutral-100 py-3.5 px-6 md:px-8'
-          }`}
+            }`}
         >
           <Link
             to="/"
             onClick={(e) => handleLinkClick(e, '/')}
             className={`relative flex items-center w-40 h-10 md:w-56 md:h-12 group transition-all duration-300 transform hover:scale-[1.02] active:scale-95 ${focusRingClass}`}
           >
-            <img 
-              src={maabanyLogo || "/maabany_logo_transparent-1.png"} 
-              alt="Maabany Integrated Building Solutions" 
+            <img
+              src={maabanyLogo || "/maabany_logo_transparent-1.png"}
+              alt="Maabany Integrated Building Solutions"
               className="absolute left-0 top-1/2 -translate-y-1/2 h-[45px] md:h-[55px] w-auto max-w-none object-contain transition-all duration-300 group-hover:scale-102"
               referrerPolicy="no-referrer"
               onError={(e) => {
@@ -143,15 +142,15 @@ export function Header({ isHeroVariant = true, activeSection = 'home' }: HeaderP
 
           <nav className="hidden xl:flex items-center gap-2 xl:gap-3">
             {navLinks.map((link) => {
-              const isActive = 
-                location.pathname === link.path || 
+              const isActive =
+                location.pathname === link.path ||
                 (link.id === 'solutions' && location.pathname.startsWith('/solutions')) ||
                 (link.id === 'projects' && location.pathname.startsWith('/projects')) ||
                 (link.id === 'industries' && location.pathname.startsWith('/industries'));
-              
+
               const linkColor = isActive
-                ? 'text-[#EA8A22] font-semibold'
-                : 'text-[#142b52] hover:text-[#EA8A22] font-semibold';
+                ? 'text-primary font-semibold'
+                : 'text-[#142b52] hover:text-primary font-semibold';
 
               return (
                 <Link
@@ -162,9 +161,8 @@ export function Header({ isHeroVariant = true, activeSection = 'home' }: HeaderP
                 >
                   {link.label}
                   <span
-                    className={`absolute bottom-0 left-2 right-2 h-[2px] bg-[#EA8A22] transition-all duration-300 ${
-                      isActive ? 'opacity-100' : 'opacity-0 hover:opacity-100'
-                    }`}
+                    className={`absolute bottom-0 left-2 right-2 h-[2px] bg-primary transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-0 hover:opacity-100'
+                      }`}
                   />
                 </Link>
               );
@@ -190,7 +188,7 @@ export function Header({ isHeroVariant = true, activeSection = 'home' }: HeaderP
               <Globe className="w-4 h-4" />
               <span>{currentLang}</span>
             </button>
-            
+
             {(() => {
               const cta = allNavigationItems.find(item => item.type === 'cta');
               if (!cta) return null;
@@ -198,11 +196,10 @@ export function Header({ isHeroVariant = true, activeSection = 'home' }: HeaderP
                 <Link
                   to={cta.path}
                   onClick={(e) => handleLinkClick(e, cta.path)}
-                  className={`hidden sm:inline-flex items-center justify-center whitespace-nowrap shrink-0 px-5 py-2.5 font-semibold text-xs tracking-wider uppercase rounded-full shadow-lg transition-all duration-300 transform active:scale-95 cursor-pointer font-mono ${focusRingClass} ${
-                    location.pathname === cta.path
-                      ? 'bg-[#EA8A22] text-white shadow-[#EA8A22]/25 ring-2 ring-[#EA8A22]'
-                      : 'bg-[#EA8A22] hover:bg-[#EA8A22]/90 text-white shadow-[#EA8A22]/10 hover:shadow-[#EA8A22]/25'
-                  }`}
+                  className={`hidden sm:inline-flex items-center justify-center whitespace-nowrap shrink-0 px-5 py-2.5 font-semibold text-xs tracking-wider uppercase rounded-full shadow-lg transition-all duration-300 transform active:scale-95 cursor-pointer font-mono ${focusRingClass} ${location.pathname === cta.path
+                      ? 'bg-primary text-white shadow-primary/25 ring-2 ring-primary'
+                      : 'bg-primary hover:bg-primary/90 text-white shadow-primary/10 hover:shadow-primary/25'
+                    }`}
                 >
                   {cta.label}
                 </Link>
@@ -221,7 +218,7 @@ export function Header({ isHeroVariant = true, activeSection = 'home' }: HeaderP
 
         {searchOpen && (
           <div className="px-3 w-full">
-            <div 
+            <div
               className="pointer-events-auto mt-3 rounded-2xl border border-neutral-200 bg-white/95 backdrop-blur-xl text-neutral-900 p-4 shadow-xl shadow-neutral-200/50 animate-fade-in"
               style={{
                 marginLeft: '12px',
@@ -229,7 +226,7 @@ export function Header({ isHeroVariant = true, activeSection = 'home' }: HeaderP
                 width: 'calc(100% - 24px)'
               }}
             >
-              <form 
+              <form
                 onSubmit={(e) => {
                   e.preventDefault();
                   if (searchQuery.trim()) {
@@ -260,9 +257,8 @@ export function Header({ isHeroVariant = true, activeSection = 'home' }: HeaderP
           </div>
         )}
 
-        <div className={`xl:hidden absolute left-0 right-0 z-50 origin-top transition-all duration-300 ${
-          menuOpen ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'
-        }`}
+        <div className={`xl:hidden absolute left-0 right-0 z-50 origin-top transition-all duration-300 ${menuOpen ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'
+          }`}
           style={{
             top: '100%',
             paddingLeft: 'var(--outer-padding-x, 24px)',
@@ -270,13 +266,13 @@ export function Header({ isHeroVariant = true, activeSection = 'home' }: HeaderP
             marginTop: '12px'
           }}
         >
-          <div 
+          <div
             className={`${menuOpen ? 'pointer-events-auto' : 'pointer-events-none'} rounded-2xl border border-neutral-200 bg-white/98 backdrop-blur-xl text-neutral-900 p-3 shadow-2xl shadow-neutral-200/60 mx-3 max-h-[calc(100vh-140px)] overflow-y-auto scrollbar-none`}
           >
             <div className="flex flex-col space-y-1">
               {allNavigationItems.map((link) => {
-                const isActive = 
-                  location.pathname === link.path || 
+                const isActive =
+                  location.pathname === link.path ||
                   (link.id === 'solutions' && location.pathname.startsWith('/solutions')) ||
                   (link.id === 'projects' && location.pathname.startsWith('/projects')) ||
                   (link.id === 'industries' && location.pathname.startsWith('/industries'));
@@ -287,7 +283,7 @@ export function Header({ isHeroVariant = true, activeSection = 'home' }: HeaderP
                       key={link.id}
                       to={link.path}
                       onClick={(e) => handleLinkClick(e, link.path)}
-                      className={`mt-2 mx-1 px-5 py-3.5 rounded-xl text-sm font-bold tracking-wider uppercase font-mono transition-all duration-300 bg-[#EA8A22] text-white hover:bg-[#EA8A22]/90 flex items-center justify-between shadow-lg active:scale-[0.99] ${focusRingClass}`}
+                      className={`mt-2 mx-1 px-5 py-3.5 rounded-xl text-sm font-bold tracking-wider uppercase font-mono transition-all duration-300 bg-primary text-white hover:bg-primary/90 flex items-center justify-between shadow-lg active:scale-[0.99] ${focusRingClass}`}
                     >
                       <span>{link.label}</span>
                       <ChevronRight className="w-4 h-4 text-white" />
@@ -304,17 +300,16 @@ export function Header({ isHeroVariant = true, activeSection = 'home' }: HeaderP
                         handleLinkClick(e, link.path);
                         setSearchOpen(true);
                       }}
-                      className={`px-5 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 border-b border-neutral-100 flex items-center justify-between ${focusRingClass} ${
-                        isActive 
-                          ? 'text-[#EA8A22] bg-neutral-50 font-bold' 
-                          : 'text-neutral-700 hover:text-[#EA8A22] hover:bg-neutral-50'
-                      }`}
+                      className={`px-5 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 border-b border-neutral-100 flex items-center justify-between ${focusRingClass} ${isActive
+                          ? 'text-primary bg-neutral-50 font-bold'
+                          : 'text-neutral-700 hover:text-primary hover:bg-neutral-50'
+                        }`}
                     >
                       <div className="flex items-center gap-2">
                         <Search className="w-4 h-4 text-neutral-500" />
                         <span>{link.label}</span>
                       </div>
-                      <ChevronRight className={`w-4 h-4 transition-transform duration-200 ${isActive ? 'text-[#EA8A22] translate-x-1 opacity-100' : 'opacity-50'}`} />
+                      <ChevronRight className={`w-4 h-4 transition-transform duration-200 ${isActive ? 'text-primary translate-x-1 opacity-100' : 'opacity-50'}`} />
                     </Link>
                   );
                 }
@@ -324,14 +319,13 @@ export function Header({ isHeroVariant = true, activeSection = 'home' }: HeaderP
                     key={link.id}
                     to={link.path}
                     onClick={(e) => handleLinkClick(e, link.path)}
-                    className={`px-5 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 border-b border-neutral-100 flex items-center justify-between ${focusRingClass} ${
-                      isActive 
-                        ? 'text-[#EA8A22] bg-neutral-50 font-bold' 
-                        : 'text-neutral-700 hover:text-[#EA8A22] hover:bg-neutral-50'
-                    }`}
+                    className={`px-5 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 border-b border-neutral-100 flex items-center justify-between ${focusRingClass} ${isActive
+                        ? 'text-primary bg-neutral-50 font-bold'
+                        : 'text-neutral-700 hover:text-primary hover:bg-neutral-50'
+                      }`}
                   >
                     <span>{link.label}</span>
-                    <ChevronRight className={`w-4 h-4 transition-transform duration-200 ${isActive ? 'text-[#EA8A22] translate-x-1 opacity-100' : 'opacity-50'}`} />
+                    <ChevronRight className={`w-4 h-4 transition-transform duration-200 ${isActive ? 'text-primary translate-x-1 opacity-100' : 'opacity-50'}`} />
                   </Link>
                 );
               })}
@@ -342,7 +336,7 @@ export function Header({ isHeroVariant = true, activeSection = 'home' }: HeaderP
                   setCurrentLang(prev => prev === 'EN' ? 'AR' : 'EN');
                   setMenuOpen(false);
                 }}
-                className={`px-5 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 border-b border-neutral-100 flex items-center justify-between w-full text-left ${focusRingClass} text-neutral-700 hover:text-[#EA8A22] hover:bg-neutral-50`}
+                className={`px-5 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 border-b border-neutral-100 flex items-center justify-between w-full text-left ${focusRingClass} text-neutral-700 hover:text-primary hover:bg-neutral-50`}
               >
                 <div className="flex items-center gap-2">
                   <Globe className="w-4 h-4 text-neutral-500" />

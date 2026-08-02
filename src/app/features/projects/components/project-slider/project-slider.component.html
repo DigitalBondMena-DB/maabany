@@ -17,7 +17,7 @@
 
         <!-- Slider Left Arrow Button -->
         <button type="button" (click)="prevImage($event)"
-          class="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/90 hover:bg-[#EA8A22] text-neutral-800 hover:text-white shadow-lg transition-all duration-300 flex items-center justify-center hover:scale-110 active:scale-95 z-20 cursor-pointer md:opacity-0 md:group-hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22]"
+          class="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/90 hover:bg-primary text-neutral-800 hover:text-white shadow-lg transition-all duration-300 flex items-center justify-center hover:scale-110 active:scale-95 z-20 cursor-pointer md:opacity-0 md:group-hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           aria-label="Previous image">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -28,7 +28,7 @@
 
         <!-- Slider Right Arrow Button -->
         <button type="button" (click)="nextImage($event)"
-          class="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/90 hover:bg-[#EA8A22] text-neutral-800 hover:text-white shadow-lg transition-all duration-300 flex items-center justify-center hover:scale-110 active:scale-95 z-20 cursor-pointer md:opacity-0 md:group-hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22]"
+          class="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/90 hover:bg-primary text-neutral-800 hover:text-white shadow-lg transition-all duration-300 flex items-center justify-center hover:scale-110 active:scale-95 z-20 cursor-pointer md:opacity-0 md:group-hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           aria-label="Next image">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -48,7 +48,7 @@
         <div class="absolute bottom-8 right-8 flex items-center gap-1.5 z-20">
           @for (img of images(); track $index) {
           <button type="button" (click)="setIndex($index, $event)" [class]="'h-1.5 rounded-full transition-all duration-300 cursor-pointer ' + 
-                (currentImgIndex() === $index ? 'w-6 bg-[#EA8A22]' : 'w-1.5 bg-white/40 hover:bg-white/70')"
+                (currentImgIndex() === $index ? 'w-6 bg-primary' : 'w-1.5 bg-white/40 hover:bg-white/70')"
             [attr.aria-label]="'Slide ' + ($index + 1)"></button>
           }
         </div>

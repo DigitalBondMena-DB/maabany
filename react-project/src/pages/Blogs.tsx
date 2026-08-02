@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { 
-  Calendar, 
-  Search, 
-  ArrowRight, 
-  ChevronRight, 
-  ChevronLeft, 
-  User, 
-  Tag, 
-  Clock, 
-  Inbox, 
+import {
+  Calendar,
+  Search,
+  ArrowRight,
+  ChevronRight,
+  ChevronLeft,
+  User,
+  Tag,
+  Clock,
+  Inbox,
   SlidersHorizontal,
   X,
   BookOpen,
@@ -47,20 +47,20 @@ export function Blogs() {
 
   // Filter posts based on search query and category
   const filteredBlogs = blogs.filter(post => {
-    const matchesSearch = 
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.author.toLowerCase().includes(searchQuery.toLowerCase());
-    
+
     const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
-    
+
     return matchesSearch && matchesCategory;
   });
 
   // Calculate pagination details
   const totalPosts = filteredBlogs.length;
   const totalPages = Math.ceil(totalPosts / postsPerPage);
-  
+
   // Ensure we are not on an out-of-bounds page if filters changed
   useEffect(() => {
     if (currentPage > totalPages && totalPages > 0) {
@@ -85,7 +85,7 @@ export function Blogs() {
   const renderPaginationRange = () => {
     const range: (number | string)[] = [];
     const maxVisiblePages = 3;
-    
+
     if (totalPages <= 5) {
       for (let i = 1; i <= totalPages; i++) range.push(i);
     } else {
@@ -111,11 +111,11 @@ export function Blogs() {
   };
 
   return (
-    <div className="bg-white min-h-screen pb-24 selection:bg-[#EA8A22] selection:text-white">
-      
+    <div className="bg-white min-h-screen pb-24 selection:bg-primary selection:text-white">
+
       {/* 1. HERO HEADER */}
       <InternalPageHero
-        title={<>Engineering <br /> <span className="text-[#EA8A22]">Insights</span></>}
+        title={<>Engineering <br /> <span className="text-primary">Insights</span></>}
         categoryBadge="Our Blogs"
         categoryIcon={BookOpen}
         description=""
@@ -130,7 +130,7 @@ export function Blogs() {
           {/* 3. BLOG GRID / LISTS WITH viewport reveal */}
           <AnimatePresence mode="wait">
             {currentPosts.length > 0 ? (
-              <motion.div 
+              <motion.div
                 key={`${selectedCategory}-${searchQuery}-${currentPage}`}
                 initial="hidden"
                 animate="show"
@@ -147,7 +147,7 @@ export function Blogs() {
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
               >
                 {currentPosts.map((post) => (
-                                    <motion.div
+                  <motion.div
                     key={post.slug}
                     layout
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -158,7 +158,7 @@ export function Blogs() {
                   >
                     <Link
                       to={`/blogs/${post.slug}`}
-                      className="group bg-white border border-neutral-200 rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-[#EA8A22]/5 hover:border-[#EA8A22]/40 transition-all duration-500 flex flex-col h-full block"
+                      className="group bg-white border border-neutral-200 rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-primary/5 hover:border-primary/40 transition-all duration-500 flex flex-col h-full block"
                     >
                       {/* Image zoom on hover */}
                       <div className="h-56 md:h-64 overflow-hidden relative block shrink-0">
@@ -169,7 +169,7 @@ export function Blogs() {
                           referrerPolicy="no-referrer"
                         />
                         {/* Hover Overlay */}
-                        <div className="absolute inset-0 bg-[#EA8A22]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
 
                       {/* Blog Card Core Body Details */}
@@ -182,7 +182,7 @@ export function Blogs() {
                         </div>
 
                         {/* Title - Max 2 lines */}
-                        <h3 className="text-base md:text-lg font-bold text-neutral-900 transition-colors tracking-tight line-clamp-2 uppercase group-hover:text-[#EA8A22]">
+                        <h3 className="text-base md:text-lg font-bold text-neutral-900 transition-colors tracking-tight line-clamp-2 uppercase group-hover:text-primary">
                           {post.title}
                         </h3>
 
@@ -203,10 +203,10 @@ export function Blogs() {
                 exit={{ opacity: 0 }}
                 className="max-w-md mx-auto text-center py-20 px-6 border border-neutral-150 rounded-[2.5rem] bg-neutral-50/50 shadow-md flex flex-col items-center space-y-6"
               >
-                <div className="w-16 h-16 bg-[#EA8A22] rounded-full flex items-center justify-center text-[#EA8A22] shadow-inner">
+                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary shadow-inner">
                   <Inbox className="w-7 h-7 stroke-[1.5]" />
                 </div>
-                
+
                 <div className="space-y-2">
                   <h3 className="text-xl font-bold text-neutral-900 uppercase tracking-tight">
                     No Articles Available Yet
@@ -228,7 +228,7 @@ export function Blogs() {
                   </button>
                   <Link
                     to="/"
-                    className="inline-flex items-center justify-center px-5 py-2.5 bg-[#EA8A22] hover:bg-[#EA8A22] text-white font-mono text-[10px] font-bold uppercase tracking-wider rounded-xl shadow-lg shadow-[#EA8A22]/10 transition-all active:scale-95"
+                    className="inline-flex items-center justify-center px-5 py-2.5 bg-primary hover:bg-primary text-white font-mono text-[10px] font-bold uppercase tracking-wider rounded-xl shadow-lg shadow-primary/10 transition-all active:scale-95"
                   >
                     Back to Home
                   </Link>
@@ -255,8 +255,8 @@ export function Blogs() {
                 {renderPaginationRange().map((page, index) => {
                   if (page === '...') {
                     return (
-                      <span 
-                        key={`ellipsis-${index}`} 
+                      <span
+                        key={`ellipsis-${index}`}
                         className="w-9 h-9 flex items-center justify-center text-neutral-400 font-mono text-xs"
                       >
                         ...
@@ -268,11 +268,10 @@ export function Blogs() {
                     <button
                       key={`page-${page}`}
                       onClick={() => paginate(Number(page))}
-                      className={`w-9 h-9 flex items-center justify-center rounded-full font-mono font-bold text-xs transition-all ${
-                        currentPage === page
-                          ? 'bg-[#EA8A22] text-white shadow-sm'
+                      className={`w-9 h-9 flex items-center justify-center rounded-full font-mono font-bold text-xs transition-all ${currentPage === page
+                          ? 'bg-primary text-white shadow-sm'
                           : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 cursor-pointer'
-                      }`}
+                        }`}
                     >
                       {page}
                     </button>

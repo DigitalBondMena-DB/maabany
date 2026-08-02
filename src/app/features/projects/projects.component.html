@@ -1,4 +1,4 @@
-<div class="relative bg-white text-neutral-900 min-h-screen selection:bg-[#EA8A22] selection:text-white">
+<div class="relative bg-white text-neutral-900 min-h-screen selection:bg-primary selection:text-white">
   <!-- 1. Hero Header Section -->
   <app-page-hero [title]="'Engineering Excellence Projects' | translate" [categoryBadge]="'Our Projects' | translate"
     [heroImage]="'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80'" />
@@ -11,7 +11,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center mb-20 md:mb-24">
         <div class="lg:col-span-7 space-y-4">
           <div class="inline-flex items-center gap-2">
-            <span class="w-8 h-0.5 bg-[#EA8A22]"></span>
+            <span class="w-8 h-0.5 bg-primary"></span>
             <span class="text-xs font-mono font-bold text-[#142b52] uppercase tracking-widest">
               {{ 'OUR PROJECTS' | translate }}
             </span>
@@ -39,14 +39,14 @@
       <!-- WCAG AA Accessible Category Filter Bar (WAI-ARIA Tablist Pattern) -->
       <div class="mb-12 max-w-full overflow-x-auto scrollbar-none -mx-5 px-5 md:mx-0 md:px-0">
         <div role="tablist" aria-label="Project categories filter" aria-orientation="horizontal"
-          class="flex items-center gap-1.5 bg-white p-1.5 rounded-full border border-neutral-200 shadow-xs w-max focus-within:ring-2 focus-within:ring-[#EA8A22]/20">
+          class="flex items-center gap-1.5 bg-white p-1.5 rounded-full border border-neutral-200 shadow-xs w-max focus-within:ring-2 focus-within:ring-primary/20">
           @for (cat of categories(); track cat; let idx = $index) {
           @let isSelected = selectedCategory() === cat;
           <button #tabBtn type="button" role="tab" [id]="'tab-' + (cat | lowercase)" [attr.aria-selected]="isSelected"
             aria-controls="projects-grid-panel" [attr.tabindex]="isSelected ? 0 : -1"
             (keydown)="onTabKeyDown($event, idx)" (click)="selectCategory(cat)"
-            [class]="'px-5 py-2.5 rounded-full text-xs font-mono uppercase font-bold tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22] ' + 
-                (isSelected ? 'bg-[#EA8A22] text-white shadow-xs' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100')">
+            [class]="'px-5 py-2.5 rounded-full text-xs font-mono uppercase font-bold tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ' + 
+                (isSelected ? 'bg-primary text-white shadow-xs' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100')">
             {{ cat | translate }}
           </button>
           }
@@ -55,21 +55,21 @@
 
       <!-- Projects Grid Panel (Tabpanel) -->
       <div id="projects-grid-panel" role="tabpanel" [attr.aria-labelledby]="'tab-' + (selectedCategory() | lowercase)"
-        tabindex="0" class="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22]/30 rounded-3xl">
+        tabindex="0" class="focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 rounded-3xl">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
           @for (proj of displayedProjects(); track proj.slug; let idx = $index) {
           @let isTall = idx % 3 === 1;
 
           <article animate.enter="enter-animation"
-            [class]="'group bg-white rounded-3xl overflow-hidden border border-neutral-200/90 hover:border-[#EA8A22] shadow-xs hover:shadow-2xl transition-[border-color,box-shadow] duration-500 flex flex-col relative ' + (isTall ? 'lg:translate-y-6 lg:h-135 h-122.5' : 'h-122.5')">
+            [class]="'group bg-white rounded-3xl overflow-hidden border border-neutral-200/90 hover:border-primary shadow-xs hover:shadow-2xl transition-[border-color,box-shadow] duration-500 flex flex-col relative ' + (isTall ? 'lg:translate-y-6 lg:h-135 h-122.5' : 'h-122.5')">
             <!-- Card Navigation Link -->
             <a [routerLink]="'/' + currentLang() + '/projects/' + proj.slug"
-              class="absolute inset-0 z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22] rounded-3xl"
+              class="absolute inset-0 z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-3xl"
               [attr.aria-label]="proj.name"></a>
 
             <!-- Orange Border Hover Glow -->
             <div
-              class="absolute inset-0 border-[2.5px] border-[#EA8A22]/0 group-hover:border-[#EA8A22] transition-colors duration-500 rounded-3xl pointer-events-none z-30">
+              class="absolute inset-0 border-[2.5px] border-primary/0 group-hover:border-primary transition-colors duration-500 rounded-3xl pointer-events-none z-30">
             </div>
 
             <!-- Image Frame -->
@@ -93,7 +93,7 @@
             <div class="p-6 md:p-7 flex-1 flex flex-col justify-center bg-white">
               <div class="relative z-10 space-y-2">
                 <h3
-                  class="text-xl font-bold text-neutral-900 uppercase font-mono transition-colors duration-300 line-clamp-1 group-hover:text-[#EA8A22]">
+                  class="text-xl font-bold text-neutral-900 uppercase font-mono transition-colors duration-300 line-clamp-1 group-hover:text-primary">
                   {{ proj.name | translate }}
                 </h3>
                 <p class="text-xs text-neutral-500 font-light line-clamp-3 leading-relaxed">
@@ -119,11 +119,7 @@
       </div>
 
       <!-- Reusable Shared Pagination Component -->
-      <app-pagination
-        [currentPage]="currentPage()"
-        [totalPages]="totalPages()"
-        (pageChange)="goToPage($event)"
-      />
+      <app-pagination [currentPage]="currentPage()" [totalPages]="totalPages()" (pageChange)="goToPage($event)" />
 
     </div>
   </section>

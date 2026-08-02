@@ -1,22 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Building2, 
-  Home, 
-  HeartPulse, 
-  Hotel, 
-  Factory, 
-  Compass, 
-  GraduationCap, 
+import {
+  Building2,
+  Home,
+  HeartPulse,
+  Hotel,
+  Factory,
+  Compass,
+  GraduationCap,
   Milestone,
-  ArrowRight, 
-  Check, 
-  FileDown, 
-  Layers, 
-  ShieldCheck, 
-  Activity, 
-  Award, 
+  ArrowRight,
+  Check,
+  FileDown,
+  Layers,
+  ShieldCheck,
+  Activity,
+  Award,
   HardHat,
   Sparkles,
   ArrowUpRight,
@@ -695,18 +695,18 @@ function ProximityWarning(props: any) {
 export function IndustryDetails() {
   const { id } = useParams<{ id: string }>();
   const setQuoteModalOpen = useQuoteModal();
-  
+
   // Find current industry
   const currentIndustry = industryDetailsPool[id || ''] || industryDetailsPool.commercial;
 
   // Gallery simulation states
-  
-  
+
+
   // Slider states
-  
-  
-  
-  
+
+
+
+
   // Parallax / mouse states
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHoveringHero, setIsHoveringHero] = useState(false);
@@ -719,10 +719,10 @@ export function IndustryDetails() {
   const [downloadSuccess, setDownloadSuccess] = useState(false);
 
   // Auto-play timer ref
-  
+
 
   // Scroll to top on page or ID change
-  
+
 
   // Mouse Parallax Coordinate Generator
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -743,11 +743,11 @@ export function IndustryDetails() {
   };
 
   // Get matching solutions and featured projects
-  const relatedSolutionsData = detailSolutions.filter(sol => 
+  const relatedSolutionsData = detailSolutions.filter(sol =>
     currentIndustry.relatedSolutionSlugs.includes(sol.slug)
   );
 
-  const relatedProjectsData = projects.filter(proj => 
+  const relatedProjectsData = projects.filter(proj =>
     currentIndustry.featuredProjectSlugs.includes(proj.slug)
   );
 
@@ -766,7 +766,7 @@ export function IndustryDetails() {
 
   return (
     <div className="relative bg-white text-neutral-900 min-h-screen">
-      
+
       {/* 1. Hero Header Section */}
       <InternalPageHero
         title={currentIndustry.name}
@@ -774,9 +774,9 @@ export function IndustryDetails() {
         heroImage={currentIndustry.heroImage}
         breadcrumbs={
           <>
-            <Link to="/" className="hover:text-[#EA8A22] transition-colors">Home</Link>
+            <Link to="/" className="hover:text-primary transition-colors">Home</Link>
             <span className="text-neutral-500">/</span>
-            <Link to="/industries" className="hover:text-[#EA8A22] transition-colors">Industries We Serve</Link>
+            <Link to="/industries" className="hover:text-primary transition-colors">Industries We Serve</Link>
             <span className="text-neutral-500">/</span>
             <span className="text-[#142b52] font-bold">{currentIndustry.name}</span>
           </>
@@ -833,10 +833,10 @@ export function IndustryDetails() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-neutral-50 border border-neutral-200 rounded-2xl p-8 hover:shadow-xl hover:border-[#EA8A22]/30 transition-all duration-300"
+                className="bg-neutral-50 border border-neutral-200 rounded-2xl p-8 hover:shadow-xl hover:border-primary/30 transition-all duration-300"
               >
                 <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-6 shadow-sm border border-neutral-100">
-                  <challenge.icon className="w-6 h-6 text-[#EA8A22]" />
+                  <challenge.icon className="w-6 h-6 text-primary" />
                 </div>
                 <div className="space-y-2">
                   <h3 className="font-bold text-neutral-900 uppercase font-mono text-base transition-colors">
@@ -871,19 +871,19 @@ export function IndustryDetails() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group bg-white rounded-[24px] overflow-hidden border border-neutral-200 hover:border-[#EA8A22] shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col relative"
+                  className="group bg-white rounded-[24px] overflow-hidden border border-neutral-200 hover:border-primary shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col relative"
                 >
                   <Link to={`/solutions/${sol.slug}`} className="absolute inset-0 z-20" />
                   <div className="h-48 overflow-hidden relative">
-                    <img 
-                      src={sol.image} 
-                      alt={sol.title} 
+                    <img
+                      src={sol.image}
+                      alt={sol.title}
                       className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                     />
                   </div>
                   <div className="p-6 flex-1 flex flex-col justify-between">
                     <div className="space-y-2">
-                      <h3 className="text-lg font-bold text-neutral-900 uppercase font-mono transition-colors group-hover:text-[#EA8A22]">
+                      <h3 className="text-lg font-bold text-neutral-900 uppercase font-mono transition-colors group-hover:text-primary">
                         {sol.title}
                       </h3>
                       <p className="text-xs text-neutral-600 font-light leading-relaxed line-clamp-4">
@@ -917,13 +917,13 @@ export function IndustryDetails() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.15 }}
-                  className="group bg-white rounded-3xl overflow-hidden border border-neutral-200 hover:border-[#EA8A22] shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col relative"
+                  className="group bg-white rounded-3xl overflow-hidden border border-neutral-200 hover:border-primary shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col relative"
                 >
                   <Link to={`/projects/${proj.slug}`} className="absolute inset-0 z-20" />
                   <div className="aspect-[16/10] overflow-hidden relative">
-                    <img 
-                      src={proj.image} 
-                      alt={proj.name} 
+                    <img
+                      src={proj.image}
+                      alt={proj.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                     <div className="absolute top-4 right-4 bg-black/75 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10 text-[10px] font-mono uppercase text-white font-bold tracking-widest z-10">
@@ -932,7 +932,7 @@ export function IndustryDetails() {
                   </div>
                   <div className="p-8 space-y-4">
                     <div className="space-y-1">
-                      <p className="text-[10px] font-mono tracking-widest text-[#EA8A22] uppercase font-bold">
+                      <p className="text-[10px] font-mono tracking-widest text-primary uppercase font-bold">
                         {proj.location}
                       </p>
                       <h3 className="text-xl md:text-2xl font-black text-neutral-950 uppercase tracking-tight font-mono transition-colors">
@@ -943,7 +943,7 @@ export function IndustryDetails() {
                       {proj.desc}
                     </p>
                     <div className="pt-4 border-t border-neutral-100 flex items-center justify-between">
-                      <span className="text-[10px] font-mono text-neutral-400 font-bold uppercase tracking-widest group-hover:text-[#EA8A22] transition-colors">
+                      <span className="text-[10px] font-mono text-neutral-400 font-bold uppercase tracking-widest group-hover:text-primary transition-colors">
                         View Project case study
                       </span>
                     </div>
@@ -961,9 +961,9 @@ export function IndustryDetails() {
           <div className="bg-[#0a0f1d] border border-neutral-800/80 p-10 md:p-16 rounded-[32px] shadow-2xl relative overflow-hidden group">
             {/* Premium Construction & Engineering Background Image */}
             <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80" 
-                alt="Construction and Engineering" 
+              <img
+                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80"
+                alt="Construction and Engineering"
                 className="w-full h-full object-cover opacity-[0.28] mix-blend-luminosity scale-[1.03] group-hover:scale-100 transition-transform duration-[1200ms] ease-out"
                 referrerPolicy="no-referrer"
               />
@@ -971,8 +971,8 @@ export function IndustryDetails() {
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0f1d]/30" />
             </div>
             <div className="absolute inset-0 translate-x-[-150%] skew-x-[-25deg] w-1/2 bg-gradient-to-r from-transparent via-white/5 to-transparent group-hover:animate-[sweep_2s_ease-in-out_infinite]" />
-            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-[#EA8A22]/15 rounded-full blur-[100px] pointer-events-none" />
-            
+            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
+
             {/* Redesigned Architectural & Engineering Blueprint Background */}
             <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[50%] pointer-events-none select-none overflow-hidden opacity-[0.22] lg:opacity-[0.28]">
               {/* Subtle pulsing/drawing animation styles */}
@@ -1032,22 +1032,22 @@ export function IndustryDetails() {
                     <line x1="50" y1="140" x2="650" y2="140" strokeWidth="1.5" />
                     <line x1="50" y1="150" x2="650" y2="150" strokeWidth="0.5" strokeDasharray="2,2" />
                     <line x1="50" y1="130" x2="650" y2="130" strokeWidth="0.75" />
-                    
+
                     <line x1="50" y1="380" x2="650" y2="380" strokeWidth="1.5" />
                     <line x1="50" y1="390" x2="650" y2="390" strokeWidth="0.5" strokeDasharray="2,2" />
-                    
+
                     {/* Vertical Truss Columns */}
                     <rect x="180" y="80" width="30" height="440" strokeDasharray="4,4" strokeWidth="0.75" />
                     <rect x="480" y="80" width="30" height="440" strokeDasharray="4,4" strokeWidth="0.75" />
-                    
+
                     {/* Cross Structural Steel Framing (X-Bracing) */}
                     <line x1="180" y1="140" x2="480" y2="380" strokeWidth="1.2" />
                     <line x1="480" y1="140" x2="180" y2="380" strokeWidth="1.2" />
-                    
+
                     {/* Minor Truss lines */}
                     <line x1="180" y1="260" x2="480" y2="260" strokeWidth="0.75" strokeDasharray="4,2" />
                     <line x1="330" y1="140" x2="330" y2="380" strokeWidth="0.75" strokeDasharray="8,4" />
-                    
+
                     {/* Isometric Building Structure Outlines */}
                     <path d="M 400,430 L 520,380 L 640,430 L 520,480 Z" strokeWidth="1" />
                     <path d="M 400,310 L 520,260 L 640,310 L 520,360 Z" strokeWidth="1" />
@@ -1060,11 +1060,11 @@ export function IndustryDetails() {
                   <g className="bp-fade-slow" stroke="white" strokeWidth="0.75" opacity="0.7">
                     {/* Interior Wall partitions */}
                     <path d="M 80,180 L 220,180 L 220,290 L 360,290 L 360,420" />
-                    
+
                     {/* Door Arc and Swing Indicator */}
                     <path d="M 220,250 A 40,40 0 0,1 260,210" strokeDasharray="3,3" />
                     <line x1="220" y1="250" x2="220" y2="210" />
-                    
+
                     {/* Foundation / Pillar Blocks */}
                     <rect x="75" y="175" width="10" height="10" fill="white" fillOpacity="0.25" />
                     <rect x="215" y="175" width="10" height="10" fill="white" fillOpacity="0.25" />
@@ -1078,12 +1078,12 @@ export function IndustryDetails() {
                     <line x1="180" y1="60" x2="480" y2="60" />
                     <line x1="180" y1="54" x2="180" y2="66" />
                     <line x1="480" y1="54" x2="480" y2="66" />
-                    
+
                     {/* Vertical dimension bounds */}
                     <line x1="120" y1="140" x2="120" y2="380" />
                     <line x1="114" y1="140" x2="126" y2="140" />
                     <line x1="114" y1="380" x2="126" y2="380" />
-                    
+
                     {/* Annotation text markings */}
                     <text x="330" y="50" fill="#EA8A22" fontSize="10" fontFamily="monospace" textAnchor="middle" letterSpacing="1" stroke="none">
                       L = 12.00 m
@@ -1091,7 +1091,7 @@ export function IndustryDetails() {
                     <text x="95" y="265" fill="#EA8A22" fontSize="10" fontFamily="monospace" textAnchor="middle" letterSpacing="1" stroke="none" transform="rotate(-90 95 265)">
                       H = 6.40 m
                     </text>
-                    
+
                     {/* Section Cut Line Indicator */}
                     <path d="M 60,200 L 640,200" strokeDasharray="14,4,2,4" strokeWidth="1" />
                     <path d="M 60,192 L 60,208 M 640,192 L 640,208" strokeWidth="1.5" />
@@ -1115,25 +1115,25 @@ export function IndustryDetails() {
                 </svg>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
               {/* Left text column */}
               <div className="lg:col-span-7">
-                <span className="text-[#EA8A22] font-mono text-xs tracking-[0.25em] font-bold uppercase block mb-3">READY TO START?</span>
+                <span className="text-primary font-mono text-xs tracking-[0.25em] font-bold uppercase block mb-3">READY TO START?</span>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase leading-[1.1]">
                   Let's Build Your <br />Next Project Together
                 </h2>
               </div>
-              
+
               {/* Right buttons column */}
               <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-4">
                 <button
                   onClick={() => setQuoteModalOpen(true)}
-                  className="w-full px-8 py-5 bg-[#EA8A22] hover:bg-[#EA8A22] text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-[#EA8A22]/20 hover:shadow-[#EA8A22]/40 flex items-center justify-center gap-2 font-mono group cursor-pointer"
+                  className="w-full px-8 py-5 bg-primary hover:bg-primary text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-primary/40 flex items-center justify-center gap-2 font-mono group cursor-pointer"
                 >
                   Request a Quote <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
-                
+
                 <button
                   onClick={handleDownloadProfile}
                   disabled={downloadingProfile}
@@ -1142,10 +1142,10 @@ export function IndustryDetails() {
                   {downloadingProfile ? (
                     <span className="animate-pulse">Preparing file...</span>
                   ) : downloadSuccess ? (
-                    <span className="text-[#EA8A22]">Profile Downloaded ✔</span>
+                    <span className="text-primary">Profile Downloaded ✔</span>
                   ) : (
                     <>
-                      Download Company Profile 
+                      Download Company Profile
                       <FileDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
                     </>
                   )}
@@ -1156,7 +1156,7 @@ export function IndustryDetails() {
         </div>
       </section>
 
-      
+
 
       <style>{`
         @keyframes sweep {

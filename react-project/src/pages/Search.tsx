@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Search, 
-  ArrowRight, 
-  ChevronRight, 
-  ChevronLeft, 
-  Sparkles, 
-  SlidersHorizontal, 
-  ChevronDown, 
+import {
+  Search,
+  ArrowRight,
+  ChevronRight,
+  ChevronLeft,
+  Sparkles,
+  SlidersHorizontal,
+  ChevronDown,
   HelpCircle,
   FileText,
   Briefcase,
@@ -86,7 +86,7 @@ export function SearchPage() {
 
   // Filters State
   const [activeFilter, setActiveFilter] = useState<'All' | 'Solutions' | 'Projects' | 'Blogs' | 'Industries' | 'Pages'>('All');
-  
+
   // Sorting State
   const [sortBy, setSortBy] = useState<'Relevance' | 'Newest' | 'A-Z'>('Relevance');
   const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
@@ -308,7 +308,7 @@ export function SearchPage() {
       return { terms: popularTerms, pages: suggestedPages };
     }
     const term = searchVal.toLowerCase();
-    
+
     // Filter matching titles or terms
     const filteredTerms = searchableDatabase
       .filter(item => item.title.toLowerCase().includes(term) || item.desc.toLowerCase().includes(term))
@@ -341,7 +341,7 @@ export function SearchPage() {
   // Filter matching items
   const getFilteredResults = () => {
     const q = activeQuery.toLowerCase().trim();
-    
+
     // 1. Initial base filter matching query
     let items = searchableDatabase;
     if (q) {
@@ -394,7 +394,7 @@ export function SearchPage() {
   // Helper component to highlight active search query keyword safely
   const HighlightText = ({ text, query }: { text: string; query: string }) => {
     if (!query.trim()) return <span>{text}</span>;
-    
+
     // Clean and escape search term for regex
     const escapedQuery = query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     const regex = new RegExp(`(${escapedQuery})`, 'gi');
@@ -402,9 +402,9 @@ export function SearchPage() {
 
     return (
       <>
-        {parts.map((part, i) => 
-          regex.test(part) 
-            ? <mark key={i} className="bg-[#EA8A22]/15 text-[#EA8A22] px-1 rounded font-semibold">{part}</mark>
+        {parts.map((part, i) =>
+          regex.test(part)
+            ? <mark key={i} className="bg-primary/15 text-primary px-1 rounded font-semibold">{part}</mark>
             : <span key={i}>{part}</span>
         )}
       </>
@@ -412,16 +412,16 @@ export function SearchPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen selection:bg-[#EA8A22] selection:text-white">
-      
+    <div className="bg-white min-h-screen selection:bg-primary selection:text-white">
+
       {/* 1. UNIFIED PREMIUM HERO (50–58vh) */}
       <InternalPageHero
-        title={<>Search <br /> <span className="text-[#EA8A22]">Results</span></>}
+        title={<>Search <br /> <span className="text-primary">Results</span></>}
         categoryBadge="Search Results"
         categoryIcon={Search}
         description={activeQuery ? (
           <>
-            Found <span className="font-bold text-[#EA8A22]">{filteredResults.length}</span> results matching{' '}
+            Found <span className="font-bold text-primary">{filteredResults.length}</span> results matching{' '}
             <span className="font-bold text-neutral-800 bg-neutral-100 px-2 py-0.5 rounded border border-neutral-200/60 lowercase">
               "{activeQuery}"
             </span>
@@ -435,13 +435,13 @@ export function SearchPage() {
       {/* 2. DYNAMIC CENTERED SEARCH BAR INPUT (700-900px wide) */}
       <section className="relative z-40 max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8 -mt-7">
         <div className="max-w-3xl mx-auto relative">
-          
+
           {/* High-fidelity Input container */}
           <div className="flex items-center bg-white border border-neutral-200/80 rounded-2xl shadow-[0_12px_30px_rgba(0,0,0,0.06)] p-1.5 focus-within:ring-0 focus-within:border-neutral-400 transition-all duration-300">
             <div className="pl-4 pr-2 text-neutral-400 shrink-0">
               <Search className="w-5 h-5" />
             </div>
-            
+
             <input
               type="text"
               value={searchVal}
@@ -467,7 +467,7 @@ export function SearchPage() {
 
             <button
               onClick={() => performSearch(searchVal)}
-              className="bg-[#EA8A22] hover:bg-[#EA8A22] text-white font-mono text-[10px] font-black uppercase tracking-wider px-6 py-3.5 rounded-xl shadow-md transition-all duration-200 cursor-pointer shrink-0"
+              className="bg-primary hover:bg-primary text-white font-mono text-[10px] font-black uppercase tracking-wider px-6 py-3.5 rounded-xl shadow-md transition-all duration-200 cursor-pointer shrink-0"
             >
               Search
             </button>
@@ -479,10 +479,10 @@ export function SearchPage() {
       {/* 4. SEARCH RESULTS FEED - PREMIUM GRID */}
       <section className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8 pt-12 pb-24">
         <div className="space-y-12">
-          
+
           <AnimatePresence mode="wait">
             {filteredResults.length > 0 ? (
-              <motion.div 
+              <motion.div
                 key="results-grid"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -494,30 +494,30 @@ export function SearchPage() {
                   <Link
                     key={item.id}
                     to={item.path}
-                    className="block group h-full focus:outline-none focus:ring-2 focus:ring-[#EA8A22] rounded-[24px]"
+                    className="block group h-full focus:outline-none focus:ring-2 focus:ring-primary rounded-[24px]"
                   >
-                    <div className="flex flex-col h-full bg-white border border-neutral-200/80 rounded-[24px] overflow-hidden hover:border-[#EA8A22] hover:shadow-[0_20px_40px_rgba(234,138,34,0.06)] hover:-translate-y-1.5 transition-all duration-300">
-                      
+                    <div className="flex flex-col h-full bg-white border border-neutral-200/80 rounded-[24px] overflow-hidden hover:border-primary hover:shadow-[0_20px_40px_rgba(234,138,34,0.06)] hover:-translate-y-1.5 transition-all duration-300">
+
                       {/* Top Image (Larger project image, consistent height) */}
                       <div className="h-60 sm:h-64 w-full overflow-hidden relative bg-neutral-100 border-b border-neutral-200/80 shrink-0">
-                        <img 
-                          src={item.image} 
-                          alt="" 
+                        <img
+                          src={item.image}
+                          alt=""
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                           referrerPolicy="no-referrer"
                         />
                         {/* Subtle orange accent overlay on hover */}
-                        <div className="absolute inset-0 bg-neutral-900/5 group-hover:bg-[#EA8A22]/5 transition-colors duration-500" />
+                        <div className="absolute inset-0 bg-neutral-900/5 group-hover:bg-primary/5 transition-colors duration-500" />
                       </div>
 
                       {/* Content Area */}
                       <div className="flex-1 p-6 sm:p-8 flex flex-col justify-between space-y-4">
                         <div className="space-y-3">
-                          
+
 
 
                           {/* Title */}
-                          <h3 className="text-base sm:text-lg font-bold text-neutral-900 group-hover:text-[#EA8A22] transition-colors leading-snug line-clamp-2">
+                          <h3 className="text-base sm:text-lg font-bold text-neutral-900 group-hover:text-primary transition-colors leading-snug line-clamp-2">
                             <HighlightText text={item.title} query={activeQuery} />
                           </h3>
 
@@ -542,16 +542,16 @@ export function SearchPage() {
                 ))}
               </motion.div>
             ) : (
-              
+
               /* 5. ELEGANTE EMPTY STATE GRAPHICS */
-              <motion.div 
+              <motion.div
                 key="empty-state"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 15 }}
                 className="text-center py-20 px-6 border border-dashed border-neutral-200 rounded-[32px] bg-neutral-50/50 max-w-2xl mx-auto space-y-6"
               >
-                <div className="w-16 h-16 rounded-full bg-[#EA8A22]/10 text-[#EA8A22] flex items-center justify-center mx-auto shadow-inner">
+                <div className="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto shadow-inner">
                   <FileQuestion className="w-7 h-7" />
                 </div>
 
@@ -567,7 +567,7 @@ export function SearchPage() {
                 <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
                   <Link
                     to="/solutions"
-                    className="px-6 py-3 bg-[#EA8A22] hover:bg-[#EA8A22] text-white font-mono text-[10px] font-bold uppercase tracking-wider rounded-xl shadow-md transition-colors"
+                    className="px-6 py-3 bg-primary hover:bg-primary text-white font-mono text-[10px] font-bold uppercase tracking-wider rounded-xl shadow-md transition-colors"
                   >
                     Browse Solutions
                   </Link>

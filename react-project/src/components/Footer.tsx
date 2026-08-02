@@ -98,10 +98,10 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
   ];
 
   return (
-    <footer id="global-footer" className="w-full min-w-full max-w-none bg-[#142b52] text-white relative overflow-hidden pt-20 pb-10 border-t-[3px] border-[#EA8A22]">
+    <footer id="global-footer" className="w-full min-w-full max-w-none bg-[#142b52] text-white relative overflow-hidden pt-20 pb-10 border-t-[3px] border-primary">
       {/* Subtle radial overlay for visual depth */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-[#325A9E] via-transparent to-transparent pointer-events-none" />
-      
+
       {/* Authentic Engineering Blueprint Pattern Background */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
         {/* Subtle engineering grid pattern */}
@@ -124,15 +124,15 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
           <circle cx="300" cy="200" r="180" strokeDasharray="4,8" />
           <circle cx="300" cy="200" r="120" stroke="#EA8A22" opacity="0.8" strokeWidth="1.5" />
           <circle cx="300" cy="200" r="60" strokeDasharray="1,4" />
-          
+
           <line x1="100" y1="200" x2="500" y2="200" strokeDasharray="8,4" />
           <line x1="300" y1="0" x2="300" y2="400" strokeDasharray="8,4" />
           <line x1="150" y1="50" x2="450" y2="350" />
           <line x1="150" y1="350" x2="450" y2="50" />
-          
+
           <path d="M 120,180 L 120,220 M 480,180 L 480,220" stroke="#EA8A22" strokeWidth="1.5" />
           <path d="M 120,200 L 480,200" />
-          
+
           <path d="M 350,200 A 50,50 0 0,0 335,165" strokeWidth="1.5" stroke="#EA8A22" />
           <text x="360" y="180" fill="#EA8A22" fontSize="12" fontFamily="monospace" fontWeight="bold">45.0°</text>
         </svg>
@@ -144,18 +144,18 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
           <line x1="250" y1="200" x2="150" y2="250" />
           <line x1="250" y1="200" x2="250" y2="250" stroke="#EA8A22" strokeWidth="1.5" />
           <line x1="100" y1="200" x2="100" y2="250" stroke="#EA8A22" strokeWidth="1.5" />
-          
+
           <text x="15" y="255" fill="currentColor" fontSize="10" fontFamily="monospace">A-1</text>
           <text x="145" y="265" fill="#EA8A22" fontSize="10" fontFamily="monospace" fontWeight="bold">A-2</text>
           <text x="355" y="255" fill="currentColor" fontSize="10" fontFamily="monospace">A-3</text>
         </svg>
 
         {/* Crane Outline in Bottom Left Corner */}
-        <svg 
-          className="absolute left-10 bottom-10 w-[240px] h-[320px] text-white opacity-[0.06] pointer-events-none hidden md:block" 
-          viewBox="0 0 240 320" 
-          fill="none" 
-          stroke="currentColor" 
+        <svg
+          className="absolute left-10 bottom-10 w-[240px] h-[320px] text-white opacity-[0.06] pointer-events-none hidden md:block"
+          viewBox="0 0 240 320"
+          fill="none"
+          stroke="currentColor"
           strokeWidth="0.8"
         >
           {/* Crane tower */}
@@ -193,11 +193,11 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
         </svg>
 
         {/* Building Wireframe in Top Right Corner */}
-        <svg 
-          className="absolute right-12 top-12 w-[200px] h-[300px] text-white opacity-[0.06] pointer-events-none hidden lg:block" 
-          viewBox="0 0 200 300" 
-          fill="none" 
-          stroke="currentColor" 
+        <svg
+          className="absolute right-12 top-12 w-[200px] h-[300px] text-white opacity-[0.06] pointer-events-none hidden lg:block"
+          viewBox="0 0 200 300"
+          fill="none"
+          stroke="currentColor"
           strokeWidth="0.8"
         >
           {/* Floors */}
@@ -237,10 +237,10 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
         <motion.div variants={columnVariants} className="lg:col-span-4 flex flex-col items-start relative">
           {/* Logo Brand Group */}
           <div className="-mt-7 -ml-6 -mb-2 text-white w-full max-w-[200px] relative z-20">
-            <img 
-              src={whiteMabLogo} 
-              alt="Maabany Logo" 
-              className="w-full h-auto object-contain" 
+            <img
+              src={whiteMabLogo}
+              alt="Maabany Logo"
+              className="w-full h-auto object-contain"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = "/Maabany white.png";
               }}
@@ -260,7 +260,7 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 title={social.name}
-                className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-[#EA8A22] hover:bg-[#EA8A22] transition-all duration-250 transform hover:scale-110"
+                className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-primary hover:bg-primary transition-all duration-250 transform hover:scale-110"
               >
                 <social.icon className="w-4 h-4" />
               </a>
@@ -270,7 +270,7 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
 
         {/* Column 2: Navigation */}
         <motion.div variants={columnVariants} className="lg:col-span-3 space-y-6">
-          <h4 className="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-8 after:h-[2px] after:bg-[#EA8A22]">
+          <h4 className="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-8 after:h-[2px] after:bg-primary">
             Quick Links
           </h4>
           <ul className="grid grid-cols-1 gap-3.5">
@@ -279,12 +279,12 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
                 <Link
                   to={link.path}
                   onClick={(e) => handleFooterLinkClick(e, link.path)}
-                  className="text-[15px] text-white/80 hover:text-[#EA8A22] transition-all duration-300 inline-flex items-center gap-2 group relative py-1"
+                  className="text-[15px] text-white/80 hover:text-primary transition-all duration-300 inline-flex items-center gap-2 group relative py-1"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#EA8A22] group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all" />
                   <span className="relative">
                     {link.label}
-                    <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#EA8A22] transition-all duration-300 group-hover:w-full" />
+                    <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full" />
                   </span>
                 </Link>
               </li>
@@ -294,7 +294,7 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
 
         {/* Column 3: Resources */}
         <motion.div variants={columnVariants} className="lg:col-span-2 space-y-6">
-          <h4 className="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-8 after:h-[2px] after:bg-[#EA8A22]">
+          <h4 className="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-8 after:h-[2px] after:bg-primary">
             Resources
           </h4>
           <ul className="grid grid-cols-1 gap-3.5 mb-6">
@@ -303,24 +303,24 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
                 {link.label === 'Company Profile' ? (
                   <button
                     onClick={downloadCompanyProfile}
-                    className="text-[15px] text-white/80 hover:text-[#EA8A22] text-left transition-all duration-300 inline-flex items-center gap-2 group cursor-pointer focus:outline-none relative py-1"
+                    className="text-[15px] text-white/80 hover:text-primary text-left transition-all duration-300 inline-flex items-center gap-2 group cursor-pointer focus:outline-none relative py-1"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#EA8A22] group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all" />
                     <span className="relative">
                       {link.label}
-                      <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#EA8A22] transition-all duration-300 group-hover:w-full" />
+                      <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full" />
                     </span>
                   </button>
                 ) : (
                   <Link
                     to={link.path}
                     onClick={(e) => handleFooterLinkClick(e, link.path)}
-                    className="text-[15px] text-white/80 hover:text-[#EA8A22] transition-all duration-300 inline-flex items-center gap-2 group relative py-1"
+                    className="text-[15px] text-white/80 hover:text-primary transition-all duration-300 inline-flex items-center gap-2 group relative py-1"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#EA8A22] group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all" />
                     <span className="relative">
                       {link.label}
-                      <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#EA8A22] transition-all duration-300 group-hover:w-full" />
+                      <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full" />
                     </span>
                   </Link>
                 )}
@@ -329,12 +329,12 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
             <li>
               <button
                 onClick={() => setQuoteModalOpen(true)}
-                className="text-[15px] text-white/80 hover:text-[#EA8A22] text-left transition-all duration-300 inline-flex items-center gap-2 group cursor-pointer focus:outline-none relative py-1"
+                className="text-[15px] text-white/80 hover:text-primary text-left transition-all duration-300 inline-flex items-center gap-2 group cursor-pointer focus:outline-none relative py-1"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#EA8A22] group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all" />
+                <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all" />
                 <span className="relative">
                   Request a Quote
-                  <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#EA8A22] transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full" />
                 </span>
               </button>
             </li>
@@ -343,12 +343,12 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
 
         {/* Column 4: Contact Us */}
         <motion.div variants={columnVariants} className="lg:col-span-3 space-y-6">
-          <h4 className="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-8 after:h-[2px] after:bg-[#EA8A22]">
+          <h4 className="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-8 after:h-[2px] after:bg-primary">
             Contact Us
           </h4>
           <div className="space-y-4 text-[14px] text-white/75 font-light">
             <div className="flex gap-3 items-start group">
-              <div className="p-2.5 rounded-[12px] border border-white/15 text-[#EA8A22] shrink-0 group-hover:bg-[#EA8A22] group-hover:text-white transition-all duration-300">
+              <div className="p-2.5 rounded-[12px] border border-white/15 text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                 <MapPin className="w-4 h-4" />
               </div>
               <div className="space-y-1 mt-0.5">
@@ -357,7 +357,7 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
                   href="https://maps.google.com/?q=2923+Al-Sharif+Ahmed+bin+Abdul+Muttalib,+Al-Salhiya+District,+Jeddah,+Saudi+Arabia"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/60 text-[12px] leading-relaxed hover:text-[#EA8A22] transition-colors block"
+                  className="text-white/60 text-[12px] leading-relaxed hover:text-primary transition-colors block"
                 >
                   2923 Al-Sharif Ahmed bin Abdul Muttalib, Al-Salhiya District, Jeddah, Saudi Arabia
                 </a>
@@ -365,7 +365,7 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
             </div>
 
             <div className="flex gap-3 items-start group">
-              <div className="p-2.5 rounded-[12px] border border-white/15 text-[#EA8A22] shrink-0 group-hover:bg-[#EA8A22] group-hover:text-white transition-all duration-300">
+              <div className="p-2.5 rounded-[12px] border border-white/15 text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                 <MapPin className="w-4 h-4" />
               </div>
               <div className="space-y-1 mt-0.5">
@@ -374,7 +374,7 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
                   href="https://maps.google.com/?q=53+Hassan+El+Sherif+Street,+Nasr+City,+Cairo,+Egypt"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/60 text-[12px] leading-relaxed hover:text-[#EA8A22] transition-colors block"
+                  className="text-white/60 text-[12px] leading-relaxed hover:text-primary transition-colors block"
                 >
                   53 Hassan El Sherif Street, Nasr City, Cairo, Egypt
                 </a>
@@ -382,14 +382,14 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
             </div>
 
             <div className="flex gap-3 items-start">
-              <div className="p-2.5 rounded-[12px] border border-white/15 text-[#EA8A22] shrink-0">
+              <div className="p-2.5 rounded-[12px] border border-white/15 text-primary shrink-0">
                 <Mail className="w-4 h-4" />
               </div>
               <div className="space-y-1 mt-0.5">
                 <p className="font-medium text-white text-[14px]">Email</p>
                 <a
                   href="mailto:sales@maabany.com"
-                  className="text-white/60 text-[12px] hover:text-[#EA8A22] transition-colors focus:outline-none focus:underline block"
+                  className="text-white/60 text-[12px] hover:text-primary transition-colors focus:outline-none focus:underline block"
                 >
                   sales@maabany.com
                 </a>
@@ -411,10 +411,10 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
             rel="noopener noreferrer"
             className="inline-flex items-center"
           >
-            <img 
-              src={techHouseLogo} 
-              alt="Technology House" 
-              className="h-7 md:h-8 w-auto opacity-95 hover:opacity-100 transition-opacity cursor-pointer" 
+            <img
+              src={techHouseLogo}
+              alt="Technology House"
+              className="h-7 md:h-8 w-auto opacity-95 hover:opacity-100 transition-opacity cursor-pointer"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = "/TEH V 2.png";
               }}

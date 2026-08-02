@@ -18,7 +18,7 @@ import {
   Menu,
   BadgeCheck,
   ChevronLeft,
-  
+
   Quote,
   X,
   Search,
@@ -123,16 +123,16 @@ const FALLBACK_HERO_IMG = 'https://images.unsplash.com/photo-1541888946425-d81bb
 export function Home() {
   const navigate = useNavigate();
   // Mobile navigation toggle
-  
+
   // Solutions Dropdown visibility in header
-  
+
   // Active nav section tracker (for high-contrast active indicator)
-  
+
   // Header stickiness & search overlay
-  
+
   // Quote Modal Toggle
   const setQuoteModalOpen = useQuoteModal();
-  
+
   // Form submission simulated state
   const [contactSubmitting, setContactSubmitting] = useState(false);
   const [contactSuccess, setContactSuccess] = useState(false);
@@ -155,9 +155,9 @@ export function Home() {
     else if (country === '+20') setSelectedBranch('EG');
     else if (country === '+218') setSelectedBranch('LY');
   };
-  
+
   // Quote form inputs
-  
+
   // Project filter
   const [projectFilter, setProjectFilter] = useState('All');
 
@@ -465,7 +465,7 @@ export function Home() {
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setContactSubmitting(true);
-    
+
     // Simulate premium server-side action
     setTimeout(() => {
       setContactSubmitting(false);
@@ -477,7 +477,7 @@ export function Home() {
   return (
     <>
       {/* 2. Hero Section */}
-      <div 
+      <div
         className="w-full max-w-[1400px] mx-auto transition-all duration-200"
         style={{
           paddingLeft: `${outerPaddingX}px`,
@@ -507,7 +507,7 @@ export function Home() {
             <source src={BG_VIDEO} type="video/mp4" />
           </video>
           {/* Optional dark overlay */}
-          <div 
+          <div
             className="absolute inset-0 pointer-events-none"
             style={{
               backgroundColor: `rgba(10, 10, 10, ${heroOverlayOpacity})`
@@ -515,139 +515,139 @@ export function Home() {
           />
 
           {/* Hero content - Centered over video */}
-          <div 
+          <div
             className="relative max-w-[1400px] w-full mx-auto px-5 md:px-6 lg:px-7 xl:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-10 my-auto py-6 transition-all duration-200"
             style={{
               paddingTop: 'var(--hero-nav-spacing, 120px)'
             }}
           >
-          
-          {/* Left: Editorial Headline with localized subtle backdrop blur */}
-          <div className="lg:col-span-7 text-left relative py-4">
-            {/* Extremely subtle localized backdrop */}
-            <div 
-              className="absolute -inset-10 md:-inset-16 pointer-events-none z-0 rounded-[60px]"
-              style={{
-                background: 'radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0) 100%)',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
-                maskImage: 'radial-gradient(circle at center, black 30%, transparent 85%)',
-                WebkitMaskImage: 'radial-gradient(circle at center, black 30%, transparent 85%)'
-              }}
-            />
 
-            <div className="relative z-10 space-y-6">
-              {/* Overlapping, majestic headline */}
-              <div className="space-y-1 text-left">
-                <h1 
-                  className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-none text-left"
-                  style={{ textShadow: '0 2px 12px rgba(0,0,0,0.18)' }}
-                >
-                  BUILDING
-                </h1>
-                <h1 
-                  className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-none -mt-1 text-left"
-                  style={{ textShadow: '0 2px 12px rgba(0,0,0,0.18)' }}
-                >
-                  THE FUTURE OF
-                </h1>
-                <h1 
-                  className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#EA8A22] tracking-tighter uppercase leading-none -mt-1 text-left"
-                  style={{ textShadow: '0 2px 12px rgba(0,0,0,0.18)' }}
-                >
-                  TOMORROW
-                </h1>
+            {/* Left: Editorial Headline with localized subtle backdrop blur */}
+            <div className="lg:col-span-7 text-left relative py-4">
+              {/* Extremely subtle localized backdrop */}
+              <div
+                className="absolute -inset-10 md:-inset-16 pointer-events-none z-0 rounded-[60px]"
+                style={{
+                  background: 'radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0) 100%)',
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)',
+                  maskImage: 'radial-gradient(circle at center, black 30%, transparent 85%)',
+                  WebkitMaskImage: 'radial-gradient(circle at center, black 30%, transparent 85%)'
+                }}
+              />
+
+              <div className="relative z-10 space-y-6">
+                {/* Overlapping, majestic headline */}
+                <div className="space-y-1 text-left">
+                  <h1
+                    className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-none text-left"
+                    style={{ textShadow: '0 2px 12px rgba(0,0,0,0.18)' }}
+                  >
+                    BUILDING
+                  </h1>
+                  <h1
+                    className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-none -mt-1 text-left"
+                    style={{ textShadow: '0 2px 12px rgba(0,0,0,0.18)' }}
+                  >
+                    THE FUTURE OF
+                  </h1>
+                  <h1
+                    className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-primary tracking-tighter uppercase leading-none -mt-1 text-left"
+                    style={{ textShadow: '0 2px 12px rgba(0,0,0,0.18)' }}
+                  >
+                    TOMORROW
+                  </h1>
+                </div>
+
+                <p className="text-neutral-200 text-sm sm:text-base md:text-lg font-normal leading-relaxed max-w-2xl text-left">
+                  Tier-one construction & engineering delivering iconic mega-structures, sustainable infrastructure, and master-planned developments across Saudi Arabia & the Middle East.
+                </p>
+
+                <div className="flex flex-wrap items-center gap-4 pt-2">
+                  <button
+                    onClick={() => setQuoteModalOpen(true)}
+                    className="px-7 py-4 bg-primary hover:bg-primary/90 text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 shadow-xl shadow-primary/30 cursor-pointer flex items-center gap-2 font-mono whitespace-nowrap shrink-0"
+                  >
+                    Request a Quote <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Floating Stats Cards */}
+            <div className="lg:col-span-5 relative flex flex-col gap-4 py-8">
+
+              {/* Experience Card */}
+              <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-start w-64 animate-float-slow relative overflow-hidden group hover:border-primary/50 transition-all duration-300">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none" />
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
+                    <Clock className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-3xl font-black text-neutral-900 font-mono">{yearsCounter}+</h3>
+                    <p className="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">Years of Excellence</p>
+                  </div>
+                </div>
               </div>
 
-              <p className="text-neutral-200 text-sm sm:text-base md:text-lg font-normal leading-relaxed max-w-2xl text-left">
-                Tier-one construction & engineering delivering iconic mega-structures, sustainable infrastructure, and master-planned developments across Saudi Arabia & the Middle East.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <button
-                  onClick={() => setQuoteModalOpen(true)}
-                  className="px-7 py-4 bg-[#EA8A22] hover:bg-[#EA8A22]/90 text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 shadow-xl shadow-[#EA8A22]/30 cursor-pointer flex items-center gap-2 font-mono whitespace-nowrap shrink-0"
-                >
-                  Request a Quote <ArrowRight className="w-4 h-4" />
-                </button>
+              {/* Completed Projects Card */}
+              <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-end w-64 animate-float-medium relative overflow-hidden group hover:border-primary/50 transition-all duration-300">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none" />
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
+                    <Building2 className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-3xl font-black text-neutral-900 font-mono">{projectsCounter}+</h3>
+                    <p className="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">Megaprojects Completed</p>
+                  </div>
+                </div>
               </div>
+
+              {/* Countries & Global presence */}
+              <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-start w-64 animate-float-slow relative overflow-hidden group hover:border-primary/50 transition-all duration-300">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none" />
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
+                    <Globe className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-3xl font-black text-neutral-900 font-mono">{countriesCounter}</h3>
+                    <p className="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">Sovereign Countries</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Satisfaction percentage */}
+              <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-end w-64 animate-float-medium relative overflow-hidden group hover:border-primary/50 transition-all duration-300">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none" />
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
+                    <Users className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-3xl font-black text-neutral-900 font-mono">{satisfactionCounter}%</h3>
+                    <p className="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">Satisfaction Index</p>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
-          {/* Right: Floating Stats Cards */}
-          <div className="lg:col-span-5 relative flex flex-col gap-4 py-8">
-            
-            {/* Experience Card */}
-            <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-start w-64 animate-float-slow relative overflow-hidden group hover:border-[#EA8A22]/50 transition-all duration-300">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#EA8A22]/5 rounded-bl-full pointer-events-none" />
-              <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22]">
-                  <Clock className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-3xl font-black text-neutral-900 font-mono">{yearsCounter}+</h3>
-                  <p className="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">Years of Excellence</p>
-                </div>
-              </div>
+          {/* Breathtaking continuous scroll indicator */}
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 z-10 select-none">
+            <div className="w-5 h-8 border border-neutral-700 rounded-full flex justify-center p-1 bg-neutral-950/40">
+              <div className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" />
             </div>
-
-            {/* Completed Projects Card */}
-            <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-end w-64 animate-float-medium relative overflow-hidden group hover:border-[#EA8A22]/50 transition-all duration-300">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#EA8A22]/5 rounded-bl-full pointer-events-none" />
-              <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22]">
-                  <Building2 className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-3xl font-black text-neutral-900 font-mono">{projectsCounter}+</h3>
-                  <p className="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">Megaprojects Completed</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Countries & Global presence */}
-            <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-start w-64 animate-float-slow relative overflow-hidden group hover:border-[#EA8A22]/50 transition-all duration-300">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#EA8A22]/5 rounded-bl-full pointer-events-none" />
-              <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22]">
-                  <Globe className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-3xl font-black text-neutral-900 font-mono">{countriesCounter}</h3>
-                  <p className="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">Sovereign Countries</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Satisfaction percentage */}
-            <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-end w-64 animate-float-medium relative overflow-hidden group hover:border-[#EA8A22]/50 transition-all duration-300">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#EA8A22]/5 rounded-bl-full pointer-events-none" />
-              <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22]">
-                  <Users className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-3xl font-black text-neutral-900 font-mono">{satisfactionCounter}%</h3>
-                  <p className="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">Satisfaction Index</p>
-                </div>
-              </div>
-            </div>
-            
           </div>
-        </div>
-
-        {/* Breathtaking continuous scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 z-10 select-none">
-          <div className="w-5 h-8 border border-neutral-700 rounded-full flex justify-center p-1 bg-neutral-950/40">
-            <div className="w-1.5 h-1.5 bg-[#EA8A22] rounded-full animate-bounce" />
-          </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
 
       {/* 3. About Section */}
-      <section 
-        id="about" 
+      <section
+        id="about"
         className="bg-white relative overflow-hidden z-10 transition-all duration-200 py-12 md:py-20 lg:py-24"
       >
         {/* Floating 3D Geodesic Sphere */}
@@ -657,15 +657,15 @@ export function Home() {
 
         {/* Architectural subtle background grid */}
         <div className="absolute inset-0 bg-grid-light opacity-10 pointer-events-none" />
-        
-        <div 
+
+        <div
           className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center transition-all duration-200"
           style={{
             paddingLeft: `${outerPaddingX}px`,
             paddingRight: `${outerPaddingX}px`
           }}
         >
-          
+
           {/* Left Side: Images with Mask Reveal Style */}
           <div className="lg:col-span-6 relative">
             <div className="relative group overflow-hidden rounded-3xl border border-neutral-200 shadow-xl">
@@ -675,10 +675,10 @@ export function Home() {
                 alt="Maabany Construction Site Tower Cranes"
                 className="w-full h-[500px] object-cover transition-transform duration-[8s] group-hover:scale-105"
               />
-              
+
               {/* Dynamic floating badge inside image */}
               <div className="absolute bottom-6 left-6 z-20 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-neutral-200/60 shadow-lg">
-                <span className="text-[10px] uppercase font-mono tracking-wider text-[#EA8A22] block mb-1">CURRENTLY UNDERWAY</span>
+                <span className="text-[10px] uppercase font-mono tracking-wider text-primary block mb-1">CURRENTLY UNDERWAY</span>
                 <span className="text-xs font-semibold text-neutral-900">Riyadh Financial Plaza II • 92% Complete</span>
               </div>
             </div>
@@ -699,52 +699,52 @@ export function Home() {
             <RightContentWatermark />
 
             <div className="relative z-10 space-y-6 text-neutral-900">
-            <div className="space-y-2">
-              <span className="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
-                About Us
-              </span>
-              <h2 className="text-3xl md:text-4xl font-black text-neutral-900 uppercase tracking-tight">
-                Engineering with Precision
-              </h2>
-            </div>
+              <div className="space-y-2">
+                <span className="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
+                  About Us
+                </span>
+                <h2 className="text-3xl md:text-4xl font-black text-neutral-900 uppercase tracking-tight">
+                  Engineering with Precision
+                </h2>
+              </div>
 
-            <p className="text-sm md:text-base text-neutral-600 leading-relaxed">
-              Maabany is a tier-one construction and engineering partner delivering iconic structures and high-performance infrastructure across sectors. We combine industry-leading engineering, state-of-the-art sustainability practices, and rigorous compliance to turn ambitious blueprints into enduring physical realities.
-            </p>
+              <p className="text-sm md:text-base text-neutral-600 leading-relaxed">
+                Maabany is a tier-one construction and engineering partner delivering iconic structures and high-performance infrastructure across sectors. We combine industry-leading engineering, state-of-the-art sustainability practices, and rigorous compliance to turn ambitious blueprints into enduring physical realities.
+              </p>
 
-            <div className="space-y-4">
-              <div className="flex gap-4 p-4 rounded-xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-sm">
-                <div className="p-2 rounded bg-[#EA8A22]/10 text-[#EA8A22] h-fit">
-                  <Shield className="w-5 h-5" />
+              <div className="space-y-4">
+                <div className="flex gap-4 p-4 rounded-xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-sm">
+                  <div className="p-2 rounded bg-primary/10 text-primary h-fit">
+                    <Shield className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-neutral-900 uppercase">Rigorous Security & Compliance</h4>
+                    <p className="text-xs text-[#4b4b4b] mt-1">ISO 9001, 14001, and 45001 certified. We practice deep-risk containment on every development level.</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-sm font-bold text-neutral-900 uppercase">Rigorous Security & Compliance</h4>
-                  <p className="text-xs text-[#4b4b4b] mt-1">ISO 9001, 14001, and 45001 certified. We practice deep-risk containment on every development level.</p>
+
+                <div className="flex gap-4 p-4 rounded-xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-sm">
+                  <div className="p-2 rounded bg-primary/10 text-primary h-fit">
+                    <Award className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-neutral-900 uppercase">Sustainability Certifications</h4>
+                    <p className="text-xs text-[#4b4b4b] mt-1">Specializing in LEED Platinum layouts. Integrating self-contained power and graywater infrastructure by default.</p>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex gap-4 p-4 rounded-xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-sm">
-                <div className="p-2 rounded bg-[#EA8A22]/10 text-[#EA8A22] h-fit">
-                  <Award className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-neutral-900 uppercase">Sustainability Certifications</h4>
-                  <p className="text-xs text-[#4b4b4b] mt-1">Specializing in LEED Platinum layouts. Integrating self-contained power and graywater infrastructure by default.</p>
-                </div>
+              {/* Read More About Us CTA */}
+              <div className="pt-2">
+                <Link
+                  to="/about"
+                  className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-primary text-primary font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
+                >
+                  <span>Read More About Us</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Link>
               </div>
             </div>
-
-            {/* Read More About Us CTA */}
-            <div className="pt-2">
-              <Link 
-                to="/about"
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#EA8A22] text-[#EA8A22] font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-[#EA8A22] hover:text-white hover:shadow-lg hover:shadow-[#EA8A22]/10 transition-all duration-300"
-              >
-                <span>Read More About Us</span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-          </div>
 
 
           </div>
@@ -752,8 +752,8 @@ export function Home() {
       </section>
 
       {/* 4. Why Choose Us */}
-      <section 
-        id="why-us" 
+      <section
+        id="why-us"
         className="bg-white border-y border-neutral-200/60 relative z-10 transition-all duration-200 py-12 md:py-20 lg:py-24 overflow-hidden"
       >
         {/* Floating 3D Hyperboloid Tower */}
@@ -762,15 +762,15 @@ export function Home() {
         </div>
 
         <div className="absolute inset-0 bg-blueprint opacity-[0.06] pointer-events-none" />
-        
-        <div 
+
+        <div
           className="max-w-[1400px] mx-auto transition-all duration-200"
           style={{
             paddingLeft: `${outerPaddingX}px`,
             paddingRight: `${outerPaddingX}px`
           }}
         >
-          
+
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-2">
             <span className="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
               THE MAABANY STANDARD
@@ -815,41 +815,41 @@ export function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ 
-                    y: -10, 
-                    scale: 1.02, 
-                    boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)" 
+                  whileHover={{
+                    y: -10,
+                    scale: 1.02,
+                    boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)"
                   }}
-                  className="bg-white border border-neutral-200/80 p-8 rounded-3xl relative overflow-hidden transition-all duration-300 group hover:border-[#EA8A22] cursor-pointer"
+                  className="bg-white border border-neutral-200/80 p-8 rounded-3xl relative overflow-hidden transition-all duration-300 group hover:border-primary cursor-pointer"
                 >
                   {/* Diagonal premium sweep reflection on hover */}
                   <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-25 -translate-x-[150%] group-hover-sweep pointer-events-none z-20" />
 
                   {/* Dynamic background glow on hover */}
-                  <div className="absolute -top-12 -right-12 w-36 h-36 bg-gradient-to-br from-[#EA8A22]/8 to-transparent rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700" />
-                  
+                  <div className="absolute -top-12 -right-12 w-36 h-36 bg-gradient-to-br from-primary/8 to-transparent rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700" />
+
                   <div className="flex justify-between items-start mb-8 relative z-10">
                     {/* Icon container */}
-                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 shadow-xs group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-[#EA8A22]/20">
+                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 shadow-xs group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-primary/20">
                       <IconComponent className="w-6 h-6 transition-transform duration-300" />
                     </div>
-                    
+
                     {/* Index number with stylish outline font effect */}
-                    <span className="text-4xl font-extrabold text-neutral-200/80 font-mono transition-all duration-500 group-hover:text-[#EA8A22]/30 group-hover:-translate-y-1 group-hover:translate-x-1 block">
+                    <span className="text-4xl font-extrabold text-neutral-200/80 font-mono transition-all duration-500 group-hover:text-primary/30 group-hover:-translate-y-1 group-hover:translate-x-1 block">
                       {reason.num}
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-black text-neutral-900 mb-3 tracking-tight uppercase group-hover:text-[#EA8A22] transition-colors duration-300 relative z-10">
+                  <h3 className="text-lg font-black text-neutral-900 mb-3 tracking-tight uppercase group-hover:text-primary transition-colors duration-300 relative z-10">
                     {reason.title}
                   </h3>
-                  
+
                   <p className="text-xs text-neutral-500 leading-relaxed group-hover:text-neutral-700 transition-colors duration-300 relative z-10">
                     {reason.desc}
                   </p>
 
                   {/* Aesthetic Accent Bottom Line */}
-                  <div className="absolute bottom-0 left-0 w-0 h-[4px] bg-gradient-to-r from-[#EA8A22] to-[#ffaa44] transition-all duration-500 group-hover:w-full" />
+                  <div className="absolute bottom-0 left-0 w-0 h-[4px] bg-gradient-to-r from-primary to-[#ffaa44] transition-all duration-500 group-hover:w-full" />
                 </motion.div>
               );
             })}
@@ -858,8 +858,8 @@ export function Home() {
       </section>
 
       {/* 5. Our Solutions (Services) */}
-      <section 
-        id="solutions" 
+      <section
+        id="solutions"
         className="bg-[#FAFAFA] relative overflow-hidden z-10 transition-all duration-200 py-12 md:py-20 lg:py-24"
       >
         {/* Floating 3D Geodesic Dome */}
@@ -887,7 +887,7 @@ export function Home() {
           </svg>
         </div>
 
-        <div className="absolute right-6 bottom-24 w-40 h-40 opacity-[0.04] pointer-events-none hidden xl:block select-none text-[#EA8A22]">
+        <div className="absolute right-6 bottom-24 w-40 h-40 opacity-[0.04] pointer-events-none hidden xl:block select-none text-primary">
           <svg viewBox="0 0 100 100" className="w-full h-full">
             <path d="M 10 50 A 40 40 0 0 1 50 10" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2" />
             <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" strokeWidth="0.5" />
@@ -895,15 +895,15 @@ export function Home() {
             <text x="15" y="45" className="text-[5px] font-mono fill-current">90°_ARC</text>
           </svg>
         </div>
-        
-        <div 
+
+        <div
           className="max-w-[1400px] mx-auto relative z-10 transition-all duration-200"
           style={{
             paddingLeft: `${outerPaddingX}px`,
             paddingRight: `${outerPaddingX}px`
           }}
         >
-          
+
           <div className="mb-16 text-center max-w-3xl mx-auto space-y-3">
             <span className="text-[#142b52] font-mono text-xs uppercase font-black tracking-widest block">
               Engineering Competencies & Focus
@@ -916,7 +916,7 @@ export function Home() {
             </p>
           </div>          {/* Premium Magazine-style layout */}
           <div className="space-y-8">
-            
+
             {/* MEP SOLUTIONS - PRIMARY FEATURED HERO CARD (Spans full width) */}
             <motion.div
               layout
@@ -926,14 +926,14 @@ export function Home() {
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -4, scale: 1.005 }}
               onClick={() => navigate('/solutions/mep-solutions')}
-              className="w-full bg-gradient-to-br from-white via-white to-orange-50/15 border-2 border-[#EA8A22]/25 p-6 lg:p-8 rounded-2xl relative overflow-hidden transition-all duration-500 hover:border-[#EA8A22]/50 hover:shadow-[0_20px_40px_rgba(234,138,34,0.04)] cursor-pointer group animate-fade-in"
+              className="w-full bg-gradient-to-br from-white via-white to-orange-50/15 border-2 border-primary/25 p-6 lg:p-8 rounded-2xl relative overflow-hidden transition-all duration-500 hover:border-primary/50 hover:shadow-[0_20px_40px_rgba(234,138,34,0.04)] cursor-pointer group animate-fade-in"
             >
               {/* Engineering Blueprint Grid overlay inside Hero card */}
               <div className="absolute inset-0 opacity-8 group-hover:opacity-12 pointer-events-none transition-opacity duration-500 overflow-hidden">
                 <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <pattern id="mep-hero-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-                      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-[#EA8A22]" />
+                      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-primary" />
                     </pattern>
                   </defs>
                   <rect width="100%" height="100%" fill="url(#mep-hero-grid)" />
@@ -941,20 +941,20 @@ export function Home() {
               </div>
 
               {/* Dynamic warm glow behind card */}
-              <div className="absolute -top-16 -right-16 w-52 h-52 bg-gradient-to-br from-[#EA8A22]/10 to-transparent rounded-full blur-3xl group-hover:scale-125 transition-transform duration-750" />
+              <div className="absolute -top-16 -right-16 w-52 h-52 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl group-hover:scale-125 transition-transform duration-750" />
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
-                
+
                 {/* Left Text and Icons Block */}
                 <div className="lg:col-span-6 space-y-4 flex flex-col justify-center">
                   <div className="flex items-center justify-between">
-                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-[#EA8A22]/25 transition-colors duration-300">
+                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-primary/25 transition-colors duration-300">
                       01
                     </span>
                   </div>
 
                   <div className="space-y-2">
-                    <h3 className="text-xl lg:text-2xl font-black text-neutral-900 group-hover:text-[#EA8A22] transition-colors duration-300 uppercase tracking-tight">
+                    <h3 className="text-xl lg:text-2xl font-black text-neutral-900 group-hover:text-primary transition-colors duration-300 uppercase tracking-tight">
                       MEP Solutions
                     </h3>
                     <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">
@@ -964,21 +964,21 @@ export function Home() {
                 </div>
 
                 {/* Right Featured Image for MEP Solutions */}
-                <div className="lg:col-span-6 h-[240px] lg:h-[280px] rounded-xl overflow-hidden border border-neutral-200/50 relative shadow-xs group-hover:border-[#EA8A22]/30 transition-all duration-500">
+                <div className="lg:col-span-6 h-[240px] lg:h-[280px] rounded-xl overflow-hidden border border-neutral-200/50 relative shadow-xs group-hover:border-primary/30 transition-all duration-500">
                   <AnimatePresence mode="wait">
-                    <motion.img 
+                    <motion.img
                       key={mepSlideIdx}
-                      src={mepImages[mepSlideIdx]} 
-                      alt={`MEP Engineering Systems ${mepSlideIdx + 1}`} 
+                      src={mepImages[mepSlideIdx]}
+                      alt={`MEP Engineering Systems ${mepSlideIdx + 1}`}
                       referrerPolicy="no-referrer"
                       initial={{ opacity: 0.8 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0.8 }}
                       transition={{ duration: 0.4 }}
-                      className="w-full h-full object-cover grayscale contrast-115 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out" 
+                      className="w-full h-full object-cover grayscale contrast-115 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
                     />
                   </AnimatePresence>
-                  
+
                   <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/65 pointer-events-none" />
 
                   {/* Carousel Navigation buttons */}
@@ -1006,13 +1006,13 @@ export function Home() {
                   {/* Carousel Pagination Dots - now at the bottom */}
                   <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 bg-neutral-950/40 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/10">
                     {mepImages.map((_, sIdx) => (
-                      <button 
+                      <button
                         key={sIdx}
                         onClick={(e) => {
                           e.stopPropagation();
                           setMepSlideIdx(sIdx);
                         }}
-                        className={`w-1.5 h-1.5 rounded-full transition-all duration-300 cursor-pointer ${sIdx === mepSlideIdx ? 'bg-[#EA8A22] w-3.5' : 'bg-white/40 hover:bg-white/80'}`}
+                        className={`w-1.5 h-1.5 rounded-full transition-all duration-300 cursor-pointer ${sIdx === mepSlideIdx ? 'bg-primary w-3.5' : 'bg-white/40 hover:bg-white/80'}`}
                         title={`Image ${sIdx + 1} of ${mepImages.length}`}
                       />
                     ))}
@@ -1026,33 +1026,33 @@ export function Home() {
 
             {/* THE OTHER THREE CARDS - BEHIND/BELOW THE CIVIL SOLUTIONS CARD (Arranged horizontally) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              
+
               {/* FACILITY MANAGEMENT CARD */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ 
-                  y: -10, 
-                  scale: 1.02, 
-                  boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)" 
+                whileHover={{
+                  y: -10,
+                  scale: 1.02,
+                  boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)"
                 }}
                 onClick={() => navigate('/solutions/facility-management')}
-                className="bg-white border border-neutral-200/80 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-[#EA8A22] flex flex-col justify-between group h-full min-h-[440px] cursor-pointer"
+                className="bg-white border border-neutral-200/80 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-primary flex flex-col justify-between group h-full min-h-[440px] cursor-pointer"
               >
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-[#EA8A22]/20">
+                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-primary/20">
                       <Wrench className="w-6 h-6" />
                     </div>
-                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-[#EA8A22]/20 transition-colors duration-300">
+                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-primary/20 transition-colors duration-300">
                       02
                     </span>
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="text-xl font-black text-neutral-900 group-hover:text-[#EA8A22] transition-colors uppercase tracking-tight">
+                    <h3 className="text-xl font-black text-neutral-900 group-hover:text-primary transition-colors uppercase tracking-tight">
                       Facility Management
                     </h3>
                     <p className="text-xs text-neutral-500 leading-relaxed">
@@ -1068,7 +1068,7 @@ export function Home() {
                     "Intelligent Building Energy Audits"
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-xs text-neutral-600">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#EA8A22]" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -1081,26 +1081,26 @@ export function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ 
-                  y: -10, 
-                  scale: 1.02, 
-                  boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)" 
+                whileHover={{
+                  y: -10,
+                  scale: 1.02,
+                  boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)"
                 }}
                 onClick={() => navigate('/solutions/civil-solutions')}
-                className="bg-white border border-neutral-200/80 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-[#EA8A22] flex flex-col justify-between group h-full min-h-[440px] cursor-pointer"
+                className="bg-white border border-neutral-200/80 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-primary flex flex-col justify-between group h-full min-h-[440px] cursor-pointer"
               >
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-[#EA8A22]/20">
+                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-primary/20">
                       <Building2 className="w-6 h-6" />
                     </div>
-                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-[#EA8A22]/20 transition-colors duration-300">
+                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-primary/20 transition-colors duration-300">
                       03
                     </span>
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="text-xl font-black text-neutral-900 group-hover:text-[#EA8A22] transition-colors uppercase tracking-tight">
+                    <h3 className="text-xl font-black text-neutral-900 group-hover:text-primary transition-colors uppercase tracking-tight">
                       Civil Solutions
                     </h3>
                     <p className="text-xs text-neutral-500 leading-relaxed">
@@ -1116,7 +1116,7 @@ export function Home() {
                     "Prefabricated Steel Trusses & Cladding"
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-xs text-neutral-600">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#EA8A22]" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -1129,26 +1129,26 @@ export function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ 
-                  y: -10, 
-                  scale: 1.02, 
-                  boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)" 
+                whileHover={{
+                  y: -10,
+                  scale: 1.02,
+                  boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)"
                 }}
                 onClick={() => navigate('/solutions/fit-out-solutions')}
-                className="bg-white border border-neutral-200/80 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-[#EA8A22] flex flex-col justify-between group h-full min-h-[440px] cursor-pointer"
+                className="bg-white border border-neutral-200/80 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-primary flex flex-col justify-between group h-full min-h-[440px] cursor-pointer"
               >
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-[#EA8A22]/20">
+                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-primary/20">
                       <Paintbrush className="w-6 h-6" />
                     </div>
-                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-[#EA8A22]/20 transition-colors duration-300">
+                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-primary/20 transition-colors duration-300">
                       04
                     </span>
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="text-xl font-black text-neutral-900 group-hover:text-[#EA8A22] transition-colors uppercase tracking-tight">
+                    <h3 className="text-xl font-black text-neutral-900 group-hover:text-primary transition-colors uppercase tracking-tight">
                       Fit-Out Solutions
                     </h3>
                     <p className="text-xs text-neutral-500 leading-relaxed">
@@ -1164,7 +1164,7 @@ export function Home() {
                     "Custom Joinery & Modern Finishes"
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-xs text-neutral-600">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#EA8A22]" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -1175,9 +1175,9 @@ export function Home() {
 
             {/* Explore All Solutions CTA */}
             <div className="mt-16 flex justify-center">
-              <Link 
+              <Link
                 to="/solutions"
-                className="group flex items-center justify-center gap-2 px-8 py-4 border border-[#EA8A22] text-[#EA8A22] font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-[#EA8A22] hover:text-white hover:shadow-lg hover:shadow-[#EA8A22]/10 transition-all duration-300"
+                className="group flex items-center justify-center gap-2 px-8 py-4 border border-primary text-primary font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
               >
                 <span>Explore All Solutions</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -1189,11 +1189,11 @@ export function Home() {
       </section>
 
       {/* 4. Partners & Clients Section */}
-      <section 
-        id="partners-and-clients" 
+      <section
+        id="partners-and-clients"
         className="bg-white relative z-10 transition-all duration-200 py-12 md:py-20 lg:py-24"
       >
-        <div 
+        <div
           className="max-w-[1400px] mx-auto transition-all duration-200"
           style={{
             paddingLeft: `${outerPaddingX}px`,
@@ -1208,22 +1208,22 @@ export function Home() {
               Our Partners & Clients
             </h2>
           </div>
-            
+
           <div className="flex flex-col gap-[72px]">
             {/* Partners Infinite Marquee Strip */}
             <div className="relative w-full overflow-hidden py-4 border-y border-neutral-200 bg-neutral-50/30">
               <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
               <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-              
+
               {/* Infinite Marquee Strip */}
               <div className="animate-marquee-left flex gap-12 items-center">
                 {/* Render duplicated set of logos to allow perfect loop without gaps */}
                 {Array(48).fill(null).map((_, idx) => (
                   <div
                     key={`partner-logo-${idx}`}
-                    className="flex items-center gap-2.5 text-neutral-500 hover:text-[#EA8A22] transition-colors duration-300 cursor-pointer group shrink-0"
+                    className="flex items-center gap-2.5 text-neutral-500 hover:text-primary transition-colors duration-300 cursor-pointer group shrink-0"
                   >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 text-neutral-400 group-hover:text-[#EA8A22] transition-colors">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 text-neutral-400 group-hover:text-primary transition-colors">
                       <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5" />
                     </svg>
                     <span className="font-mono text-xs font-bold tracking-widest uppercase">Logo</span>
@@ -1236,16 +1236,16 @@ export function Home() {
             <div className="relative w-full overflow-hidden py-4 border-y border-neutral-200 bg-neutral-50/30">
               <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
               <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-              
+
               {/* Infinite Marquee Strip */}
               <div className="animate-marquee-right flex gap-12 items-center">
                 {/* Render duplicated set of logos to allow perfect loop without gaps */}
                 {Array(48).fill(null).map((_, idx) => (
                   <div
                     key={`client-logo-${idx}`}
-                    className="flex items-center gap-2.5 text-neutral-500 hover:text-[#EA8A22] transition-colors duration-300 cursor-pointer group shrink-0"
+                    className="flex items-center gap-2.5 text-neutral-500 hover:text-primary transition-colors duration-300 cursor-pointer group shrink-0"
                   >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 text-neutral-400 group-hover:text-[#EA8A22] transition-colors">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 text-neutral-400 group-hover:text-primary transition-colors">
                       <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5" />
                     </svg>
                     <span className="font-mono text-xs font-bold tracking-widest uppercase">Logo</span>
@@ -1258,8 +1258,8 @@ export function Home() {
       </section>
 
       {/* 6. Featured Projects (Portfolio Section) */}
-      <section 
-        id="projects" 
+      <section
+        id="projects"
         className="bg-white relative z-10 transition-all duration-200 py-12 md:py-20 lg:py-24"
       >
         {/* Floating 3D Octahedron */}
@@ -1285,7 +1285,7 @@ export function Home() {
           </svg>
         </div>
 
-        <div className="absolute right-6 -bottom-32 w-96 h-96 opacity-[0.06] pointer-events-none hidden xl:block select-none text-[#EA8A22] z-0">
+        <div className="absolute right-6 -bottom-32 w-96 h-96 opacity-[0.06] pointer-events-none hidden xl:block select-none text-primary z-0">
           <svg viewBox="0 0 100 100" className="w-full h-full">
             <rect x="10" y="10" width="80" height="80" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" />
             <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" strokeWidth="0.25" />
@@ -1294,15 +1294,15 @@ export function Home() {
             <text x="15" y="22" className="text-[4px] font-mono fill-current">GRID_REF: C-6</text>
           </svg>
         </div>
-        
-        <div 
+
+        <div
           className="max-w-[1400px] mx-auto transition-all duration-200 relative z-10"
           style={{
             paddingLeft: `${outerPaddingX}px`,
             paddingRight: `${outerPaddingX}px`
           }}
         >
-          
+
           <div className="flex flex-col items-start justify-start mb-16 gap-6">
             <div className="space-y-2">
               <span className="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
@@ -1323,12 +1323,12 @@ export function Home() {
                   const slug = proj.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
                   navigate(`/projects/${slug}`);
                 }}
-                className="bg-white border border-neutral-200 rounded-3xl overflow-hidden group hover:border-[#EA8A22]/40 hover:shadow-2xl hover:shadow-[#EA8A22]/5 transition-all duration-300 flex flex-col cursor-pointer"
+                className="bg-white border border-neutral-200 rounded-3xl overflow-hidden group hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 flex flex-col cursor-pointer"
               >
                 {/* Project Image Panel with Zoom */}
                 <div className="h-64 overflow-hidden relative">
                   <div className="absolute inset-0 bg-neutral-950/10 group-hover:bg-transparent transition-colors duration-300 z-10" />
-                  
+
                   {/* Category Badge overlay */}
                   <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-neutral-200/80 shadow-sm">
                     <span className="text-[10px] font-mono text-[#142b52] font-bold uppercase">
@@ -1346,7 +1346,7 @@ export function Home() {
                 {/* Project details area */}
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div className="space-y-2">
-                    <h3 className="text-lg font-bold text-neutral-900 transition-colors uppercase tracking-tight group-hover:text-[#EA8A22]">
+                    <h3 className="text-lg font-bold text-neutral-900 transition-colors uppercase tracking-tight group-hover:text-primary">
                       {proj.name}
                     </h3>
 
@@ -1361,9 +1361,9 @@ export function Home() {
 
           {/* Explore All Projects CTA */}
           <div className="mt-16 flex justify-center">
-            <Link 
+            <Link
               to="/projects"
-              className="group flex items-center justify-center gap-2 px-8 py-4 border border-[#EA8A22] text-[#EA8A22] font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-[#EA8A22] hover:text-white hover:shadow-lg hover:shadow-[#EA8A22]/10 transition-all duration-300"
+              className="group flex items-center justify-center gap-2 px-8 py-4 border border-primary text-primary font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
             >
               <span>Explore All Projects</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -1374,16 +1374,16 @@ export function Home() {
       </section>
 
       {/* 7. Client Success Stories Section (Premium light redesign) */}
-      <section 
-        id="testimonials" 
+      <section
+        id="testimonials"
         className="relative bg-[#fdfdfd] overflow-hidden z-10 transition-all duration-200 py-6 md:py-10 lg:py-12"
       >
         {/* Premium Background Elements */}
         <div className="absolute inset-0 bg-blueprint opacity-[0.03] pointer-events-none" />
         <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#142b52] rounded-full opacity-[0.04] blur-[150px] pointer-events-none" />
-        <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-[#EA8A22] rounded-full opacity-[0.03] blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-primary rounded-full opacity-[0.03] blur-[120px] pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#ffffff] via-transparent to-[#fdfdfd] pointer-events-none" />
-        
+
         {/* Floating geometric shapes (3D animated) */}
         <div className="absolute top-[10%] left-[5%] w-64 h-64 opacity-[0.15] pointer-events-none hidden xl:block z-0">
           <FloatingWireframe shape="octahedron" className="w-full h-full" color="#142b52" />
@@ -1391,20 +1391,20 @@ export function Home() {
         <div className="absolute bottom-[10%] right-[5%] w-72 h-72 opacity-[0.15] pointer-events-none hidden xl:block z-0">
           <FloatingWireframe shape="icosahedron" className="w-full h-full" color="#EA8A22" />
         </div>
-        
+
         {/* Floating geometric shapes (subtle) */}
-        <motion.div 
+        <motion.div
           className="absolute top-[20%] left-[10%] w-32 h-32 border border-[#142b52]/10 rounded-full pointer-events-none"
           animate={{ y: [0, 20, 0], rotate: [0, 45, 0] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div 
-          className="absolute bottom-[20%] right-[10%] w-48 h-48 border border-[#EA8A22]/10 rounded-full pointer-events-none"
+        <motion.div
+          className="absolute bottom-[20%] right-[10%] w-48 h-48 border border-primary/10 rounded-full pointer-events-none"
           animate={{ y: [0, -30, 0], rotate: [0, -45, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        <div 
+        <div
           className="max-w-[1400px] mx-auto relative z-10 transition-all duration-200"
           style={{
             paddingLeft: `${outerPaddingX}px`,
@@ -1413,7 +1413,7 @@ export function Home() {
         >
           {/* Header */}
           <div className="text-center space-y-2 mb-8 md:mb-12">
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -1421,7 +1421,7 @@ export function Home() {
             >
               Client Success Stories
             </motion.span>
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -1434,10 +1434,10 @@ export function Home() {
 
           {/* Premium Testimonial Card */}
           <div className="max-w-[800px] mx-auto relative">
-            
+
             {/* Navigation Buttons (Floating outside) */}
             <div className="absolute top-1/2 -left-4 md:-left-12 -translate-y-1/2 z-20 hidden md:block">
-              <button 
+              <button
                 onClick={() => setTestimonialIndex(prev => prev === 0 ? testimonials.length - 1 : prev - 1)}
                 className="w-14 h-14 rounded-full bg-white backdrop-blur-md border border-neutral-200 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-[#142b52] hover:border-[#142b52] transition-all duration-300 shadow-[0_10px_20px_rgba(20,43,82,0.05)] hover:shadow-[0_10px_20px_rgba(20,43,82,0.2)] group"
               >
@@ -1445,7 +1445,7 @@ export function Home() {
               </button>
             </div>
             <div className="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 z-20 hidden md:block">
-              <button 
+              <button
                 onClick={() => setTestimonialIndex(prev => prev === testimonials.length - 1 ? 0 : prev + 1)}
                 className="w-14 h-14 rounded-full bg-white backdrop-blur-md border border-neutral-200 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-[#142b52] hover:border-[#142b52] transition-all duration-300 shadow-[0_10px_20px_rgba(20,43,82,0.05)] hover:shadow-[0_10px_20px_rgba(20,43,82,0.2)] group"
               >
@@ -1455,7 +1455,7 @@ export function Home() {
 
             {/* Glassmorphism Panel */}
             <div className="bg-white/80 backdrop-blur-2xl border border-neutral-200/60 p-5 md:p-8 lg:p-10 rounded-3xl relative shadow-[0_20px_40px_-15px_rgba(20,43,82,0.08)] hover:shadow-[0_30px_60px_-15px_rgba(20,43,82,0.15)] hover:border-[#142b52]/20 transition-all duration-500 group overflow-hidden">
-              
+
               {/* Glass reflection gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
@@ -1476,12 +1476,12 @@ export function Home() {
                     <div className="text-center">
                       <p className="text-[15px] md:text-[17px] lg:text-[19px] text-neutral-800 font-normal leading-[1.65] tracking-tight">
                         {testimonials[testimonialIndex].quote.split(' ').map((word, i) => (
-                          <motion.span 
+                          <motion.span
                             key={i}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.4, delay: i * 0.03 }}
-                            className={['unprecedented', 'ingenuity', 'unparalleled'].some(k => word.toLowerCase().includes(k)) ? "text-[#EA8A22] font-medium" : ""}
+                            className={['unprecedented', 'ingenuity', 'unparalleled'].some(k => word.toLowerCase().includes(k)) ? "text-primary font-medium" : ""}
                           >
                             {word}{' '}
                           </motion.span>
@@ -1498,7 +1498,7 @@ export function Home() {
                           </span>
                         </div>
                       </div>
-                      
+
                       <div className="text-center md:text-left">
                         <div className="flex items-center justify-center md:justify-start gap-2 mb-1">
                           <h4 className="text-sm md:text-base font-semibold text-neutral-900 tracking-tight font-display">
@@ -1523,7 +1523,7 @@ export function Home() {
                       aria-label={`Go to slide ${idx + 1}`}
                     >
                       {testimonialIndex === idx && (
-                        <motion.div 
+                        <motion.div
                           layoutId="activeIndicator"
                           className="absolute inset-0 bg-[#142b52]"
                           initial={{ opacity: 0 }}
@@ -1537,13 +1537,13 @@ export function Home() {
 
                 {/* Mobile Navigation Arrows */}
                 <div className="flex justify-center gap-4 mt-8 md:hidden relative z-10">
-                  <button 
+                  <button
                     onClick={() => setTestimonialIndex(prev => prev === 0 ? testimonials.length - 1 : prev - 1)}
                     className="w-12 h-12 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-neutral-500 hover:text-white hover:bg-[#142b52] hover:border-[#142b52] transition-colors focus:outline-none focus:ring-2 focus:ring-[#142b52]"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
-                  <button 
+                  <button
                     onClick={() => setTestimonialIndex(prev => prev === testimonials.length - 1 ? 0 : prev + 1)}
                     className="w-12 h-12 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-neutral-500 hover:text-white hover:bg-[#142b52] hover:border-[#142b52] transition-colors focus:outline-none focus:ring-2 focus:ring-[#142b52]"
                   >
@@ -1557,13 +1557,13 @@ export function Home() {
         </div>
       </section>
 
-{/* 9. Latest Blogs */}
-      <section 
-        id="blogs" 
+      {/* 9. Latest Blogs */}
+      <section
+        id="blogs"
         className="bg-white relative overflow-hidden z-10 transition-all duration-200 py-12 md:py-20 lg:py-24"
       >
         {/* Decorative structural dimension bar and annotations in margin/whitespace */}
-        <div className="absolute right-8 top-12 w-40 h-16 opacity-[0.04] pointer-events-none hidden lg:block select-none text-[#EA8A22]">
+        <div className="absolute right-8 top-12 w-40 h-16 opacity-[0.04] pointer-events-none hidden lg:block select-none text-primary">
           <svg viewBox="0 0 100 40" className="w-full h-full">
             <line x1="10" y1="20" x2="90" y2="20" stroke="currentColor" strokeWidth="0.5" />
             <line x1="10" y1="12" x2="10" y2="28" stroke="currentColor" strokeWidth="0.5" />
@@ -1582,15 +1582,15 @@ export function Home() {
             <text x="15" y="15" className="text-[4px] font-mono fill-current">STRUCT_C-1</text>
           </svg>
         </div>
-        
-        <div 
+
+        <div
           className="max-w-[1400px] mx-auto transition-all duration-200"
           style={{
             paddingLeft: `${outerPaddingX}px`,
             paddingRight: `${outerPaddingX}px`
           }}
         >
-          
+
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-2">
             <span className="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
               INDUSTRY INTEL
@@ -1605,7 +1605,7 @@ export function Home() {
               <Link
                 key={index}
                 to={`/blogs/${post.slug}`}
-                className="bg-white border border-neutral-200 rounded-3xl overflow-hidden group hover:border-[#EA8A22]/40 hover:shadow-2xl hover:shadow-[#EA8A22]/5 transition-all duration-300 flex flex-col h-full block"
+                className="bg-white border border-neutral-200 rounded-3xl overflow-hidden group hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 flex flex-col h-full block"
               >
                 {/* Image zoom on hover */}
                 <div className="h-48 overflow-hidden relative block shrink-0">
@@ -1621,7 +1621,7 @@ export function Home() {
                 </div>
 
                 <div className="p-6 space-y-3 flex-1 flex flex-col justify-start">
-                  <h3 className="text-lg font-bold text-neutral-900 line-clamp-2 leading-snug group-hover:text-[#EA8A22] transition-colors">
+                  <h3 className="text-lg font-bold text-neutral-900 line-clamp-2 leading-snug group-hover:text-primary transition-colors">
                     {post.title}
                   </h3>
                   <p className="text-xs text-neutral-600 line-clamp-1 leading-relaxed font-light">
@@ -1634,9 +1634,9 @@ export function Home() {
 
           {/* Explore All Insights CTA */}
           <div className="mt-16 flex justify-center">
-            <Link 
+            <Link
               to="/blogs"
-              className="group flex items-center justify-center gap-2 px-8 py-4 border border-[#EA8A22] text-[#EA8A22] font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-[#EA8A22] hover:text-white hover:shadow-lg hover:shadow-[#EA8A22]/10 transition-all duration-300"
+              className="group flex items-center justify-center gap-2 px-8 py-4 border border-primary text-primary font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
             >
               <span>Explore All Insights</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -1647,10 +1647,10 @@ export function Home() {
       </section>
 
       {/* 10. Company Profile Download Banner */}
-      <section 
+      <section
         className="relative bg-neutral-50 overflow-hidden z-10 transition-all duration-200 py-12 md:py-20 lg:py-24"
       >
-        <div 
+        <div
           className="max-w-[1400px] mx-auto relative z-10 transition-all duration-200"
           style={{
             paddingLeft: `${outerPaddingX}px`,
@@ -1660,9 +1660,9 @@ export function Home() {
           <div className="bg-[#0a0f1d] border border-neutral-800/80 p-10 md:p-16 rounded-[32px] shadow-2xl relative overflow-hidden group">
             {/* Premium Construction & Engineering Background Image */}
             <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80" 
-                alt="Construction and Engineering" 
+              <img
+                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80"
+                alt="Construction and Engineering"
                 className="w-full h-full object-cover opacity-[0.28] mix-blend-luminosity scale-[1.03] group-hover:scale-100 transition-transform duration-[1200ms] ease-out"
                 referrerPolicy="no-referrer"
               />
@@ -1670,7 +1670,7 @@ export function Home() {
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0f1d]/30" />
             </div>
             <div className="absolute inset-0 translate-x-[-150%] skew-x-[-25deg] w-1/2 bg-gradient-to-r from-transparent via-white/5 to-transparent group-hover:animate-[sweep_2s_ease-in-out_infinite]" />
-            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-[#EA8A22]/15 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
             {/* Redesigned Architectural & Engineering Blueprint Background */}
             <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[50%] pointer-events-none select-none overflow-hidden opacity-[0.22] lg:opacity-[0.28]">
               {/* Subtle pulsing/drawing animation styles */}
@@ -1730,22 +1730,22 @@ export function Home() {
                     <line x1="50" y1="140" x2="650" y2="140" strokeWidth="1.5" />
                     <line x1="50" y1="150" x2="650" y2="150" strokeWidth="0.5" strokeDasharray="2,2" />
                     <line x1="50" y1="130" x2="650" y2="130" strokeWidth="0.75" />
-                    
+
                     <line x1="50" y1="380" x2="650" y2="380" strokeWidth="1.5" />
                     <line x1="50" y1="390" x2="650" y2="390" strokeWidth="0.5" strokeDasharray="2,2" />
-                    
+
                     {/* Vertical Truss Columns */}
                     <rect x="180" y="80" width="30" height="440" strokeDasharray="4,4" strokeWidth="0.75" />
                     <rect x="480" y="80" width="30" height="440" strokeDasharray="4,4" strokeWidth="0.75" />
-                    
+
                     {/* Cross Structural Steel Framing (X-Bracing) */}
                     <line x1="180" y1="140" x2="480" y2="380" strokeWidth="1.2" />
                     <line x1="480" y1="140" x2="180" y2="380" strokeWidth="1.2" />
-                    
+
                     {/* Minor Truss lines */}
                     <line x1="180" y1="260" x2="480" y2="260" strokeWidth="0.75" strokeDasharray="4,2" />
                     <line x1="330" y1="140" x2="330" y2="380" strokeWidth="0.75" strokeDasharray="8,4" />
-                    
+
                     {/* Isometric Building Structure Outlines */}
                     <path d="M 400,430 L 520,380 L 640,430 L 520,480 Z" strokeWidth="1" />
                     <path d="M 400,310 L 520,260 L 640,310 L 520,360 Z" strokeWidth="1" />
@@ -1758,11 +1758,11 @@ export function Home() {
                   <g className="bp-fade-slow" stroke="white" strokeWidth="0.75" opacity="0.7">
                     {/* Interior Wall partitions */}
                     <path d="M 80,180 L 220,180 L 220,290 L 360,290 L 360,420" />
-                    
+
                     {/* Door Arc and Swing Indicator */}
                     <path d="M 220,250 A 40,40 0 0,1 260,210" strokeDasharray="3,3" />
                     <line x1="220" y1="250" x2="220" y2="210" />
-                    
+
                     {/* Foundation / Pillar Blocks */}
                     <rect x="75" y="175" width="10" height="10" fill="white" fillOpacity="0.25" />
                     <rect x="215" y="175" width="10" height="10" fill="white" fillOpacity="0.25" />
@@ -1776,12 +1776,12 @@ export function Home() {
                     <line x1="180" y1="60" x2="480" y2="60" />
                     <line x1="180" y1="54" x2="180" y2="66" />
                     <line x1="480" y1="54" x2="480" y2="66" />
-                    
+
                     {/* Vertical dimension bounds */}
                     <line x1="120" y1="140" x2="120" y2="380" />
                     <line x1="114" y1="140" x2="126" y2="140" />
                     <line x1="114" y1="380" x2="126" y2="380" />
-                    
+
                     {/* Annotation text markings */}
                     <text x="330" y="50" fill="#EA8A22" fontSize="10" fontFamily="monospace" textAnchor="middle" letterSpacing="1" stroke="none">
                       L = 12.00 m
@@ -1789,7 +1789,7 @@ export function Home() {
                     <text x="95" y="265" fill="#EA8A22" fontSize="10" fontFamily="monospace" textAnchor="middle" letterSpacing="1" stroke="none" transform="rotate(-90 95 265)">
                       H = 6.40 m
                     </text>
-                    
+
                     {/* Section Cut Line Indicator */}
                     <path d="M 60,200 L 640,200" strokeDasharray="14,4,2,4" strokeWidth="1" />
                     <path d="M 60,192 L 60,208 M 640,192 L 640,208" strokeWidth="1.5" />
@@ -1813,25 +1813,25 @@ export function Home() {
                 </svg>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
               {/* Left text column */}
               <div className="lg:col-span-7">
-                <span className="text-[#EA8A22] font-mono text-xs tracking-[0.25em] font-bold uppercase block mb-3">READY TO START?</span>
+                <span className="text-primary font-mono text-xs tracking-[0.25em] font-bold uppercase block mb-3">READY TO START?</span>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase leading-[1.1]">
                   Let's Build Your <br />Next Project Together
                 </h2>
               </div>
-              
+
               {/* Right buttons column */}
               <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-4">
                 <button
                   onClick={() => setQuoteModalOpen(true)}
-                  className="w-full px-8 py-5 bg-[#EA8A22] hover:bg-[#EA8A22] text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-[#EA8A22]/20 hover:shadow-[#EA8A22]/40 flex items-center justify-center gap-2 font-mono group cursor-pointer"
+                  className="w-full px-8 py-5 bg-primary hover:bg-primary text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-primary/40 flex items-center justify-center gap-2 font-mono group cursor-pointer"
                 >
                   Request a Quote <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
-                
+
                 <button
                   onClick={handleDownloadProfile}
                   disabled={downloadingProfile}
@@ -1840,10 +1840,10 @@ export function Home() {
                   {downloadingProfile ? (
                     <span className="animate-pulse">Preparing file...</span>
                   ) : downloadSuccess ? (
-                    <span className="text-[#EA8A22]">Profile Downloaded ✔</span>
+                    <span className="text-primary">Profile Downloaded ✔</span>
                   ) : (
                     <>
-                      Download Company Profile 
+                      Download Company Profile
                       <FileDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
                     </>
                   )}
@@ -1855,15 +1855,15 @@ export function Home() {
       </section>
 
       {/* 11. Contact Us Section */}
-      <section 
-        id="contact" 
+      <section
+        id="contact"
         className="bg-white relative overflow-hidden z-10 transition-all duration-200 py-16 md:py-24"
       >
         {/* Subtle engineering line designs in background */}
         <div className="absolute inset-0 opacity-[0.012] pointer-events-none select-none bg-[radial-gradient(#142b52_1px,transparent_1px)] [background-size:20px_20px]" />
-        
+
         <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-          
+
           {/* Main Section Header */}
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
             <span className="text-[#142b52] font-mono text-xs uppercase font-extrabold tracking-[0.2em] block">
@@ -1876,14 +1876,14 @@ export function Home() {
 
           {/* Dual-Column Section Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
-            
+
             {/* Left Column: Contact Form (55% visual equivalent width) */}
             <div className="lg:col-span-7 bg-white rounded-3xl p-8 md:p-10 border border-neutral-200/80 shadow-md relative overflow-hidden h-full">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#EA8A22]/5 rounded-bl-[100px] pointer-events-none" />
-              
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[100px] pointer-events-none" />
+
               <form onSubmit={handleContactSubmit} className="space-y-7 relative z-10">
                 <div className="space-y-1.5">
-                  <span className="text-[#EA8A22] font-mono text-xs uppercase font-extrabold tracking-widest block">
+                  <span className="text-primary font-mono text-xs uppercase font-extrabold tracking-widest block">
                     {selectedBranch === 'SA' && 'RIYADH OFFICE ROUTING'}
                     {selectedBranch === 'EG' && 'CAIRO OFFICE ROUTING'}
                     {selectedBranch === 'LY' && 'TRIPOLI OFFICE ROUTING'}
@@ -1906,7 +1906,7 @@ export function Home() {
                       placeholder="e.g. Khalid Al-Faisal"
                       value={contactName}
                       onChange={(e) => setContactName(e.target.value)}
-                      className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-[#EA8A22] focus:bg-white text-neutral-800 placeholder-neutral-400 p-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-[#EA8A22]/15"
+                      className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-800 placeholder-neutral-400 p-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-primary/15"
                     />
                   </div>
 
@@ -1920,7 +1920,7 @@ export function Home() {
                       type="email"
                       required
                       placeholder="e.g. khalid@example.com"
-                      className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-[#EA8A22] focus:bg-white text-neutral-800 placeholder-neutral-400 p-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-[#EA8A22]/15"
+                      className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-800 placeholder-neutral-400 p-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-primary/15"
                     />
                   </div>
                 </div>
@@ -1931,7 +1931,7 @@ export function Home() {
                     <label htmlFor="contact-phone" className="text-[10px] font-mono uppercase tracking-widest text-neutral-600 font-bold block">
                       Phone Number
                     </label>
-                    <div className="relative flex items-center bg-neutral-50/50 border border-neutral-200/80 focus-within:border-[#EA8A22] focus-within:bg-white rounded-xl transition-all w-full focus-within:ring-2 focus-within:ring-[#EA8A22]/15">
+                    <div className="relative flex items-center bg-neutral-50/50 border border-neutral-200/80 focus-within:border-primary focus-within:bg-white rounded-xl transition-all w-full focus-within:ring-2 focus-within:ring-primary/15">
                       <div className="flex items-center gap-1 pl-3.5 pr-2.5 border-r border-neutral-200 select-none shrink-0">
                         <CountryFlag countryCode={contactPhoneCountry} />
                         <select
@@ -1965,7 +1965,7 @@ export function Home() {
                     <div className="relative">
                       <select
                         id="contact-segment"
-                        className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-[#EA8A22] focus:bg-white text-neutral-700 pl-3.5 pr-10 py-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-[#EA8A22]/15 appearance-none"
+                        className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-700 pl-3.5 pr-10 py-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-primary/15 appearance-none"
                       >
                         <option>Commercial Buildings & Offices</option>
                         <option>Infrastructure & Roads</option>
@@ -1989,7 +1989,7 @@ export function Home() {
                     rows={4}
                     required
                     placeholder="Tell us a bit about your project or what you need..."
-                    className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-[#EA8A22] focus:bg-white text-neutral-800 placeholder-neutral-400 p-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-[#EA8A22]/15 resize-none"
+                    className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-800 placeholder-neutral-400 p-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-primary/15 resize-none"
                   />
                 </div>
 
@@ -1997,7 +1997,7 @@ export function Home() {
                 <button
                   type="submit"
                   disabled={contactSubmitting}
-                  className="w-full py-4 bg-[#EA8A22] hover:bg-[#EA8A22]/90 disabled:bg-neutral-200 text-white font-mono font-bold text-xs uppercase tracking-widest rounded-full transition-all duration-300 shadow-lg shadow-[#EA8A22]/10 hover:shadow-[#EA8A22]/20 cursor-pointer flex items-center justify-center gap-2"
+                  className="w-full py-4 bg-primary hover:bg-primary/90 disabled:bg-neutral-200 text-white font-mono font-bold text-xs uppercase tracking-widest rounded-full transition-all duration-300 shadow-lg shadow-primary/10 hover:shadow-primary/20 cursor-pointer flex items-center justify-center gap-2"
                 >
                   {contactSubmitting ? (
                     <span className="flex items-center gap-2">
@@ -2016,10 +2016,10 @@ export function Home() {
             {/* Right Column: Unified Regional Office Hub (45% visual equivalent width) */}
             <div className="lg:col-span-5 bg-neutral-50/40 rounded-3xl p-8 md:p-10 border border-neutral-200/80 shadow-sm flex flex-col justify-between h-full">
               <div className="space-y-6">
-                
+
                 {/* Discoverability Helper Text */}
                 <div className="flex items-center gap-2 text-xs font-mono font-medium text-neutral-500 tracking-wide select-none">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#EA8A22]/80 animate-pulse" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse" />
                   <span>Select a regional office to view its contact details.</span>
                 </div>
 
@@ -2027,20 +2027,20 @@ export function Home() {
                 <div className="relative bg-[#0d121f] border border-neutral-800 rounded-2xl h-[100px] overflow-hidden select-none">
                   {/* Grid overlay */}
                   <div className="absolute inset-0 opacity-[0.12] pointer-events-none bg-[linear-gradient(to_right,#3b82f6_1px,transparent_1px),linear-gradient(to_bottom,#3b82f6_1px,transparent_1px)] [background-size:12px_12px]" />
-                  
+
                   {/* Map labels */}
                   <div className="absolute top-2.5 left-3.5 font-mono text-[8px] text-neutral-500 tracking-wider">
                     REGIONAL CONNECTIONS // MAABANY_NET
                   </div>
-                  
-                  <div className="absolute bottom-2.5 right-3.5 font-mono text-[8px] text-[#EA8A22]/80 tracking-widest animate-pulse font-bold">
+
+                  <div className="absolute bottom-2.5 right-3.5 font-mono text-[8px] text-primary/80 tracking-widest animate-pulse font-bold">
                     • {selectedBranch} ACTIVE_NODE
                   </div>
 
                   {/* Tooltip */}
                   <AnimatePresence>
                     {hoveredBranch && (
-                      <motion.div 
+                      <motion.div
                         initial={{ opacity: 0, scale: 0.9, y: 4 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 4 }}
@@ -2070,10 +2070,10 @@ export function Home() {
 
                     {/* Animated connecting lines representing data flow */}
                     {/* LY -> EG connection */}
-                    <motion.path 
-                      d="M 60 65 Q 110 50 160 58" 
-                      stroke="#EA8A22" 
-                      strokeWidth={selectedBranch === 'EG' || selectedBranch === 'LY' ? "2" : "1.2"} 
+                    <motion.path
+                      d="M 60 65 Q 110 50 160 58"
+                      stroke="#EA8A22"
+                      strokeWidth={selectedBranch === 'EG' || selectedBranch === 'LY' ? "2" : "1.2"}
                       strokeDasharray="4 4"
                       animate={selectedBranch === 'EG' || selectedBranch === 'LY' ? { strokeDashoffset: [0, -20] } : {}}
                       transition={{ repeat: Infinity, ease: "linear", duration: 1.5 }}
@@ -2082,10 +2082,10 @@ export function Home() {
                     />
 
                     {/* EG -> SA connection */}
-                    <motion.path 
-                      d="M 160 58 Q 210 45 260 55" 
-                      stroke="#EA8A22" 
-                      strokeWidth={selectedBranch === 'SA' || selectedBranch === 'EG' ? "2" : "1.2"} 
+                    <motion.path
+                      d="M 160 58 Q 210 45 260 55"
+                      stroke="#EA8A22"
+                      strokeWidth={selectedBranch === 'SA' || selectedBranch === 'EG' ? "2" : "1.2"}
                       strokeDasharray="4 4"
                       animate={selectedBranch === 'SA' || selectedBranch === 'EG' ? { strokeDashoffset: [0, -20] } : {}}
                       transition={{ repeat: Infinity, ease: "linear", duration: 1.5 }}
@@ -2102,9 +2102,9 @@ export function Home() {
                       const isActive = selectedBranch === node.code;
                       const isHovered = hoveredBranch === node.code;
                       return (
-                        <motion.g 
-                          key={`map-strip-node-${node.code}`} 
-                          className="cursor-pointer group" 
+                        <motion.g
+                          key={`map-strip-node-${node.code}`}
+                          className="cursor-pointer group"
                           onClick={() => handleSelectBranch(node.code)}
                           onMouseEnter={() => setHoveredBranch(node.code)}
                           onMouseLeave={() => setHoveredBranch(null)}
@@ -2117,12 +2117,12 @@ export function Home() {
                               {/* Glowing radial gradient circle */}
                               <circle cx={node.coordinates.x} cy={node.coordinates.y} r="15" fill="url(#orangeGlowGradient)" />
                               {/* Pulse ring */}
-                              <motion.circle 
-                                cx={node.coordinates.x} 
-                                cy={node.coordinates.y} 
-                                r="12" 
-                                stroke="#EA8A22" 
-                                strokeWidth="1" 
+                              <motion.circle
+                                cx={node.coordinates.x}
+                                cy={node.coordinates.y}
+                                r="12"
+                                stroke="#EA8A22"
+                                strokeWidth="1"
                                 fill="none"
                                 initial={{ scale: 0.8, opacity: 0.9 }}
                                 animate={{ scale: 1.4, opacity: 0 }}
@@ -2134,31 +2134,29 @@ export function Home() {
 
                           {/* Hover Glow Underlay for inactive pins */}
                           {!isActive && isHovered && (
-                            <circle cx={node.coordinates.x} cy={node.coordinates.y} r="10" className="fill-[#EA8A22]/10 stroke-[#EA8A22]/30 stroke-[1] transition-all duration-200" />
+                            <circle cx={node.coordinates.x} cy={node.coordinates.y} r="10" className="fill-primary/10 stroke-primary/30 stroke-[1] transition-all duration-200" />
                           )}
 
                           {/* Pin base circle */}
-                          <circle 
-                            cx={node.coordinates.x} 
-                            cy={node.coordinates.y} 
-                            r={isActive ? "4.5" : "3"} 
-                            className={`transition-all duration-300 ${
-                              isActive 
-                                ? 'fill-[#EA8A22]' 
-                                : isHovered ? 'fill-[#EA8A22]/90' : 'fill-neutral-500 opacity-60'
-                            }`} 
+                          <circle
+                            cx={node.coordinates.x}
+                            cy={node.coordinates.y}
+                            r={isActive ? "4.5" : "3"}
+                            className={`transition-all duration-300 ${isActive
+                                ? 'fill-primary'
+                                : isHovered ? 'fill-primary/90' : 'fill-neutral-500 opacity-60'
+                              }`}
                           />
                           <circle cx={node.coordinates.x} cy={node.coordinates.y} r="1.5" fill="white" />
-                          
+
                           {/* Label Text */}
-                          <text 
-                            x={node.coordinates.x} 
-                            y={node.coordinates.y - 12} 
-                            className={`font-mono text-[8.5px] font-bold transition-all duration-300 select-none ${
-                              isActive 
-                                ? 'fill-[#EA8A22] font-black' 
+                          <text
+                            x={node.coordinates.x}
+                            y={node.coordinates.y - 12}
+                            className={`font-mono text-[8.5px] font-bold transition-all duration-300 select-none ${isActive
+                                ? 'fill-primary font-black'
                                 : isHovered ? 'fill-neutral-200' : 'fill-neutral-500 opacity-60'
-                            }`}
+                              }`}
                             textAnchor="middle"
                           >
                             {node.code}
@@ -2229,7 +2227,7 @@ export function Home() {
                           <div className="space-y-5">
                             {/* Address */}
                             <div className="flex gap-3.5 items-start">
-                              <div className="p-1.5 text-[#EA8A22] shrink-0 mt-0.5">
+                              <div className="p-1.5 text-primary shrink-0 mt-0.5">
                                 <MapPin className="w-4 h-4 stroke-[2.5]" />
                               </div>
                               <div className="space-y-0.5">
@@ -2240,14 +2238,14 @@ export function Home() {
 
                             {/* Direct Line */}
                             <div className="flex gap-3.5 items-start">
-                              <div className="p-1.5 text-[#EA8A22] shrink-0 mt-0.5">
+                              <div className="p-1.5 text-primary shrink-0 mt-0.5">
                                 <Phone className="w-4 h-4 stroke-[2.5]" />
                               </div>
                               <div className="space-y-0.5">
                                 <p className="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">TELEPHONE</p>
-                                <a 
-                                  href={branch.phoneRaw} 
-                                  className="text-neutral-800 text-sm font-mono font-bold block hover:text-[#EA8A22] transition-colors focus:outline-none focus:underline"
+                                <a
+                                  href={branch.phoneRaw}
+                                  className="text-neutral-800 text-sm font-mono font-bold block hover:text-primary transition-colors focus:outline-none focus:underline"
                                 >
                                   {branch.phone}
                                 </a>
@@ -2256,14 +2254,14 @@ export function Home() {
 
                             {/* Email Support (Centralized channel highlighted clearly inside the container) */}
                             <div className="flex gap-3.5 items-start">
-                              <div className="p-1.5 text-[#EA8A22] shrink-0 mt-0.5">
+                              <div className="p-1.5 text-primary shrink-0 mt-0.5">
                                 <Mail className="w-4 h-4 stroke-[2.5]" />
                               </div>
                               <div className="space-y-0.5">
                                 <p className="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">GENERAL INQUIRIES</p>
-                                <a 
-                                  href="mailto:info@maabany.com" 
-                                  className="text-neutral-800 text-sm font-bold block hover:text-[#EA8A22] transition-colors focus:outline-none focus:underline"
+                                <a
+                                  href="mailto:info@maabany.com"
+                                  className="text-neutral-800 text-sm font-bold block hover:text-primary transition-colors focus:outline-none focus:underline"
                                 >
                                   info@maabany.com
                                 </a>
@@ -2272,7 +2270,7 @@ export function Home() {
 
                             {/* Working Hours */}
                             <div className="flex gap-3.5 items-start">
-                              <div className="p-1.5 text-[#EA8A22] shrink-0 mt-0.5">
+                              <div className="p-1.5 text-primary shrink-0 mt-0.5">
                                 <Clock className="w-4 h-4 stroke-[2.5]" />
                               </div>
                               <div className="space-y-0.5">

@@ -39,8 +39,8 @@ export class ButtonComponent {
     const base = 'group inline-flex items-center justify-center gap-2 rounded-full font-mono font-bold uppercase transition-all duration-300 transform active:scale-95 shrink-0 whitespace-nowrap cursor-pointer select-none';
 
     const variants: Record<ButtonVariant, string> = {
-      primary: 'bg-[#EA8A22] hover:bg-[#EA8A22]/90 text-white shadow-lg shadow-[#EA8A22]/20 hover:shadow-[#EA8A22]/30 hover:-translate-y-0.5',
-      outline: 'border border-[#EA8A22] text-[#EA8A22] hover:bg-[#EA8A22] hover:text-white shadow-sm hover:shadow-lg shadow-[#EA8A22]/20',
+      primary: 'bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:-translate-y-0.5',
+      outline: 'border border-primary text-primary hover:bg-primary hover:text-white shadow-sm hover:shadow-lg shadow-primary/20',
     };
 
     const sizes: Record<ButtonSize, string> = {

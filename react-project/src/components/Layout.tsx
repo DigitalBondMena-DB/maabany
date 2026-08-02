@@ -83,7 +83,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
     const handleScroll = () => {
       setIsScrolled(scroller.scrollTop > 50);
-      
+
       // Calculate scroll progress percentage
       const scrollTop = scroller.scrollTop;
       const scrollHeight = scroller.scrollHeight;
@@ -91,10 +91,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
       const maxScroll = scrollHeight - clientHeight;
       const progress = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
       setScrollProgress(progress);
-      
+
       const sections = ['home', 'about', 'solutions', 'projects', 'testimonials', 'blogs', 'contact'];
       let currentSection = 'home';
-      
+
       for (const section of sections) {
         const el = document.getElementById(section);
         if (el) {
@@ -166,25 +166,25 @@ export function Layout({ children }: { children: React.ReactNode }) {
   }, [location.pathname, location.hash]);
 
   return (
-    <div className="min-h-screen bg-transparent text-neutral-900 font-sans selection:bg-[#EA8A22] selection:text-white overflow-hidden">
-      
+    <div className="min-h-screen bg-transparent text-neutral-900 font-sans selection:bg-primary selection:text-white overflow-hidden">
+
       {/* Premium Global Animated Background visuals & patterns */}
       <AnimatedBackground />
 
       {/* Premium Global Scroll Progress Bar */}
-      <div 
+      <div
         id="global-scroll-progress"
         className="fixed top-0 left-0 right-0 h-[3px] bg-neutral-200/10 z-[60] pointer-events-none"
       >
-        <div 
-          className="h-full bg-gradient-to-r from-[#EA8A22] via-[#EA8A22] to-amber-500 shadow-[0_1px_12px_rgba(234,138,34,0.6)] transition-all duration-75 ease-out rounded-r-full"
+        <div
+          className="h-full bg-gradient-to-r from-primary via-primary to-amber-500 shadow-[0_1px_12px_rgba(234,138,34,0.6)] transition-all duration-75 ease-out rounded-r-full"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
 
       <Header isHeroVariant={true} activeSection={activeSection} />
 
-      <div 
+      <div
         id="app-scroller"
         className="fixed inset-0 w-full min-w-full left-0 right-0 max-w-none pt-0 overflow-y-auto overflow-x-hidden transition-all duration-500"
       >

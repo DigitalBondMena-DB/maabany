@@ -3,9 +3,9 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       @for (panel of panels; track panel.titleKey) {
       <div
-        class="relative bg-white border border-neutral-200/80 p-10 rounded-[2.5rem] overflow-hidden group transition-all duration-300 hover:border-[#EA8A22] hover:-translate-y-2 hover:shadow-[0_30px_60px_-15px_rgba(234,138,34,0.15)] flex flex-col justify-between">
+        class="relative bg-white border border-neutral-200/80 p-10 rounded-[2.5rem] overflow-hidden group transition-all duration-300 hover:border-primary hover:-translate-y-2 hover:shadow-[0_30px_60px_-15px_rgba(234,138,34,0.15)] flex flex-col justify-between">
         <div
-          class="absolute -right-12 -top-12 w-36 h-36 bg-linear-to-br from-[#EA8A22]/8 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700 pointer-events-none">
+          class="absolute -right-12 -top-12 w-36 h-36 bg-linear-to-br from-primary/8 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700 pointer-events-none">
         </div>
         <div
           class="absolute -left-12 -bottom-12 w-36 h-36 bg-linear-to-tr from-[#142b52]/5 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700 pointer-events-none">
@@ -14,7 +14,7 @@
         <div class="relative z-10 flex flex-col h-full justify-between">
           <div>
             <div [innerHTML]="panel.iconSvg | safeHtml"
-              class="w-16 h-16 rounded-3xl bg-neutral-50 border border-neutral-150 text-[#EA8A22] flex items-center justify-center mb-8 transition-all duration-300 group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 shadow-sm group-hover:shadow-[#EA8A22]/20">
+              class="w-16 h-16 rounded-3xl bg-neutral-50 border border-neutral-150 text-primary flex items-center justify-center mb-8 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 shadow-sm group-hover:shadow-primary/20">
 
             </div>
 

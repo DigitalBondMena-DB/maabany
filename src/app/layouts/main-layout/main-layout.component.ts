@@ -7,7 +7,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
   selector: 'app-main-layout',
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
   template: `
-    <div class="relative min-h-screen bg-white text-neutral-900 selection:bg-[#EA8A22] selection:text-white">
+    <div class="relative min-h-screen bg-white text-neutral-900 selection:bg-primary selection:text-white">
       <!-- Header -->
       <app-header></app-header>
 

@@ -23,55 +23,21 @@ export class BlogsComponent {
   readonly currentLang = this.languageService.currentLang;
 
   readonly posts = signal<BlogPostItem[]>(BLOGS_DATA);
-  readonly searchQuery = signal<string>('');
-  readonly selectedCategory = signal<string>('All');
   readonly currentPage = signal<number>(1);
   readonly pageSize = signal<number>(6);
 
-  readonly categories = computed(() => {
-    const cats = new Set(this.posts().map(p => p.category));
-    return ['All', ...Array.from(cats)];
-  });
-
-  readonly filteredPosts = computed(() => {
-    const query = this.searchQuery().trim().toLowerCase();
-    const cat = this.selectedCategory();
-
-    return this.posts().filter(p => {
-      const matchesSearch = !query || p.title.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query) || p.author.toLowerCase().includes(query);
-      const matchesCat = cat === 'All' || p.category === cat;
-      return matchesSearch && matchesCat;
-    });
-  });
-
   readonly totalPages = computed(() => {
-    return Math.ceil(this.filteredPosts().length / this.pageSize()) || 1;
+    return Math.ceil(this.posts().length / this.pageSize()) || 1;
   });
 
   readonly displayedPosts = computed(() => {
     const start = (this.currentPage() - 1) * this.pageSize();
-    return this.filteredPosts().slice(start, start + this.pageSize());
+    return this.posts().slice(start, start + this.pageSize());
   });
-
-  selectCategory(category: string): void {
-    this.selectedCategory.set(category);
-    this.currentPage.set(1);
-  }
-
-  updateSearch(query: string): void {
-    this.searchQuery.set(query);
-    this.currentPage.set(1);
-  }
 
   goToPage(page: number): void {
     if (page >= 1 && page <= this.totalPages()) {
       this.currentPage.set(page);
     }
-  }
-
-  resetFilters(): void {
-    this.searchQuery.set('');
-    this.selectedCategory.set('All');
-    this.currentPage.set(1);
   }
 }

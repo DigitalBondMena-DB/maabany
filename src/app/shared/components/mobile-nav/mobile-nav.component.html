@@ -35,9 +35,9 @@
     <!-- Scrollable Navigation Links -->
     <nav class="flex-1 overflow-y-auto px-4 py-4 space-y-1">
         @for (link of navLinks(); track link.path) {
-        <a [routerLink]="link.path" (click)="close.emit()" routerLinkActive="text-[#EA8A22] bg-orange-50/80 font-bold"
+        <a [routerLink]="link.path" (click)="close.emit()" routerLinkActive="text-primary bg-orange-50/80 font-bold"
             [routerLinkActiveOptions]="{ exact: link.path === '/' }"
-            class="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-neutral-700 hover:text-[#EA8A22] hover:bg-neutral-50 transition-colors">
+            class="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-neutral-700 hover:text-primary hover:bg-neutral-50 transition-colors">
             <span>{{ link.label }}</span>
         </a>
         }
@@ -46,7 +46,7 @@
     <!-- Offcanvas Footer CTA -->
     <div class="p-6 border-t border-neutral-100 bg-neutral-50/50">
         <a href="#" (click)="close.emit()"
-            class="w-full inline-flex items-center justify-center px-5 py-3.5 bg-[#EA8A22] hover:bg-[#EA8A22]/90 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-[#EA8A22]/20 transition-all font-mono text-center">
+            class="w-full inline-flex items-center justify-center px-5 py-3.5 bg-primary hover:bg-primary/90 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-primary/20 transition-all font-mono text-center">
             Request A Quote
         </a>
     </div>

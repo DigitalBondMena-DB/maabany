@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence, PanInfo } from 'motion/react';
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  X, 
-  Download, 
-  ZoomIn, 
-  ZoomOut, 
+import {
+  ChevronLeft,
+  ChevronRight,
+  X,
+  Download,
+  ZoomIn,
+  ZoomOut,
   RotateCcw
 } from 'lucide-react';
 
@@ -63,7 +63,7 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
     if (!isOpen || images.length === 0) return;
     const prevIdx = (currentIndex - 1 + images.length) % images.length;
     const nextIdx = (currentIndex + 1) % images.length;
-    
+
     [prevIdx, nextIdx].forEach((idx) => {
       if (images[idx]) {
         const img = new Image();
@@ -140,7 +140,7 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 md:top-6 md:right-6 z-[210] p-3 rounded-full bg-neutral-900/80 border border-neutral-700/80 text-white hover:bg-[#EA8A22] hover:border-[#EA8A22] transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#EA8A22] cursor-pointer"
+          className="absolute top-4 right-4 md:top-6 md:right-6 z-[210] p-3 rounded-full bg-neutral-900/80 border border-neutral-700/80 text-white hover:bg-primary hover:border-primary transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
           aria-label="Close image popup"
           title="Close (Esc)"
         >
@@ -153,7 +153,7 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
         </div>
 
         {/* Main Stage */}
-        <div 
+        <div
           ref={containerRef}
           onWheel={handleWheel}
           className="relative w-full max-w-6xl h-full max-h-[82vh] flex items-center justify-center overflow-hidden my-auto"
@@ -162,7 +162,7 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
           <button
             type="button"
             onClick={handlePrev}
-            className="absolute left-2 md:left-6 z-50 p-3 md:p-4 rounded-full bg-neutral-950/70 border border-neutral-800 text-white hover:bg-[#EA8A22] hover:border-[#EA8A22] transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl cursor-pointer"
+            className="absolute left-2 md:left-6 z-50 p-3 md:p-4 rounded-full bg-neutral-950/70 border border-neutral-800 text-white hover:bg-primary hover:border-primary transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl cursor-pointer"
             title="Previous Photo (Left Arrow)"
           >
             <ChevronLeft className="w-6 h-6 stroke-[2]" />
@@ -172,7 +172,7 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
           <button
             type="button"
             onClick={handleNext}
-            className="absolute right-2 md:right-6 z-50 p-3 md:p-4 rounded-full bg-neutral-950/70 border border-neutral-800 text-white hover:bg-[#EA8A22] hover:border-[#EA8A22] transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl cursor-pointer"
+            className="absolute right-2 md:right-6 z-50 p-3 md:p-4 rounded-full bg-neutral-950/70 border border-neutral-800 text-white hover:bg-primary hover:border-primary transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl cursor-pointer"
             title="Next Photo (Right Arrow)"
           >
             <ChevronRight className="w-6 h-6 stroke-[2]" />
@@ -191,9 +191,8 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
               dragElastic={0.1}
               onDragEnd={handleDragEnd}
               onDoubleClick={handleDoubleClick}
-              className={`relative max-w-full max-h-full flex items-center justify-center ${
-                zoomScale > 1 ? 'cursor-grab active:cursor-grabbing' : 'cursor-zoom-in'
-              }`}
+              className={`relative max-w-full max-h-full flex items-center justify-center ${zoomScale > 1 ? 'cursor-grab active:cursor-grabbing' : 'cursor-zoom-in'
+                }`}
             >
               <img
                 src={images[currentIndex]}
@@ -214,11 +213,10 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
                 setZoomScale(1);
                 setCurrentIndex(idx);
               }}
-              className={`relative w-12 h-10 md:w-16 md:h-12 rounded-lg overflow-hidden flex-shrink-0 transition-all duration-300 cursor-pointer ${
-                idx === currentIndex
-                  ? 'ring-2 ring-[#EA8A22] scale-105 opacity-100'
+              className={`relative w-12 h-10 md:w-16 md:h-12 rounded-lg overflow-hidden flex-shrink-0 transition-all duration-300 cursor-pointer ${idx === currentIndex
+                  ? 'ring-2 ring-primary scale-105 opacity-100'
                   : 'opacity-40 hover:opacity-80 border border-neutral-800'
-              }`}
+                }`}
             >
               <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
             </button>

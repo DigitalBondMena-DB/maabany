@@ -6,24 +6,24 @@ import { useQuoteModal } from '../contexts/QuoteContext';
 import { motion, AnimatePresence } from 'motion/react';
 import { InternalPageHero } from '../components/InternalPageHero';
 import { CountryFlag } from '../components/CountryFlag';
-import { 
-  FileText, 
-  Users, 
-  Settings, 
-  ChevronRight, 
-  ChevronDown, 
-  Sparkles, 
-  Check, 
-  Plus, 
-  Trash2, 
-  Award, 
-  Cpu, 
-  ShieldCheck, 
-  Briefcase, 
-  ChevronUp, 
-  Rocket, 
-  Clock, 
-  Search, 
+import {
+  FileText,
+  Users,
+  Settings,
+  ChevronRight,
+  ChevronDown,
+  Sparkles,
+  Check,
+  Plus,
+  Trash2,
+  Award,
+  Cpu,
+  ShieldCheck,
+  Briefcase,
+  ChevronUp,
+  Rocket,
+  Clock,
+  Search,
   ArrowRight,
   ClipboardCheck,
   CheckCircle2,
@@ -92,7 +92,7 @@ export function RequestQuote() {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  
+
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -288,7 +288,7 @@ export function RequestQuote() {
     }
 
     setErrors({});
-    
+
     // Create new submission item
     const dateStr = new Date().toLocaleString('en-GB', {
       day: 'numeric',
@@ -399,26 +399,26 @@ export function RequestQuote() {
   const renderStepIcon = (type: string) => {
     switch (type) {
       case 'form':
-        return <FileText className="w-5 h-5 text-[#EA8A22]" />;
+        return <FileText className="w-5 h-5 text-primary" />;
       case 'engineer':
-        return <ClipboardCheck className="w-5 h-5 text-[#EA8A22]" />;
+        return <ClipboardCheck className="w-5 h-5 text-primary" />;
       case 'meeting':
-        return <Users className="w-5 h-5 text-[#EA8A22]" />;
+        return <Users className="w-5 h-5 text-primary" />;
       case 'document':
-        return <Award className="w-5 h-5 text-[#EA8A22]" />;
+        return <Award className="w-5 h-5 text-primary" />;
       case 'kickoff':
-        return <Rocket className="w-5 h-5 text-[#EA8A22]" />;
+        return <Rocket className="w-5 h-5 text-primary" />;
       default:
-        return <Check className="w-5 h-5 text-[#EA8A22]" />;
+        return <Check className="w-5 h-5 text-primary" />;
     }
   };
 
   return (
-    <div className="bg-white min-h-screen pb-10 selection:bg-[#EA8A22] selection:text-white">
-      
+    <div className="bg-white min-h-screen pb-10 selection:bg-primary selection:text-white">
+
       {/* 1. EDITORIAL HERO HEADER */}
       <InternalPageHero
-        title={<>Start Your <br /> <span className="text-[#EA8A22]">Project</span></>}
+        title={<>Start Your <br /> <span className="text-primary">Project</span></>}
         categoryBadge="Request a Quote"
         heroImage="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80"
       />
@@ -428,13 +428,13 @@ export function RequestQuote() {
       {/* 3. REQUEST A QUOTE FORM SECTION (TWO COLUMN LAYOUT) */}
       <section className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:items-stretch items-start">
-          
+
           {/* Left Column: Information, trust signals and blueprints drawing */}
           <div className="lg:col-span-5 flex flex-col justify-between">
-            
+
             <div className="space-y-8 mb-8 lg:mb-0">
               <div className="space-y-4">
-                <span className="text-[10px] font-mono tracking-[0.25em] text-[#EA8A22] font-black uppercase block">
+                <span className="text-[10px] font-mono tracking-[0.25em] text-primary font-black uppercase block">
                   START YOUR PROJECT
                 </span>
                 <h2 className="text-2xl md:text-4.5xl font-black text-neutral-900 uppercase tracking-tight leading-tight">
@@ -445,25 +445,25 @@ export function RequestQuote() {
               {/* Trust Indicators block */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#EA8A22]/10 text-[#EA8A22] flex items-center justify-center shrink-0">
+                  <div className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
                     <Check className="w-3 h-3 stroke-[3]" />
                   </div>
                   <span className="text-xs font-bold text-neutral-800">Fast Response</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#EA8A22]/10 text-[#EA8A22] flex items-center justify-center shrink-0">
+                  <div className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
                     <Check className="w-3 h-3 stroke-[3]" />
                   </div>
                   <span className="text-xs font-bold text-neutral-800">Experienced Engineers</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#EA8A22]/10 text-[#EA8A22] flex items-center justify-center shrink-0">
+                  <div className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
                     <Check className="w-3 h-3 stroke-[3]" />
                   </div>
                   <span className="text-xs font-bold text-neutral-800">Tailored Solutions</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#EA8A22]/10 text-[#EA8A22] flex items-center justify-center shrink-0">
+                  <div className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
                     <Check className="w-3 h-3 stroke-[3]" />
                   </div>
                   <span className="text-xs font-bold text-neutral-800">Regional Presence</span>
@@ -472,15 +472,15 @@ export function RequestQuote() {
             </div>
 
             <div className="p-1 bg-neutral-100/70 border border-neutral-200 rounded-2xl overflow-hidden aspect-[16/10] lg:aspect-auto lg:flex-1 lg:mt-8 relative shadow-inner group">
-              <img 
-                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80" 
+              <img
+                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80"
                 alt="Technical blueprints and structural planning drawings"
                 className="w-full h-full object-cover rounded-xl filter contrast-110 saturate-90 brightness-95 group-hover:scale-102 transition-transform duration-700"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/40 via-neutral-950/0 to-transparent pointer-events-none" />
               <div className="absolute bottom-4 left-4 p-3 bg-white/95 backdrop-blur-md border border-white/20 rounded-xl max-w-xs shadow-lg">
-                <p className="text-[10px] font-mono text-[#EA8A22] font-black uppercase">Regional Scope</p>
+                <p className="text-[10px] font-mono text-primary font-black uppercase">Regional Scope</p>
                 <p className="text-xs font-bold text-neutral-900 mt-0.5">Active offices across Egypt, Saudi Arabia & Libya</p>
               </div>
             </div>
@@ -490,139 +490,136 @@ export function RequestQuote() {
           {/* Right Column: Premium Quotation Form Card with validation and success states */}
           <div className="lg:col-span-7">
             <div className="bg-white border border-neutral-200 rounded-[28px] shadow-[0_15px_40px_rgba(0,0,0,0.04)] p-8 md:p-12 relative overflow-hidden lg:h-full">
-              
+
               {/* Subtle top decoration */}
-              <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#EA8A22]" />
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-primary" />
 
               <AnimatePresence mode="wait">
-                  <motion.form 
-                    key="quote-form"
-                    onSubmit={handleSubmit}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="space-y-6"
-                  >
-                    <div>
-                      <h3 className="text-lg md:text-xl font-black text-neutral-950 uppercase tracking-tight">
-                        Request a Quote
-                      </h3>
-                      <p className="text-[11px] text-neutral-500 font-light mt-1">
-                        We're here to help. Complete the form and our experts will contact you soon.
-                      </p>
-                    </div>
+                <motion.form
+                  key="quote-form"
+                  onSubmit={handleSubmit}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="space-y-6"
+                >
+                  <div>
+                    <h3 className="text-lg md:text-xl font-black text-neutral-950 uppercase tracking-tight">
+                      Request a Quote
+                    </h3>
+                    <p className="text-[11px] text-neutral-500 font-light mt-1">
+                      We're here to help. Complete the form and our experts will contact you soon.
+                    </p>
+                  </div>
 
-                    {/* Full Name input */}
+                  {/* Full Name input */}
+                  <div className="space-y-1.5">
+                    <label className="block text-[10px] font-mono text-neutral-600 font-bold uppercase tracking-widest">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Khalid Al-Otaibi"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      className={`w-full bg-neutral-50/50 border p-3.5 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 transition-all duration-200 ${errors.fullName
+                          ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15 focus:bg-white'
+                          : 'border-neutral-200/80 focus:border-primary focus:ring-2 focus:ring-primary/15 focus:bg-white'
+                        }`}
+                    />
+                    {errors.fullName && (
+                      <p className="text-red-500 text-[10px] flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" /> {errors.fullName}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Phone Number input */}
                     <div className="space-y-1.5">
                       <label className="block text-[10px] font-mono text-neutral-600 font-bold uppercase tracking-widest">
-                        Full Name *
+                        Phone Number *
                       </label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Khalid Al-Otaibi"
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
-                        className={`w-full bg-neutral-50/50 border p-3.5 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 transition-all duration-200 ${
-                          errors.fullName 
-                            ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15 focus:bg-white' 
-                            : 'border-neutral-200/80 focus:border-[#EA8A22] focus:ring-2 focus:ring-[#EA8A22]/15 focus:bg-white'
-                        }`}
-                      />
-                      {errors.fullName && (
+                      <div className={`relative flex items-center bg-neutral-50/50 border rounded-xl transition-all duration-200 w-full ${errors.phone
+                          ? 'border-red-500 bg-white focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-500/15'
+                          : 'border-neutral-200/80 focus-within:border-primary focus-within:bg-white focus-within:ring-2 focus-within:ring-primary/15'
+                        }`}>
+                        <div className="flex items-center gap-1.5 pl-3.5 pr-2 border-r border-neutral-200 select-none shrink-0">
+                          <CountryFlag countryCode={phoneCountryCode} />
+                          <select
+                            value={phoneCountryCode}
+                            onChange={(e) => setPhoneCountryCode(e.target.value)}
+                            className="bg-transparent border-none text-xs font-mono text-neutral-700 focus:ring-0 focus:outline-none cursor-pointer p-0 pr-4 appearance-none font-bold"
+                            style={{ backgroundImage: 'none' }}
+                            aria-label="Country phone code"
+                          >
+                            <option value="+966">KSA (+966)</option>
+                            <option value="+20">EG (+20)</option>
+                            <option value="+218">LY (+218)</option>
+                            <option value="+971">UAE (+971)</option>
+                          </select>
+                        </div>
+                        <input
+                          type="tel"
+                          placeholder="50 123 4567"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          className="flex-1 bg-transparent p-3.5 text-sm text-neutral-800 placeholder-neutral-400 focus:outline-none"
+                        />
+                      </div>
+                      {errors.phone && (
                         <p className="text-red-500 text-[10px] flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" /> {errors.fullName}
+                          <AlertCircle className="w-3 h-3" /> {errors.phone}
                         </p>
                       )}
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {/* Phone Number input */}
-                      <div className="space-y-1.5">
-                        <label className="block text-[10px] font-mono text-neutral-600 font-bold uppercase tracking-widest">
-                          Phone Number *
-                        </label>
-                        <div className={`relative flex items-center bg-neutral-50/50 border rounded-xl transition-all duration-200 w-full ${
-                          errors.phone 
-                            ? 'border-red-500 bg-white focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-500/15' 
-                            : 'border-neutral-200/80 focus-within:border-[#EA8A22] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#EA8A22]/15'
-                        }`}>
-                          <div className="flex items-center gap-1.5 pl-3.5 pr-2 border-r border-neutral-200 select-none shrink-0">
-                            <CountryFlag countryCode={phoneCountryCode} />
-                            <select
-                              value={phoneCountryCode}
-                              onChange={(e) => setPhoneCountryCode(e.target.value)}
-                              className="bg-transparent border-none text-xs font-mono text-neutral-700 focus:ring-0 focus:outline-none cursor-pointer p-0 pr-4 appearance-none font-bold"
-                              style={{ backgroundImage: 'none' }}
-                              aria-label="Country phone code"
-                            >
-                              <option value="+966">KSA (+966)</option>
-                              <option value="+20">EG (+20)</option>
-                              <option value="+218">LY (+218)</option>
-                              <option value="+971">UAE (+971)</option>
-                            </select>
-                          </div>
-                          <input
-                            type="tel"
-                            placeholder="50 123 4567"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                            className="flex-1 bg-transparent p-3.5 text-sm text-neutral-800 placeholder-neutral-400 focus:outline-none"
-                          />
-                        </div>
-                        {errors.phone && (
-                          <p className="text-red-500 text-[10px] flex items-center gap-1">
-                            <AlertCircle className="w-3 h-3" /> {errors.phone}
-                          </p>
-                        )}
-                      </div>
-
-                      {/* Email Address input */}
-                      <div className="space-y-1.5">
-                        <label className="block text-[10px] font-mono text-neutral-600 font-bold uppercase tracking-widest">
-                          Email Address *
-                        </label>
-                        <input
-                          type="email"
-                          placeholder="e.g. name@example.com"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          className={`w-full bg-neutral-50/50 border p-3.5 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 transition-all duration-200 ${
-                            errors.email 
-                              ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15 focus:bg-white' 
-                              : 'border-neutral-200/80 focus:border-[#EA8A22] focus:ring-2 focus:ring-[#EA8A22]/15 focus:bg-white'
-                          }`}
-                        />
-                        {errors.email && (
-                          <p className="text-red-500 text-[10px] flex items-center gap-1">
-                            <AlertCircle className="w-3 h-3" /> {errors.email}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Message input */}
+                    {/* Email Address input */}
                     <div className="space-y-1.5">
                       <label className="block text-[10px] font-mono text-neutral-600 font-bold uppercase tracking-widest">
-                        How can we help? (Optional)
+                        Email Address *
                       </label>
-                      <textarea
-                        rows={4}
-                        placeholder="Tell us a bit about your project or what you need..."
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        className="w-full bg-neutral-50/50 border border-neutral-200/80 p-3.5 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 focus:border-[#EA8A22] focus:ring-2 focus:ring-[#EA8A22]/15 transition-all duration-200 resize-none"
+                      <input
+                        type="email"
+                        placeholder="e.g. name@example.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className={`w-full bg-neutral-50/50 border p-3.5 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 transition-all duration-200 ${errors.email
+                            ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15 focus:bg-white'
+                            : 'border-neutral-200/80 focus:border-primary focus:ring-2 focus:ring-primary/15 focus:bg-white'
+                          }`}
                       />
+                      {errors.email && (
+                        <p className="text-red-500 text-[10px] flex items-center gap-1">
+                          <AlertCircle className="w-3 h-3" /> {errors.email}
+                        </p>
+                      )}
                     </div>
+                  </div>
 
-                    {/* Submit button */}
-                    <button
-                      type="submit"
-                      className="w-full py-4 bg-[#EA8A22] hover:bg-[#EA8A22] text-white font-mono text-[11px] font-black uppercase tracking-widest rounded-xl shadow-lg shadow-[#EA8A22]/10 hover:shadow-[#EA8A22]/25 transition-all duration-300 transform active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2"
-                    >
-                      <span>Send My Request</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </motion.form>
+                  {/* Message input */}
+                  <div className="space-y-1.5">
+                    <label className="block text-[10px] font-mono text-neutral-600 font-bold uppercase tracking-widest">
+                      How can we help? (Optional)
+                    </label>
+                    <textarea
+                      rows={4}
+                      placeholder="Tell us a bit about your project or what you need..."
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      className="w-full bg-neutral-50/50 border border-neutral-200/80 p-3.5 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all duration-200 resize-none"
+                    />
+                  </div>
+
+                  {/* Submit button */}
+                  <button
+                    type="submit"
+                    className="w-full py-4 bg-primary hover:bg-primary text-white font-mono text-[11px] font-black uppercase tracking-widest rounded-xl shadow-lg shadow-primary/10 hover:shadow-primary/25 transition-all duration-300 transform active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2"
+                  >
+                    <span>Send My Request</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </motion.form>
               </AnimatePresence>
 
             </div>
@@ -635,7 +632,7 @@ export function RequestQuote() {
       <section className="bg-neutral-50 py-20 lg:py-28 relative overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
           <div className="max-w-3xl mb-16">
-            <span className="text-[10px] font-mono tracking-[0.25em] text-[#EA8A22] font-black uppercase block mb-4">
+            <span className="text-[10px] font-mono tracking-[0.25em] text-primary font-black uppercase block mb-4">
               CAPABILITIES
             </span>
             <h2 className="text-display-h2 text-[#142b52] mb-6">
@@ -658,18 +655,18 @@ export function RequestQuote() {
               return (
                 <Link
                   to={targetPath}
-                  key={solution.id} 
+                  key={solution.id}
                   className="bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-100 group hover:shadow-md transition-all duration-300 block cursor-pointer"
                 >
                   <div className="aspect-video overflow-hidden">
-                    <img 
-                      src={solution.image} 
-                      alt={solution.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                    <img
+                      src={solution.image}
+                      alt={solution.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                   </div>
                   <div className="p-8">
-                    <h3 className="text-xl font-bold text-neutral-900 mb-3 group-hover:text-[#EA8A22] transition-colors">{solution.title}</h3>
+                    <h3 className="text-xl font-bold text-neutral-900 mb-3 group-hover:text-primary transition-colors">{solution.title}</h3>
                     <p className="text-neutral-600 text-sm leading-relaxed mb-0">
                       {solution.desc}
                     </p>
@@ -686,9 +683,9 @@ export function RequestQuote() {
         <div className="bg-[#0a0f1d] border border-neutral-800/80 p-10 md:p-16 rounded-[32px] shadow-2xl relative overflow-hidden group">
           {/* Premium Construction & Engineering Background Image */}
           <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-            <img 
-              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80" 
-              alt="Construction and Engineering" 
+            <img
+              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80"
+              alt="Construction and Engineering"
               className="w-full h-full object-cover opacity-[0.28] mix-blend-luminosity scale-[1.03] group-hover:scale-100 transition-transform duration-[1200ms] ease-out"
               referrerPolicy="no-referrer"
             />
@@ -696,8 +693,8 @@ export function RequestQuote() {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0f1d]/30" />
           </div>
           <div className="absolute inset-0 translate-x-[-150%] skew-x-[-25deg] w-1/2 bg-gradient-to-r from-transparent via-white/5 to-transparent group-hover:animate-[sweep_2s_ease-in-out_infinite]" />
-          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-[#EA8A22]/15 rounded-full blur-[100px] pointer-events-none" />
-          
+          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
+
           {/* Redesigned Architectural & Engineering Blueprint Background */}
           <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[50%] pointer-events-none select-none overflow-hidden opacity-[0.22] lg:opacity-[0.28]">
             {/* Subtle pulsing/drawing animation styles */}
@@ -757,22 +754,22 @@ export function RequestQuote() {
                   <line x1="50" y1="140" x2="650" y2="140" strokeWidth="1.5" />
                   <line x1="50" y1="150" x2="650" y2="150" strokeWidth="0.5" strokeDasharray="2,2" />
                   <line x1="50" y1="130" x2="650" y2="130" strokeWidth="0.75" />
-                  
+
                   <line x1="50" y1="380" x2="650" y2="380" strokeWidth="1.5" />
                   <line x1="50" y1="390" x2="650" y2="390" strokeWidth="0.5" strokeDasharray="2,2" />
-                  
+
                   {/* Vertical Truss Columns */}
                   <rect x="180" y="80" width="30" height="440" strokeDasharray="4,4" strokeWidth="0.75" />
                   <rect x="480" y="80" width="30" height="440" strokeDasharray="4,4" strokeWidth="0.75" />
-                  
+
                   {/* Cross Structural Steel Framing (X-Bracing) */}
                   <line x1="180" y1="140" x2="480" y2="380" strokeWidth="1.2" />
                   <line x1="480" y1="140" x2="180" y2="380" strokeWidth="1.2" />
-                  
+
                   {/* Minor Truss lines */}
                   <line x1="180" y1="260" x2="480" y2="260" strokeWidth="0.75" strokeDasharray="4,2" />
                   <line x1="330" y1="140" x2="330" y2="380" strokeWidth="0.75" strokeDasharray="8,4" />
-                  
+
                   {/* Isometric Building Structure Outlines */}
                   <path d="M 400,430 L 520,380 L 640,430 L 520,480 Z" strokeWidth="1" />
                   <path d="M 400,310 L 520,260 L 640,310 L 520,360 Z" strokeWidth="1" />
@@ -785,11 +782,11 @@ export function RequestQuote() {
                 <g className="bp-fade-slow" stroke="white" strokeWidth="0.75" opacity="0.7">
                   {/* Interior Wall partitions */}
                   <path d="M 80,180 L 220,180 L 220,290 L 360,290 L 360,420" />
-                  
+
                   {/* Door Arc and Swing Indicator */}
                   <path d="M 220,250 A 40,40 0 0,1 260,210" strokeDasharray="3,3" />
                   <line x1="220" y1="250" x2="220" y2="210" />
-                  
+
                   {/* Foundation / Pillar Blocks */}
                   <rect x="75" y="175" width="10" height="10" fill="white" fillOpacity="0.25" />
                   <rect x="215" y="175" width="10" height="10" fill="white" fillOpacity="0.25" />
@@ -803,12 +800,12 @@ export function RequestQuote() {
                   <line x1="180" y1="60" x2="480" y2="60" />
                   <line x1="180" y1="54" x2="180" y2="66" />
                   <line x1="480" y1="54" x2="480" y2="66" />
-                  
+
                   {/* Vertical dimension bounds */}
                   <line x1="120" y1="140" x2="120" y2="380" />
                   <line x1="114" y1="140" x2="126" y2="140" />
                   <line x1="114" y1="380" x2="126" y2="380" />
-                  
+
                   {/* Annotation text markings */}
                   <text x="330" y="50" fill="#EA8A22" fontSize="10" fontFamily="monospace" textAnchor="middle" letterSpacing="1" stroke="none">
                     L = 12.00 m
@@ -816,7 +813,7 @@ export function RequestQuote() {
                   <text x="95" y="265" fill="#EA8A22" fontSize="10" fontFamily="monospace" textAnchor="middle" letterSpacing="1" stroke="none" transform="rotate(-90 95 265)">
                     H = 6.40 m
                   </text>
-                  
+
                   {/* Section Cut Line Indicator */}
                   <path d="M 60,200 L 640,200" strokeDasharray="14,4,2,4" strokeWidth="1" />
                   <path d="M 60,192 L 60,208 M 640,192 L 640,208" strokeWidth="1.5" />
@@ -842,11 +839,11 @@ export function RequestQuote() {
           </div>
 
           <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
-            
+
             {/* Left side info */}
             <div className="space-y-5 max-w-2xl">
-              <span className="inline-flex items-center gap-2 text-xs font-mono tracking-[0.3em] text-[#EA8A22] uppercase font-black">
-                <Sparkles className="w-4 h-4 text-[#EA8A22]" />
+              <span className="inline-flex items-center gap-2 text-xs font-mono tracking-[0.3em] text-primary uppercase font-black">
+                <Sparkles className="w-4 h-4 text-primary" />
                 <span>READY TO START?</span>
               </span>
               <h3 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight leading-[1.1]">
@@ -858,7 +855,7 @@ export function RequestQuote() {
             <div className="flex flex-col items-stretch w-full lg:w-auto lg:min-w-[400px] gap-4 shrink-0">
               <button
                 onClick={() => setQuoteModalOpen(true)}
-                className="w-full flex items-center justify-center gap-3 px-8 py-5 bg-[#EA8A22] hover:bg-[#d67b1e] text-white font-mono font-bold text-xs uppercase tracking-widest rounded-[20px] transition-all duration-300 shadow-xl shadow-[#EA8A22]/20 hover:shadow-[#EA8A22]/40 cursor-pointer whitespace-nowrap"
+                className="w-full flex items-center justify-center gap-3 px-8 py-5 bg-primary hover:bg-[#d67b1e] text-white font-mono font-bold text-xs uppercase tracking-widest rounded-[20px] transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-primary/40 cursor-pointer whitespace-nowrap"
               >
                 <span>Request a Quote</span>
                 <ArrowRight className="w-4 h-4" />

@@ -1,45 +1,45 @@
 @if (totalPages() > 1) {
-  <div class="mt-20 flex justify-center">
-    <nav [attr.aria-label]="ariaLabel()"
-      class="flex items-center gap-1.5 bg-white p-1.5 rounded-full border border-neutral-200 shadow-xs w-fit">
-      <!-- Prev Button -->
-      <button type="button" (click)="onSelectPage(currentPage() - 1)" [disabled]="currentPage() === 1"
-        aria-label="Previous page"
-        class="w-9 h-9 flex items-center justify-center rounded-full text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-neutral-600 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22]">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="w-4 h-4 rtl:rotate-180">
-          <path d="m15 18-6-6 6-6" />
-        </svg>
-      </button>
+<div class="mt-20 flex justify-center">
+  <nav [attr.aria-label]="ariaLabel()"
+    class="flex items-center gap-1.5 bg-white p-1.5 rounded-full border border-neutral-200 shadow-xs w-fit">
+    <!-- Prev Button -->
+    <button type="button" (click)="onSelectPage(currentPage() - 1)" [disabled]="currentPage() === 1"
+      aria-label="Previous page"
+      class="w-9 h-9 flex items-center justify-center rounded-full text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-neutral-600 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="w-4 h-4 rtl:rotate-180">
+        <path d="m15 18-6-6 6-6" />
+      </svg>
+    </button>
 
-      <!-- Page Numbers & Ellipses -->
-      @for (page of paginationRange(); track $index) {
-        @if (page === '...') {
-          <span class="w-9 h-9 flex items-center justify-center text-neutral-400 font-mono text-xs select-none">
-            ...
-          </span>
-        } @else {
-          @let isCurrent = currentPage() === page;
-          <button type="button" (click)="onSelectPage(+page)" [attr.aria-current]="isCurrent ? 'page' : null"
-            [attr.aria-label]="'Page ' + page"
-            [class]="'w-9 h-9 flex items-center justify-center rounded-full font-mono font-bold text-xs transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22] ' + 
-                    (isCurrent ? 'bg-[#EA8A22] text-white shadow-xs' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 cursor-pointer')">
-            {{ page }}
-          </button>
-        }
-      }
+    <!-- Page Numbers & Ellipses -->
+    @for (page of paginationRange(); track $index) {
+    @if (page === '...') {
+    <span class="w-9 h-9 flex items-center justify-center text-neutral-400 font-mono text-xs select-none">
+      ...
+    </span>
+    } @else {
+    @let isCurrent = currentPage() === page;
+    <button type="button" (click)="onSelectPage(+page)" [attr.aria-current]="isCurrent ? 'page' : null"
+      [attr.aria-label]="'Page ' + page"
+      [class]="'w-9 h-9 flex items-center justify-center rounded-full font-mono font-bold text-xs transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ' + 
+                    (isCurrent ? 'bg-primary text-white shadow-xs' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 cursor-pointer')">
+      {{ page }}
+    </button>
+    }
+    }
 
-      <!-- Next Button -->
-      <button type="button" (click)="onSelectPage(currentPage() + 1)" [disabled]="currentPage() === totalPages()"
-        aria-label="Next page"
-        class="w-9 h-9 flex items-center justify-center rounded-full text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-neutral-600 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22]">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="w-4 h-4 rtl:rotate-180">
-          <path d="m9 18 6-6-6-6" />
-        </svg>
-      </button>
-    </nav>
-  </div>
+    <!-- Next Button -->
+    <button type="button" (click)="onSelectPage(currentPage() + 1)" [disabled]="currentPage() === totalPages()"
+      aria-label="Next page"
+      class="w-9 h-9 flex items-center justify-center rounded-full text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-neutral-600 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="w-4 h-4 rtl:rotate-180">
+        <path d="m9 18 6-6-6-6" />
+      </svg>
+    </button>
+  </nav>
+</div>
 }

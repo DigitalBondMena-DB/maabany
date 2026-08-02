@@ -1,24 +1,26 @@
-<section id="solutions" class="bg-[#FAFAFA] relative overflow-hidden z-10 transition-all duration-200 py-12 md:py-20 lg:py-24">
+<section id="solutions"
+  class="bg-[#FAFAFA] relative overflow-hidden z-10 transition-all duration-200 py-12 md:py-20 lg:py-24">
   <!-- Floating 3D Geodesic Dome -->
   <div class="absolute -left-12 top-16 w-82 h-82 opacity-15 pointer-events-none hidden xl:block">
     @defer (on viewport) {
-      <app-floating-wireframe shape="dome" color="#142b52" />
+    <app-floating-wireframe shape="dome" color="#142b52" />
     } @placeholder {
-      <div class="w-82 h-82"></div>
+    <div class="w-82 h-82"></div>
     }
   </div>
 
   <!-- Floating 3D Cube -->
   <div class="absolute -right-12 bottom-12 w-82 h-82 opacity-15 pointer-events-none hidden xl:block">
     @defer (on viewport) {
-      <app-floating-wireframe shape="cube" color="#EA8A22" />
+    <app-floating-wireframe shape="cube" color="#EA8A22" />
     } @placeholder {
-      <div class="w-82 h-82"></div>
+    <div class="w-82 h-82"></div>
     }
   </div>
 
   <!-- Subtle decorative architectural CAD line arts -->
-  <div class="absolute left-6 top-24 w-36 h-36 opacity-[0.04] pointer-events-none hidden xl:block select-none text-[#142b52]">
+  <div
+    class="absolute left-6 top-24 w-36 h-36 opacity-[0.04] pointer-events-none hidden xl:block select-none text-[#142b52]">
     <svg viewBox="0 0 80 80" class="w-full h-full">
       <rect x="5" y="5" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.5" />
       <line x1="5" y1="28" x2="75" y2="28" stroke="currentColor" stroke-width="0.25" />
@@ -32,9 +34,11 @@
     </svg>
   </div>
 
-  <div class="absolute right-6 bottom-24 w-40 h-40 opacity-[0.04] pointer-events-none hidden xl:block select-none text-[#EA8A22]">
+  <div
+    class="absolute right-6 bottom-24 w-40 h-40 opacity-[0.04] pointer-events-none hidden xl:block select-none text-primary">
     <svg viewBox="0 0 100 100" class="w-full h-full">
-      <path d="M 10 50 A 40 40 0 0 1 50 10" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 2" />
+      <path d="M 10 50 A 40 40 0 0 1 50 10" fill="none" stroke="currentColor" stroke-width="0.5"
+        stroke-dasharray="2 2" />
       <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="0.5" />
       <line x1="10" y1="50" x2="50" y2="10" stroke="currentColor" stroke-width="0.5" />
       <text x="15" y="45" class="text-[5px] font-mono fill-current">90°_ARC</text>
@@ -58,34 +62,40 @@
     <div class="space-y-8">
       <!-- MEP SOLUTIONS - PRIMARY FEATURED HERO CARD -->
       <div routerLink="/solutions/mep-solutions"
-        class="block w-full bg-linear-to-br from-white via-white to-orange-50/15 border-2 border-[#EA8A22]/25 p-6 lg:p-8 rounded-2xl relative overflow-hidden transition-all duration-500 hover:border-[#EA8A22]/50 hover:shadow-[0_20px_40px_rgba(234,138,34,0.04)] hover:-translate-y-1 hover:scale-[1.005] cursor-pointer group">
-        <div class="absolute inset-0 opacity-8 group-hover:opacity-12 pointer-events-none transition-opacity duration-500 overflow-hidden">
+        class="block w-full bg-linear-to-br from-white via-white to-orange-50/15 border-2 border-primary/25 p-6 lg:p-8 rounded-2xl relative overflow-hidden transition-all duration-500 hover:border-primary/50 hover:shadow-[0_20px_40px_rgba(234,138,34,0.04)] hover:-translate-y-1 hover:scale-[1.005] cursor-pointer group">
+        <div
+          class="absolute inset-0 opacity-8 group-hover:opacity-12 pointer-events-none transition-opacity duration-500 overflow-hidden">
           <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="mep-hero-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-                <path d="M 24 0 L 0 0 0 24" fill="none" stroke="currentColor" stroke-width="0.5" class="text-[#EA8A22]" />
+                <path d="M 24 0 L 0 0 0 24" fill="none" stroke="currentColor" stroke-width="0.5" class="text-primary" />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#mep-hero-grid)" />
           </svg>
         </div>
 
-        <div class="absolute -top-16 -right-16 w-52 h-52 bg-linear-to-br from-[#EA8A22]/10 to-transparent rounded-full blur-3xl group-hover:scale-125 transition-transform duration-750"></div>
+        <div
+          class="absolute -top-16 -right-16 w-52 h-52 bg-linear-to-br from-primary/10 to-transparent rounded-full blur-3xl group-hover:scale-125 transition-transform duration-750">
+        </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
           <div class="lg:col-span-6 space-y-4 flex flex-col justify-center">
             <div class="flex items-center justify-between">
-              <span class="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-[#EA8A22]/25 transition-colors duration-300">
+              <span
+                class="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-primary/25 transition-colors duration-300">
                 01
               </span>
             </div>
 
             <div class="space-y-2">
-              <h3 class="text-xl lg:text-2xl font-black text-neutral-900 group-hover:text-[#EA8A22] transition-colors duration-300 uppercase tracking-tight">
+              <h3
+                class="text-xl lg:text-2xl font-black text-neutral-900 group-hover:text-primary transition-colors duration-300 uppercase tracking-tight">
                 MEP Solutions
               </h3>
               <p class="text-xs sm:text-sm text-neutral-500 leading-relaxed">
-                Smart mechanical, HVAC, electrical, fire fighting, plumbing, and low-current security systems engineered for architectural resilience, peak climate comfort, and digital building intelligence.
+                Smart mechanical, HVAC, electrical, fire fighting, plumbing, and low-current security systems engineered
+                for architectural resilience, peak climate comfort, and digital building intelligence.
               </p>
             </div>
           </div>
@@ -99,43 +109,65 @@
       <!-- THE OTHER THREE CARDS -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         @for (sol of otherSolutions; track sol.num) {
-          <a [routerLink]="sol.link"
-            class="bg-white border border-neutral-200/80 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-[#EA8A22] hover:-translate-y-2.5 hover:scale-[1.02] hover:shadow-[0_30px_60px_-15px_rgba(234,138,34,0.15)] flex flex-col justify-between group h-full min-h-[440px] cursor-pointer">
-            <div class="space-y-6">
-              <div class="flex items-center justify-between">
-                <div class="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-[#EA8A22]/20 flex-center">
-                  @if (sol.num === '02') {
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                  } @else if (sol.num === '03') {
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
-                  } @else {
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M18.37 2.63 14 7l-1.59-1.59a2 2 0 0 0-2.82 0L8 7l9 9 1.59-1.59a2 2 0 0 0 0-2.82L17 10l4.37-4.37a2.12 2.12 0 1 0-3-3Z"/><path d="M9 8c-2 3-4 3.5-7 4l8 10c2-1 6-5 6-7"/><path d="M14.5 17.5 4.5 15"/></svg>
-                  }
-                </div>
-                <span class="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-[#EA8A22]/20 transition-colors duration-300">
-                  {{ sol.num }}
-                </span>
+        <a [routerLink]="sol.link"
+          class="bg-white border border-neutral-200/80 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-primary hover:-translate-y-2.5 hover:scale-[1.02] hover:shadow-[0_30px_60px_-15px_rgba(234,138,34,0.15)] flex flex-col justify-between group h-full min-h-[440px] cursor-pointer">
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <div
+                class="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-primary/20 flex-center">
+                @if (sol.num === '02') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                  <path
+                    d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                </svg>
+                } @else if (sol.num === '03') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                  <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+                  <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+                  <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+                  <path d="M10 6h4" />
+                  <path d="M10 10h4" />
+                  <path d="M10 14h4" />
+                  <path d="M10 18h4" />
+                </svg>
+                } @else {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                  <path
+                    d="M18.37 2.63 14 7l-1.59-1.59a2 2 0 0 0-2.82 0L8 7l9 9 1.59-1.59a2 2 0 0 0 0-2.82L17 10l4.37-4.37a2.12 2.12 0 1 0-3-3Z" />
+                  <path d="M9 8c-2 3-4 3.5-7 4l8 10c2-1 6-5 6-7" />
+                  <path d="M14.5 17.5 4.5 15" />
+                </svg>
+                }
               </div>
-
-              <div class="space-y-3">
-                <h3 class="text-xl font-black text-neutral-900 group-hover:text-[#EA8A22] transition-colors uppercase tracking-tight">
-                  {{ sol.title }}
-                </h3>
-                <p class="text-xs text-neutral-500 leading-relaxed">
-                  {{ sol.desc }}
-                </p>
-              </div>
+              <span
+                class="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-primary/20 transition-colors duration-300">
+                {{ sol.num }}
+              </span>
             </div>
 
-            <div class="mt-8 pt-6 border-t border-neutral-100 space-y-2.5">
-              @for (item of sol.items; track item) {
-                <div class="flex items-center gap-2 text-xs text-neutral-600">
-                  <div class="w-1.5 h-1.5 rounded-full bg-[#EA8A22]"></div>
-                  <span>{{ item }}</span>
-                </div>
-              }
+            <div class="space-y-3">
+              <h3
+                class="text-xl font-black text-neutral-900 group-hover:text-primary transition-colors uppercase tracking-tight">
+                {{ sol.title }}
+              </h3>
+              <p class="text-xs text-neutral-500 leading-relaxed">
+                {{ sol.desc }}
+              </p>
             </div>
-          </a>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-neutral-100 space-y-2.5">
+            @for (item of sol.items; track item) {
+            <div class="flex items-center gap-2 text-xs text-neutral-600">
+              <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+              <span>{{ item }}</span>
+            </div>
+            }
+          </div>
+        </a>
         }
       </div>
 

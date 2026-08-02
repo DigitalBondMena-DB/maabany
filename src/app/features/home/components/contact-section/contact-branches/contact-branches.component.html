@@ -1,40 +1,46 @@
-<div class="bg-neutral-50/40 rounded-3xl p-8 md:p-10 border border-neutral-200/80 shadow-xs flex flex-col justify-between h-full">
+<div
+  class="bg-neutral-50/40 rounded-3xl p-8 md:p-10 border border-neutral-200/80 shadow-xs flex flex-col justify-between h-full">
   <div class="space-y-6">
     <!-- Discoverability Helper Text -->
     <div class="flex items-center gap-2 text-xs font-mono font-medium text-neutral-500 tracking-wide select-none">
-      <div class="w-1.5 h-1.5 rounded-full bg-[#EA8A22]/80 animate-pulse"></div>
+      <div class="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse"></div>
       <span>Select a regional office to view its contact details.</span>
     </div>
 
     <!-- Modern interactive strip showing regional nodes (The Main Navigation Strip) -->
     <div class="relative bg-[#0d121f] border border-neutral-800 rounded-2xl h-[100px] overflow-hidden select-none">
       <!-- Grid overlay -->
-      <div class="absolute inset-0 opacity-[0.12] pointer-events-none bg-[linear-gradient(to_right,#3b82f6_1px,transparent_1px),linear-gradient(to_bottom,#3b82f6_1px,transparent_1px)] [background-size:12px_12px]"></div>
+      <div
+        class="absolute inset-0 opacity-[0.12] pointer-events-none bg-[linear-gradient(to_right,#3b82f6_1px,transparent_1px),linear-gradient(to_bottom,#3b82f6_1px,transparent_1px)] [background-size:12px_12px]">
+      </div>
 
       <!-- Map labels -->
       <div class="absolute top-2.5 left-3.5 font-mono text-[8px] text-neutral-500 tracking-wider">
         REGIONAL CONNECTIONS // MAABANY_NET
       </div>
 
-      <div class="absolute bottom-2.5 right-3.5 font-mono text-[9px] text-[#EA8A22]/90 tracking-widest animate-pulse font-bold flex items-center gap-1.5">
-        <img [src]="'https://flagcdn.com/w40/' + activeBranch().code.toLowerCase() + '.png'" [alt]="activeBranch().code" class="w-4 h-3 object-cover rounded-2xs border border-neutral-700 shrink-0" />
+      <div
+        class="absolute bottom-2.5 right-3.5 font-mono text-[9px] text-primary/90 tracking-widest animate-pulse font-bold flex items-center gap-1.5">
+        <img [src]="'https://flagcdn.com/w40/' + activeBranch().code.toLowerCase() + '.png'" [alt]="activeBranch().code"
+          class="w-4 h-3 object-cover rounded-2xs border border-neutral-700 shrink-0" />
         <span>• {{ selectedBranch() }} ACTIVE_NODE</span>
       </div>
 
       <!-- Tooltip -->
       @if (hoveredBranch()) {
-        <div
-          class="absolute bg-neutral-900/95 backdrop-blur-xs text-[10px] text-white font-mono font-bold px-2.5 py-1.5 rounded-lg border border-neutral-700/80 pointer-events-none z-30 shadow-lg transition-all duration-150 flex items-center gap-1.5"
-          [style.left]="hoveredBranch() === 'SA' ? '260px' : hoveredBranch() === 'EG' ? '160px' : '60px'"
-          [style.top]="hoveredBranch() === 'SA' ? '15px' : hoveredBranch() === 'EG' ? '18px' : '25px'"
-          style="transform: translateX(-50%);">
-          <img [src]="'https://flagcdn.com/w40/' + hoveredBranch()?.toLowerCase() + '.png'" [alt]="hoveredBranch() || ''" class="w-4 h-3 object-cover rounded-2xs shrink-0" />
-          <span>
-            @if (hoveredBranch() === 'SA') { KSA (Riyadh Headquarters) }
-            @else if (hoveredBranch() === 'EG') { Egypt (Cairo Branch) }
-            @else if (hoveredBranch() === 'LY') { Libya (Tripoli Branch) }
-          </span>
-        </div>
+      <div
+        class="absolute bg-neutral-900/95 backdrop-blur-xs text-[10px] text-white font-mono font-bold px-2.5 py-1.5 rounded-lg border border-neutral-700/80 pointer-events-none z-30 shadow-lg transition-all duration-150 flex items-center gap-1.5"
+        [style.left]="hoveredBranch() === 'SA' ? '260px' : hoveredBranch() === 'EG' ? '160px' : '60px'"
+        [style.top]="hoveredBranch() === 'SA' ? '15px' : hoveredBranch() === 'EG' ? '18px' : '25px'"
+        style="transform: translateX(-50%);">
+        <img [src]="'https://flagcdn.com/w40/' + hoveredBranch()?.toLowerCase() + '.png'" [alt]="hoveredBranch() || ''"
+          class="w-4 h-3 object-cover rounded-2xs shrink-0" />
+        <span>
+          @if (hoveredBranch() === 'SA') { KSA (Riyadh Headquarters) }
+          @else if (hoveredBranch() === 'EG') { Egypt (Cairo Branch) }
+          @else if (hoveredBranch() === 'LY') { Libya (Tripoli Branch) }
+        </span>
+      </div>
       }
 
       <!-- Interactive Map SVG with Connection Lines and Node Pins -->
@@ -47,68 +53,47 @@
         </defs>
 
         <!-- LY -> EG connection path -->
-        <path
-          d="M 60 65 Q 110 50 160 58"
-          stroke="#EA8A22"
+        <path d="M 60 65 Q 110 50 160 58" stroke="#EA8A22"
           [attr.stroke-width]="selectedBranch() === 'EG' || selectedBranch() === 'LY' ? '2' : '1.2'"
-          stroke-dasharray="4 4"
-          class="transition-all duration-300"
-          [style.opacity]="selectedBranch() === 'EG' || selectedBranch() === 'LY' ? 0.85 : 0.25"
-        />
+          stroke-dasharray="4 4" class="transition-all duration-300"
+          [style.opacity]="selectedBranch() === 'EG' || selectedBranch() === 'LY' ? 0.85 : 0.25" />
 
         <!-- EG -> SA connection path -->
-        <path
-          d="M 160 58 Q 210 45 260 55"
-          stroke="#EA8A22"
+        <path d="M 160 58 Q 210 45 260 55" stroke="#EA8A22"
           [attr.stroke-width]="selectedBranch() === 'SA' || selectedBranch() === 'EG' ? '2' : '1.2'"
-          stroke-dasharray="4 4"
-          class="transition-all duration-300"
-          [style.opacity]="selectedBranch() === 'SA' || selectedBranch() === 'EG' ? 0.85 : 0.25"
-        />
+          stroke-dasharray="4 4" class="transition-all duration-300"
+          [style.opacity]="selectedBranch() === 'SA' || selectedBranch() === 'EG' ? 0.85 : 0.25" />
 
         <!-- Interactive Pins -->
         @for (node of branches; track node.code) {
-          <g
-            class="cursor-pointer group"
-            (click)="onSelect(node.code)"
-            (mouseenter)="onHover(node.code)"
-            (mouseleave)="onHover(null)">
-            @if (selectedBranch() === node.code) {
-              <g>
-                <circle [attr.cx]="node.coordinates.x" [attr.cy]="node.coordinates.y" r="15" fill="url(#orangeGlowGradient)" />
-                <circle
-                  [attr.cx]="node.coordinates.x"
-                  [attr.cy]="node.coordinates.y"
-                  r="12"
-                  stroke="#EA8A22"
-                  stroke-width="1"
-                  fill="none"
-                  class="animate-ping opacity-50"
-                  [style.transform-origin]="node.coordinates.x + 'px ' + node.coordinates.y + 'px'"
-                />
-              </g>
-            }
-
-            @if (selectedBranch() !== node.code && hoveredBranch() === node.code) {
-              <circle [attr.cx]="node.coordinates.x" [attr.cy]="node.coordinates.y" r="10" class="fill-[#EA8A22]/10 stroke-[#EA8A22]/30 stroke-[1] transition-all duration-200" />
-            }
-
-            <circle
-              [attr.cx]="node.coordinates.x"
-              [attr.cy]="node.coordinates.y"
-              [attr.r]="selectedBranch() === node.code ? '4.5' : '3'"
-              [class]="'transition-all duration-300 ' + (selectedBranch() === node.code ? 'fill-[#EA8A22]' : hoveredBranch() === node.code ? 'fill-[#EA8A22]/90' : 'fill-neutral-500 opacity-60')"
-            />
-            <circle [attr.cx]="node.coordinates.x" [attr.cy]="node.coordinates.y" r="1.5" fill="white" />
-
-            <text
-              [attr.x]="node.coordinates.x"
-              [attr.y]="node.coordinates.y - 12"
-              [class]="'font-mono text-[8.5px] font-bold transition-all duration-300 select-none ' + (selectedBranch() === node.code ? 'fill-[#EA8A22] font-black' : hoveredBranch() === node.code ? 'fill-neutral-200' : 'fill-neutral-500 opacity-60')"
-              text-anchor="middle">
-              {{ node.code }}
-            </text>
+        <g class="cursor-pointer group" (click)="onSelect(node.code)" (mouseenter)="onHover(node.code)"
+          (mouseleave)="onHover(null)">
+          @if (selectedBranch() === node.code) {
+          <g>
+            <circle [attr.cx]="node.coordinates.x" [attr.cy]="node.coordinates.y" r="15"
+              fill="url(#orangeGlowGradient)" />
+            <circle [attr.cx]="node.coordinates.x" [attr.cy]="node.coordinates.y" r="12" stroke="#EA8A22"
+              stroke-width="1" fill="none" class="animate-ping opacity-50"
+              [style.transform-origin]="node.coordinates.x + 'px ' + node.coordinates.y + 'px'" />
           </g>
+          }
+
+          @if (selectedBranch() !== node.code && hoveredBranch() === node.code) {
+          <circle [attr.cx]="node.coordinates.x" [attr.cy]="node.coordinates.y" r="10"
+            class="fill-primary/10 stroke-primary/30 stroke-[1] transition-all duration-200" />
+          }
+
+          <circle [attr.cx]="node.coordinates.x" [attr.cy]="node.coordinates.y"
+            [attr.r]="selectedBranch() === node.code ? '4.5' : '3'"
+            [class]="'transition-all duration-300 ' + (selectedBranch() === node.code ? 'fill-primary' : hoveredBranch() === node.code ? 'fill-primary/90' : 'fill-neutral-500 opacity-60')" />
+          <circle [attr.cx]="node.coordinates.x" [attr.cy]="node.coordinates.y" r="1.5" fill="white" />
+
+          <text [attr.x]="node.coordinates.x" [attr.y]="node.coordinates.y - 12"
+            [class]="'font-mono text-[8.5px] font-bold transition-all duration-300 select-none ' + (selectedBranch() === node.code ? 'fill-primary font-black' : hoveredBranch() === node.code ? 'fill-neutral-200' : 'fill-neutral-500 opacity-60')"
+            text-anchor="middle">
+            {{ node.code }}
+          </text>
+        </g>
         }
       </svg>
     </div>
@@ -121,11 +106,9 @@
           OFFICE PROFILE
         </span>
         <h4 class="text-xl font-black text-neutral-900 tracking-tight flex items-center gap-2.5">
-          <img
-            [src]="'https://flagcdn.com/w40/' + activeBranch().code.toLowerCase() + '.png'"
+          <img [src]="'https://flagcdn.com/w40/' + activeBranch().code.toLowerCase() + '.png'"
             [alt]="activeBranch().officeName"
-            class="w-6 h-4.5 object-cover rounded-xs border border-neutral-200/80 shadow-2xs shrink-0"
-          />
+            class="w-6 h-4.5 object-cover rounded-xs border border-neutral-200/80 shadow-2xs shrink-0" />
           <span>{{ activeBranch().officeName }}</span>
         </h4>
       </div>
@@ -134,8 +117,12 @@
       <div class="space-y-5">
         <!-- Office Address -->
         <div class="flex gap-3.5 items-start">
-          <div class="p-1.5 text-[#EA8A22] shrink-0 mt-0.5">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="p-1.5 text-primary shrink-0 mt-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
           </div>
           <div class="space-y-0.5">
             <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">OFFICE ADDRESS</p>
@@ -145,14 +132,17 @@
 
         <!-- Telephone -->
         <div class="flex gap-3.5 items-start">
-          <div class="p-1.5 text-[#EA8A22] shrink-0 mt-0.5">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div class="p-1.5 text-primary shrink-0 mt-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
           </div>
           <div class="space-y-0.5">
             <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">TELEPHONE</p>
-            <a
-              [href]="activeBranch().phoneRaw"
-              class="text-neutral-800 text-sm font-mono font-bold block hover:text-[#EA8A22] transition-colors focus:outline-none focus:underline">
+            <a [href]="activeBranch().phoneRaw"
+              class="text-neutral-800 text-sm font-mono font-bold block hover:text-primary transition-colors focus:outline-none focus:underline">
               {{ activeBranch().phone }}
             </a>
           </div>
@@ -160,14 +150,18 @@
 
         <!-- General Inquiries -->
         <div class="flex gap-3.5 items-start">
-          <div class="p-1.5 text-[#EA8A22] shrink-0 mt-0.5">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <div class="p-1.5 text-primary shrink-0 mt-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              <rect width="20" height="16" x="2" y="4" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
           </div>
           <div class="space-y-0.5">
-            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">GENERAL INQUIRIES</p>
-            <a
-              href="mailto:info@maabany.com"
-              class="text-neutral-800 text-sm font-bold block hover:text-[#EA8A22] transition-colors focus:outline-none focus:underline">
+            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">GENERAL INQUIRIES
+            </p>
+            <a href="mailto:info@maabany.com"
+              class="text-neutral-800 text-sm font-bold block hover:text-primary transition-colors focus:outline-none focus:underline">
               info@maabany.com
             </a>
           </div>
@@ -175,8 +169,12 @@
 
         <!-- Working Hours -->
         <div class="flex gap-3.5 items-start">
-          <div class="p-1.5 text-[#EA8A22] shrink-0 mt-0.5">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div class="p-1.5 text-primary shrink-0 mt-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
           </div>
           <div class="space-y-0.5">
             <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">WORKING HOURS</p>

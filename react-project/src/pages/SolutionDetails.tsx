@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  ArrowRight, 
+import {
+  ArrowRight,
   ArrowLeft,
-  Check, 
-  Download, 
-  Layers, 
-  ShieldCheck, 
+  Check,
+  Download,
+  Layers,
+  ShieldCheck,
   Shield,
   Globe,
-  Activity, 
-  Award, 
+  Activity,
+  Award,
   HardHat,
   Sparkles,
   ArrowUpRight,
@@ -33,19 +33,19 @@ export function SolutionDetails() {
   const navigate = useNavigate();
   const { slug } = useParams<{ slug: string }>();
   const setQuoteModalOpen = useQuoteModal();
-  
+
   // Find current solution
   const currentSolution = detailSolutions.find(s => s.slug === slug);
 
   // Gallery simulation states
   // Scenario can be: 'default' (uses multiple images), 'single' (uses 1 image), 'none' (uses 0 images/fallback)
-  
-  
+
+
   // Slider states
-  
-  
-  
-  
+
+
+
+
   // Parallax / mouse states
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHoveringHero, setIsHoveringHero] = useState(false);
@@ -107,7 +107,7 @@ export function SolutionDetails() {
   };
 
   // Auto-play timer ref
-  
+
 
   // Scroll to top on page or slug change
   useEffect(() => {
@@ -164,9 +164,9 @@ export function SolutionDetails() {
     // If we have fewer than 4 related items, pad with the main solution categories
     if (related.length < 4) {
       const mainSlugs = ['civil-solutions', 'fit-out-solutions', 'infrastructure-earthworks', 'low-current-solutions', 'facility-management'];
-      const mains = detailSolutions.filter(s => 
-        s.slug !== slug && 
-        mainSlugs.includes(s.slug) && 
+      const mains = detailSolutions.filter(s =>
+        s.slug !== slug &&
+        mainSlugs.includes(s.slug) &&
         !currentGroup.includes(s.slug)
       );
       related = [...related, ...mains];
@@ -200,9 +200,9 @@ export function SolutionDetails() {
         <p className="text-sm text-neutral-500 mb-6 max-w-sm">
           The engineering solution you are looking for does not exist or has been relocated in our dynamic repository.
         </p>
-        <Link 
-          to="/solutions" 
-          className="inline-flex items-center gap-2 px-6 py-3 bg-[#EA8A22] hover:bg-[#EA8A22]/90 text-white font-mono text-xs font-bold uppercase tracking-widest rounded-xl transition-all shadow-lg"
+        <Link
+          to="/solutions"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-mono text-xs font-bold uppercase tracking-widest rounded-xl transition-all shadow-lg"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Solutions
         </Link>
@@ -212,7 +212,7 @@ export function SolutionDetails() {
 
   return (
     <div className="relative bg-white text-neutral-900 min-h-screen">
-      
+
       {/* 1. Hero Header Section */}
       <InternalPageHero
         title={currentSolution.title}
@@ -237,20 +237,20 @@ export function SolutionDetails() {
       <section className="py-12 md:py-20 lg:py-24 bg-white relative">
         <div className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-            
+
             {/* Left Column: Overview & Description */}
             <div className="lg:col-span-6 xl:col-span-6 space-y-6 lg:sticky lg:top-28">
               <div className="inline-flex items-center gap-2">
-                <span className="w-8 h-[2px] bg-[#EA8A22]" />
-                <span className="text-xs font-mono font-bold text-[#EA8A22] uppercase tracking-widest">
+                <span className="w-8 h-[2px] bg-primary" />
+                <span className="text-xs font-mono font-bold text-primary uppercase tracking-widest">
                   OVERVIEW
                 </span>
               </div>
-               
+
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-900 tracking-tight uppercase leading-tight font-mono">
                 {currentSolution.aboutTitle ? currentSolution.aboutTitle : `ABOUT ${currentSolution.title}`}
               </h2>
-               
+
               <div className="space-y-6 text-neutral-600 font-normal leading-relaxed text-base md:text-lg">
                 <p>
                   {currentSolution.aboutDesc}
@@ -265,7 +265,7 @@ export function SolutionDetails() {
             <div className="lg:col-span-6 xl:col-span-6">
               <div className="bg-white border border-neutral-200/90 rounded-3xl p-6 sm:p-8 md:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.06)] relative overflow-hidden">
                 {/* Top-Right Soft Orange Ambient Glow */}
-                <div className="absolute -top-10 -right-10 w-44 h-44 bg-[#EA8A22]/15 rounded-full blur-2xl pointer-events-none" />
+                <div className="absolute -top-10 -right-10 w-44 h-44 bg-primary/15 rounded-full blur-2xl pointer-events-none" />
 
                 {/* Form Header */}
                 <div className="space-y-1.5 pb-6 border-b border-neutral-100 relative z-10">
@@ -273,7 +273,7 @@ export function SolutionDetails() {
                     <h3 className="text-xl sm:text-2xl font-black text-neutral-900 uppercase font-mono tracking-tight">
                       ASK ABOUT THIS SOLUTION
                     </h3>
-                    <div className="p-2.5 rounded-full bg-[#EA8A22]/10 text-[#EA8A22]">
+                    <div className="p-2.5 rounded-full bg-primary/10 text-primary">
                       <Send className="w-4 h-4 stroke-[2.5]" />
                     </div>
                   </div>
@@ -284,7 +284,7 @@ export function SolutionDetails() {
 
                 {/* Form Body */}
                 <form onSubmit={handleFormSubmit} className="mt-6 space-y-5 relative z-10">
-                  
+
                   {/* Full Name */}
                   <div className="space-y-1.5">
                     <label className="block text-[10px] font-mono text-neutral-500 font-bold uppercase tracking-widest">
@@ -295,11 +295,10 @@ export function SolutionDetails() {
                       placeholder="e.g. Khalid Al-Otaibi"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
-                      className={`w-full bg-neutral-50/70 border p-3.5 rounded-xl text-xs sm:text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400/80 transition-all ${
-                        formErrors.fullName 
-                          ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15' 
-                          : 'border-neutral-200/90 focus:border-[#EA8A22] focus:ring-2 focus:ring-[#EA8A22]/15'
-                      }`}
+                      className={`w-full bg-neutral-50/70 border p-3.5 rounded-xl text-xs sm:text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400/80 transition-all ${formErrors.fullName
+                          ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15'
+                          : 'border-neutral-200/90 focus:border-primary focus:ring-2 focus:ring-primary/15'
+                        }`}
                     />
                     {formErrors.fullName && (
                       <p className="text-red-500 text-[10px] flex items-center gap-1 mt-1">
@@ -320,11 +319,10 @@ export function SolutionDetails() {
                         placeholder="e.g. name@example.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className={`w-full bg-neutral-50/70 border p-3 rounded-xl text-xs sm:text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400/80 transition-all ${
-                          formErrors.email 
-                            ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15' 
-                            : 'border-neutral-200/90 focus:border-[#EA8A22] focus:ring-2 focus:ring-[#EA8A22]/15'
-                        }`}
+                        className={`w-full bg-neutral-50/70 border p-3 rounded-xl text-xs sm:text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400/80 transition-all ${formErrors.email
+                            ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15'
+                            : 'border-neutral-200/90 focus:border-primary focus:ring-2 focus:ring-primary/15'
+                          }`}
                       />
                       {formErrors.email && (
                         <p className="text-red-500 text-[10px] flex items-center gap-1 mt-1">
@@ -338,11 +336,10 @@ export function SolutionDetails() {
                       <label className="block text-[10px] font-mono text-neutral-500 font-bold uppercase tracking-widest">
                         PHONE NUMBER *
                       </label>
-                      <div className={`relative flex items-center bg-neutral-50/70 border rounded-xl transition-all w-full ${
-                        formErrors.phone 
-                          ? 'border-red-500 focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-500/15' 
-                          : 'border-neutral-200/90 focus-within:border-[#EA8A22] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#EA8A22]/15'
-                      }`}>
+                      <div className={`relative flex items-center bg-neutral-50/70 border rounded-xl transition-all w-full ${formErrors.phone
+                          ? 'border-red-500 focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-500/15'
+                          : 'border-neutral-200/90 focus-within:border-primary focus-within:bg-white focus-within:ring-2 focus-within:ring-primary/15'
+                        }`}>
                         <div className="flex items-center gap-1.5 pl-3 pr-2 border-r border-neutral-200 select-none shrink-0">
                           <CountryFlag countryCode={phoneCountryCode} />
                           <select
@@ -383,14 +380,14 @@ export function SolutionDetails() {
                       placeholder="Tell us what you'd like to know or discuss..."
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      className="w-full bg-neutral-50/70 border border-neutral-200/90 p-3.5 rounded-xl text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#EA8A22] focus:ring-2 focus:ring-[#EA8A22]/15 text-neutral-800 placeholder-neutral-400/80 transition-all resize-none"
+                      className="w-full bg-neutral-50/70 border border-neutral-200/90 p-3.5 rounded-xl text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/15 text-neutral-800 placeholder-neutral-400/80 transition-all resize-none"
                     />
                   </div>
 
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full py-4 bg-[#EA8A22] hover:bg-[#d97c19] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md shadow-[#EA8A22]/20 hover:shadow-[#EA8A22]/35 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
+                    className="w-full py-4 bg-primary hover:bg-[#d97c19] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md shadow-primary/20 hover:shadow-primary/35 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
                   >
                     SEND MESSAGE &rarr;
                   </button>
@@ -403,8 +400,8 @@ export function SolutionDetails() {
       </section>
 
       {/* 4.5 The Maabany Standard Section */}
-      <section 
-        id="why-us" 
+      <section
+        id="why-us"
         className="bg-white border-t border-neutral-200/60 relative z-10 py-12 md:py-20 lg:py-24 overflow-hidden"
       >
         {/* Floating 3D Hyperboloid / Wireframe Dome */}
@@ -413,9 +410,9 @@ export function SolutionDetails() {
         </div>
 
         <div className="absolute inset-0 bg-blueprint opacity-[0.06] pointer-events-none" />
-        
+
         <div className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8 relative z-10">
-          
+
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-2">
             <span className="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
               THE MAABANY STANDARD
@@ -460,12 +457,12 @@ export function SolutionDetails() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.01, 
-                    boxShadow: "0 20px 40px -15px rgba(234, 138, 34, 0.15)" 
+                  whileHover={{
+                    y: -8,
+                    scale: 1.01,
+                    boxShadow: "0 20px 40px -15px rgba(234, 138, 34, 0.15)"
                   }}
-                  className="bg-white border border-neutral-200/80 p-8 rounded-[28px] relative overflow-hidden transition-all duration-300 group hover:border-[#EA8A22] cursor-pointer flex flex-col justify-between"
+                  className="bg-white border border-neutral-200/80 p-8 rounded-[28px] relative overflow-hidden transition-all duration-300 group hover:border-primary cursor-pointer flex flex-col justify-between"
                 >
                   {/* Diagonal sweep glow */}
                   <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-25 -translate-x-[150%] group-hover-sweep pointer-events-none z-20" />
@@ -473,26 +470,26 @@ export function SolutionDetails() {
                   {/* Top row: Icon + Number */}
                   <div>
                     <div className="flex justify-between items-start mb-6 relative z-10">
-                      <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 shadow-xs group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-[#EA8A22]/20">
+                      <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 shadow-xs group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-primary/20">
                         <IconComponent className="w-6 h-6 transition-transform duration-300" />
                       </div>
-                      
-                      <span className="text-4xl font-extrabold text-neutral-200/80 font-mono transition-all duration-500 group-hover:text-[#EA8A22]/30 group-hover:-translate-y-1 group-hover:translate-x-1 block">
+
+                      <span className="text-4xl font-extrabold text-neutral-200/80 font-mono transition-all duration-500 group-hover:text-primary/30 group-hover:-translate-y-1 group-hover:translate-x-1 block">
                         {reason.num}
                       </span>
                     </div>
 
-                    <h3 className="text-lg font-black text-neutral-900 mb-3 tracking-tight uppercase font-mono group-hover:text-[#EA8A22] transition-colors duration-300 relative z-10">
+                    <h3 className="text-lg font-black text-neutral-900 mb-3 tracking-tight uppercase font-mono group-hover:text-primary transition-colors duration-300 relative z-10">
                       {reason.title}
                     </h3>
-                    
+
                     <p className="text-xs text-neutral-500 leading-relaxed font-normal group-hover:text-neutral-700 transition-colors duration-300 relative z-10">
                       {reason.desc}
                     </p>
                   </div>
 
                   {/* Bottom Accent Orange Bar */}
-                  <div className="absolute bottom-0 left-0 w-0 h-[4px] bg-gradient-to-r from-[#EA8A22] to-[#ffaa44] transition-all duration-500 group-hover:w-full" />
+                  <div className="absolute bottom-0 left-0 w-0 h-[4px] bg-gradient-to-r from-primary to-[#ffaa44] transition-all duration-500 group-hover:w-full" />
                 </motion.div>
               );
             })}
@@ -503,7 +500,7 @@ export function SolutionDetails() {
       {/* 5. Other Services Section */}
       <section className="py-12 md:py-20 lg:py-24 bg-neutral-50 relative overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
-          
+
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-16 gap-6">
             <div>
               <span className="text-[#142b52] font-mono text-xs tracking-[0.2em] font-bold uppercase block mb-3">DISCOVER MORE</span>
@@ -522,19 +519,19 @@ export function SolutionDetails() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group bg-white rounded-3xl overflow-hidden border border-neutral-200 hover:border-[#EA8A22] shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col relative"
+                className="group bg-white rounded-3xl overflow-hidden border border-neutral-200 hover:border-primary shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col relative"
               >
                 {/* Trigger entire card click */}
                 <Link to={`/solutions/${sol.slug}`} className="absolute inset-0 z-20" />
-                
+
                 {/* Thin orange border and lighting on hover */}
-                <div className="absolute inset-0 border-2 border-[#EA8A22]/0 group-hover:border-[#EA8A22] transition-colors duration-500 rounded-3xl pointer-events-none z-30" />
-                
+                <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary transition-colors duration-500 rounded-3xl pointer-events-none z-30" />
+
                 {/* Image */}
                 <div className="h-48 overflow-hidden relative">
-                  <img 
-                    src={sol.image} 
-                    alt={sol.title} 
+                  <img
+                    src={sol.image}
+                    alt={sol.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                     loading="lazy"
                   />
@@ -544,10 +541,10 @@ export function SolutionDetails() {
                 {/* Content */}
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-lg font-bold text-neutral-900 uppercase font-mono transition-colors group-hover:text-[#EA8A22] line-clamp-1 mb-2">
+                    <h3 className="text-lg font-bold text-neutral-900 uppercase font-mono transition-colors group-hover:text-primary line-clamp-1 mb-2">
                       {sol.title}
                     </h3>
-                    
+
                     <p className="text-xs text-neutral-600 font-light leading-relaxed line-clamp-4">
                       {sol.desc}
                     </p>
@@ -566,9 +563,9 @@ export function SolutionDetails() {
           <div className="bg-[#0a0f1d] border border-neutral-800/80 p-10 md:p-16 rounded-[32px] shadow-2xl relative overflow-hidden group">
             {/* Premium Construction & Engineering Background Image */}
             <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80" 
-                alt="Construction and Engineering" 
+              <img
+                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80"
+                alt="Construction and Engineering"
                 className="w-full h-full object-cover opacity-[0.28] mix-blend-luminosity scale-[1.03] group-hover:scale-100 transition-transform duration-[1200ms] ease-out"
                 referrerPolicy="no-referrer"
               />
@@ -576,8 +573,8 @@ export function SolutionDetails() {
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0f1d]/30" />
             </div>
             <div className="absolute inset-0 translate-x-[-150%] skew-x-[-25deg] w-1/2 bg-gradient-to-r from-transparent via-white/5 to-transparent group-hover:animate-[sweep_2s_ease-in-out_infinite]" />
-            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-[#EA8A22]/15 rounded-full blur-[100px] pointer-events-none" />
-            
+            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
+
             {/* Redesigned Architectural & Engineering Blueprint Background */}
             <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[50%] pointer-events-none select-none overflow-hidden opacity-[0.22] lg:opacity-[0.28]">
               {/* Subtle pulsing/drawing animation styles */}
@@ -637,22 +634,22 @@ export function SolutionDetails() {
                     <line x1="50" y1="140" x2="650" y2="140" strokeWidth="1.5" />
                     <line x1="50" y1="150" x2="650" y2="150" strokeWidth="0.5" strokeDasharray="2,2" />
                     <line x1="50" y1="130" x2="650" y2="130" strokeWidth="0.75" />
-                    
+
                     <line x1="50" y1="380" x2="650" y2="380" strokeWidth="1.5" />
                     <line x1="50" y1="390" x2="650" y2="390" strokeWidth="0.5" strokeDasharray="2,2" />
-                    
+
                     {/* Vertical Truss Columns */}
                     <rect x="180" y="80" width="30" height="440" strokeDasharray="4,4" strokeWidth="0.75" />
                     <rect x="480" y="80" width="30" height="440" strokeDasharray="4,4" strokeWidth="0.75" />
-                    
+
                     {/* Cross Structural Steel Framing (X-Bracing) */}
                     <line x1="180" y1="140" x2="480" y2="380" strokeWidth="1.2" />
                     <line x1="480" y1="140" x2="180" y2="380" strokeWidth="1.2" />
-                    
+
                     {/* Minor Truss lines */}
                     <line x1="180" y1="260" x2="480" y2="260" strokeWidth="0.75" strokeDasharray="4,2" />
                     <line x1="330" y1="140" x2="330" y2="380" strokeWidth="0.75" strokeDasharray="8,4" />
-                    
+
                     {/* Isometric Building Structure Outlines */}
                     <path d="M 400,430 L 520,380 L 640,430 L 520,480 Z" strokeWidth="1" />
                     <path d="M 400,310 L 520,260 L 640,310 L 520,360 Z" strokeWidth="1" />
@@ -665,11 +662,11 @@ export function SolutionDetails() {
                   <g className="bp-fade-slow" stroke="white" strokeWidth="0.75" opacity="0.7">
                     {/* Interior Wall partitions */}
                     <path d="M 80,180 L 220,180 L 220,290 L 360,290 L 360,420" />
-                    
+
                     {/* Door Arc and Swing Indicator */}
                     <path d="M 220,250 A 40,40 0 0,1 260,210" strokeDasharray="3,3" />
                     <line x1="220" y1="250" x2="220" y2="210" />
-                    
+
                     {/* Foundation / Pillar Blocks */}
                     <rect x="75" y="175" width="10" height="10" fill="white" fillOpacity="0.25" />
                     <rect x="215" y="175" width="10" height="10" fill="white" fillOpacity="0.25" />
@@ -683,12 +680,12 @@ export function SolutionDetails() {
                     <line x1="180" y1="60" x2="480" y2="60" />
                     <line x1="180" y1="54" x2="180" y2="66" />
                     <line x1="480" y1="54" x2="480" y2="66" />
-                    
+
                     {/* Vertical dimension bounds */}
                     <line x1="120" y1="140" x2="120" y2="380" />
                     <line x1="114" y1="140" x2="126" y2="140" />
                     <line x1="114" y1="380" x2="126" y2="380" />
-                    
+
                     {/* Annotation text markings */}
                     <text x="330" y="50" fill="#EA8A22" fontSize="10" fontFamily="monospace" textAnchor="middle" letterSpacing="1" stroke="none">
                       L = 12.00 m
@@ -696,7 +693,7 @@ export function SolutionDetails() {
                     <text x="95" y="265" fill="#EA8A22" fontSize="10" fontFamily="monospace" textAnchor="middle" letterSpacing="1" stroke="none" transform="rotate(-90 95 265)">
                       H = 6.40 m
                     </text>
-                    
+
                     {/* Section Cut Line Indicator */}
                     <path d="M 60,200 L 640,200" strokeDasharray="14,4,2,4" strokeWidth="1" />
                     <path d="M 60,192 L 60,208 M 640,192 L 640,208" strokeWidth="1.5" />
@@ -720,25 +717,25 @@ export function SolutionDetails() {
                 </svg>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
               {/* Left text column */}
               <div className="lg:col-span-7">
-                <span className="text-[#EA8A22] font-mono text-xs tracking-[0.25em] font-bold uppercase block mb-3">READY TO START?</span>
+                <span className="text-primary font-mono text-xs tracking-[0.25em] font-bold uppercase block mb-3">READY TO START?</span>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase leading-[1.1]">
                   Let's Build Your <br />Next Project Together
                 </h2>
               </div>
-              
+
               {/* Right buttons column */}
               <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-4">
                 <button
                   onClick={() => setQuoteModalOpen(true)}
-                  className="w-full px-8 py-5 bg-[#EA8A22] hover:bg-[#EA8A22] text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-[#EA8A22]/20 hover:shadow-[#EA8A22]/40 flex items-center justify-center gap-2 font-mono group cursor-pointer"
+                  className="w-full px-8 py-5 bg-primary hover:bg-primary text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-primary/40 flex items-center justify-center gap-2 font-mono group cursor-pointer"
                 >
                   Request a Quote <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
-                
+
                 <button
                   onClick={handleDownloadProfile}
                   disabled={downloadingProfile}
@@ -747,10 +744,10 @@ export function SolutionDetails() {
                   {downloadingProfile ? (
                     <span className="animate-pulse">Preparing file...</span>
                   ) : downloadSuccess ? (
-                    <span className="text-[#EA8A22]">Profile Downloaded ✔</span>
+                    <span className="text-primary">Profile Downloaded ✔</span>
                   ) : (
                     <>
-                      Download Company Profile 
+                      Download Company Profile
                       <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
                     </>
                   )}
@@ -761,7 +758,7 @@ export function SolutionDetails() {
         </div>
       </section>
 
-      
+
 
       <style>{`
         @keyframes sweep {

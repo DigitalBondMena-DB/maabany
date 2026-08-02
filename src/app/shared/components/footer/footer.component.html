@@ -1,5 +1,5 @@
 <footer id="global-footer"
-  class="w-full min-w-full max-w-none bg-[#142b52] text-white relative overflow-hidden pt-20 pb-10 border-t-[3px] border-[#EA8A22]">
+  class="w-full min-w-full max-w-none bg-[#142b52] text-white relative overflow-hidden pt-20 pb-10 border-t-[3px] border-primary">
   <!-- Subtle radial overlay for visual depth -->
   <div
     class="absolute inset-0 bg-[radial-gradient(circle_at_top,var(--tw-gradient-stops))] from-[#325A9E] via-transparent to-transparent pointer-events-none">
@@ -130,7 +130,7 @@
       <div class="flex items-center gap-3 pt-4">
         @for (social of socialLinks; track social.name) {
         <a [href]="social.href" target="_blank" rel="noopener noreferrer" [title]="social.name"
-          class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-[#EA8A22] hover:bg-[#EA8A22] transition-all duration-250 transform hover:scale-110">
+          class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-primary hover:bg-primary transition-all duration-250 transform hover:scale-110">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
             <path [attr.d]="social.iconSvg" />
@@ -142,20 +142,20 @@
 
     <div class="lg:col-span-3 space-y-6">
       <h4
-        class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-[#EA8A22]">
+        class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-primary">
         {{ 'FOOTER.QUICK_LINKS' | translate }}
       </h4>
       <ul class="grid grid-cols-1 gap-3.5">
         @for (link of quickLinks; track link.path) {
         <li>
           <a [routerLink]="link.path"
-            class="text-[15px] text-white/80 hover:text-[#EA8A22] transition-all duration-300 inline-flex items-center gap-2 group relative py-1">
+            class="text-[15px] text-white/80 hover:text-primary transition-all duration-300 inline-flex items-center gap-2 group relative py-1">
             <span
-              class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#EA8A22] group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
+              class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
             <span class="relative">
               {{ link.label | translate }}
               <span
-                class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#EA8A22] transition-all duration-300 group-hover:w-full"></span>
+                class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full"></span>
             </span>
           </a>
         </li>
@@ -165,7 +165,7 @@
 
     <div class="lg:col-span-2 space-y-6">
       <h4
-        class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-[#EA8A22]">
+        class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-primary">
         {{ 'FOOTER.RESOURCES' | translate }}
       </h4>
       <ul class="grid grid-cols-1 gap-3.5 mb-6">
@@ -173,25 +173,25 @@
         <li>
           @if (link.label.includes('Company Profile')) {
           <button (click)="downloadProfile()" [disabled]="profileService.isDownloading()"
-            class="text-[15px] text-white/80 hover:text-[#EA8A22] text-left transition-all duration-300 inline-flex items-center gap-2 group cursor-pointer focus:outline-none relative py-1">
+            class="text-[15px] text-white/80 hover:text-primary text-left transition-all duration-300 inline-flex items-center gap-2 group cursor-pointer focus:outline-none relative py-1">
             <span
-              class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#EA8A22] group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
+              class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
             <span class="relative">
               {{ profileService.isDownloading() ? ('Downloading Profile...' | translate) : ('Company Profile ↓' |
               translate) }}
               <span
-                class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#EA8A22] transition-all duration-300 group-hover:w-full"></span>
+                class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full"></span>
             </span>
           </button>
           } @else {
           <a [routerLink]="link.path"
-            class="text-[15px] text-white/80 hover:text-[#EA8A22] transition-all duration-300 inline-flex items-center gap-2 group relative py-1">
+            class="text-[15px] text-white/80 hover:text-primary transition-all duration-300 inline-flex items-center gap-2 group relative py-1">
             <span
-              class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#EA8A22] group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
+              class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
             <span class="relative">
               {{ link.label | translate }}
               <span
-                class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#EA8A22] transition-all duration-300 group-hover:w-full"></span>
+                class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full"></span>
             </span>
           </a>
           }
@@ -199,13 +199,13 @@
         }
         <li>
           <a [routerLink]="'request-a-quote'"
-            class="text-[15px] text-white/80 hover:text-[#EA8A22] text-left transition-all duration-300 inline-flex items-center gap-2 group cursor-pointer focus:outline-none relative py-1">
+            class="text-[15px] text-white/80 hover:text-primary text-left transition-all duration-300 inline-flex items-center gap-2 group cursor-pointer focus:outline-none relative py-1">
             <span
-              class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#EA8A22] group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
+              class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
             <span class="relative">
               {{ 'NAV.REQUEST_QUOTE' | translate }}
               <span
-                class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#EA8A22] transition-all duration-300 group-hover:w-full"></span>
+                class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full"></span>
             </span>
           </a>
         </li>
@@ -215,13 +215,13 @@
     <!-- Column 4: Contact Us -->
     <div class="lg:col-span-3 space-y-6">
       <h4
-        class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-[#EA8A22]">
+        class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-primary">
         {{ 'FOOTER.CONTACT_US' | translate }}
       </h4>
       <div class="space-y-4 text-[14px] text-white/75 font-light">
         <div class="flex gap-3 items-start group">
           <div
-            class="p-2.5 rounded-xl border border-white/15 text-[#EA8A22] shrink-0 group-hover:bg-[#EA8A22] group-hover:text-white transition-all duration-300">
+            class="p-2.5 rounded-xl border border-white/15 text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
               <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
@@ -232,7 +232,7 @@
             <p class="font-medium text-white text-[14px]">{{ 'Saudi Arabia HQ' | translate }}</p>
             <a href="https://maps.google.com/?q=2923+Al-Sharif+Ahmed+bin+Abdul+Muttalib,+Al-Salhiya+District,+Jeddah,+Saudi+Arabia"
               target="_blank" rel="noopener noreferrer"
-              class="text-white/60 text-[12px] leading-relaxed hover:text-[#EA8A22] transition-colors block">
+              class="text-white/60 text-[12px] leading-relaxed hover:text-primary transition-colors block">
               2923 Al-Sharif Ahmed bin Abdul Muttalib, Al-Salhiya District, Jeddah, Saudi Arabia
             </a>
           </div>
@@ -240,7 +240,7 @@
 
         <div class="flex gap-3 items-start group">
           <div
-            class="p-2.5 rounded-xl border border-white/15 text-[#EA8A22] shrink-0 group-hover:bg-[#EA8A22] group-hover:text-white transition-all duration-300">
+            class="p-2.5 rounded-xl border border-white/15 text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
               <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
@@ -251,14 +251,14 @@
             <p class="font-medium text-white text-[14px]">{{ 'Cairo Hub (Egypt)' | translate }}</p>
             <a href="https://maps.google.com/?q=53+Hassan+El+Sherif+Street,+Nasr+City,+Cairo,+Egypt" target="_blank"
               rel="noopener noreferrer"
-              class="text-white/60 text-[12px] leading-relaxed hover:text-[#EA8A22] transition-colors block">
+              class="text-white/60 text-[12px] leading-relaxed hover:text-primary transition-colors block">
               53 Hassan El Sherif Street, Nasr City, Cairo, Egypt
             </a>
           </div>
         </div>
 
         <div class="flex gap-3 items-start">
-          <div class="p-2.5 rounded-xl border border-white/15 text-[#EA8A22] shrink-0">
+          <div class="p-2.5 rounded-xl border border-white/15 text-primary shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
               <rect width="20" height="16" x="2" y="4" rx="2" />
@@ -268,7 +268,7 @@
           <div class="space-y-1 mt-0.5">
             <p class="font-medium text-white text-[14px]">Email</p>
             <a href="mailto:sales@maabany.com"
-              class="text-white/60 text-[12px] hover:text-[#EA8A22] transition-colors focus:outline-none focus:underline block">
+              class="text-white/60 text-[12px] hover:text-primary transition-colors focus:outline-none focus:underline block">
               sales@maabany.com
             </a>
           </div>

@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
   <article class="h-full">
     <a
       [routerLink]="link()"
-      class="bg-white border border-neutral-200 rounded-3xl overflow-hidden group hover:border-[#EA8A22]/40 hover:shadow-2xl hover:shadow-[#EA8A22]/5 transition-all duration-300 flex flex-col h-full cursor-pointer relative">
+      class="bg-white border border-neutral-200 rounded-3xl overflow-hidden group hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 flex flex-col h-full cursor-pointer relative">
       <div [class]="'overflow-hidden relative block shrink-0 ' + imageHeight()">
         @if (isCarousel()) {
           <img
@@ -47,7 +47,7 @@ import { RouterLink } from '@angular/router';
                 type="button"
                 (click)="setSlide($event, $index)"
                 [attr.aria-label]="'Go to slide ' + ($index + 1)"
-                [class]="'h-1.5 rounded-full transition-all duration-300 cursor-pointer ' + ($index === currentIdx() ? 'bg-[#EA8A22] w-3' : 'bg-white/60 w-1.5')">
+                [class]="'h-1.5 rounded-full transition-all duration-300 cursor-pointer ' + ($index === currentIdx() ? 'bg-primary w-3' : 'bg-white/60 w-1.5')">
               </button>
             }
           </div>
@@ -70,7 +70,7 @@ import { RouterLink } from '@angular/router';
       </div>
       <div class="p-6 space-y-3 flex-1 flex flex-col justify-between">
         <div class="space-y-2">
-          <h3 class="text-lg font-bold text-neutral-900 group-hover:text-[#EA8A22] transition-colors uppercase leading-snug line-clamp-2">
+          <h3 class="text-lg font-bold text-neutral-900 group-hover:text-primary transition-colors uppercase leading-snug line-clamp-2">
             {{ title() }}
           </h3>
           <p class="text-xs text-neutral-600 leading-relaxed font-light line-clamp-2">

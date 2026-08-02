@@ -33,7 +33,7 @@
       inset-inline-start: 0;
       width: 0;
       height: 2px;
-      background-color: #EA8A22;
+      background-color: var(--color-primary);
       transition: all 0.3s ease-in-out;
   }
 

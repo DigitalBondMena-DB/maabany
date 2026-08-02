@@ -5,13 +5,13 @@ export function AnimatedBackground() {
     <div className="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden select-none bg-[#FCFCFB]">
       {/* 1. Base Blueprint Grid Pattern with modern architectural look */}
       <div className="absolute inset-0 opacity-[0.09] bg-[linear-gradient(to_right,#142b52_1px,transparent_1px),linear-gradient(to_bottom,#142b52_1px,transparent_1px)] bg-[size:40px_40px]" />
-      
+
       {/* Secondary accent grid at a different scale to create depth */}
       <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,#EA8A22_1px,transparent_1px),linear-gradient(to_bottom,#EA8A22_1px,transparent_1px)] bg-[size:200px_200px]" />
 
       {/* 2. Soft, slow-shifting atmospheric light orbs (Parallax glow effects) */}
       <div className="absolute top-[10%] left-[5%] w-[45vw] h-[45vw] rounded-full bg-[#142b52]/[0.06] blur-[120px] animate-pulse" style={{ animationDuration: '15s' }} />
-      <div className="absolute bottom-[15%] right-[5%] w-[50vw] h-[50vw] rounded-full bg-[#EA8A22]/[0.04] blur-[140px] animate-pulse" style={{ animationDuration: '22s' }} />
+      <div className="absolute bottom-[15%] right-[5%] w-[50vw] h-[50vw] rounded-full bg-primary/[0.04] blur-[140px] animate-pulse" style={{ animationDuration: '22s' }} />
       <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[35vw] h-[35vw] rounded-full bg-[#142b52]/[0.03] blur-[100px] animate-pulse" style={{ animationDuration: '18s' }} />
 
       {/* 3. Static blueprint-draft coordinates (Crosshairs "+") */}
@@ -29,9 +29,9 @@ export function AnimatedBackground() {
       </div>
 
       {/* 4. Elegant animated visual drafting wireframes floating in the background */}
-      
+
       {/* Visual 1: Concentric dashed blueprint circles with rotating indicator */}
-      <div 
+      <div
         className="absolute top-[15%] left-[8%] w-64 h-64 opacity-[0.16] flex items-center justify-center animate-float-slow"
         style={{ transformOrigin: 'center' }}
       >
@@ -42,23 +42,23 @@ export function AnimatedBackground() {
           <line x1="50" y1="5" x2="50" y2="95" stroke="currentColor" strokeWidth="0.25" strokeDasharray="3 3" />
           <line x1="5" y1="50" x2="95" y2="50" stroke="currentColor" strokeWidth="0.25" strokeDasharray="3 3" />
           {/* Rotating dial */}
-          <line 
-            x1="50" 
-            y1="50" 
-            x2="50" 
-            y2="10" 
-            stroke="currentColor" 
-            strokeWidth="0.75" 
-            className="origin-[50px_50px] animate-[spin_40s_linear_infinite]" 
+          <line
+            x1="50"
+            y1="50"
+            x2="50"
+            y2="10"
+            stroke="currentColor"
+            strokeWidth="0.75"
+            className="origin-[50px_50px] animate-[spin_40s_linear_infinite]"
           />
         </svg>
       </div>
 
       {/* Visual 2: Tech sector angle diagram */}
-      <div 
+      <div
         className="absolute bottom-[10%] left-[12%] w-56 h-56 opacity-[0.14] flex items-center justify-center animate-float-medium"
       >
-        <svg viewBox="0 0 100 100" className="w-full h-full text-[#EA8A22]">
+        <svg viewBox="0 0 100 100" className="w-full h-full text-primary">
           <path d="M 10 50 A 40 40 0 0 1 50 10" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="1 3" />
           <path d="M 10 50 A 30 30 0 0 1 40 20" fill="none" stroke="currentColor" strokeWidth="0.75" />
           <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" strokeWidth="0.5" />
@@ -67,7 +67,7 @@ export function AnimatedBackground() {
       </div>
 
       {/* Visual 3: Large abstract blueprint grid matrix with a scanning pulse */}
-      <div 
+      <div
         className="absolute top-[40%] right-[6%] w-72 h-72 opacity-[0.12] flex items-center justify-center animate-float-slow"
       >
         <svg viewBox="0 0 100 100" className="w-full h-full text-[#142b52]">

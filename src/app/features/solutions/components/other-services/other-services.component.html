@@ -15,11 +15,11 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       @for (sol of otherSolutions(); track sol.slug) {
       <div
-        class="group bg-white rounded-3xl overflow-hidden border border-neutral-200 hover:border-[#EA8A22] shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col relative">
+        class="group bg-white rounded-3xl overflow-hidden border border-neutral-200 hover:border-primary shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col relative">
         <a [routerLink]="'/' + currentLang() + '/solutions/' + sol.slug" class="absolute inset-0 z-20"></a>
 
         <div
-          class="absolute inset-0 border-2 border-[#EA8A22]/0 group-hover:border-[#EA8A22] transition-colors duration-500 rounded-3xl pointer-events-none z-30">
+          class="absolute inset-0 border-2 border-primary/0 group-hover:border-primary transition-colors duration-500 rounded-3xl pointer-events-none z-30">
         </div>
 
         <div class="h-48 overflow-hidden relative">
@@ -31,7 +31,7 @@
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
             <h3
-              class="text-lg font-bold main-font text-neutral-900 uppercase  transition-colors group-hover:text-[#EA8A22] line-clamp-1 mb-2">
+              class="text-lg font-bold main-font text-neutral-900 uppercase  transition-colors group-hover:text-primary line-clamp-1 mb-2">
               {{ sol.title | translate }}
             </h3>
 

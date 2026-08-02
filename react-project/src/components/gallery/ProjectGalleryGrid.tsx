@@ -23,7 +23,7 @@ export const ProjectGalleryGrid: React.FC<ProjectGalleryGridProps> = ({
           transition={{ duration: 0.4, delay: idx * 0.04, ease: [0.16, 1, 0.3, 1] }}
           whileHover={{ y: -4 }}
           onClick={() => onSelectImage(idx)}
-          className="group relative bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl hover:shadow-[#EA8A22]/20 transition-all duration-300 aspect-[4/3]"
+          className="group relative bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 aspect-[4/3]"
           role="button"
           tabIndex={0}
           onKeyDown={(e) => {
@@ -48,14 +48,14 @@ export const ProjectGalleryGrid: React.FC<ProjectGalleryGridProps> = ({
           {/* Top Badge */}
           <div className="absolute top-3 left-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white font-mono text-[10px] font-bold uppercase tracking-wider">
-              <Sparkles className="w-3 h-3 text-[#EA8A22]" />
+              <Sparkles className="w-3 h-3 text-primary" />
               Photo {idx + 1}
             </span>
           </div>
 
           {/* Center Zoom Icon */}
           <div className="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
-            <div className="p-3.5 rounded-full bg-[#EA8A22] text-white shadow-xl transform scale-75 group-hover:scale-100 transition-transform duration-300">
+            <div className="p-3.5 rounded-full bg-primary text-white shadow-xl transform scale-75 group-hover:scale-100 transition-transform duration-300">
               <Maximize2 className="w-5 h-5" />
             </div>
           </div>

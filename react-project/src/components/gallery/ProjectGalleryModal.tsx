@@ -84,13 +84,13 @@ export const ProjectGalleryModal: React.FC<ProjectGalleryModalProps> = ({
             {/* Header */}
             <div className="flex items-center justify-between p-5 md:p-7 border-b border-neutral-800/80 bg-neutral-900/90 backdrop-blur-md sticky top-0 z-20">
               <div className="flex items-center gap-3 md:gap-4 min-w-0">
-                <div className="p-3 rounded-2xl bg-[#EA8A22]/10 border border-[#EA8A22]/20 text-[#EA8A22] hidden sm:flex">
+                <div className="p-3 rounded-2xl bg-primary/10 border border-primary/20 text-primary hidden sm:flex">
                   <Images className="w-6 h-6" />
                 </div>
 
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <span className="px-2.5 py-0.5 rounded-full bg-[#EA8A22]/20 text-[#EA8A22] border border-[#EA8A22]/30 font-mono text-[10px] font-bold uppercase tracking-wider">
+                    <span className="px-2.5 py-0.5 rounded-full bg-primary/20 text-primary border border-primary/30 font-mono text-[10px] font-bold uppercase tracking-wider">
                       Photo Gallery
                     </span>
                     {projectCategory && (
@@ -122,7 +122,7 @@ export const ProjectGalleryModal: React.FC<ProjectGalleryModalProps> = ({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="p-3 rounded-full bg-neutral-800 hover:bg-[#EA8A22] text-neutral-300 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#EA8A22]"
+                  className="p-3 rounded-full bg-neutral-800 hover:bg-primary text-neutral-300 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary"
                   aria-label="Close modal"
                 >
                   <X className="w-5 h-5" />
@@ -134,7 +134,7 @@ export const ProjectGalleryModal: React.FC<ProjectGalleryModalProps> = ({
             <div className="p-5 md:p-8 overflow-y-auto custom-scrollbar flex-1 space-y-6">
               <div className="flex items-center justify-between pb-2 border-b border-neutral-800/50">
                 <p className="text-xs font-mono text-neutral-400 uppercase tracking-widest flex items-center gap-2">
-                  <Grid className="w-3.5 h-3.5 text-[#EA8A22]" />
+                  <Grid className="w-3.5 h-3.5 text-primary" />
                   Click any image to view in high-resolution Lightbox
                 </p>
                 <span className="text-xs font-mono text-neutral-500 hidden sm:inline">

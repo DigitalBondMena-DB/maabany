@@ -6,7 +6,7 @@
     class="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#142b52] rounded-full opacity-[0.04] blur-[150px] pointer-events-none">
   </div>
   <div
-    class="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-[#EA8A22] rounded-full opacity-[0.03] blur-[120px] pointer-events-none">
+    class="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-primary rounded-full opacity-[0.03] blur-[120px] pointer-events-none">
   </div>
   <div class="absolute inset-0 bg-linear-to-b from-white via-transparent to-[#fdfdfd] pointer-events-none"></div>
 
@@ -32,7 +32,7 @@
     class="absolute top-[20%] left-[10%] w-32 h-32 border border-[#142b52]/10 rounded-full pointer-events-none animate-pulse">
   </div>
   <div
-    class="absolute bottom-[20%] right-[10%] w-48 h-48 border border-[#EA8A22]/10 rounded-full pointer-events-none animate-pulse">
+    class="absolute bottom-[20%] right-[10%] w-48 h-48 border border-primary/10 rounded-full pointer-events-none animate-pulse">
   </div>
 
   <div class="max-w-350 mx-auto relative z-10 px-(--outer-padding-x) transition-all duration-200">
@@ -97,7 +97,7 @@
                 class="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[19px] text-neutral-800 font-normal leading-[1.7] md:leading-[1.65] tracking-tight">
                 @for (word of words(); track $index) {
                 <span class="animate-word mr-[0.25em]" [style.--i]="$index"
-                  [class.text-[#EA8A22]]="isHighlightedWord(word)" [class.font-medium]="isHighlightedWord(word)">{{ word
+                  [class.text-primary]="isHighlightedWord(word)" [class.font-medium]="isHighlightedWord(word)">{{ word
                   }}</span>
                 }
               </p>

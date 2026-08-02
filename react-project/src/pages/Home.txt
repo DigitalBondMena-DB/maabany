@@ -552,7 +552,7 @@ export function Home() {
                   THE FUTURE OF
                 </h1>
                 <h1 
-                  className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#EA8A22] tracking-tighter uppercase leading-none -mt-1 text-left"
+                  className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-primary tracking-tighter uppercase leading-none -mt-1 text-left"
                   style={{ textShadow: '0 2px 12px rgba(0,0,0,0.18)' }}
                 >
                   TOMORROW
@@ -566,7 +566,7 @@ export function Home() {
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <button
                   onClick={() => setQuoteModalOpen(true)}
-                  className="px-7 py-4 bg-[#EA8A22] hover:bg-[#EA8A22]/90 text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 shadow-xl shadow-[#EA8A22]/30 cursor-pointer flex items-center gap-2 font-mono whitespace-nowrap shrink-0"
+                  className="px-7 py-4 bg-primary hover:bg-primary/90 text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 shadow-xl shadow-primary/30 cursor-pointer flex items-center gap-2 font-mono whitespace-nowrap shrink-0"
                 >
                   Request a Quote <ArrowRight className="w-4 h-4" />
                 </button>
@@ -578,10 +578,10 @@ export function Home() {
           <div className="lg:col-span-5 relative flex flex-col gap-4 py-8">
             
             {/* Experience Card */}
-            <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-start w-64 animate-float-slow relative overflow-hidden group hover:border-[#EA8A22]/50 transition-all duration-300">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#EA8A22]/5 rounded-bl-full pointer-events-none" />
+            <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-start w-64 animate-float-slow relative overflow-hidden group hover:border-primary/50 transition-all duration-300">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none" />
               <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22]">
+                <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
                   <Clock className="w-6 h-6" />
                 </div>
                 <div>
@@ -592,10 +592,10 @@ export function Home() {
             </div>
 
             {/* Completed Projects Card */}
-            <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-end w-64 animate-float-medium relative overflow-hidden group hover:border-[#EA8A22]/50 transition-all duration-300">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#EA8A22]/5 rounded-bl-full pointer-events-none" />
+            <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-end w-64 animate-float-medium relative overflow-hidden group hover:border-primary/50 transition-all duration-300">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none" />
               <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22]">
+                <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
                   <Building2 className="w-6 h-6" />
                 </div>
                 <div>
@@ -606,10 +606,10 @@ export function Home() {
             </div>
 
             {/* Countries & Global presence */}
-            <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-start w-64 animate-float-slow relative overflow-hidden group hover:border-[#EA8A22]/50 transition-all duration-300">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#EA8A22]/5 rounded-bl-full pointer-events-none" />
+            <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-start w-64 animate-float-slow relative overflow-hidden group hover:border-primary/50 transition-all duration-300">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none" />
               <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22]">
+                <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
                   <Globe className="w-6 h-6" />
                 </div>
                 <div>
@@ -620,10 +620,10 @@ export function Home() {
             </div>
 
             {/* Satisfaction percentage */}
-            <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-end w-64 animate-float-medium relative overflow-hidden group hover:border-[#EA8A22]/50 transition-all duration-300">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#EA8A22]/5 rounded-bl-full pointer-events-none" />
+            <div className="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl self-end w-64 animate-float-medium relative overflow-hidden group hover:border-primary/50 transition-all duration-300">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none" />
               <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22]">
+                <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
                   <Users className="w-6 h-6" />
                 </div>
                 <div>
@@ -639,7 +639,7 @@ export function Home() {
         {/* Breathtaking continuous scroll indicator */}
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 z-10 select-none">
           <div className="w-5 h-8 border border-neutral-700 rounded-full flex justify-center p-1 bg-neutral-950/40">
-            <div className="w-1.5 h-1.5 bg-[#EA8A22] rounded-full animate-bounce" />
+            <div className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" />
           </div>
         </div>
       </section>
@@ -678,7 +678,7 @@ export function Home() {
               
               {/* Dynamic floating badge inside image */}
               <div className="absolute bottom-6 left-6 z-20 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-neutral-200/60 shadow-lg">
-                <span className="text-[10px] uppercase font-mono tracking-wider text-[#EA8A22] block mb-1">CURRENTLY UNDERWAY</span>
+                <span className="text-[10px] uppercase font-mono tracking-wider text-primary block mb-1">CURRENTLY UNDERWAY</span>
                 <span className="text-xs font-semibold text-neutral-900">Riyadh Financial Plaza II • 92% Complete</span>
               </div>
             </div>
@@ -714,7 +714,7 @@ export function Home() {
 
             <div className="space-y-4">
               <div className="flex gap-4 p-4 rounded-xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-sm">
-                <div className="p-2 rounded bg-[#EA8A22]/10 text-[#EA8A22] h-fit">
+                <div className="p-2 rounded bg-primary/10 text-primary h-fit">
                   <Shield className="w-5 h-5" />
                 </div>
                 <div>
@@ -724,7 +724,7 @@ export function Home() {
               </div>
 
               <div className="flex gap-4 p-4 rounded-xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-sm">
-                <div className="p-2 rounded bg-[#EA8A22]/10 text-[#EA8A22] h-fit">
+                <div className="p-2 rounded bg-primary/10 text-primary h-fit">
                   <Award className="w-5 h-5" />
                 </div>
                 <div>
@@ -738,7 +738,7 @@ export function Home() {
             <div className="pt-2">
               <Link 
                 to="/about"
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#EA8A22] text-[#EA8A22] font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-[#EA8A22] hover:text-white hover:shadow-lg hover:shadow-[#EA8A22]/10 transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-primary text-primary font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
               >
                 <span>Read More About Us</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -820,27 +820,27 @@ export function Home() {
                     scale: 1.02, 
                     boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)" 
                   }}
-                  className="bg-white border border-neutral-200/80 p-8 rounded-3xl relative overflow-hidden transition-all duration-300 group hover:border-[#EA8A22] cursor-pointer"
+                  className="bg-white border border-neutral-200/80 p-8 rounded-3xl relative overflow-hidden transition-all duration-300 group hover:border-primary cursor-pointer"
                 >
                   {/* Diagonal premium sweep reflection on hover */}
                   <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-25 -translate-x-[150%] group-hover-sweep pointer-events-none z-20" />
 
                   {/* Dynamic background glow on hover */}
-                  <div className="absolute -top-12 -right-12 w-36 h-36 bg-gradient-to-br from-[#EA8A22]/8 to-transparent rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700" />
+                  <div className="absolute -top-12 -right-12 w-36 h-36 bg-gradient-to-br from-primary/8 to-transparent rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700" />
                   
                   <div className="flex justify-between items-start mb-8 relative z-10">
                     {/* Icon container */}
-                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 shadow-xs group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-[#EA8A22]/20">
+                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 shadow-xs group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-primary/20">
                       <IconComponent className="w-6 h-6 transition-transform duration-300" />
                     </div>
                     
                     {/* Index number with stylish outline font effect */}
-                    <span className="text-4xl font-extrabold text-neutral-200/80 font-mono transition-all duration-500 group-hover:text-[#EA8A22]/30 group-hover:-translate-y-1 group-hover:translate-x-1 block">
+                    <span className="text-4xl font-extrabold text-neutral-200/80 font-mono transition-all duration-500 group-hover:text-primary/30 group-hover:-translate-y-1 group-hover:translate-x-1 block">
                       {reason.num}
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-black text-neutral-900 mb-3 tracking-tight uppercase group-hover:text-[#EA8A22] transition-colors duration-300 relative z-10">
+                  <h3 className="text-lg font-black text-neutral-900 mb-3 tracking-tight uppercase group-hover:text-primary transition-colors duration-300 relative z-10">
                     {reason.title}
                   </h3>
                   
@@ -849,7 +849,7 @@ export function Home() {
                   </p>
 
                   {/* Aesthetic Accent Bottom Line */}
-                  <div className="absolute bottom-0 left-0 w-0 h-[4px] bg-gradient-to-r from-[#EA8A22] to-[#ffaa44] transition-all duration-500 group-hover:w-full" />
+                  <div className="absolute bottom-0 left-0 w-0 h-[4px] bg-gradient-to-r from-primary to-[#ffaa44] transition-all duration-500 group-hover:w-full" />
                 </motion.div>
               );
             })}
@@ -887,7 +887,7 @@ export function Home() {
           </svg>
         </div>
 
-        <div className="absolute right-6 bottom-24 w-40 h-40 opacity-[0.04] pointer-events-none hidden xl:block select-none text-[#EA8A22]">
+        <div className="absolute right-6 bottom-24 w-40 h-40 opacity-[0.04] pointer-events-none hidden xl:block select-none text-primary">
           <svg viewBox="0 0 100 100" className="w-full h-full">
             <path d="M 10 50 A 40 40 0 0 1 50 10" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2" />
             <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" strokeWidth="0.5" />
@@ -926,14 +926,14 @@ export function Home() {
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -4, scale: 1.005 }}
               onClick={() => navigate('/solutions/mep-solutions')}
-              className="w-full bg-gradient-to-br from-white via-white to-orange-50/15 border-2 border-[#EA8A22]/25 p-6 lg:p-8 rounded-2xl relative overflow-hidden transition-all duration-500 hover:border-[#EA8A22]/50 hover:shadow-[0_20px_40px_rgba(234,138,34,0.04)] cursor-pointer group animate-fade-in"
+              className="w-full bg-gradient-to-br from-white via-white to-orange-50/15 border-2 border-primary/25 p-6 lg:p-8 rounded-2xl relative overflow-hidden transition-all duration-500 hover:border-primary/50 hover:shadow-[0_20px_40px_rgba(234,138,34,0.04)] cursor-pointer group animate-fade-in"
             >
               {/* Engineering Blueprint Grid overlay inside Hero card */}
               <div className="absolute inset-0 opacity-8 group-hover:opacity-12 pointer-events-none transition-opacity duration-500 overflow-hidden">
                 <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <pattern id="mep-hero-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-                      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-[#EA8A22]" />
+                      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-primary" />
                     </pattern>
                   </defs>
                   <rect width="100%" height="100%" fill="url(#mep-hero-grid)" />
@@ -941,20 +941,20 @@ export function Home() {
               </div>
 
               {/* Dynamic warm glow behind card */}
-              <div className="absolute -top-16 -right-16 w-52 h-52 bg-gradient-to-br from-[#EA8A22]/10 to-transparent rounded-full blur-3xl group-hover:scale-125 transition-transform duration-750" />
+              <div className="absolute -top-16 -right-16 w-52 h-52 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl group-hover:scale-125 transition-transform duration-750" />
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
                 
                 {/* Left Text and Icons Block */}
                 <div className="lg:col-span-6 space-y-4 flex flex-col justify-center">
                   <div className="flex items-center justify-between">
-                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-[#EA8A22]/25 transition-colors duration-300">
+                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-primary/25 transition-colors duration-300">
                       01
                     </span>
                   </div>
 
                   <div className="space-y-2">
-                    <h3 className="text-xl lg:text-2xl font-black text-neutral-900 group-hover:text-[#EA8A22] transition-colors duration-300 uppercase tracking-tight">
+                    <h3 className="text-xl lg:text-2xl font-black text-neutral-900 group-hover:text-primary transition-colors duration-300 uppercase tracking-tight">
                       MEP Solutions
                     </h3>
                     <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">
@@ -964,7 +964,7 @@ export function Home() {
                 </div>
 
                 {/* Right Featured Image for MEP Solutions */}
-                <div className="lg:col-span-6 h-[240px] lg:h-[280px] rounded-xl overflow-hidden border border-neutral-200/50 relative shadow-xs group-hover:border-[#EA8A22]/30 transition-all duration-500">
+                <div className="lg:col-span-6 h-[240px] lg:h-[280px] rounded-xl overflow-hidden border border-neutral-200/50 relative shadow-xs group-hover:border-primary/30 transition-all duration-500">
                   <AnimatePresence mode="wait">
                     <motion.img 
                       key={mepSlideIdx}
@@ -1012,7 +1012,7 @@ export function Home() {
                           e.stopPropagation();
                           setMepSlideIdx(sIdx);
                         }}
-                        className={`w-1.5 h-1.5 rounded-full transition-all duration-300 cursor-pointer ${sIdx === mepSlideIdx ? 'bg-[#EA8A22] w-3.5' : 'bg-white/40 hover:bg-white/80'}`}
+                        className={`w-1.5 h-1.5 rounded-full transition-all duration-300 cursor-pointer ${sIdx === mepSlideIdx ? 'bg-primary w-3.5' : 'bg-white/40 hover:bg-white/80'}`}
                         title={`Image ${sIdx + 1} of ${mepImages.length}`}
                       />
                     ))}
@@ -1039,20 +1039,20 @@ export function Home() {
                   boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)" 
                 }}
                 onClick={() => navigate('/solutions/facility-management')}
-                className="bg-white border border-neutral-200/80 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-[#EA8A22] flex flex-col justify-between group h-full min-h-[440px] cursor-pointer"
+                className="bg-white border border-neutral-200/80 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-primary flex flex-col justify-between group h-full min-h-[440px] cursor-pointer"
               >
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-[#EA8A22]/20">
+                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-primary/20">
                       <Wrench className="w-6 h-6" />
                     </div>
-                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-[#EA8A22]/20 transition-colors duration-300">
+                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-primary/20 transition-colors duration-300">
                       02
                     </span>
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="text-xl font-black text-neutral-900 group-hover:text-[#EA8A22] transition-colors uppercase tracking-tight">
+                    <h3 className="text-xl font-black text-neutral-900 group-hover:text-primary transition-colors uppercase tracking-tight">
                       Facility Management
                     </h3>
                     <p className="text-xs text-neutral-500 leading-relaxed">
@@ -1068,7 +1068,7 @@ export function Home() {
                     "Intelligent Building Energy Audits"
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-xs text-neutral-600">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#EA8A22]" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -1087,20 +1087,20 @@ export function Home() {
                   boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)" 
                 }}
                 onClick={() => navigate('/solutions/civil-solutions')}
-                className="bg-white border border-neutral-200/80 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-[#EA8A22] flex flex-col justify-between group h-full min-h-[440px] cursor-pointer"
+                className="bg-white border border-neutral-200/80 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-primary flex flex-col justify-between group h-full min-h-[440px] cursor-pointer"
               >
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-[#EA8A22]/20">
+                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-primary/20">
                       <Building2 className="w-6 h-6" />
                     </div>
-                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-[#EA8A22]/20 transition-colors duration-300">
+                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-primary/20 transition-colors duration-300">
                       03
                     </span>
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="text-xl font-black text-neutral-900 group-hover:text-[#EA8A22] transition-colors uppercase tracking-tight">
+                    <h3 className="text-xl font-black text-neutral-900 group-hover:text-primary transition-colors uppercase tracking-tight">
                       Civil Solutions
                     </h3>
                     <p className="text-xs text-neutral-500 leading-relaxed">
@@ -1116,7 +1116,7 @@ export function Home() {
                     "Prefabricated Steel Trusses & Cladding"
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-xs text-neutral-600">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#EA8A22]" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -1135,20 +1135,20 @@ export function Home() {
                   boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)" 
                 }}
                 onClick={() => navigate('/solutions/fit-out-solutions')}
-                className="bg-white border border-neutral-200/80 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-[#EA8A22] flex flex-col justify-between group h-full min-h-[440px] cursor-pointer"
+                className="bg-white border border-neutral-200/80 rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:border-primary flex flex-col justify-between group h-full min-h-[440px] cursor-pointer"
               >
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-[#EA8A22]/20">
+                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-primary/20">
                       <Paintbrush className="w-6 h-6" />
                     </div>
-                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-[#EA8A22]/20 transition-colors duration-300">
+                    <span className="text-3xl font-extrabold text-neutral-200/80 font-mono group-hover:text-primary/20 transition-colors duration-300">
                       04
                     </span>
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="text-xl font-black text-neutral-900 group-hover:text-[#EA8A22] transition-colors uppercase tracking-tight">
+                    <h3 className="text-xl font-black text-neutral-900 group-hover:text-primary transition-colors uppercase tracking-tight">
                       Fit-Out Solutions
                     </h3>
                     <p className="text-xs text-neutral-500 leading-relaxed">
@@ -1164,7 +1164,7 @@ export function Home() {
                     "Custom Joinery & Modern Finishes"
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-xs text-neutral-600">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#EA8A22]" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -1177,7 +1177,7 @@ export function Home() {
             <div className="mt-16 flex justify-center">
               <Link 
                 to="/solutions"
-                className="group flex items-center justify-center gap-2 px-8 py-4 border border-[#EA8A22] text-[#EA8A22] font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-[#EA8A22] hover:text-white hover:shadow-lg hover:shadow-[#EA8A22]/10 transition-all duration-300"
+                className="group flex items-center justify-center gap-2 px-8 py-4 border border-primary text-primary font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
               >
                 <span>Explore All Solutions</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -1221,9 +1221,9 @@ export function Home() {
                 {Array(48).fill(null).map((_, idx) => (
                   <div
                     key={`partner-logo-${idx}`}
-                    className="flex items-center gap-2.5 text-neutral-500 hover:text-[#EA8A22] transition-colors duration-300 cursor-pointer group shrink-0"
+                    className="flex items-center gap-2.5 text-neutral-500 hover:text-primary transition-colors duration-300 cursor-pointer group shrink-0"
                   >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 text-neutral-400 group-hover:text-[#EA8A22] transition-colors">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 text-neutral-400 group-hover:text-primary transition-colors">
                       <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5" />
                     </svg>
                     <span className="font-mono text-xs font-bold tracking-widest uppercase">Logo</span>
@@ -1243,9 +1243,9 @@ export function Home() {
                 {Array(48).fill(null).map((_, idx) => (
                   <div
                     key={`client-logo-${idx}`}
-                    className="flex items-center gap-2.5 text-neutral-500 hover:text-[#EA8A22] transition-colors duration-300 cursor-pointer group shrink-0"
+                    className="flex items-center gap-2.5 text-neutral-500 hover:text-primary transition-colors duration-300 cursor-pointer group shrink-0"
                   >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 text-neutral-400 group-hover:text-[#EA8A22] transition-colors">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 text-neutral-400 group-hover:text-primary transition-colors">
                       <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5" />
                     </svg>
                     <span className="font-mono text-xs font-bold tracking-widest uppercase">Logo</span>
@@ -1285,7 +1285,7 @@ export function Home() {
           </svg>
         </div>
 
-        <div className="absolute right-6 -bottom-32 w-96 h-96 opacity-[0.06] pointer-events-none hidden xl:block select-none text-[#EA8A22] z-0">
+        <div className="absolute right-6 -bottom-32 w-96 h-96 opacity-[0.06] pointer-events-none hidden xl:block select-none text-primary z-0">
           <svg viewBox="0 0 100 100" className="w-full h-full">
             <rect x="10" y="10" width="80" height="80" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" />
             <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" strokeWidth="0.25" />
@@ -1323,7 +1323,7 @@ export function Home() {
                   const slug = proj.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
                   navigate(`/projects/${slug}`);
                 }}
-                className="bg-white border border-neutral-200 rounded-3xl overflow-hidden group hover:border-[#EA8A22]/40 hover:shadow-2xl hover:shadow-[#EA8A22]/5 transition-all duration-300 flex flex-col cursor-pointer"
+                className="bg-white border border-neutral-200 rounded-3xl overflow-hidden group hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 flex flex-col cursor-pointer"
               >
                 {/* Project Image Panel with Zoom */}
                 <div className="h-64 overflow-hidden relative">
@@ -1346,7 +1346,7 @@ export function Home() {
                 {/* Project details area */}
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div className="space-y-2">
-                    <h3 className="text-lg font-bold text-neutral-900 transition-colors uppercase tracking-tight group-hover:text-[#EA8A22]">
+                    <h3 className="text-lg font-bold text-neutral-900 transition-colors uppercase tracking-tight group-hover:text-primary">
                       {proj.name}
                     </h3>
 
@@ -1363,7 +1363,7 @@ export function Home() {
           <div className="mt-16 flex justify-center">
             <Link 
               to="/projects"
-              className="group flex items-center justify-center gap-2 px-8 py-4 border border-[#EA8A22] text-[#EA8A22] font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-[#EA8A22] hover:text-white hover:shadow-lg hover:shadow-[#EA8A22]/10 transition-all duration-300"
+              className="group flex items-center justify-center gap-2 px-8 py-4 border border-primary text-primary font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
             >
               <span>Explore All Projects</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -1381,7 +1381,7 @@ export function Home() {
         {/* Premium Background Elements */}
         <div className="absolute inset-0 bg-blueprint opacity-[0.03] pointer-events-none" />
         <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#142b52] rounded-full opacity-[0.04] blur-[150px] pointer-events-none" />
-        <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-[#EA8A22] rounded-full opacity-[0.03] blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-primary rounded-full opacity-[0.03] blur-[120px] pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#ffffff] via-transparent to-[#fdfdfd] pointer-events-none" />
         
         {/* Floating geometric shapes (3D animated) */}
@@ -1399,7 +1399,7 @@ export function Home() {
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div 
-          className="absolute bottom-[20%] right-[10%] w-48 h-48 border border-[#EA8A22]/10 rounded-full pointer-events-none"
+          className="absolute bottom-[20%] right-[10%] w-48 h-48 border border-primary/10 rounded-full pointer-events-none"
           animate={{ y: [0, -30, 0], rotate: [0, -45, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -1481,7 +1481,7 @@ export function Home() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.4, delay: i * 0.03 }}
-                            className={['unprecedented', 'ingenuity', 'unparalleled'].some(k => word.toLowerCase().includes(k)) ? "text-[#EA8A22] font-medium" : ""}
+                            className={['unprecedented', 'ingenuity', 'unparalleled'].some(k => word.toLowerCase().includes(k)) ? "text-primary font-medium" : ""}
                           >
                             {word}{' '}
                           </motion.span>
@@ -1563,7 +1563,7 @@ export function Home() {
         className="bg-white relative overflow-hidden z-10 transition-all duration-200 py-12 md:py-20 lg:py-24"
       >
         {/* Decorative structural dimension bar and annotations in margin/whitespace */}
-        <div className="absolute right-8 top-12 w-40 h-16 opacity-[0.04] pointer-events-none hidden lg:block select-none text-[#EA8A22]">
+        <div className="absolute right-8 top-12 w-40 h-16 opacity-[0.04] pointer-events-none hidden lg:block select-none text-primary">
           <svg viewBox="0 0 100 40" className="w-full h-full">
             <line x1="10" y1="20" x2="90" y2="20" stroke="currentColor" strokeWidth="0.5" />
             <line x1="10" y1="12" x2="10" y2="28" stroke="currentColor" strokeWidth="0.5" />
@@ -1605,7 +1605,7 @@ export function Home() {
               <Link
                 key={index}
                 to={`/blogs/${post.slug}`}
-                className="bg-white border border-neutral-200 rounded-3xl overflow-hidden group hover:border-[#EA8A22]/40 hover:shadow-2xl hover:shadow-[#EA8A22]/5 transition-all duration-300 flex flex-col h-full block"
+                className="bg-white border border-neutral-200 rounded-3xl overflow-hidden group hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 flex flex-col h-full block"
               >
                 {/* Image zoom on hover */}
                 <div className="h-48 overflow-hidden relative block shrink-0">
@@ -1621,7 +1621,7 @@ export function Home() {
                 </div>
 
                 <div className="p-6 space-y-3 flex-1 flex flex-col justify-start">
-                  <h3 className="text-lg font-bold text-neutral-900 line-clamp-2 leading-snug group-hover:text-[#EA8A22] transition-colors">
+                  <h3 className="text-lg font-bold text-neutral-900 line-clamp-2 leading-snug group-hover:text-primary transition-colors">
                     {post.title}
                   </h3>
                   <p className="text-xs text-neutral-600 line-clamp-1 leading-relaxed font-light">
@@ -1636,7 +1636,7 @@ export function Home() {
           <div className="mt-16 flex justify-center">
             <Link 
               to="/blogs"
-              className="group flex items-center justify-center gap-2 px-8 py-4 border border-[#EA8A22] text-[#EA8A22] font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-[#EA8A22] hover:text-white hover:shadow-lg hover:shadow-[#EA8A22]/10 transition-all duration-300"
+              className="group flex items-center justify-center gap-2 px-8 py-4 border border-primary text-primary font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
             >
               <span>Explore All Insights</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -1670,7 +1670,7 @@ export function Home() {
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0f1d]/30" />
             </div>
             <div className="absolute inset-0 translate-x-[-150%] skew-x-[-25deg] w-1/2 bg-gradient-to-r from-transparent via-white/5 to-transparent group-hover:animate-[sweep_2s_ease-in-out_infinite]" />
-            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-[#EA8A22]/15 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
             {/* Redesigned Architectural & Engineering Blueprint Background */}
             <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[50%] pointer-events-none select-none overflow-hidden opacity-[0.22] lg:opacity-[0.28]">
               {/* Subtle pulsing/drawing animation styles */}
@@ -1817,7 +1817,7 @@ export function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
               {/* Left text column */}
               <div className="lg:col-span-7">
-                <span className="text-[#EA8A22] font-mono text-xs tracking-[0.25em] font-bold uppercase block mb-3">READY TO START?</span>
+                <span className="text-primary font-mono text-xs tracking-[0.25em] font-bold uppercase block mb-3">READY TO START?</span>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase leading-[1.1]">
                   Let's Build Your <br />Next Project Together
                 </h2>
@@ -1827,7 +1827,7 @@ export function Home() {
               <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-4">
                 <button
                   onClick={() => setQuoteModalOpen(true)}
-                  className="w-full px-8 py-5 bg-[#EA8A22] hover:bg-[#EA8A22] text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-[#EA8A22]/20 hover:shadow-[#EA8A22]/40 flex items-center justify-center gap-2 font-mono group cursor-pointer"
+                  className="w-full px-8 py-5 bg-primary hover:bg-primary text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-primary/40 flex items-center justify-center gap-2 font-mono group cursor-pointer"
                 >
                   Request a Quote <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
@@ -1840,7 +1840,7 @@ export function Home() {
                   {downloadingProfile ? (
                     <span className="animate-pulse">Preparing file...</span>
                   ) : downloadSuccess ? (
-                    <span className="text-[#EA8A22]">Profile Downloaded ✔</span>
+                    <span className="text-primary">Profile Downloaded ✔</span>
                   ) : (
                     <>
                       Download Company Profile 
@@ -1879,11 +1879,11 @@ export function Home() {
             
             {/* Left Column: Contact Form (55% visual equivalent width) */}
             <div className="lg:col-span-7 bg-white rounded-3xl p-8 md:p-10 border border-neutral-200/80 shadow-md relative overflow-hidden h-full">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#EA8A22]/5 rounded-bl-[100px] pointer-events-none" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[100px] pointer-events-none" />
               
               <form onSubmit={handleContactSubmit} className="space-y-7 relative z-10">
                 <div className="space-y-1.5">
-                  <span className="text-[#EA8A22] font-mono text-xs uppercase font-extrabold tracking-widest block">
+                  <span className="text-primary font-mono text-xs uppercase font-extrabold tracking-widest block">
                     {selectedBranch === 'SA' && 'RIYADH OFFICE ROUTING'}
                     {selectedBranch === 'EG' && 'CAIRO OFFICE ROUTING'}
                     {selectedBranch === 'LY' && 'TRIPOLI OFFICE ROUTING'}
@@ -1906,7 +1906,7 @@ export function Home() {
                       placeholder="e.g. Khalid Al-Faisal"
                       value={contactName}
                       onChange={(e) => setContactName(e.target.value)}
-                      className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-[#EA8A22] focus:bg-white text-neutral-800 placeholder-neutral-400 p-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-[#EA8A22]/15"
+                      className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-800 placeholder-neutral-400 p-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-primary/15"
                     />
                   </div>
 
@@ -1920,7 +1920,7 @@ export function Home() {
                       type="email"
                       required
                       placeholder="e.g. khalid@example.com"
-                      className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-[#EA8A22] focus:bg-white text-neutral-800 placeholder-neutral-400 p-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-[#EA8A22]/15"
+                      className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-800 placeholder-neutral-400 p-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-primary/15"
                     />
                   </div>
                 </div>
@@ -1931,7 +1931,7 @@ export function Home() {
                     <label htmlFor="contact-phone" className="text-[10px] font-mono uppercase tracking-widest text-neutral-600 font-bold block">
                       Phone Number
                     </label>
-                    <div className="relative flex items-center bg-neutral-50/50 border border-neutral-200/80 focus-within:border-[#EA8A22] focus-within:bg-white rounded-xl transition-all w-full focus-within:ring-2 focus-within:ring-[#EA8A22]/15">
+                    <div className="relative flex items-center bg-neutral-50/50 border border-neutral-200/80 focus-within:border-primary focus-within:bg-white rounded-xl transition-all w-full focus-within:ring-2 focus-within:ring-primary/15">
                       <div className="flex items-center gap-1 pl-3.5 pr-2.5 border-r border-neutral-200 select-none shrink-0">
                         <CountryFlag countryCode={contactPhoneCountry} />
                         <select
@@ -1965,7 +1965,7 @@ export function Home() {
                     <div className="relative">
                       <select
                         id="contact-segment"
-                        className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-[#EA8A22] focus:bg-white text-neutral-700 pl-3.5 pr-10 py-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-[#EA8A22]/15 appearance-none"
+                        className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-700 pl-3.5 pr-10 py-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-primary/15 appearance-none"
                       >
                         <option>Commercial Buildings & Offices</option>
                         <option>Infrastructure & Roads</option>
@@ -1989,7 +1989,7 @@ export function Home() {
                     rows={4}
                     required
                     placeholder="Tell us a bit about your project or what you need..."
-                    className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-[#EA8A22] focus:bg-white text-neutral-800 placeholder-neutral-400 p-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-[#EA8A22]/15 resize-none"
+                    className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-800 placeholder-neutral-400 p-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-primary/15 resize-none"
                   />
                 </div>
 
@@ -1997,7 +1997,7 @@ export function Home() {
                 <button
                   type="submit"
                   disabled={contactSubmitting}
-                  className="w-full py-4 bg-[#EA8A22] hover:bg-[#EA8A22]/90 disabled:bg-neutral-200 text-white font-mono font-bold text-xs uppercase tracking-widest rounded-full transition-all duration-300 shadow-lg shadow-[#EA8A22]/10 hover:shadow-[#EA8A22]/20 cursor-pointer flex items-center justify-center gap-2"
+                  className="w-full py-4 bg-primary hover:bg-primary/90 disabled:bg-neutral-200 text-white font-mono font-bold text-xs uppercase tracking-widest rounded-full transition-all duration-300 shadow-lg shadow-primary/10 hover:shadow-primary/20 cursor-pointer flex items-center justify-center gap-2"
                 >
                   {contactSubmitting ? (
                     <span className="flex items-center gap-2">
@@ -2019,7 +2019,7 @@ export function Home() {
                 
                 {/* Discoverability Helper Text */}
                 <div className="flex items-center gap-2 text-xs font-mono font-medium text-neutral-500 tracking-wide select-none">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#EA8A22]/80 animate-pulse" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse" />
                   <span>Select a regional office to view its contact details.</span>
                 </div>
 
@@ -2033,7 +2033,7 @@ export function Home() {
                     REGIONAL CONNECTIONS // MAABANY_NET
                   </div>
                   
-                  <div className="absolute bottom-2.5 right-3.5 font-mono text-[8px] text-[#EA8A22]/80 tracking-widest animate-pulse font-bold">
+                  <div className="absolute bottom-2.5 right-3.5 font-mono text-[8px] text-primary/80 tracking-widest animate-pulse font-bold">
                     • {selectedBranch} ACTIVE_NODE
                   </div>
 
@@ -2134,7 +2134,7 @@ export function Home() {
 
                           {/* Hover Glow Underlay for inactive pins */}
                           {!isActive && isHovered && (
-                            <circle cx={node.coordinates.x} cy={node.coordinates.y} r="10" className="fill-[#EA8A22]/10 stroke-[#EA8A22]/30 stroke-[1] transition-all duration-200" />
+                            <circle cx={node.coordinates.x} cy={node.coordinates.y} r="10" className="fill-primary/10 stroke-primary/30 stroke-[1] transition-all duration-200" />
                           )}
 
                           {/* Pin base circle */}
@@ -2144,8 +2144,8 @@ export function Home() {
                             r={isActive ? "4.5" : "3"} 
                             className={`transition-all duration-300 ${
                               isActive 
-                                ? 'fill-[#EA8A22]' 
-                                : isHovered ? 'fill-[#EA8A22]/90' : 'fill-neutral-500 opacity-60'
+                                ? 'fill-primary' 
+                                : isHovered ? 'fill-primary/90' : 'fill-neutral-500 opacity-60'
                             }`} 
                           />
                           <circle cx={node.coordinates.x} cy={node.coordinates.y} r="1.5" fill="white" />
@@ -2156,7 +2156,7 @@ export function Home() {
                             y={node.coordinates.y - 12} 
                             className={`font-mono text-[8.5px] font-bold transition-all duration-300 select-none ${
                               isActive 
-                                ? 'fill-[#EA8A22] font-black' 
+                                ? 'fill-primary font-black' 
                                 : isHovered ? 'fill-neutral-200' : 'fill-neutral-500 opacity-60'
                             }`}
                             textAnchor="middle"
@@ -2229,7 +2229,7 @@ export function Home() {
                           <div className="space-y-5">
                             {/* Address */}
                             <div className="flex gap-3.5 items-start">
-                              <div className="p-1.5 text-[#EA8A22] shrink-0 mt-0.5">
+                              <div className="p-1.5 text-primary shrink-0 mt-0.5">
                                 <MapPin className="w-4 h-4 stroke-[2.5]" />
                               </div>
                               <div className="space-y-0.5">
@@ -2240,14 +2240,14 @@ export function Home() {
 
                             {/* Direct Line */}
                             <div className="flex gap-3.5 items-start">
-                              <div className="p-1.5 text-[#EA8A22] shrink-0 mt-0.5">
+                              <div className="p-1.5 text-primary shrink-0 mt-0.5">
                                 <Phone className="w-4 h-4 stroke-[2.5]" />
                               </div>
                               <div className="space-y-0.5">
                                 <p className="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">TELEPHONE</p>
                                 <a 
                                   href={branch.phoneRaw} 
-                                  className="text-neutral-800 text-sm font-mono font-bold block hover:text-[#EA8A22] transition-colors focus:outline-none focus:underline"
+                                  className="text-neutral-800 text-sm font-mono font-bold block hover:text-primary transition-colors focus:outline-none focus:underline"
                                 >
                                   {branch.phone}
                                 </a>
@@ -2256,14 +2256,14 @@ export function Home() {
 
                             {/* Email Support (Centralized channel highlighted clearly inside the container) */}
                             <div className="flex gap-3.5 items-start">
-                              <div className="p-1.5 text-[#EA8A22] shrink-0 mt-0.5">
+                              <div className="p-1.5 text-primary shrink-0 mt-0.5">
                                 <Mail className="w-4 h-4 stroke-[2.5]" />
                               </div>
                               <div className="space-y-0.5">
                                 <p className="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">GENERAL INQUIRIES</p>
                                 <a 
                                   href="mailto:info@maabany.com" 
-                                  className="text-neutral-800 text-sm font-bold block hover:text-[#EA8A22] transition-colors focus:outline-none focus:underline"
+                                  className="text-neutral-800 text-sm font-bold block hover:text-primary transition-colors focus:outline-none focus:underline"
                                 >
                                   info@maabany.com
                                 </a>
@@ -2272,7 +2272,7 @@ export function Home() {
 
                             {/* Working Hours */}
                             <div className="flex gap-3.5 items-start">
-                              <div className="p-1.5 text-[#EA8A22] shrink-0 mt-0.5">
+                              <div className="p-1.5 text-primary shrink-0 mt-0.5">
                                 <Clock className="w-4 h-4 stroke-[2.5]" />
                               </div>
                               <div className="space-y-0.5">

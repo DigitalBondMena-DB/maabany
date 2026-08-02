@@ -42,10 +42,10 @@ export function About() {
 
   return (
     <div className="relative bg-white text-neutral-900 min-h-screen">
-      
+
       {/* 1. Hero Section */}
       <InternalPageHero
-        title={<>Building Beyond <br /> <span className="text-[#EA8A22]">Expectations</span></>}
+        title={<>Building Beyond <br /> <span className="text-primary">Expectations</span></>}
         categoryBadge="About"
         categoryIcon={HardHat}
         description=""
@@ -62,7 +62,7 @@ export function About() {
 
         <div className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
+
             {/* Left Image */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -71,7 +71,7 @@ export function About() {
               transition={{ duration: 1, ease: "easeOut" }}
               className="relative rounded-3xl overflow-hidden aspect-square md:aspect-[4/3] lg:aspect-[4/3] shadow-2xl"
             >
-              <img 
+              <img
                 src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80"
                 alt="Maabany Architecture"
                 className="w-full h-full object-cover"
@@ -83,54 +83,54 @@ export function About() {
             <div className="space-y-8 relative overflow-hidden rounded-3xl p-1 md:p-2">
               <RightContentWatermark />
               <div className="relative z-10 space-y-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6 }}
-              >
-                <span className="text-[#142b52] font-mono text-sm tracking-[0.2em] font-bold uppercase block mb-4">WHO WE ARE</span>
-                <h2 className="text-4xl md:text-5xl font-black text-neutral-900 tracking-tighter uppercase leading-[1.1]">
-                  About Maabany
-                </h2>
-                <p className="mt-6 text-neutral-600 leading-relaxed font-light text-lg">
-                  Founded in 2013, Maabany Engineering has rapidly evolved into the region's most trusted partner for high-scale, high-complexity structural projects. 
-                  Our approach marries aggressive technical innovation with a deep respect for foundational engineering principles.
-                </p>
-              </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <span className="text-[#142b52] font-mono text-sm tracking-[0.2em] font-bold uppercase block mb-4">WHO WE ARE</span>
+                  <h2 className="text-4xl md:text-5xl font-black text-neutral-900 tracking-tighter uppercase leading-[1.1]">
+                    About Maabany
+                  </h2>
+                  <p className="mt-6 text-neutral-600 leading-relaxed font-light text-lg">
+                    Founded in 2013, Maabany Engineering has rapidly evolved into the region's most trusted partner for high-scale, high-complexity structural projects.
+                    Our approach marries aggressive technical innovation with a deep respect for foundational engineering principles.
+                  </p>
+                </motion.div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  { title: "Established in 2013", icon: <Award className="w-5 h-5" /> },
-                  { title: "Multi-disciplinary", icon: <HardHat className="w-5 h-5" /> },
-                  { title: "Regional Presence", icon: <Globe className="w-5 h-5" /> },
-                  { title: "Trusted Partner", icon: <Shield className="w-5 h-5" /> }
-                ].map((item, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ type: 'spring', stiffness: 80, damping: 14, delay: idx * 0.12 }}
-                    whileHover={{ 
-                      y: -12, 
-                      scale: 1.03, 
-                      boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)"
-                    }}
-                    className="relative flex items-center gap-4 bg-white/80 backdrop-blur-sm border border-neutral-200/80 p-4 rounded-2xl overflow-hidden group transition-all duration-300 hover:border-[#EA8A22]"
-                  >
-                    <div className="absolute -right-6 -top-6 w-20 h-20 bg-gradient-to-br from-[#EA8A22]/8 to-transparent rounded-full blur-xl group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
-                    <div className="absolute -left-6 -bottom-6 w-20 h-20 bg-gradient-to-tr from-[#142b52]/5 to-transparent rounded-full blur-xl group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    { title: "Established in 2013", icon: <Award className="w-5 h-5" /> },
+                    { title: "Multi-disciplinary", icon: <HardHat className="w-5 h-5" /> },
+                    { title: "Regional Presence", icon: <Globe className="w-5 h-5" /> },
+                    { title: "Trusted Partner", icon: <Shield className="w-5 h-5" /> }
+                  ].map((item, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ type: 'spring', stiffness: 80, damping: 14, delay: idx * 0.12 }}
+                      whileHover={{
+                        y: -12,
+                        scale: 1.03,
+                        boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)"
+                      }}
+                      className="relative flex items-center gap-4 bg-white/80 backdrop-blur-sm border border-neutral-200/80 p-4 rounded-2xl overflow-hidden group transition-all duration-300 hover:border-primary"
+                    >
+                      <div className="absolute -right-6 -top-6 w-20 h-20 bg-gradient-to-br from-primary/8 to-transparent rounded-full blur-xl group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
+                      <div className="absolute -left-6 -bottom-6 w-20 h-20 bg-gradient-to-tr from-[#142b52]/5 to-transparent rounded-full blur-xl group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
 
-                    <div className="relative z-10 flex items-center justify-center p-2.5 rounded-xl bg-neutral-50 border border-neutral-150 text-[#EA8A22] transition-all duration-300 group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 shadow-sm group-hover:shadow-[#EA8A22]/20">
-                      {item.icon}
-                    </div>
-                    <span className="relative z-10 text-sm font-semibold text-neutral-800 tracking-wide">{item.title}</span>
-                  </motion.div>
-                ))}
+                      <div className="relative z-10 flex items-center justify-center p-2.5 rounded-xl bg-neutral-50 border border-neutral-150 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 shadow-sm group-hover:shadow-primary/20">
+                        {item.icon}
+                      </div>
+                      <span className="relative z-10 text-sm font-semibold text-neutral-800 tracking-wide">{item.title}</span>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
           </div>
         </div>
@@ -139,7 +139,7 @@ export function About() {
       {/* 3. Statistics */}
       <section className="py-12 md:py-20 lg:py-24 relative bg-neutral-50 border-y border-neutral-200 overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
-        
+
         <div className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x divide-neutral-200">
             {[
@@ -157,7 +157,7 @@ export function About() {
                 className="flex flex-col items-center text-center px-4"
               >
                 <AnimatedCounter end={stat.end} suffix={stat.suffix} />
-                <div className="text-xs md:text-sm font-bold text-[#EA8A22] uppercase tracking-widest font-mono">
+                <div className="text-xs md:text-sm font-bold text-primary uppercase tracking-widest font-mono">
                   {stat.label}
                 </div>
               </motion.div>
@@ -170,22 +170,22 @@ export function About() {
       <section className="py-12 md:py-20 lg:py-24 relative bg-white overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
+
             {[
-              { 
-                title: "OUR MISSION", 
-                icon: <Target className="w-6 h-6" />, 
-                desc: "To deliver uncompromising structural excellence by deploying advanced engineering methodologies, sustainable materials, and rigorous quality controls on every site we operate." 
+              {
+                title: "OUR MISSION",
+                icon: <Target className="w-6 h-6" />,
+                desc: "To deliver uncompromising structural excellence by deploying advanced engineering methodologies, sustainable materials, and rigorous quality controls on every site we operate."
               },
-              { 
-                title: "OUR VISION", 
-                icon: <Lightbulb className="w-6 h-6" />, 
-                desc: "To become the undisputed benchmark for high-scale construction in the Middle East, pioneering the transition toward net-zero megaprojects and intelligent infrastructure." 
+              {
+                title: "OUR VISION",
+                icon: <Lightbulb className="w-6 h-6" />,
+                desc: "To become the undisputed benchmark for high-scale construction in the Middle East, pioneering the transition toward net-zero megaprojects and intelligent infrastructure."
               },
-              { 
-                title: "CORE VALUES", 
-                icon: <Shield className="w-6 h-6" />, 
-                desc: "Integrity in engineering, absolute safety compliance, continuous technological adoption, and a relentless commitment to exceeding client architectural aspirations." 
+              {
+                title: "CORE VALUES",
+                icon: <Shield className="w-6 h-6" />,
+                desc: "Integrity in engineering, absolute safety compliance, continuous technological adoption, and a relentless commitment to exceeding client architectural aspirations."
               }
             ].map((panel, idx) => (
               <motion.div
@@ -194,26 +194,26 @@ export function About() {
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ type: 'spring', stiffness: 80, damping: 14, delay: idx * 0.12 }}
-                whileHover={{ 
-                  y: -12, 
-                  scale: 1.03, 
+                whileHover={{
+                  y: -12,
+                  scale: 1.03,
                   boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)"
                 }}
-                className="relative bg-white border border-neutral-200/80 p-10 rounded-[2.5rem] overflow-hidden group transition-all duration-300 hover:border-[#EA8A22]"
+                className="relative bg-white border border-neutral-200/80 p-10 rounded-[2.5rem] overflow-hidden group transition-all duration-300 hover:border-primary"
               >
                 {/* Playful organic glowing blob inside card background */}
-                <div className="absolute -right-12 -top-12 w-36 h-36 bg-gradient-to-br from-[#EA8A22]/8 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
+                <div className="absolute -right-12 -top-12 w-36 h-36 bg-gradient-to-br from-primary/8 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
                 <div className="absolute -left-12 -bottom-12 w-36 h-36 bg-gradient-to-tr from-[#142b52]/5 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
 
 
-                
+
                 <div className="relative z-10 flex flex-col h-full justify-between">
                   <div>
                     {/* Organic squircle shaped icon badge */}
-                    <div className="w-16 h-16 rounded-[1.5rem] bg-neutral-50 border border-neutral-150 text-[#EA8A22] flex items-center justify-center mb-8 transition-all duration-300 group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 shadow-sm group-hover:shadow-[#EA8A22]/20">
+                    <div className="w-16 h-16 rounded-[1.5rem] bg-neutral-50 border border-neutral-150 text-primary flex items-center justify-center mb-8 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 shadow-sm group-hover:shadow-primary/20">
                       {panel.icon}
                     </div>
-                    
+
                     <h3 className="text-xl font-extrabold text-neutral-950 tracking-wide uppercase mb-4 font-sans">{panel.title}</h3>
                     <p className="text-neutral-600 leading-relaxed font-light text-sm">
                       {panel.desc}
@@ -233,16 +233,16 @@ export function About() {
           <span className="text-[#142b52] font-mono text-xs tracking-[0.2em] font-bold uppercase block mb-3">TRUSTED BY THE BEST</span>
           <h2 className="text-3xl md:text-4xl font-black text-neutral-900 tracking-tighter uppercase">Our Partners</h2>
         </div>
-        
+
         <div className="relative w-full overflow-hidden bg-neutral-50/80 py-12 border-y border-neutral-200">
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-          
+
           <div className="animate-marquee-left flex items-center h-10">
             {[...Array(15)].map((_, i) => (
-              <div 
-                key={i} 
-                className="flex items-center justify-center gap-3 px-16 opacity-40 hover:opacity-100 transition-all duration-500 cursor-pointer text-neutral-500 hover:text-[#EA8A22]"
+              <div
+                key={i}
+                className="flex items-center justify-center gap-3 px-16 opacity-40 hover:opacity-100 transition-all duration-500 cursor-pointer text-neutral-500 hover:text-primary"
               >
                 <Hexagon className="w-8 h-8 stroke-[2.5]" />
                 <span className="text-2xl font-bold tracking-widest font-sans uppercase whitespace-nowrap">LOGO</span>
@@ -260,7 +260,7 @@ export function About() {
         </div>
 
         <div className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8 relative z-10">
-          
+
           {/* Section Header */}
           <div className="max-w-3xl mb-16">
             <span className="text-[#142b52] font-mono text-xs tracking-[0.25em] font-bold uppercase block mb-3">OUR CORE ADVANTAGES</span>
@@ -273,7 +273,7 @@ export function About() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-stretch">
-            
+
             {/* Left sticky column for image */}
             <div className="lg:col-span-5 relative flex flex-col h-full min-h-[450px] lg:min-h-full">
               <motion.div
@@ -284,9 +284,9 @@ export function About() {
                 className="lg:sticky lg:top-32 h-full flex flex-col"
               >
                 <div className="rounded-[2.5rem] overflow-hidden flex-1 h-full min-h-[450px] lg:h-full relative shadow-2xl border border-neutral-200/50 group bg-neutral-100">
-                  <img 
-                    src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&w=800&q=80" 
-                    alt="Engineering detail" 
+                  <img
+                    src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&w=800&q=80"
+                    alt="Engineering detail"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/15 via-transparent to-transparent pointer-events-none" />
@@ -311,25 +311,25 @@ export function About() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ type: 'spring', stiffness: 100, damping: 15, delay: idx * 0.1 }}
-                    whileHover={{ 
+                    whileHover={{
                       y: -6,
                       scale: 1.02,
                       boxShadow: "0 30px 60px -15px rgba(234, 138, 34, 0.15)"
                     }}
-                    className="group bg-white border border-neutral-200/80 p-6 rounded-[1.75rem] transition-all duration-300 relative overflow-hidden hover:border-[#EA8A22] cursor-default"
+                    className="group bg-white border border-neutral-200/80 p-6 rounded-[1.75rem] transition-all duration-300 relative overflow-hidden hover:border-primary cursor-default"
                   >
                     {/* Subtle warm glow on hover */}
-                    <div className="absolute -right-8 -bottom-8 w-24 h-24 bg-gradient-to-br from-[#EA8A22]/5 to-transparent rounded-full blur-xl group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
-                    
+                    <div className="absolute -right-8 -bottom-8 w-24 h-24 bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-xl group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
+
                     <div className="flex gap-6 relative z-10 items-start sm:items-center">
                       <div className="flex-shrink-0">
                         {/* Playful squircle badge for icon */}
-                        <div className="w-12 h-12 rounded-2xl bg-neutral-50 border border-neutral-150 text-[#EA8A22] flex items-center justify-center transition-all duration-300 group-hover:bg-[#EA8A22] group-hover:text-white group-hover:border-[#EA8A22] group-hover:rotate-3 group-hover:scale-105 shadow-sm group-hover:shadow-[#EA8A22]/20">
+                        <div className="w-12 h-12 rounded-2xl bg-neutral-50 border border-neutral-150 text-primary flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 shadow-sm group-hover:shadow-primary/20">
                           <IconComponent className="w-5 h-5" />
                         </div>
                       </div>
                       <div>
-                        <h4 className="text-lg font-bold text-neutral-900 tracking-tight mb-1 group-hover:text-[#EA8A22] transition-colors">{feature.title}</h4>
+                        <h4 className="text-lg font-bold text-neutral-900 tracking-tight mb-1 group-hover:text-primary transition-colors">{feature.title}</h4>
                         <p className="text-neutral-600 text-sm leading-relaxed font-light">{feature.desc}</p>
                       </div>
                     </div>
@@ -348,16 +348,16 @@ export function About() {
           <span className="text-[#142b52] font-mono text-xs tracking-[0.2em] font-bold uppercase block mb-3">BUILDING WITH EXCELLENCE</span>
           <h2 className="text-3xl md:text-4xl font-black text-neutral-900 tracking-tighter uppercase">Our Clients</h2>
         </div>
-        
+
         <div className="relative w-full overflow-hidden bg-neutral-50/80 py-12 border-y border-neutral-200">
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-          
+
           <div className="animate-marquee-right flex items-center h-10">
             {[...Array(15)].map((_, i) => (
-              <div 
-                key={i} 
-                className="flex items-center justify-center gap-3 px-16 opacity-40 hover:opacity-100 transition-all duration-500 cursor-pointer text-neutral-500 hover:text-[#EA8A22]"
+              <div
+                key={i}
+                className="flex items-center justify-center gap-3 px-16 opacity-40 hover:opacity-100 transition-all duration-500 cursor-pointer text-neutral-500 hover:text-primary"
               >
                 <Hexagon className="w-8 h-8 stroke-[2.5]" />
                 <span className="text-2xl font-bold tracking-widest font-sans uppercase whitespace-nowrap">LOGO</span>
@@ -373,9 +373,9 @@ export function About() {
           <div className="bg-[#0a0f1d] border border-neutral-800/80 p-10 md:p-16 rounded-[32px] shadow-2xl relative overflow-hidden group">
             {/* Premium Construction & Engineering Background Image */}
             <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80" 
-                alt="Construction and Engineering" 
+              <img
+                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80"
+                alt="Construction and Engineering"
                 className="w-full h-full object-cover opacity-[0.28] mix-blend-luminosity scale-[1.03] group-hover:scale-100 transition-transform duration-[1200ms] ease-out"
                 referrerPolicy="no-referrer"
               />
@@ -383,7 +383,7 @@ export function About() {
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0f1d]/30" />
             </div>
             <div className="absolute inset-0 translate-x-[-150%] skew-x-[-25deg] w-1/2 bg-gradient-to-r from-transparent via-white/5 to-transparent group-hover:animate-[sweep_2s_ease-in-out_infinite]" />
-            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-[#EA8A22]/15 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
             {/* Redesigned Architectural & Engineering Blueprint Background */}
             <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[50%] pointer-events-none select-none overflow-hidden opacity-[0.22] lg:opacity-[0.28]">
               {/* Subtle pulsing/drawing animation styles */}
@@ -443,22 +443,22 @@ export function About() {
                     <line x1="50" y1="140" x2="650" y2="140" strokeWidth="1.5" />
                     <line x1="50" y1="150" x2="650" y2="150" strokeWidth="0.5" strokeDasharray="2,2" />
                     <line x1="50" y1="130" x2="650" y2="130" strokeWidth="0.75" />
-                    
+
                     <line x1="50" y1="380" x2="650" y2="380" strokeWidth="1.5" />
                     <line x1="50" y1="390" x2="650" y2="390" strokeWidth="0.5" strokeDasharray="2,2" />
-                    
+
                     {/* Vertical Truss Columns */}
                     <rect x="180" y="80" width="30" height="440" strokeDasharray="4,4" strokeWidth="0.75" />
                     <rect x="480" y="80" width="30" height="440" strokeDasharray="4,4" strokeWidth="0.75" />
-                    
+
                     {/* Cross Structural Steel Framing (X-Bracing) */}
                     <line x1="180" y1="140" x2="480" y2="380" strokeWidth="1.2" />
                     <line x1="480" y1="140" x2="180" y2="380" strokeWidth="1.2" />
-                    
+
                     {/* Minor Truss lines */}
                     <line x1="180" y1="260" x2="480" y2="260" strokeWidth="0.75" strokeDasharray="4,2" />
                     <line x1="330" y1="140" x2="330" y2="380" strokeWidth="0.75" strokeDasharray="8,4" />
-                    
+
                     {/* Isometric Building Structure Outlines */}
                     <path d="M 400,430 L 520,380 L 640,430 L 520,480 Z" strokeWidth="1" />
                     <path d="M 400,310 L 520,260 L 640,310 L 520,360 Z" strokeWidth="1" />
@@ -471,11 +471,11 @@ export function About() {
                   <g className="bp-fade-slow" stroke="white" strokeWidth="0.75" opacity="0.7">
                     {/* Interior Wall partitions */}
                     <path d="M 80,180 L 220,180 L 220,290 L 360,290 L 360,420" />
-                    
+
                     {/* Door Arc and Swing Indicator */}
                     <path d="M 220,250 A 40,40 0 0,1 260,210" strokeDasharray="3,3" />
                     <line x1="220" y1="250" x2="220" y2="210" />
-                    
+
                     {/* Foundation / Pillar Blocks */}
                     <rect x="75" y="175" width="10" height="10" fill="white" fillOpacity="0.25" />
                     <rect x="215" y="175" width="10" height="10" fill="white" fillOpacity="0.25" />
@@ -489,12 +489,12 @@ export function About() {
                     <line x1="180" y1="60" x2="480" y2="60" />
                     <line x1="180" y1="54" x2="180" y2="66" />
                     <line x1="480" y1="54" x2="480" y2="66" />
-                    
+
                     {/* Vertical dimension bounds */}
                     <line x1="120" y1="140" x2="120" y2="380" />
                     <line x1="114" y1="140" x2="126" y2="140" />
                     <line x1="114" y1="380" x2="126" y2="380" />
-                    
+
                     {/* Annotation text markings */}
                     <text x="330" y="50" fill="#EA8A22" fontSize="10" fontFamily="monospace" textAnchor="middle" letterSpacing="1" stroke="none">
                       L = 12.00 m
@@ -502,7 +502,7 @@ export function About() {
                     <text x="95" y="265" fill="#EA8A22" fontSize="10" fontFamily="monospace" textAnchor="middle" letterSpacing="1" stroke="none" transform="rotate(-90 95 265)">
                       H = 6.40 m
                     </text>
-                    
+
                     {/* Section Cut Line Indicator */}
                     <path d="M 60,200 L 640,200" strokeDasharray="14,4,2,4" strokeWidth="1" />
                     <path d="M 60,192 L 60,208 M 640,192 L 640,208" strokeWidth="1.5" />
@@ -526,25 +526,25 @@ export function About() {
                 </svg>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
               {/* Left text column */}
               <div className="lg:col-span-7">
-                <span className="text-[#EA8A22] font-mono text-xs tracking-[0.25em] font-bold uppercase block mb-3">READY TO START?</span>
+                <span className="text-primary font-mono text-xs tracking-[0.25em] font-bold uppercase block mb-3">READY TO START?</span>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase leading-[1.1]">
                   Let's Build Your <br />Next Project Together
                 </h2>
               </div>
-              
+
               {/* Right buttons column */}
               <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-4">
                 <button
                   onClick={() => setQuoteModalOpen(true)}
-                  className="w-full px-8 py-5 bg-[#EA8A22] hover:bg-[#EA8A22] text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-[#EA8A22]/20 hover:shadow-[#EA8A22]/40 flex items-center justify-center gap-2 font-mono group"
+                  className="w-full px-8 py-5 bg-primary hover:bg-primary text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-primary/40 flex items-center justify-center gap-2 font-mono group"
                 >
                   Request a Quote <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
-                
+
                 <button
                   onClick={handleDownloadProfile}
                   disabled={downloadingProfile}
@@ -553,10 +553,10 @@ export function About() {
                   {downloadingProfile ? (
                     <span className="animate-pulse">Preparing file...</span>
                   ) : downloadSuccess ? (
-                    <span className="text-[#EA8A22]">Profile Downloaded ✔</span>
+                    <span className="text-primary">Profile Downloaded ✔</span>
                   ) : (
                     <>
-                      Download Company Profile 
+                      Download Company Profile
                       <FileDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
                     </>
                   )}

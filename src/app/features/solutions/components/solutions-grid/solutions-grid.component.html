@@ -2,16 +2,16 @@
   <!-- Floating 3D Wireframes -->
   <div class="absolute -left-12 top-24 w-72 h-72 opacity-15 pointer-events-none hidden xl:block">
     @defer (on viewport) {
-      <app-floating-wireframe shape="dome" color="#142b52" />
+    <app-floating-wireframe shape="dome" color="#142b52" />
     } @placeholder {
-      <div class="w-72 h-72"></div>
+    <div class="w-72 h-72"></div>
     }
   </div>
   <div class="absolute -right-12 bottom-36 w-72 h-72 opacity-15 pointer-events-none hidden xl:block">
     @defer (on viewport) {
-      <app-floating-wireframe shape="icosahedron" color="#EA8A22" />
+    <app-floating-wireframe shape="icosahedron" color="#EA8A22" />
     } @placeholder {
-      <div class="w-72 h-72"></div>
+    <div class="w-72 h-72"></div>
     }
   </div>
 
@@ -26,127 +26,141 @@
     </div>
 
     @if (selectedCategory()) {
-      <!-- Subcategories Detail View for Categories with Services -->
-      <div class="w-full animate-fadeIn">
-        <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6 pb-8 border-b border-neutral-200">
-          <div class="space-y-2">
-            <span class="text-[#EA8A22] font-mono text-xs font-bold tracking-widest uppercase block">
-              SERVICE DIVISION // SUB-CAPABILITIES
-            </span>
-            <h3 class="text-3xl md:text-4xl font-black text-neutral-900 tracking-tighter uppercase font-mono">
-              {{ selectedCategory()?.title | translate }} <span class="text-[#EA8A22]">{{ 'Services' | translate }}</span>
-            </h3>
+    <!-- Subcategories Detail View for Categories with Services -->
+    <div class="w-full animate-fadeIn">
+      <div
+        class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6 pb-8 border-b border-neutral-200">
+        <div class="space-y-2">
+          <span class="text-primary font-mono text-xs font-bold tracking-widest uppercase block">
+            SERVICE DIVISION // SUB-CAPABILITIES
+          </span>
+          <h3 class="text-3xl md:text-4xl font-black text-neutral-900 tracking-tighter uppercase font-mono">
+            {{ selectedCategory()?.title | translate }} <span class="text-primary">{{ 'Services' | translate }}</span>
+          </h3>
+        </div>
+
+        <a [routerLink]="'/' + currentLang() + '/solutions'"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-neutral-300 text-neutral-700 hover:border-primary hover:text-primary font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer self-start md:self-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="w-4 h-4 rtl:rotate-180">
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+          {{ 'All Solutions' | translate }}
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+        @for (sub of selectedCategory()?.subcategories; track sub.slug; let sIdx = $index) {
+        <a [routerLink]="'/' + currentLang() + '/solutions/' + sub.slug"
+          class="group bg-white rounded-[32px] border border-neutral-200/85 hover:border-primary shadow-sm hover:shadow-[0_25px_50px_rgba(234,88,12,0.1)] hover:-translate-y-2 transition-all duration-700 flex flex-col sm:flex-row relative min-h-[300px] overflow-hidden cursor-pointer">
+
+          <!-- Image Frame -->
+          <div class="relative w-full sm:w-[42%] h-56 sm:h-auto overflow-hidden bg-neutral-900 shrink-0">
+            <app-image
+              [src]="sub.image || 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80'"
+              [alt]="sub.title" class="group-hover:scale-[1.12] transition-transform duration-1000 ease-out" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-neutral-950/80 via-neutral-950/30 to-transparent opacity-90 transition-opacity duration-500">
+            </div>
+            <div
+              class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+            </div>
+
+            <div
+              class="absolute top-4 left-4 z-20 bg-neutral-900/60 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+              <span class="text-[9px] font-mono font-bold tracking-widest text-neutral-200 uppercase">
+                0{{ sIdx + 1 }}
+              </span>
+            </div>
           </div>
 
-          <a 
-            [routerLink]="'/' + currentLang() + '/solutions'"
-            class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-neutral-300 text-neutral-700 hover:border-[#EA8A22] hover:text-[#EA8A22] font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer self-start md:self-auto">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 rtl:rotate-180"><path d="m15 18-6-6 6-6"/></svg>
-            {{ 'All Solutions' | translate }}
-          </a>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
-          @for (sub of selectedCategory()?.subcategories; track sub.slug; let sIdx = $index) {
-            <a 
-              [routerLink]="'/' + currentLang() + '/solutions/' + sub.slug"
-              class="group bg-white rounded-[32px] border border-neutral-200/85 hover:border-[#EA8A22] shadow-sm hover:shadow-[0_25px_50px_rgba(234,88,12,0.1)] hover:-translate-y-2 transition-all duration-700 flex flex-col sm:flex-row relative min-h-[300px] overflow-hidden cursor-pointer">
-              
-              <!-- Image Frame -->
-              <div class="relative w-full sm:w-[42%] h-56 sm:h-auto overflow-hidden bg-neutral-900 shrink-0">
-                <app-image
-                  [src]="sub.image || 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80'" 
-                  [alt]="sub.title" 
-                  class="group-hover:scale-[1.12] transition-transform duration-1000 ease-out"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-neutral-950/80 via-neutral-950/30 to-transparent opacity-90 transition-opacity duration-500"></div>
-                <div class="absolute inset-0 bg-[#EA8A22]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-                
-                <div class="absolute top-4 left-4 z-20 bg-neutral-900/60 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#EA8A22] animate-pulse"></span>
-                  <span class="text-[9px] font-mono font-bold tracking-widest text-neutral-200 uppercase">
-                    0{{ sIdx + 1 }}
-                  </span>
-                </div>
-              </div>
-
-              <!-- Info Right Frame -->
-              <div class="p-8 sm:p-9 flex-1 flex flex-col justify-center relative bg-white group-hover:bg-neutral-50/30 transition-colors duration-500 overflow-hidden">
-                <div class="absolute -bottom-10 -right-6 text-[150px] font-mono font-black text-neutral-500/[0.02] group-hover:text-[#EA8A22]/[0.04] select-none pointer-events-none transition-colors duration-500 leading-none">
-                  0{{ sIdx + 1 }}
-                </div>
-
-                <div class="space-y-4 relative z-10">
-                  <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-mono font-black text-[#EA8A22] tracking-widest uppercase">
-                      SUB-SERVICE // MAABANY
-                    </span>
-                  </div>
-                  
-                  <h4 class="text-lg sm:text-xl font-black text-neutral-900 uppercase font-mono tracking-tight group-hover:text-[#EA8A22] transition-colors leading-tight">
-                    {{ sub.title | translate }}
-                  </h4>
-                  
-                  <p class="text-neutral-500 font-light text-xs sm:text-sm leading-relaxed max-w-xl">
-                    {{ sub.desc | translate }}
-                  </p>
-                </div>
-              </div>
-            </a>
-          }
-        </div>
-      </div>
-    } @else {
-      <!-- Primary Categories Grid View -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
-        @for (solution of solutions; track solution.title; let idx = $index) {
-          @let hasSubs = solution.subcategories.length > 0;
-          
-          <a 
-            [routerLink]="'/' + currentLang() + '/solutions/' + solution.slug"
-            [class]="'group bg-white rounded-[24px] overflow-hidden border border-neutral-200 shadow-sm hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(234,88,12,0.08)] transition-all duration-500 relative flex flex-col cursor-pointer ' + (idx % 2 !== 0 ? 'md:mt-16' : '')">
-            
-            <div class="absolute inset-0 border-[1px] border-[#EA8A22] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[24px] z-20 pointer-events-none"></div>
-            <div class="absolute inset-0 bg-[#EA8A22]/0 group-hover:bg-[#EA8A22]/5 transition-colors duration-500 z-10 pointer-events-none"></div>
-            
-            <div class="relative h-64 sm:h-80 overflow-hidden">
-              <app-image 
-                [src]="solution.image" 
-                [alt]="solution.title" 
-                class="group-hover:scale-[1.08] transition-transform duration-700 ease-out"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/0 opacity-80"></div>
+          <!-- Info Right Frame -->
+          <div
+            class="p-8 sm:p-9 flex-1 flex flex-col justify-center relative bg-white group-hover:bg-neutral-50/30 transition-colors duration-500 overflow-hidden">
+            <div
+              class="absolute -bottom-10 -right-6 text-[150px] font-mono font-black text-neutral-500/[0.02] group-hover:text-primary/[0.04] select-none pointer-events-none transition-colors duration-500 leading-none">
+              0{{ sIdx + 1 }}
             </div>
-            
-            <div class="p-8 md:p-10 flex-1 flex flex-col justify-center relative z-10 bg-white transition-transform duration-500 overflow-hidden">
-              <div class="absolute -bottom-10 -right-4 text-[150px] font-mono font-black text-neutral-500/[0.02] group-hover:text-[#EA8A22]/[0.03] select-none pointer-events-none transition-colors duration-500 leading-none">
-                0{{ idx + 1 }}
+
+            <div class="space-y-4 relative z-10">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono font-black text-primary tracking-widest uppercase">
+                  SUB-SERVICE // MAABANY
+                </span>
               </div>
 
-              <div class="relative z-10 space-y-3">
-                <div>
-                  @if (hasSubs) {
-                    <span class="text-[10px] font-mono font-bold bg-[#EA8A22]/10 text-[#EA8A22] px-3 py-1 rounded-md uppercase tracking-wider">
-                      {{ solution.subcategories.length }} {{ 'Services Available' | translate }}
-                    </span>
-                  } @else {
-                    <span class="text-[10px] font-mono font-bold bg-neutral-100 text-neutral-500 px-3 py-1 rounded-md uppercase tracking-wider">
-                      {{ 'Comprehensive Direct Solution' | translate }}
-                    </span>
-                  }
-                </div>
+              <h4
+                class="text-lg sm:text-xl font-black text-neutral-900 uppercase font-mono tracking-tight group-hover:text-primary transition-colors leading-tight">
+                {{ sub.title | translate }}
+              </h4>
 
-                <h3 class="text-2xl md:text-3xl font-black text-neutral-900 tracking-tighter uppercase font-mono transition-colors group-hover:text-[#EA8A22]">
-                  {{ solution.title | translate }}
-                </h3>
-                <p class="text-neutral-600 leading-relaxed font-light text-sm sm:text-base">
-                  {{ solution.desc | translate }}
-                </p>
-              </div>
+              <p class="text-neutral-500 font-light text-xs sm:text-sm leading-relaxed max-w-xl">
+                {{ sub.desc | translate }}
+              </p>
             </div>
-          </a>
+          </div>
+        </a>
         }
       </div>
+    </div>
+    } @else {
+    <!-- Primary Categories Grid View -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
+      @for (solution of solutions; track solution.title; let idx = $index) {
+      @let hasSubs = solution.subcategories.length > 0;
+
+      <a [routerLink]="'/' + currentLang() + '/solutions/' + solution.slug"
+        [class]="'group bg-white rounded-[24px] overflow-hidden border border-neutral-200 shadow-sm hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(234,88,12,0.08)] transition-all duration-500 relative flex flex-col cursor-pointer ' + (idx % 2 !== 0 ? 'md:mt-16' : '')">
+
+        <div
+          class="absolute inset-0 border-[1px] border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[24px] z-20 pointer-events-none">
+        </div>
+        <div
+          class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500 z-10 pointer-events-none">
+        </div>
+
+        <div class="relative h-64 sm:h-80 overflow-hidden">
+          <app-image [src]="solution.image" [alt]="solution.title"
+            class="group-hover:scale-[1.08] transition-transform duration-700 ease-out" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/0 opacity-80"></div>
+        </div>
+
+        <div
+          class="p-8 md:p-10 flex-1 flex flex-col justify-center relative z-10 bg-white transition-transform duration-500 overflow-hidden">
+          <div
+            class="absolute -bottom-10 -right-4 text-[150px] font-mono font-black text-neutral-500/[0.02] group-hover:text-primary/[0.03] select-none pointer-events-none transition-colors duration-500 leading-none">
+            0{{ idx + 1 }}
+          </div>
+
+          <div class="relative z-10 space-y-3">
+            <div>
+              @if (hasSubs) {
+              <span
+                class="text-[10px] font-mono font-bold bg-primary/10 text-primary px-3 py-1 rounded-md uppercase tracking-wider">
+                {{ solution.subcategories.length }} {{ 'Services Available' | translate }}
+              </span>
+              } @else {
+              <span
+                class="text-[10px] font-mono font-bold bg-neutral-100 text-neutral-500 px-3 py-1 rounded-md uppercase tracking-wider">
+                {{ 'Comprehensive Direct Solution' | translate }}
+              </span>
+              }
+            </div>
+
+            <h3
+              class="text-2xl md:text-3xl font-black text-neutral-900 tracking-tighter uppercase font-mono transition-colors group-hover:text-primary">
+              {{ solution.title | translate }}
+            </h3>
+            <p class="text-neutral-600 leading-relaxed font-light text-sm sm:text-base">
+              {{ solution.desc | translate }}
+            </p>
+          </div>
+        </div>
+      </a>
+      }
+    </div>
     }
   </div>
 </section>

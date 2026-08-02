@@ -43,9 +43,9 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @for (challenge of currentIndustry().challenges; track $index) {
         <div
-          class="bg-neutral-50 border border-neutral-200 rounded-2xl p-8 hover:shadow-xl hover:border-[#EA8A22]/30 transition-all duration-300">
+          class="bg-neutral-50 border border-neutral-200 rounded-2xl p-8 hover:shadow-xl hover:border-primary/30 transition-all duration-300">
           <div
-            class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-6 shadow-xs border border-neutral-100 text-[#EA8A22]">
+            class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-6 shadow-xs border border-neutral-100 text-primary">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect width="16" height="20" x="4" y="2" rx="2" ry="2" />
@@ -91,7 +91,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @for (sol of currentIndustry().relatedSolutions; track sol.slug) {
         <div
-          class="group bg-white rounded-3xl overflow-hidden border border-neutral-200 hover:border-[#EA8A22] shadow-xs hover:shadow-xl transition-all duration-500 flex flex-col relative">
+          class="group bg-white rounded-3xl overflow-hidden border border-neutral-200 hover:border-primary shadow-xs hover:shadow-xl transition-all duration-500 flex flex-col relative">
           <a [routerLink]="'/' + currentLang() + '/solutions/' + sol.slug" class="absolute inset-0 z-20"
             [attr.aria-label]="sol.title"></a>
           <div class="h-48 overflow-hidden relative bg-neutral-950">
@@ -101,7 +101,7 @@
           <div class="p-6 flex-1 flex flex-col justify-between">
             <div class="space-y-2">
               <h3
-                class="text-lg font-bold text-neutral-900 uppercase font-mono transition-colors group-hover:text-[#EA8A22]">
+                class="text-lg font-bold text-neutral-900 uppercase font-mono transition-colors group-hover:text-primary">
                 {{ sol.title }}
               </h3>
               <p class="text-xs text-neutral-600 font-light leading-relaxed line-clamp-3">
@@ -132,7 +132,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         @for (proj of currentIndustry().featuredProjects; track proj.slug) {
         <div
-          class="group bg-white rounded-3xl overflow-hidden border border-neutral-200 hover:border-[#EA8A22] shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col relative">
+          class="group bg-white rounded-3xl overflow-hidden border border-neutral-200 hover:border-primary shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col relative">
           <a [routerLink]="'/' + currentLang() + '/projects/' + proj.slug" class="absolute inset-0 z-20"
             [attr.aria-label]="proj.name"></a>
           <div class="aspect-16/10 overflow-hidden relative bg-neutral-950">
@@ -145,11 +145,11 @@
           </div>
           <div class="p-8 space-y-4">
             <div class="space-y-1">
-              <p class="text-[10px] font-mono tracking-widest text-[#EA8A22] uppercase font-bold">
+              <p class="text-[10px] font-mono tracking-widest text-primary uppercase font-bold">
                 {{ proj.location }}
               </p>
               <h3
-                class="text-xl md:text-2xl font-black text-neutral-950 uppercase tracking-tight font-mono transition-colors group-hover:text-[#EA8A22]">
+                class="text-xl md:text-2xl font-black text-neutral-950 uppercase tracking-tight font-mono transition-colors group-hover:text-primary">
                 {{ proj.name }}
               </h3>
             </div>
@@ -158,7 +158,7 @@
             </p>
             <div class="pt-4 border-t border-neutral-100 flex items-center justify-between">
               <span
-                class="text-[10px] font-mono text-neutral-400 font-bold uppercase tracking-widest group-hover:text-[#EA8A22] transition-colors">
+                class="text-[10px] font-mono text-neutral-400 font-bold uppercase tracking-widest group-hover:text-primary transition-colors">
                 {{ 'View Project case study' | translate }}
               </span>
             </div>

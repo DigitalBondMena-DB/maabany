@@ -37,7 +37,7 @@ export interface CountryCodeItem {
               placeholder="Search country or code..."
               [value]="searchQuery()"
               (input)="updateSearch($event)"
-              class="w-full bg-neutral-50 border border-neutral-200/80 rounded-lg px-2.5 py-1.5 text-xs text-neutral-800 focus:outline-none focus:border-[#EA8A22]"
+              class="w-full bg-neutral-50 border border-neutral-200/80 rounded-lg px-2.5 py-1.5 text-xs text-neutral-800 focus:outline-none focus:border-primary"
             />
           </div>
 
@@ -47,7 +47,7 @@ export interface CountryCodeItem {
               <button
                 type="button"
                 (click)="selectCountry(item)"
-                [class]="'w-full flex items-center justify-between px-3.5 py-2 text-xs font-mono transition-colors text-left cursor-pointer ' + (item.code === value() ? 'bg-orange-50 text-[#EA8A22] font-bold' : 'hover:bg-neutral-50 text-neutral-700')"
+                [class]="'w-full flex items-center justify-between px-3.5 py-2 text-xs font-mono transition-colors text-left cursor-pointer ' + (item.code === value() ? 'bg-orange-50 text-primary font-bold' : 'hover:bg-neutral-50 text-neutral-700')"
               >
                 <div class="flex items-center gap-2">
                   <span class="text-base">{{ item.flag }}</span>

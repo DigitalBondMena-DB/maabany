@@ -6,7 +6,7 @@
 
     <app-hero-bg />
 
-    <video autoplay muted loop playsinline preload="auto"
+    <video autoplay [attr.muted]="true" loop playsinline preload="auto"
       class="absolute inset-0 w-full h-full object-cover transition-all duration-300 z-1"
       style="transform: scale(var(--video-scale)); filter: blur(var(--hero-video-blur));">
       <source [src]="bgVideoUrl" type="video/mp4">
@@ -28,7 +28,7 @@
             <span class="block text-shadow-[0_2px_12px_#0000002e]">
               {{ 'HERO.TITLE_PREFIX' | translate }}
             </span>
-            <span class="text-[#EA8A22] text-shadow-[0_2px_12px_#0000002e]">
+            <span class="text-primary text-shadow-[0_2px_12px_#0000002e]">
               {{ 'HERO.TITLE_HIGHLIGHT' | translate }}
             </span>
           </h1>
@@ -48,12 +48,12 @@
       <div class="lg:col-span-5 relative flex flex-col gap-4 py-8 max-w-130 mx-auto w-full">
         @for (stat of stats; track stat.labelKey; let even = $even) {
         <div
-          class="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl w-64 relative overflow-hidden group hover:border-[#EA8A22]/50 transition-all duration-300"
+          class="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl w-64 relative overflow-hidden group hover:border-primary/50 transition-all duration-300"
           [class.self-start]="even" [class.self-end]="!even" [class.animate-float-slow]="even"
           [class.animate-float-medium]="!even">
-          <div class="absolute top-0 right-0 w-24 h-24 bg-[#EA8A22]/5 rounded-bl-full pointer-events-none"></div>
+          <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none"></div>
           <div class="flex items-center gap-3">
-            <div class="p-2.5 rounded-lg bg-[#EA8A22]/10 text-[#EA8A22] font-bold text-xl flex-center">
+            <div class="p-2.5 rounded-lg bg-primary/10 text-primary font-bold text-xl flex-center">
               <app-icons [icon]="stat.icon" [width]="24" [height]="24" />
             </div>
             <div>
@@ -68,8 +68,8 @@
 
     </div>
     <button type="button" aria-label="Scroll to next section" (click)="scrollToNext()"
-      class="absolute bottom-4 z-10 left-1/2 -translate-x-1/2 w-5 h-8 border border-neutral-700 rounded-full flex justify-center p-1 bg-neutral-950/40 cursor-pointer hover:border-[#EA8A22] transition-colors">
-      <div class="w-1.5 h-1.5 bg-[#EA8A22] rounded-full animate-bounce"></div>
+      class="absolute bottom-4 z-10 left-1/2 -translate-x-1/2 w-5 h-8 border border-neutral-700 rounded-full flex justify-center p-1 bg-neutral-950/40 cursor-pointer hover:border-primary transition-colors">
+      <div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce"></div>
     </button>
   </section>
 </div>

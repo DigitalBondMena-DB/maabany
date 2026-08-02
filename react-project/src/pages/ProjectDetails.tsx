@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  ArrowRight, 
+import {
+  ArrowRight,
   ArrowLeft,
   AlertCircle,
-  ChevronLeft, 
-  ChevronRight, 
-  Check, 
-  X, 
-  Download, 
-  Layers, 
-  ShieldCheck, 
-  Activity, 
-  Award, 
+  ChevronLeft,
+  ChevronRight,
+  Check,
+  X,
+  Download,
+  Layers,
+  ShieldCheck,
+  Activity,
+  Award,
   HardHat,
   Sparkles,
   ArrowUpRight,
@@ -36,14 +36,14 @@ export function ProjectDetails() {
   const navigate = useNavigate();
   const { slug } = useParams<{ slug: string }>();
   const setQuoteModalOpen = useQuoteModal();
-  
+
   // Find current project
   const currentProject = projects.find(p => p.slug === slug);
 
   // Slider & Gallery state
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
-  
+
   // Parallax / mouse states
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHoveringHero, setIsHoveringHero] = useState(false);
@@ -91,9 +91,9 @@ export function ProjectDetails() {
         <p className="text-sm text-neutral-500 mb-6 max-w-sm">
           The engineering project you are looking for does not exist or has been relocated in our dynamic repository.
         </p>
-        <Link 
-          to="/projects" 
-          className="inline-flex items-center gap-2 px-6 py-3 bg-[#EA8A22] hover:bg-[#EA8A22]/90 text-white font-mono text-xs font-bold uppercase tracking-widest rounded-xl transition-all shadow-lg"
+        <Link
+          to="/projects"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-mono text-xs font-bold uppercase tracking-widest rounded-xl transition-all shadow-lg"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Projects
         </Link>
@@ -128,8 +128,8 @@ export function ProjectDetails() {
     currentProject.category === 'Commercial'
       ? 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80'
       : currentProject.category === 'Residential'
-      ? 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'
-      : 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80',
+        ? 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'
+        : 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80',
     currentProject.category === 'Industrial'
       ? 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80'
       : 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
@@ -141,7 +141,7 @@ export function ProjectDetails() {
 
   return (
     <div className="relative bg-white text-neutral-900 min-h-screen">
-      
+
       {/* 1. Hero Header Section */}
       <InternalPageHero
         title={(() => {
@@ -151,7 +151,7 @@ export function ProjectDetails() {
             return (
               <>
                 {words.join(' ')}{' '}
-                <span className="text-[#EA8A22]">{lastWord}</span>
+                <span className="text-primary">{lastWord}</span>
               </>
             );
           }
@@ -162,9 +162,9 @@ export function ProjectDetails() {
         heroImage={currentProject.image}
         breadcrumbs={
           <>
-            <Link to="/" className="hover:text-[#EA8A22] transition-colors">Home</Link>
+            <Link to="/" className="hover:text-primary transition-colors">Home</Link>
             <span className="text-neutral-500">/</span>
-            <Link to="/projects" className="hover:text-[#EA8A22] transition-colors">Projects</Link>
+            <Link to="/projects" className="hover:text-primary transition-colors">Projects</Link>
             <span className="text-neutral-500">/</span>
             <span className="text-[#142b52] font-bold uppercase">{currentProject.name}</span>
           </>
@@ -172,7 +172,7 @@ export function ProjectDetails() {
       />
 
       {/* 2. Premium Engineering Project Specification Panel */}
-      <section 
+      <section
         className="relative z-20 bg-white pt-6 pb-0"
       >
         <div className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
@@ -190,19 +190,19 @@ export function ProjectDetails() {
               <div className="absolute inset-y-0 left-2/4 border-l border-dashed border-neutral-950" />
               <div className="absolute inset-y-0 left-3/4 border-l border-dashed border-neutral-950" />
               <div className="absolute inset-x-0 top-1/2 border-t border-dashed border-neutral-950" />
-              
+
               {/* Architectural CAD crosshairs */}
               <div className="absolute top-3 left-3 border-t border-l border-neutral-950 w-2.5 h-2.5" />
               <div className="absolute top-3 right-3 border-t border-r border-neutral-950 w-2.5 h-2.5" />
               <div className="absolute bottom-3 left-3 border-b border-l border-neutral-950 w-2.5 h-2.5" />
               <div className="absolute bottom-3 right-3 border-b border-r border-neutral-950 w-2.5 h-2.5" />
-              
+
               <div className="absolute top-3 left-8 tracking-widest uppercase">MAABANY ARCHITECTURAL SPEC // VER_2.0</div>
               <div className="absolute bottom-3 right-8 tracking-widest uppercase">SYS_REF: GRID_COORD_DXB</div>
             </div>
 
             {/* Subtle warm ambient orange glow in the top-right corner */}
-            <div className="absolute -top-20 -right-20 w-48 h-48 bg-[#EA8A22]/4 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -top-20 -right-20 w-48 h-48 bg-primary/4 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 lg:divide-x lg:divide-y-0 divide-neutral-100/80">
               {[
@@ -238,7 +238,7 @@ export function ProjectDetails() {
                     className="relative p-5 md:p-6 lg:p-7 flex flex-col items-center text-center lg:items-start lg:text-left transition-all duration-500 group overflow-hidden hover:bg-neutral-50/40 hover:-translate-y-0.5"
                   >
                     {/* Premium lightweight outline icon */}
-                    <div className="mb-3 text-[#EA8A22] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[5deg]">
+                    <div className="mb-3 text-primary transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[5deg]">
                       <IconComponent className="w-5.5 h-5.5 stroke-[1.25]" />
                     </div>
 
@@ -259,11 +259,11 @@ export function ProjectDetails() {
                       </div>
                     ) : (
                       <div className="relative inline-block">
-                        <h4 className="text-sm md:text-base font-black text-neutral-900 tracking-tight uppercase font-mono group-hover:text-[#EA8A22] transition-colors duration-300">
+                        <h4 className="text-sm md:text-base font-black text-neutral-900 tracking-tight uppercase font-mono group-hover:text-primary transition-colors duration-300">
                           {metric.value}
                         </h4>
                         {/* Animated bottom accent bar */}
-                        <div className="h-[1.5px] bg-[#EA8A22] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left mt-0.5 w-8" />
+                        <div className="h-[1.5px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left mt-0.5 w-8" />
                       </div>
                     )}
                   </motion.div>
@@ -275,14 +275,14 @@ export function ProjectDetails() {
       </section>
 
       {/* 3. Cinematic Multi-Image Layout */}
-      <section 
+      <section
         className="relative z-20 bg-white pt-0 pb-0 -mt-16"
       >
         <div className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            
+
             {/* Primary Large Image (Col-span 12) with Interactive Image Slider */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -291,10 +291,10 @@ export function ProjectDetails() {
             >
               {/* Animated Image Slider */}
               <AnimatePresence mode="wait">
-                <motion.img 
+                <motion.img
                   key={currentImgIndex}
-                  src={projectImages[currentImgIndex]} 
-                  alt={`${currentProject.name} Slide ${currentImgIndex + 1}`} 
+                  src={projectImages[currentImgIndex]}
+                  alt={`${currentProject.name} Slide ${currentImgIndex + 1}`}
                   initial={{ opacity: 0, scale: 1.01 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
@@ -303,16 +303,16 @@ export function ProjectDetails() {
                   loading="lazy"
                 />
               </AnimatePresence>
-              
+
               <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/60 via-transparent to-neutral-950/10 pointer-events-none" />
-              
+
               {/* Slider Left Arrow Button */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   setCurrentImgIndex((prev) => (prev - 1 + projectImages.length) % projectImages.length);
                 }}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/90 hover:bg-[#EA8A22] text-neutral-800 hover:text-white shadow-lg transition-all duration-300 flex items-center justify-center hover:scale-110 active:scale-95 z-20 md:opacity-0 md:group-hover:opacity-100"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/90 hover:bg-primary text-neutral-800 hover:text-white shadow-lg transition-all duration-300 flex items-center justify-center hover:scale-110 active:scale-95 z-20 md:opacity-0 md:group-hover:opacity-100"
                 title="Previous image"
               >
                 <ChevronLeft className="w-6 h-6 stroke-[2]" />
@@ -324,7 +324,7 @@ export function ProjectDetails() {
                   e.stopPropagation();
                   setCurrentImgIndex((prev) => (prev + 1) % projectImages.length);
                 }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/90 hover:bg-[#EA8A22] text-neutral-800 hover:text-white shadow-lg transition-all duration-300 flex items-center justify-center hover:scale-110 active:scale-95 z-20 md:opacity-0 md:group-hover:opacity-100"
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/90 hover:bg-primary text-neutral-800 hover:text-white shadow-lg transition-all duration-300 flex items-center justify-center hover:scale-110 active:scale-95 z-20 md:opacity-0 md:group-hover:opacity-100"
                 title="Next image"
               >
                 <ChevronRight className="w-6 h-6 stroke-[2]" />
@@ -343,11 +343,10 @@ export function ProjectDetails() {
                   <button
                     key={dotIdx}
                     onClick={() => setCurrentImgIndex(dotIdx)}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      currentImgIndex === dotIdx 
-                        ? "w-6 bg-[#EA8A22]" 
+                    className={`h-1.5 rounded-full transition-all duration-300 ${currentImgIndex === dotIdx
+                        ? "w-6 bg-primary"
                         : "w-1.5 bg-white/40 hover:bg-white/70"
-                    }`}
+                      }`}
                     title={`Slide ${dotIdx + 1}`}
                   />
                 ))}
@@ -359,25 +358,25 @@ export function ProjectDetails() {
       </section>
 
       {/* 4. Project Details: Two-Column Editorial Layout */}
-      <section 
+      <section
         className="bg-white relative pt-4 pb-0 mt-0"
       >
         <div className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            
+
             {/* Left Column (Overview & Detailed Specification) */}
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2">
-                <span className="w-8 h-[1px] bg-[#EA8A22]" />
-                <span className="text-xs font-mono font-bold text-[#EA8A22] uppercase tracking-widest">
+                <span className="w-8 h-[1px] bg-primary" />
+                <span className="text-xs font-mono font-bold text-primary uppercase tracking-widest">
                   CASE STUDY OVERVIEW
                 </span>
               </div>
-              
+
               <h2 className="text-3xl sm:text-4xl font-black text-neutral-900 tracking-tight uppercase leading-none font-mono">
                 Delivering High-Precision Engineering Solutions
               </h2>
-              
+
               <div className="text-neutral-700 leading-relaxed font-light text-base md:text-lg space-y-6">
                 <p>
                   Every layout element in <strong>{currentProject.name}</strong> was engineered to meet structural, spatial, and functional specifications under a zero-delay plan. Sourced materials and smart HVAC designs ensure that the facility excels in daily operational performance.
@@ -405,90 +404,90 @@ export function ProjectDetails() {
                 className="bg-neutral-50/90 backdrop-blur-xl border border-neutral-200/80 rounded-[24px] p-8 shadow-xl relative overflow-hidden"
               >
                 {/* Ambient glow decoration */}
-                <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#EA8A22]/10 rounded-full blur-2xl pointer-events-none" />
-                
-                 <h3 className="text-xl font-black text-neutral-900 uppercase tracking-tight font-mono mb-6 pb-4 border-b border-neutral-200 flex items-center justify-between">
+                <div className="absolute -top-12 -right-12 w-32 h-32 bg-primary/10 rounded-full blur-2xl pointer-events-none" />
+
+                <h3 className="text-xl font-black text-neutral-900 uppercase tracking-tight font-mono mb-6 pb-4 border-b border-neutral-200 flex items-center justify-between">
                   <span>Ask about this Project</span>
-                  <Layers className="w-5 h-5 text-[#EA8A22]" />
+                  <Layers className="w-5 h-5 text-primary" />
                 </h3>
 
                 <form onSubmit={handleFormSubmit} className="space-y-4">
-                    <div className="space-y-1">
-                      <label htmlFor="spec-name" className="text-[10px] font-mono uppercase tracking-wider text-neutral-600 font-bold block">Your Name *</label>
-                      <input
-                        id="spec-name"
-                        type="text"
-                        required
-                        placeholder="e.g. Abdullah"
-                        value={formName}
-                        onChange={(e) => setFormName(e.target.value)}
-                        className="w-full bg-white border border-neutral-200 focus:border-neutral-400 text-neutral-800 placeholder-neutral-400 p-3 rounded-xl text-sm focus:outline-none transition-colors"
-                      />
-                    </div>
+                  <div className="space-y-1">
+                    <label htmlFor="spec-name" className="text-[10px] font-mono uppercase tracking-wider text-neutral-600 font-bold block">Your Name *</label>
+                    <input
+                      id="spec-name"
+                      type="text"
+                      required
+                      placeholder="e.g. Abdullah"
+                      value={formName}
+                      onChange={(e) => setFormName(e.target.value)}
+                      className="w-full bg-white border border-neutral-200 focus:border-neutral-400 text-neutral-800 placeholder-neutral-400 p-3 rounded-xl text-sm focus:outline-none transition-colors"
+                    />
+                  </div>
 
-                    <div className="space-y-1">
-                      <label htmlFor="spec-email" className="text-[10px] font-mono uppercase tracking-wider text-neutral-600 font-bold block">Email Address *</label>
-                      <input
-                        id="spec-email"
-                        type="email"
-                        required
-                        placeholder="e.g. abdullah@example.com"
-                        value={formEmail}
-                        onChange={(e) => setFormEmail(e.target.value)}
-                        className="w-full bg-white border border-neutral-200 focus:border-neutral-400 text-neutral-800 placeholder-neutral-400 p-3 rounded-xl text-sm focus:outline-none transition-colors"
-                      />
-                    </div>
+                  <div className="space-y-1">
+                    <label htmlFor="spec-email" className="text-[10px] font-mono uppercase tracking-wider text-neutral-600 font-bold block">Email Address *</label>
+                    <input
+                      id="spec-email"
+                      type="email"
+                      required
+                      placeholder="e.g. abdullah@example.com"
+                      value={formEmail}
+                      onChange={(e) => setFormEmail(e.target.value)}
+                      className="w-full bg-white border border-neutral-200 focus:border-neutral-400 text-neutral-800 placeholder-neutral-400 p-3 rounded-xl text-sm focus:outline-none transition-colors"
+                    />
+                  </div>
 
-                    <div className="space-y-1">
-                      <label htmlFor="spec-topic" className="text-[10px] font-mono uppercase tracking-wider text-neutral-600 font-bold block">Interest Area</label>
-                      <div className="relative">
-                        <select
-                          id="spec-topic"
-                          value={formTopic}
-                          onChange={(e) => setFormTopic(e.target.value)}
-                          className="w-full bg-white border border-neutral-200 focus:border-neutral-400 text-neutral-700 pl-3 pr-10 py-3 rounded-xl text-sm focus:outline-none transition-colors appearance-none"
-                        >
-                          <option value="General Consultation">General Question</option>
-                          <option value="Material Specifications">Materials used</option>
-                          <option value="HVAC & MEP Layouts">System & layout design</option>
-                          <option value="Structural Integrity Specs">Structural details</option>
-                          <option value="LEED Certification Bids">Sustainability & green standards</option>
-                        </select>
-                        <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
-                          <ChevronDown className="w-4 h-4" />
-                        </div>
+                  <div className="space-y-1">
+                    <label htmlFor="spec-topic" className="text-[10px] font-mono uppercase tracking-wider text-neutral-600 font-bold block">Interest Area</label>
+                    <div className="relative">
+                      <select
+                        id="spec-topic"
+                        value={formTopic}
+                        onChange={(e) => setFormTopic(e.target.value)}
+                        className="w-full bg-white border border-neutral-200 focus:border-neutral-400 text-neutral-700 pl-3 pr-10 py-3 rounded-xl text-sm focus:outline-none transition-colors appearance-none"
+                      >
+                        <option value="General Consultation">General Question</option>
+                        <option value="Material Specifications">Materials used</option>
+                        <option value="HVAC & MEP Layouts">System & layout design</option>
+                        <option value="Structural Integrity Specs">Structural details</option>
+                        <option value="LEED Certification Bids">Sustainability & green standards</option>
+                      </select>
+                      <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
+                        <ChevronDown className="w-4 h-4" />
                       </div>
                     </div>
+                  </div>
 
-                    <div className="space-y-1">
-                      <label htmlFor="spec-details" className="text-[10px] font-mono uppercase tracking-wider text-neutral-600 font-bold block">How can we help? (Optional)</label>
-                      <textarea
-                        id="spec-details"
-                        rows={3}
-                        placeholder="What would you like to know about this project?"
-                        value={formSpecs}
-                        onChange={(e) => setFormSpecs(e.target.value)}
-                        className="w-full bg-white border border-neutral-200 focus:border-neutral-400 text-neutral-800 placeholder-neutral-400 p-3 rounded-xl text-sm focus:outline-none transition-colors resize-none"
-                      />
-                    </div>
+                  <div className="space-y-1">
+                    <label htmlFor="spec-details" className="text-[10px] font-mono uppercase tracking-wider text-neutral-600 font-bold block">How can we help? (Optional)</label>
+                    <textarea
+                      id="spec-details"
+                      rows={3}
+                      placeholder="What would you like to know about this project?"
+                      value={formSpecs}
+                      onChange={(e) => setFormSpecs(e.target.value)}
+                      className="w-full bg-white border border-neutral-200 focus:border-neutral-400 text-neutral-800 placeholder-neutral-400 p-3 rounded-xl text-sm focus:outline-none transition-colors resize-none"
+                    />
+                  </div>
 
-                    <button
-                      type="submit"
-                      disabled={formSubmitting}
-                      className="w-full mt-4 py-3.5 bg-[#EA8A22] hover:bg-[#df7d1a] disabled:bg-neutral-200 text-white font-mono font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-md shadow-[#EA8A22]/20 cursor-pointer"
-                    >
-                      {formSubmitting ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          Send Message <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </>
-                      )}
-                    </button>
-                  </form>
+                  <button
+                    type="submit"
+                    disabled={formSubmitting}
+                    className="w-full mt-4 py-3.5 bg-primary hover:bg-[#df7d1a] disabled:bg-neutral-200 text-white font-mono font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-md shadow-primary/20 cursor-pointer"
+                  >
+                    {formSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
+                  </button>
+                </form>
               </motion.div>
             </div>
 
@@ -497,11 +496,11 @@ export function ProjectDetails() {
       </section>
 
       {/* 5. Recommended Projects Grid */}
-      <section 
+      <section
         className="bg-neutral-50 border-t border-neutral-200 pt-12 pb-0"
       >
         <div className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
-          
+
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 gap-6">
             <div>
               <span className="text-[#142b52] font-mono text-xs tracking-[0.2em] font-bold uppercase block mb-3">MORE PROJECTS</span>
@@ -515,13 +514,13 @@ export function ProjectDetails() {
             {otherProjects.map((p, index) => (
               <div
                 key={p.slug}
-                className="group bg-white rounded-2xl overflow-hidden border border-neutral-200 hover:border-[#EA8A22] shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col relative cursor-pointer"
+                className="group bg-white rounded-2xl overflow-hidden border border-neutral-200 hover:border-primary shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col relative cursor-pointer"
               >
                 <Link to={`/projects/${p.slug}`} className="absolute inset-0 z-20" />
-                
+
                 <div className="h-48 overflow-hidden relative">
                   <img src={p.image} alt={p.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
-                  
+
                   {/* Category Badge overlay */}
                   <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-neutral-200/80 shadow-sm">
                     <span className="text-[10px] font-mono text-[#142b52] font-bold uppercase">
@@ -529,10 +528,10 @@ export function ProjectDetails() {
                     </span>
                   </div>
                 </div>
-                
+
                 <div className="p-6 flex flex-col justify-between flex-1">
                   <div>
-                    <h4 className="text-base font-bold text-neutral-900 uppercase font-mono transition-colors group-hover:text-[#EA8A22] line-clamp-1">{p.name}</h4>
+                    <h4 className="text-base font-bold text-neutral-900 uppercase font-mono transition-colors group-hover:text-primary line-clamp-1">{p.name}</h4>
                     <p className="text-xs text-neutral-500 font-light mt-2 line-clamp-2 leading-relaxed">{p.desc}</p>
                   </div>
                 </div>
@@ -544,16 +543,16 @@ export function ProjectDetails() {
       </section>
 
       {/* 6. CTA Banner */}
-      <section 
+      <section
         className="relative bg-neutral-50 overflow-hidden py-12"
       >
         <div className="max-w-[1400px] mx-auto px-5 md:px-6 lg:px-7 xl:px-8 relative z-10">
           <div className="bg-[#0a0f1d] border border-neutral-800/80 p-10 md:p-16 rounded-[32px] shadow-2xl relative overflow-hidden group">
             {/* Premium Construction & Engineering Background Image */}
             <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80" 
-                alt="Construction and Engineering" 
+              <img
+                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80"
+                alt="Construction and Engineering"
                 className="w-full h-full object-cover opacity-[0.28] mix-blend-luminosity scale-[1.03] group-hover:scale-100 transition-transform duration-[1200ms] ease-out"
                 referrerPolicy="no-referrer"
               />
@@ -561,7 +560,7 @@ export function ProjectDetails() {
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0f1d]/30" />
             </div>
             <div className="absolute inset-0 translate-x-[-150%] skew-x-[-25deg] w-1/2 bg-gradient-to-r from-transparent via-white/5 to-transparent group-hover:animate-[sweep_2s_ease-in-out_infinite]" />
-            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-[#EA8A22]/15 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
             {/* Redesigned Architectural & Engineering Blueprint Background */}
             <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[50%] pointer-events-none select-none overflow-hidden opacity-[0.22] lg:opacity-[0.28]">
               {/* Subtle pulsing/drawing animation styles */}
@@ -621,22 +620,22 @@ export function ProjectDetails() {
                     <line x1="50" y1="140" x2="650" y2="140" strokeWidth="1.5" />
                     <line x1="50" y1="150" x2="650" y2="150" strokeWidth="0.5" strokeDasharray="2,2" />
                     <line x1="50" y1="130" x2="650" y2="130" strokeWidth="0.75" />
-                    
+
                     <line x1="50" y1="380" x2="650" y2="380" strokeWidth="1.5" />
                     <line x1="50" y1="390" x2="650" y2="390" strokeWidth="0.5" strokeDasharray="2,2" />
-                    
+
                     {/* Vertical Truss Columns */}
                     <rect x="180" y="80" width="30" height="440" strokeDasharray="4,4" strokeWidth="0.75" />
                     <rect x="480" y="80" width="30" height="440" strokeDasharray="4,4" strokeWidth="0.75" />
-                    
+
                     {/* Cross Structural Steel Framing (X-Bracing) */}
                     <line x1="180" y1="140" x2="480" y2="380" strokeWidth="1.2" />
                     <line x1="480" y1="140" x2="180" y2="380" strokeWidth="1.2" />
-                    
+
                     {/* Minor Truss lines */}
                     <line x1="180" y1="260" x2="480" y2="260" strokeWidth="0.75" strokeDasharray="4,2" />
                     <line x1="330" y1="140" x2="330" y2="380" strokeWidth="0.75" strokeDasharray="8,4" />
-                    
+
                     {/* Isometric Building Structure Outlines */}
                     <path d="M 400,430 L 520,380 L 640,430 L 520,480 Z" strokeWidth="1" />
                     <path d="M 400,310 L 520,260 L 640,310 L 520,360 Z" strokeWidth="1" />
@@ -649,11 +648,11 @@ export function ProjectDetails() {
                   <g className="bp-fade-slow" stroke="white" strokeWidth="0.75" opacity="0.7">
                     {/* Interior Wall partitions */}
                     <path d="M 80,180 L 220,180 L 220,290 L 360,290 L 360,420" />
-                    
+
                     {/* Door Arc and Swing Indicator */}
                     <path d="M 220,250 A 40,40 0 0,1 260,210" strokeDasharray="3,3" />
                     <line x1="220" y1="250" x2="220" y2="210" />
-                    
+
                     {/* Foundation / Pillar Blocks */}
                     <rect x="75" y="175" width="10" height="10" fill="white" fillOpacity="0.25" />
                     <rect x="215" y="175" width="10" height="10" fill="white" fillOpacity="0.25" />
@@ -667,12 +666,12 @@ export function ProjectDetails() {
                     <line x1="180" y1="60" x2="480" y2="60" />
                     <line x1="180" y1="54" x2="180" y2="66" />
                     <line x1="480" y1="54" x2="480" y2="66" />
-                    
+
                     {/* Vertical dimension bounds */}
                     <line x1="120" y1="140" x2="120" y2="380" />
                     <line x1="114" y1="140" x2="126" y2="140" />
                     <line x1="114" y1="380" x2="126" y2="380" />
-                    
+
                     {/* Annotation text markings */}
                     <text x="330" y="50" fill="#EA8A22" fontSize="10" fontFamily="monospace" textAnchor="middle" letterSpacing="1" stroke="none">
                       L = 12.00 m
@@ -680,7 +679,7 @@ export function ProjectDetails() {
                     <text x="95" y="265" fill="#EA8A22" fontSize="10" fontFamily="monospace" textAnchor="middle" letterSpacing="1" stroke="none" transform="rotate(-90 95 265)">
                       H = 6.40 m
                     </text>
-                    
+
                     {/* Section Cut Line Indicator */}
                     <path d="M 60,200 L 640,200" strokeDasharray="14,4,2,4" strokeWidth="1" />
                     <path d="M 60,192 L 60,208 M 640,192 L 640,208" strokeWidth="1.5" />
@@ -704,23 +703,23 @@ export function ProjectDetails() {
                 </svg>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
               <div className="lg:col-span-7">
-                <span className="text-[#EA8A22] font-mono text-xs tracking-[0.2em] font-bold uppercase block mb-4">READY TO START?</span>
+                <span className="text-primary font-mono text-xs tracking-[0.2em] font-bold uppercase block mb-4">READY TO START?</span>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase leading-[1.1]">
                   Let's Build Your <br />Next Project Together
                 </h2>
               </div>
-              
+
               <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-4">
                 <button
                   onClick={() => setQuoteModalOpen(true)}
-                  className="w-full px-8 py-5 bg-[#EA8A22] hover:bg-[#EA8A22] text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-[#EA8A22]/20 hover:shadow-[#EA8A22]/40 flex items-center justify-center gap-2 font-mono group"
+                  className="w-full px-8 py-5 bg-primary hover:bg-primary text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-primary/40 flex items-center justify-center gap-2 font-mono group"
                 >
                   Request a Quote <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
-                
+
                 <button
                   onClick={handleDownloadProfile}
                   disabled={downloadingProfile}
@@ -729,10 +728,10 @@ export function ProjectDetails() {
                   {downloadingProfile ? (
                     <span className="animate-pulse">Preparing file...</span>
                   ) : downloadSuccess ? (
-                    <span className="text-[#EA8A22]">Profile Downloaded ✔</span>
+                    <span className="text-primary">Profile Downloaded ✔</span>
                   ) : (
                     <>
-                      Download Company Profile 
+                      Download Company Profile
                       <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
                     </>
                   )}

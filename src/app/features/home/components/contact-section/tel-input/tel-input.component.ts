@@ -11,7 +11,7 @@ import { WORLD_COUNTRIES, WorldCountry } from './countries.data';
           ? 'border-red-400 focus-within:border-red-500 focus-within:ring-red-500/15 bg-red-50/10'
           : isTouched() && isValid()
           ? 'border-emerald-500/80 focus-within:border-emerald-500 focus-within:ring-emerald-500/15 bg-emerald-50/10'
-          : 'border-neutral-200/80 focus-within:border-[#EA8A22] focus-within:bg-white focus-within:ring-[#EA8A22]/15'))"
+          : 'border-neutral-200/80 focus-within:border-primary focus-within:bg-white focus-within:ring-primary/15'))"
     >
       <!-- Country Selector Button -->
       <div class="relative border-r border-neutral-200 select-none shrink-0">
@@ -46,7 +46,7 @@ import { WORLD_COUNTRIES, WorldCountry } from './countries.data';
                 placeholder="Search country, name or code (مثال: مصر / +966)..."
                 [value]="searchQuery()"
                 (input)="updateSearch($event)"
-                class="w-full bg-neutral-50 border border-neutral-200/80 rounded-lg px-3 py-2 text-xs text-neutral-800 focus:outline-none focus:border-[#EA8A22]"
+                class="w-full bg-neutral-50 border border-neutral-200/80 rounded-lg px-3 py-2 text-xs text-neutral-800 focus:outline-none focus:border-primary"
               />
             </div>
 
@@ -56,7 +56,7 @@ import { WORLD_COUNTRIES, WorldCountry } from './countries.data';
                 <button
                   type="button"
                   (click)="selectCountry(item)"
-                  [class]="'w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-mono transition-colors text-left cursor-pointer ' + (item.code === countryCode() && item.country === currentCountry().country ? 'bg-orange-50 text-[#EA8A22] font-bold' : 'hover:bg-neutral-50 text-neutral-700')"
+                  [class]="'w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-mono transition-colors text-left cursor-pointer ' + (item.code === countryCode() && item.country === currentCountry().country ? 'bg-orange-50 text-primary font-bold' : 'hover:bg-neutral-50 text-neutral-700')"
                 >
                   <div class="flex items-center gap-2.5 truncate max-w-[190px]">
                     <img

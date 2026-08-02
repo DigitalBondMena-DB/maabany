@@ -1,83 +1,47 @@
 <div class="relative bg-white text-neutral-900 min-h-screen">
-  
+
   <!-- 1. Hero Header Section -->
-  <app-page-hero
-    title="Engineering Insights"
-    categoryBadge="Our Blogs"
-    heroImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80"
-  />
+  <app-page-hero title="Engineering Insights" categoryBadge="Our Blogs"
+    heroImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80" />
 
   <!-- 2. Main Articles Section -->
   <section id="latest-articles" class="py-12 md:py-20 lg:py-24 bg-white relative">
     <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 space-y-12">
-      
-      <!-- Category Filter Bar -->
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-6 border-b border-neutral-200 pb-8">
-        <div role="tablist" aria-label="Blog categories filter"
-          class="flex items-center gap-1.5 bg-neutral-50 p-1.5 rounded-full border border-neutral-200/80 shadow-xs w-max max-w-full overflow-x-auto scrollbar-none">
-          @for (cat of categories(); track cat) {
-            @let isSelected = selectedCategory() === cat;
-            <button
-              type="button"
-              role="tab"
-              [attr.aria-selected]="isSelected"
-              (click)="selectCategory(cat)"
-              [class]="'px-5 py-2.5 rounded-full text-xs font-mono uppercase font-bold tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap shrink-0 ' +
-                (isSelected ? 'bg-[#EA8A22] text-white shadow-xs' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100')"
-            >
-              {{ cat | translate }}
-            </button>
-          }
-        </div>
-      </div>
 
       <!-- Articles Grid -->
       @if (displayedPosts().length > 0) {
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          @for (post of displayedPosts(); track post.slug) {
-            <app-blog-card
-              [title]="post.title"
-              [desc]="post.desc"
-              [image]="post.image"
-              [date]="post.date"
-              [category]="post.category"
-              [link]="'/' + currentLang() + '/blogs/' + post.slug"
-            />
-          }
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+        @for (post of displayedPosts(); track post.slug) {
+        <app-blog-card [title]="post.title" [desc]="post.desc" [image]="post.image" [date]="post.date"
+          [category]="post.category" [link]="'/' + currentLang() + '/blogs/' + post.slug" />
+        }
+      </div>
       } @else {
-        <!-- Empty State -->
-        <div class="max-w-md mx-auto text-center py-20 px-6 border border-neutral-200 rounded-3xl bg-neutral-50/50 shadow-xs flex flex-col items-center space-y-6">
-          <div class="w-16 h-16 bg-[#EA8A22]/10 rounded-full flex items-center justify-center text-[#EA8A22]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
-          </div>
-          
-          <div class="space-y-2">
-            <h3 class="text-xl font-bold text-neutral-900 uppercase tracking-tight font-mono">
-              {{ 'No Articles Available' | translate }}
-            </h3>
-            <p class="text-xs text-neutral-500 leading-relaxed font-light">
-              {{ 'We are preparing valuable engineering insights and industry updates. Please check back soon or try resetting your filters.' | translate }}
-            </p>
-          </div>
-
-          <div class="flex gap-3 pt-2">
-            <button
-              (click)="resetFilters()"
-              class="px-5 py-2.5 bg-neutral-200 hover:bg-neutral-300 text-neutral-800 font-mono text-[10px] font-bold uppercase tracking-wider rounded-xl transition-all cursor-pointer"
-            >
-              {{ 'Reset Filters' | translate }}
-            </button>
-          </div>
+      <!-- Empty State -->
+      <div
+        class="max-w-md mx-auto text-center py-20 px-6 border border-neutral-200 rounded-3xl bg-neutral-50/50 shadow-xs flex flex-col items-center space-y-6">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" />
+            <path
+              d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
+          </svg>
         </div>
+
+        <div class="space-y-2">
+          <h3 class="text-xl font-bold text-neutral-900 uppercase tracking-tight font-mono">
+            {{ 'No Articles Available' | translate }}
+          </h3>
+          <p class="text-xs text-neutral-500 leading-relaxed font-light">
+            {{ 'We are preparing valuable engineering insights and industry updates. Please check back soon.' | translate }}
+          </p>
+        </div>
+      </div>
       }
 
       <!-- Reusable Shared Pagination Component -->
-      <app-pagination
-        [currentPage]="currentPage()"
-        [totalPages]="totalPages()"
-        (pageChange)="goToPage($event)"
-      />
+      <app-pagination [currentPage]="currentPage()" [totalPages]="totalPages()" (pageChange)="goToPage($event)" />
 
     </div>
   </section>

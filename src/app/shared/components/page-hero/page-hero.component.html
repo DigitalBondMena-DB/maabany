@@ -11,9 +11,9 @@
       <div
         class="absolute inset-0 bg-[linear-gradient(to_right,#ea8a2204_1px,transparent_1px),linear-gradient(to_bottom,#ea8a2205_1px,transparent_1px)] bg-size-[32px_32px]">
       </div>
-      <div class="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-[#EA8A22]/5 blur-[120px] rounded-full mix-blend-multiply">
+      <div class="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-primary/5 blur-[120px] rounded-full mix-blend-multiply">
       </div>
-      <div class="absolute -bottom-20 -right-20 w-96 h-96 border border-[#EA8A22]/5 rounded-full animate-pulse"></div>
+      <div class="absolute -bottom-20 -right-20 w-96 h-96 border border-primary/5 rounded-full animate-pulse"></div>
     </div>
 
     <!-- Hero content wrapper -->
@@ -24,7 +24,7 @@
         <!-- Left Title & Description -->
         <div class="lg:col-span-7 space-y-4">
           <div class="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-bold text-neutral-400">
-            <a routerLink="/" class="hover:text-[#EA8A22] transition-colors">{{ 'NAV.HOME' | translate }}</a>
+            <a routerLink="/" class="hover:text-primary transition-colors">{{ 'NAV.HOME' | translate }}</a>
             <span>/</span>
             <span class="text-[#142b52] font-bold">{{ categoryBadge() | translate }}</span>
           </div>
@@ -34,8 +34,8 @@
               class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-neutral-950 tracking-tighter uppercase leading-[0.95]">
               {{ mainTitle() | translate }}
               @if (activeHighlight()) {
-                <br class="hidden sm:inline" />
-                <span class="text-[#EA8A22]">{{ activeHighlight() | translate }}</span>
+              <br class="hidden sm:inline" />
+              <span class="text-primary">{{ activeHighlight() | translate }}</span>
               }
             </h1>
           </div>
