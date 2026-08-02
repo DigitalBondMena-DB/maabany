@@ -2,11 +2,11 @@
   [class]="'bg-white relative z-10 transition-all duration-200 ' + sectionPadding()">
   <div class="max-w-350 mx-auto transition-all duration-200 px-(--outer-padding-x)">
     @if (showHeading()) {
-    <div class="text-center max-w-3xl mx-auto mb-16 space-y-2">
-      <span class="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
+    <div [class]="headerClass()">
+      <span [class]="subtitleClass()">
         {{ subtitle() | translate }}
       </span>
-      <h2 class="text-3xl md:text-5xl font-black text-neutral-900 uppercase tracking-tight">
+      <h2 [class]="titleClass()">
         {{ title() | translate }}
       </h2>
     </div>

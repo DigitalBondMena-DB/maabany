@@ -89,7 +89,7 @@ import { WORLD_COUNTRIES, WorldCountry } from './countries.data';
         [value]="phoneValue()"
         (input)="onPhoneInput($event)"
         (blur)="onBlur()"
-        class="flex-1 bg-transparent p-3.5 text-sm text-neutral-800 placeholder-neutral-400 focus:outline-none font-mono"
+        class="flex-1 bg-transparent text-left rtl:text-right p-3.5 text-sm text-neutral-800 placeholder-neutral-400 focus:outline-none font-mono"
       />
 
       <!-- Realtime Validation Indicator Icon -->

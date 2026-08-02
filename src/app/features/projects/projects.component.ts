@@ -6,6 +6,7 @@ import { PageHeroComponent } from '../../shared/components/page-hero/page-hero.c
 import { CtaBannerComponent } from '../../shared/components/cta-banner/cta-banner.component';
 import { ImageComponent } from '../../shared/components/image/image.component';
 import { InteractiveBlueprintComponent } from './components/interactive-blueprint/interactive-blueprint.component';
+import { PaginationComponent } from '../../shared/components/pagination/pagination.component';
 import { PROJECTS_DATA, ProjectItem } from './services/projects-data';
 import { LanguageService } from '../../core/services/language.service';
 import { ProfileService } from '../../core/services/profile.service';
@@ -20,6 +21,7 @@ import { ProfileService } from '../../core/services/profile.service';
     CtaBannerComponent,
     ImageComponent,
     InteractiveBlueprintComponent,
+    PaginationComponent,
   ],
   templateUrl: './projects.component.html',
   styles: `
@@ -40,70 +42,38 @@ import { ProfileService } from '../../core/services/profile.service';
 })
 export class ProjectsComponent {
   private readonly languageService = inject(LanguageService);
-  readonly profileService = inject(ProfileService);
+  private readonly profileService = inject(ProfileService);
   readonly currentLang = this.languageService.currentLang;
 
   readonly tabButtons = viewChildren<ElementRef<HTMLButtonElement>>('tabBtn');
 
-  readonly projects: ProjectItem[] = PROJECTS_DATA;
-
-  readonly categories = computed<string[]>(() => {
-    const rawCategories = Array.from(new Set(this.projects.map(p => p.category)));
-    return ['All', ...rawCategories];
-  });
-
+  readonly projects = signal<ProjectItem[]>(PROJECTS_DATA);
   readonly selectedCategory = signal<string>('All');
   readonly currentPage = signal<number>(1);
-  readonly itemsPerPage = signal<number>(6);
+  readonly pageSize = signal<number>(6);
 
-  readonly filteredProjects = computed<ProjectItem[]>(() => {
+  readonly categories = computed(() => {
+    const cats = new Set(this.projects().map(p => p.category));
+    return ['All', ...Array.from(cats)];
+  });
+
+  readonly filteredProjects = computed(() => {
     const cat = this.selectedCategory();
-    if (cat === 'All') return this.projects;
-    return this.projects.filter(p => p.category.toLowerCase() === cat.toLowerCase());
+    if (cat === 'All') return this.projects();
+    return this.projects().filter(p => p.category === cat);
   });
 
-  readonly totalPages = computed<number>(() => {
-    return Math.ceil(this.filteredProjects().length / this.itemsPerPage());
+  readonly totalPages = computed(() => {
+    return Math.ceil(this.filteredProjects().length / this.pageSize()) || 1;
   });
 
-  readonly displayedProjects = computed<ProjectItem[]>(() => {
-    const page = this.currentPage();
-    const perPage = this.itemsPerPage();
-    const start = (page - 1) * perPage;
-    return this.filteredProjects().slice(start, start + perPage);
+  readonly displayedProjects = computed(() => {
+    const start = (this.currentPage() - 1) * this.pageSize();
+    return this.filteredProjects().slice(start, start + this.pageSize());
   });
 
-  readonly paginationRange = computed<(number | string)[]>(() => {
-    const total = this.totalPages();
-    const current = this.currentPage();
-    const range: (number | string)[] = [];
-
-    if (total <= 5) {
-      for (let i = 1; i <= total; i++) range.push(i);
-    } else {
-      if (current <= 3) {
-        for (let i = 1; i <= 4; i++) range.push(i);
-        range.push('...');
-        range.push(total);
-      } else if (current > total - 3) {
-        range.push(1);
-        range.push('...');
-        for (let i = total - 3; i <= total; i++) range.push(i);
-      } else {
-        range.push(1);
-        range.push('...');
-        range.push(current - 1);
-        range.push(current);
-        range.push(current + 1);
-        range.push('...');
-        range.push(total);
-      }
-    }
-    return range;
-  });
-
-  selectCategory(cat: string): void {
-    this.selectedCategory.set(cat);
+  selectCategory(category: string): void {
+    this.selectedCategory.set(category);
     this.currentPage.set(1);
   }
 
@@ -113,39 +83,31 @@ export class ProjectsComponent {
     }
   }
 
-  // Accessibility: Keyboard Navigation for Tabs (WAI-ARIA Tablist Pattern)
   onTabKeyDown(event: KeyboardEvent, index: number): void {
     const cats = this.categories();
-    const buttons = this.tabButtons();
-    if (!buttons || buttons.length === 0) return;
-
-    let targetIndex = index;
-    const isRtl = this.languageService.dir() === 'rtl';
+    let nextIndex = index;
 
     if (event.key === 'ArrowRight') {
-      event.preventDefault();
-      targetIndex = isRtl ? (index - 1 + cats.length) % cats.length : (index + 1) % cats.length;
+      nextIndex = (index + 1) % cats.length;
     } else if (event.key === 'ArrowLeft') {
-      event.preventDefault();
-      targetIndex = isRtl ? (index + 1) % cats.length : (index - 1 + cats.length) % cats.length;
+      nextIndex = (index - 1 + cats.length) % cats.length;
     } else if (event.key === 'Home') {
-      event.preventDefault();
-      targetIndex = 0;
+      nextIndex = 0;
     } else if (event.key === 'End') {
-      event.preventDefault();
-      targetIndex = cats.length - 1;
-    } else if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      this.selectCategory(cats[index]);
-      return;
+      nextIndex = cats.length - 1;
     } else {
       return;
     }
 
-    const targetButton = buttons[targetIndex]?.nativeElement;
-    if (targetButton) {
-      targetButton.focus();
-      this.selectCategory(cats[targetIndex]);
+    event.preventDefault();
+    this.selectCategory(cats[nextIndex]);
+    const buttons = this.tabButtons();
+    if (buttons[nextIndex]) {
+      buttons[nextIndex].nativeElement.focus();
     }
+  }
+
+  downloadProfile(): void {
+    this.profileService.downloadProfile();
   }
 }

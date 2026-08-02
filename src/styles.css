@@ -5,6 +5,7 @@
 @theme {
   --font-main: "Inter", sans-serif;
   --font-header: "Space Grotesk", sans-serif;
+  --color-primary: #EA8A22;
   --outer-padding-x: 24px;
   --outer-padding-top: 16px;
   --outer-padding-bottom: 4px;
@@ -62,5 +63,22 @@
 
   .header-font {
     font-family: var(--font-header);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 9999px;
+  }
+
+  .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+    background: #EA8A22;
   }
 }

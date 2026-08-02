@@ -37,6 +37,18 @@ export const routes: Routes = [
       {
         path: 'industries',
         loadComponent: () => import('./features/industries/industries.component').then(m => m.IndustriesComponent)
+      },
+      {
+        path: 'industries/:slug',
+        loadComponent: () => import('./features/industries/components/industry-details/industry-details.component').then(m => m.IndustryDetailsComponent)
+      },
+      {
+        path: 'clients-partners',
+        loadComponent: () => import('./features/clients-partners/clients-partners.component').then(m => m.ClientsPartnersComponent)
+      },
+      {
+        path: 'blogs',
+        loadComponent: () => import('./features/blogs/blogs.component').then(m => m.BlogsComponent)
       }
     ]
   },

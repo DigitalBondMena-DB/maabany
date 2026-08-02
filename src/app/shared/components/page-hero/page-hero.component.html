@@ -32,10 +32,10 @@
           <div>
             <h1
               class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-neutral-950 tracking-tighter uppercase leading-[0.95]">
-              {{ title() | translate }}
-              @if (titleHighlight()) {
-              <br class="hidden sm:inline" />
-              <span class="text-[#EA8A22]">{{ titleHighlight() | translate }}</span>
+              {{ mainTitle() | translate }}
+              @if (activeHighlight()) {
+                <br class="hidden sm:inline" />
+                <span class="text-[#EA8A22]">{{ activeHighlight() | translate }}</span>
               }
             </h1>
           </div>
@@ -46,8 +46,6 @@
           </p>
           }
         </div>
-
-
 
       </div>
     </div>

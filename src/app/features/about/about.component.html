@@ -1,8 +1,7 @@
 <div class="relative bg-white text-neutral-900 min-h-screen">
   <!-- 1. Shared Page Hero Section -->
   <app-page-hero 
-    title="Building Beyond"
-    titleHighlight="Expectations"
+    title="Building Beyond Expectations"
     categoryBadge="About"
     heroImage="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80"
   />
@@ -16,27 +15,9 @@
   <!-- 4. Mission / Vision / Values -->
   <app-about-values />
 
-  <!-- 5. Our Partners Section (Using Marquee with partners-only condition) -->
-  <app-client-marquee 
-    title="Our Partners"
-    subtitle="TRUSTED BY THE BEST"
-    [showPartners]="true"
-    [showClients]="false"
-    sliderPadding="py-12"
-  />
+  <!-- 5. Our Partners Section (Using Marquee) -->
+  <app-client-marquee />
 
-  <!-- 6. Why Choose Maabany -->
-  <app-about-why-choose-us />
-
-  <!-- 7. Our Clients Section (Using Marquee with clients-only condition) -->
-  <app-client-marquee 
-    title="Our Clients"
-    subtitle="BUILDING WITH EXCELLENCE"
-    [showPartners]="false"
-    [showClients]="true"
-    sliderPadding="py-12"
-  />
-
-  <!-- 8. CTA Banner Section (Shared Component with identical style) -->
+  <!-- 6. Shared CTA Banner Section -->
   <app-cta-banner />
 </div>

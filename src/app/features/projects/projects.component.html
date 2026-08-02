@@ -1,7 +1,6 @@
 <div class="relative bg-white text-neutral-900 min-h-screen selection:bg-[#EA8A22] selection:text-white">
   <!-- 1. Hero Header Section -->
-  <app-page-hero [title]="'Engineering Excellence' | translate" [categoryBadge]="'Our Projects' | translate"
-    titleHighlight="Projects"
+  <app-page-hero [title]="'Engineering Excellence Projects' | translate" [categoryBadge]="'Our Projects' | translate"
     [heroImage]="'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80'" />
 
   <!-- 2. Our Projects Section -->
@@ -40,14 +39,14 @@
       <!-- WCAG AA Accessible Category Filter Bar (WAI-ARIA Tablist Pattern) -->
       <div class="mb-12 max-w-full overflow-x-auto scrollbar-none -mx-5 px-5 md:mx-0 md:px-0">
         <div role="tablist" aria-label="Project categories filter" aria-orientation="horizontal"
-          class="flex items-center gap-1.5 bg-white p-1.5 rounded-full border border-neutral-200 w-max focus-within:ring-2 focus-within:ring-[#EA8A22]/20">
+          class="flex items-center gap-1.5 bg-white p-1.5 rounded-full border border-neutral-200 shadow-xs w-max focus-within:ring-2 focus-within:ring-[#EA8A22]/20">
           @for (cat of categories(); track cat; let idx = $index) {
           @let isSelected = selectedCategory() === cat;
           <button #tabBtn type="button" role="tab" [id]="'tab-' + (cat | lowercase)" [attr.aria-selected]="isSelected"
             aria-controls="projects-grid-panel" [attr.tabindex]="isSelected ? 0 : -1"
             (keydown)="onTabKeyDown($event, idx)" (click)="selectCategory(cat)"
             [class]="'px-5 py-2.5 rounded-full text-xs font-mono uppercase font-bold tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22] ' + 
-                (isSelected ? 'bg-[#EA8A22] text-white shadow-sm' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100')">
+                (isSelected ? 'bg-[#EA8A22] text-white shadow-xs' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100')">
             {{ cat | translate }}
           </button>
           }
@@ -62,7 +61,7 @@
           @let isTall = idx % 3 === 1;
 
           <article animate.enter="enter-animation"
-            [class]="'group bg-white rounded-3xl overflow-hidden border border-neutral-200/90 hover:border-[#EA8A22] shadow-sm hover:shadow-2xl transition-[border-color,box-shadow] duration-500 flex flex-col relative ' + (isTall ? 'lg:translate-y-6 lg:h-135 h-122.5' : 'h-122.5')">
+            [class]="'group bg-white rounded-3xl overflow-hidden border border-neutral-200/90 hover:border-[#EA8A22] shadow-xs hover:shadow-2xl transition-[border-color,box-shadow] duration-500 flex flex-col relative ' + (isTall ? 'lg:translate-y-6 lg:h-135 h-122.5' : 'h-122.5')">
             <!-- Card Navigation Link -->
             <a [routerLink]="'/' + currentLang() + '/projects/' + proj.slug"
               class="absolute inset-0 z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22] rounded-3xl"
@@ -83,7 +82,7 @@
 
               <!-- Category Badge -->
               <div
-                class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-neutral-200/80 shadow-sm">
+                class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-neutral-200/80 shadow-xs">
                 <span class="text-[10px] font-mono text-[#142b52] font-bold uppercase">
                   {{ proj.category | translate }}
                 </span>
@@ -119,52 +118,12 @@
         }
       </div>
 
-      <!-- WCAG AA Accessible Pagination Navigation Section -->
-      @if (filteredProjects().length > 0) {
-      <div class="mt-20 flex justify-center">
-        <nav aria-label="Projects pagination"
-          class="flex items-center gap-1.5 bg-white p-1.5 rounded-full border border-neutral-200 shadow-sm w-fit">
-          <!-- Prev Button -->
-          <button type="button" (click)="goToPage(currentPage() - 1)" [disabled]="currentPage() === 1"
-            aria-label="Previous page"
-            class="w-9 h-9 flex items-center justify-center rounded-full text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-neutral-600 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="w-4 h-4 rtl:rotate-180">
-              <path d="m15 18-6-6 6-6" />
-            </svg>
-          </button>
-
-          <!-- Page Numbers -->
-          @for (page of paginationRange(); track $index) {
-          @if (page === '...') {
-          <span className="w-9 h-9 flex items-center justify-center text-neutral-400 font-mono text-xs select-none">
-            ...
-          </span>
-          } @else {
-          @let isCurrent = currentPage() === page;
-          <button type="button" (click)="goToPage(+page)" [attr.aria-current]="isCurrent ? 'page' : null"
-            [attr.aria-label]="'Page ' + page"
-            [class]="'w-9 h-9 flex items-center justify-center rounded-full font-mono font-bold text-xs transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22] ' + 
-                    (isCurrent ? 'bg-[#EA8A22] text-white shadow-sm' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 cursor-pointer')">
-            {{ page }}
-          </button>
-          }
-          }
-
-          <!-- Next Button -->
-          <button type="button" (click)="goToPage(currentPage() + 1)" [disabled]="currentPage() === totalPages()"
-            aria-label="Next page"
-            class="w-9 h-9 flex items-center justify-center rounded-full text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-neutral-600 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA8A22]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="w-4 h-4 rtl:rotate-180">
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </button>
-        </nav>
-      </div>
-      }
+      <!-- Reusable Shared Pagination Component -->
+      <app-pagination
+        [currentPage]="currentPage()"
+        [totalPages]="totalPages()"
+        (pageChange)="goToPage($event)"
+      />
 
     </div>
   </section>

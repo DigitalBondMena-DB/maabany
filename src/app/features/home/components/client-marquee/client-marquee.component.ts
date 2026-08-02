@@ -48,6 +48,9 @@ export class ClientMarqueeComponent {
   readonly sectionPadding = input<string>('py-12 md:py-20 lg:py-24');
   readonly title = input<string>('Our Partners & Clients');
   readonly subtitle = input<string>('AUTHORIZED ALLIANCES & TRUSTED RELATIONSHIPS');
+  readonly headerClass = input<string>('text-center max-w-3xl mx-auto mb-16 space-y-2');
+  readonly titleClass = input<string>('text-3xl md:text-5xl font-black text-neutral-900 uppercase tracking-tight');
+  readonly subtitleClass = input<string>('text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block');
 
   readonly customPartners = input<MarqueeItem[]>();
   readonly customClients = input<MarqueeItem[]>();
@@ -58,37 +61,29 @@ export class ClientMarqueeComponent {
     { name: 'Royal Commission for Riyadh', text: 'RCRC RIYADH' },
     { name: 'MODON Industrial Cities', text: 'MODON CITIES' },
     { name: 'KAFD Financial District', text: 'KAFD RIYADH' },
-    { name: 'SABIC Industrial', text: 'SABIC CORP' },
   ];
 
   readonly defaultClients: MarqueeItem[] = [
-    { name: 'ROSHN Development', text: 'ROSHN' },
+    { name: 'Aramco', text: 'ARAMCO' },
+    { name: 'NEOM', text: 'NEOM' },
     { name: 'Red Sea Global', text: 'RED SEA GLOBAL' },
-    { name: 'NEOM Smart Cities', text: 'NEOM' },
-    { name: 'Saudi Aramco', text: 'SAUDI ARAMCO' },
-    { name: 'Emaar Properties', text: 'EMAAR' },
+    { name: 'Qiddiya', text: 'QIDDIYA' },
+    { name: 'ROSHN', text: 'ROSHN' },
   ];
 
-  private readonly SECONDS_PER_ITEM = 1.3;
-  private readonly SAFE_MIN_ITEMS = 24;
+  readonly partners = computed(() => this.customPartners() || this.defaultPartners);
+  readonly clients = computed(() => this.customClients() || this.defaultClients);
 
-  private createSafeMarqueeTrack(items: MarqueeItem[]): MarqueeItem[] {
-    if (!items || items.length === 0) return [];
-    const reps = Math.ceil(this.SAFE_MIN_ITEMS / items.length);
-    const evenReps = reps % 2 === 0 ? reps : reps + 1;
-    const result: MarqueeItem[] = [];
-    for (let i = 0; i < evenReps; i++) {
-      result.push(...items);
-    }
-    return result;
-  }
+  readonly repeatedPartners = computed(() => {
+    const list = this.partners();
+    return [...list, ...list, ...list, ...list, ...list, ...list];
+  });
 
-  readonly partnersList = computed(() => this.customPartners() || this.defaultPartners);
-  readonly clientsList = computed(() => this.customClients() || this.defaultClients);
+  readonly repeatedClients = computed(() => {
+    const list = this.clients();
+    return [...list, ...list, ...list, ...list, ...list, ...list];
+  });
 
-  readonly repeatedPartners = computed(() => this.createSafeMarqueeTrack(this.partnersList()));
-  readonly repeatedClients = computed(() => this.createSafeMarqueeTrack(this.clientsList()));
-
-  readonly partnersDuration = computed(() => `${(this.repeatedPartners().length * this.SECONDS_PER_ITEM).toFixed(1)}s`);
-  readonly clientsDuration = computed(() => `${(this.repeatedClients().length * this.SECONDS_PER_ITEM).toFixed(1)}s`);
+  readonly partnersDuration = computed(() => `${this.partners().length * 6}s`);
+  readonly clientsDuration = computed(() => `${this.clients().length * 6}s`);
 }
