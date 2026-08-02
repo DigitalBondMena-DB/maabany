@@ -6,12 +6,12 @@ import { WORLD_COUNTRIES, WorldCountry } from './countries.data';
   imports: [],
   template: `
     <div
-      [class]="'relative flex items-center bg-neutral-50/50 border rounded-xl transition-all w-full focus-within:ring-2 ' +
+      [class]="containerClasses() ? containerClasses() : ('relative flex items-center bg-neutral-50/50 border rounded-xl transition-all w-full focus-within:ring-2 ' +
         (isTouched() && hasError()
           ? 'border-red-400 focus-within:border-red-500 focus-within:ring-red-500/15 bg-red-50/10'
           : isTouched() && isValid()
           ? 'border-emerald-500/80 focus-within:border-emerald-500 focus-within:ring-emerald-500/15 bg-emerald-50/10'
-          : 'border-neutral-200/80 focus-within:border-[#EA8A22] focus-within:bg-white focus-within:ring-[#EA8A22]/15')"
+          : 'border-neutral-200/80 focus-within:border-[#EA8A22] focus-within:bg-white focus-within:ring-[#EA8A22]/15'))"
     >
       <!-- Country Selector Button -->
       <div class="relative border-r border-neutral-200 select-none shrink-0">
@@ -106,6 +106,7 @@ import { WORLD_COUNTRIES, WorldCountry } from './countries.data';
 export class TelInputComponent {
   private readonly elementRef = inject(ElementRef);
 
+  readonly containerClasses = input<string>('');
   readonly phoneValue = input<string>('');
   readonly countryCode = input<string>('+966');
   readonly hasError = input<boolean>(false);
