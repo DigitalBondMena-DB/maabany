@@ -66,32 +66,7 @@ export class TestimonialsComponent implements OnDestroy {
   private isVisibleInViewport = false;
   private unregisterObserver?: () => void;
 
-  readonly defaultTestimonials: TestimonialItem[] = [
-    {
-      quote:
-        'Maabany delivered our premium enterprise headquarters 3 months ahead of schedule without sacrificing a single layer of architectural complexity. Their standard of execution is truly unprecedented.',
-      name: 'Eng. Abdulrahman Al-Saud',
-      role: 'VP of Urban Development',
-      company: 'Riyadh Vision Group',
-      initials: 'AA',
-    },
-    {
-      quote:
-        'The engineering team at Maabany tackled our complex robotic facility constraints with outstanding ingenuity. Their digital twin models kept us informed of every load test.',
-      name: 'Sarah Lindqvist',
-      role: 'Operations Lead',
-      company: 'Nexa Industrial Labs',
-      initials: 'SL',
-    },
-    {
-      quote:
-        'For high-scale public infrastructure, trust is non-negotiable. Maabany demonstrated unparalleled structural discipline and clean green-concrete compliance.',
-      name: 'Marcus Thorne',
-      role: 'Principal Director',
-      company: 'Global Cities Consortium',
-      initials: 'MT',
-    },
-  ];
+
 
   readonly testimonialsList = computed<TestimonialItem[]>(() => {
     const api = this.testimonialsData();
@@ -111,7 +86,7 @@ export class TestimonialsComponent implements OnDestroy {
         };
       });
     }
-    return this.defaultTestimonials;
+    return []
   });
 
   readonly activeItem = computed(

@@ -25,7 +25,7 @@
 
         <div class="relative z-10 space-y-6">
           <h1
-            class="uppercase text-white text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight text-shadow-[0_2px_12px_#0000002e]">
+            class="uppercase text-white text-4xl sm:text-6xl md:text-7xl lg:text-[85px] font-extrabold leading-tight text-shadow-[0_2px_12px_#0000002e]">
             {{ heroData()?.title?.split(' ')?.slice(0,-1)?.join(' ') }}
             <span class="text-primary">
               {{ heroData()?.title?.split(' ')?.pop() }}
@@ -49,7 +49,7 @@
         <div
           class="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl w-64 relative overflow-hidden group hover:border-primary/50 transition-all duration-300"
           [class.self-start]="even" [class.self-end]="!even" [class.animate-float-slow]="even"
-          [class.animate-float-medium]="!even">
+          [class.animate-float-medium]="!even" [style.order]="counter.order">
           <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none"></div>
           <div class="flex items-center gap-3">
             <div class="p-2.5 rounded-lg bg-primary/10 text-primary font-bold text-xl flex-center overflow-hidden">

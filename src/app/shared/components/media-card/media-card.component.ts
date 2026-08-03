@@ -1,9 +1,10 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ImageComponent } from "../image/image.component";
 
 @Component({
   selector: 'app-media-card',
-  imports: [RouterLink],
+  imports: [RouterLink, ImageComponent],
   template: `
   <article class="h-full">
     <a
@@ -17,7 +18,7 @@ import { RouterLink } from '@angular/router';
             class="w-full h-full object-cover transition-opacity duration-300"
           />
 
-          <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/40 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-0 bg-linear-to-t from-neutral-950/40 to-transparent pointer-events-none"></div>
 
           <!-- Carousel Navigation buttons -->
           <button
@@ -52,12 +53,12 @@ import { RouterLink } from '@angular/router';
             }
           </div>
         } @else {
-          <img
-            [src]="displayImages()[0] || image()"
+          <app-image
+            [src]="displayImages()[0]"
             [alt]="title()"
             class="w-full h-full object-cover transition-transform duration-[5s] group-hover:scale-105"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/20 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-0 bg-linear-to-t from-neutral-950/20 to-transparent pointer-events-none"></div>
         }
 
         @if (badge()) {

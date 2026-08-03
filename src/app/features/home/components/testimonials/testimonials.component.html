@@ -3,10 +3,10 @@
   <!-- Premium Background Elements -->
   <div class="absolute inset-0 bg-blueprint opacity-[0.03] pointer-events-none"></div>
   <div
-    class="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#142b52] rounded-full opacity-[0.04] blur-[150px] pointer-events-none">
+    class="absolute top-0 right-1/4 w-200 h-200 bg-[#142b52] rounded-full opacity-[0.04] blur-[150px] pointer-events-none">
   </div>
   <div
-    class="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-primary rounded-full opacity-[0.03] blur-[120px] pointer-events-none">
+    class="absolute bottom-0 left-1/4 size-0-150 bg-primary rounded-full opacity-[0.03] blur-[120px] pointer-events-none">
   </div>
   <div class="absolute inset-0 bg-linear-to-b from-white via-transparent to-[#fdfdfd] pointer-events-none"></div>
 
@@ -82,16 +82,15 @@
 
         <!-- Background SVG quote mark (Subtle & responsive size) -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-          class="absolute top-3 left-3 md:top-6 md:left-6 w-10 h-10 md:w-14 md:h-14 text-[#142b52]/[0.03] group-hover:text-[#142b52]/[0.06] transition-colors duration-500 pointer-events-none rotate-180">
+          class="absolute top-3 left-3 md:top-6 md:left-6 w-10 h-10 md:w-14 md:h-14 text-[#142b52]/3 group-hover:text-[#142b52]/6 transition-colors duration-500 pointer-events-none rotate-180">
           <path
             d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h3c0 2.5-1 4.5-4 5.5V21zm13 0c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h3c0 2.5-1 4.5-4 5.5V21z" />
         </svg>
 
         <div class="relative z-10 flex flex-col items-center">
-          <div class="space-y-6 md:space-y-8 w-full max-w-[620px] transition-all duration-500">
+          <div class="space-y-6 md:space-y-8 w-full max-w-155 transition-all duration-500">
             <!-- Quote text with CSS variables staggered word animation -->
-            <div
-              class="text-center min-h-[110px] sm:min-h-[100px] flex items-center justify-center px-2 sm:px-4 pt-2 md:pt-0">
+            <div class="text-center min-h-27.5 sm:min-h-25 flex items-center justify-center px-2 sm:px-4 pt-2 md:pt-0">
               <p
                 class="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[19px] text-neutral-800 font-normal leading-[1.7] md:leading-[1.65] tracking-tight">
                 @for (word of words(); track $index + '-' + currentIndex()) {
@@ -109,7 +108,7 @@
                 <div
                   class="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center bg-[#f8f9fa] border border-[#142b52]/20 group-hover:border-[#142b52]/50 transition-colors duration-500">
                   <span class="text-sm md:text-base font-bold text-[#142b52]">
-                    {{ activeItem().initials }}
+                    {{ activeItem()?.initials }}
                   </span>
                 </div>
               </div>
@@ -117,18 +116,19 @@
               <div class="text-center sm:text-left">
                 <div class="flex items-center justify-center sm:justify-start gap-2 mb-0.5">
                   <h4 class="text-sm md:text-base font-semibold text-neutral-900 tracking-tight">
-                    {{ activeItem().name }}
+                    {{ activeItem()?.name }}
                   </h4>
                 </div>
                 <p class="text-xs md:text-sm text-neutral-500/80 font-normal">
-                  {{ activeItem().role }} — <span class="text-neutral-700 font-medium">{{ activeItem().company }}</span>
+                  {{ activeItem()?.role }} — <span class="text-neutral-700 font-medium">{{ activeItem()?.company
+                    }}</span>
                 </p>
               </div>
             </div>
           </div>
 
           <!-- Progress Bar Navigation -->
-          <div class="w-full max-w-[120px] mt-6 md:mt-8 flex gap-2 relative z-10">
+          <div class="w-full max-w-30 mt-6 md:mt-8 flex gap-2 relative z-10">
             @for (t of testimonialsList(); track $index) {
             <button type="button" (click)="select($index)"
               [class]="'flex-1 h-1.5 rounded-full relative overflow-hidden transition-all duration-300 cursor-pointer ' + ($index === currentIndex() ? 'bg-[#142b52]' : 'bg-neutral-200 hover:bg-neutral-300')"
