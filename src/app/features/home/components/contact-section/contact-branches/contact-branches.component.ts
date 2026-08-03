@@ -1,4 +1,5 @@
 import { Component, input, output, signal, computed } from '@angular/core';
+import { HomeBranch } from '../../../models/home-api.model';
 
 export type BranchCode = 'SA' | 'EG' | 'LY';
 
@@ -21,11 +22,12 @@ export interface RegionalBranchInfo {
 })
 export class ContactBranchesComponent {
   readonly selectedBranch = input<BranchCode>('SA');
+  readonly apiBranches = input<HomeBranch[]>();
   readonly selectBranch = output<BranchCode>();
 
   readonly hoveredBranch = signal<BranchCode | null>(null);
 
-  readonly branches: RegionalBranchInfo[] = [
+  readonly defaultBranches: RegionalBranchInfo[] = [
     {
       code: 'SA',
       officeName: 'Riyadh Headquarters',
@@ -62,7 +64,32 @@ export class ContactBranchesComponent {
   ];
 
   readonly activeBranch = computed(() => {
-    return this.branches.find((b) => b.code === this.selectedBranch()) || this.branches[0];
+    const api = this.apiBranches();
+    const sel = this.selectedBranch();
+    if (api && api.length > 0) {
+      // Find matching branch by country
+      const matched = api.find(b => {
+        if (sel === 'SA' && b.country.toUpperCase().includes('SAUDI')) return true;
+        if (sel === 'EG' && b.country.toUpperCase().includes('EGYPT')) return true;
+        if (sel === 'LY' && b.country.toUpperCase().includes('LIBYA')) return true;
+        return false;
+      }) || api[0];
+
+      if (matched && matched.address) {
+        return {
+          code: sel,
+          officeName: matched.country,
+          address: matched.address,
+          phone: matched.phone || '',
+          phoneRaw: matched.phone ? `tel:${matched.phone.replace(/\s+/g, '')}` : '#',
+          hours: matched.working_hours || '',
+          directionsUrl: matched.map_url || '#',
+          flag: sel === 'SA' ? '🇸🇦' : sel === 'EG' ? '🇪🇬' : '🇱🇾',
+          coordinates: sel === 'SA' ? { x: 260, y: 55 } : sel === 'EG' ? { x: 160, y: 58 } : { x: 60, y: 65 },
+        };
+      }
+    }
+    return this.defaultBranches.find((b) => b.code === sel) || this.defaultBranches[0];
   });
 
   onSelect(code: BranchCode): void {

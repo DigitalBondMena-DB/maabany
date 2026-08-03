@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { MediaCardComponent } from '../../../../shared/components/media-card/media-card.component';
+import { HomeBlog } from '../../models/home-api.model';
 
 export interface HomeBlogPost {
   slug: string;
@@ -14,11 +16,13 @@ export interface HomeBlogPost {
 
 @Component({
   selector: 'app-home-blogs',
-  imports: [RouterLink, ButtonComponent, MediaCardComponent, TranslatePipe],
+  imports: [RouterLink, ButtonComponent, MediaCardComponent, TranslatePipe, DatePipe],
   templateUrl: './home-blogs.component.html',
 })
 export class HomeBlogsComponent {
-  readonly blogs: HomeBlogPost[] = [
+  readonly blogsData = input<HomeBlog[]>();
+
+  readonly defaultBlogs: HomeBlogPost[] = [
     {
       slug: 'decarbonizing-massive-structural-frameworks',
       title: 'Decarbonizing Massive Structural Frameworks',

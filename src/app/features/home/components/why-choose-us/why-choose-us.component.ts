@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { IconsComponent } from '../../../../shared/components/icons/icons.component';
 import { FloatingWireframeComponent } from '../../../../shared/components/floating-wireframe/floating-wireframe.component';
 import { IconName } from '../../../../shared/models/icons.interface';
+import { HomeStandard } from '../../models/home-api.model';
 
 export interface WhyChooseUsReason {
   num: string;
@@ -16,7 +17,9 @@ export interface WhyChooseUsReason {
   templateUrl: './why-choose-us.component.html',
 })
 export class WhyChooseUsComponent {
-  readonly reasons: WhyChooseUsReason[] = [
+  readonly standardsData = input<HomeStandard[]>();
+
+  readonly defaultReasons: WhyChooseUsReason[] = [
     {
       num: '01',
       title: '3D Laser Metrology',

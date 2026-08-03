@@ -9,7 +9,7 @@
     <video #video autoplay [attr.muted]="true" loop playsinline preload="auto"
       class="absolute inset-0 w-full h-full object-cover transition-all duration-300 z-1"
       style="transform: scale(var(--video-scale)); filter: blur(var(--hero-video-blur));">
-      <source [src]="bgVideoUrl" type="video/mp4">
+      <source [src]="heroData()?.video || fallbackVideoUrl" type="video/mp4">
     </video>
 
     <div class="absolute inset-0 pointer-events-none transition-opacity duration-300"
@@ -24,17 +24,15 @@
         </div>
 
         <div class="relative z-10 space-y-6">
-          <h1 class="space-y-1 uppercase text-white text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold">
-            <span class="block text-shadow-[0_2px_12px_#0000002e]">
-              {{ 'HERO.TITLE_PREFIX' | translate }}
-            </span>
-            <span class="text-primary text-shadow-[0_2px_12px_#0000002e]">
-              {{ 'HERO.TITLE_HIGHLIGHT' | translate }}
+          <h1
+            class="uppercase text-white text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight text-shadow-[0_2px_12px_#0000002e]">
+            {{ heroData()?.title?.split(' ')?.slice(0,-1)?.join(' ') }}
+            <span class="text-primary">
+              {{ heroData()?.title?.split(' ')?.pop() }}
             </span>
           </h1>
-
           <p class="text-neutral-200 text-sm sm:text-base md:text-lg font-normal leading-relaxed max-w-2xl">
-            {{ 'HERO.DESCRIPTION' | translate }}
+            {{ heroData()?.description || ('HERO.DESCRIPTION' | translate) }}
           </p>
 
           <div class="flex flex-wrap items-center gap-4 pt-2">
@@ -46,6 +44,29 @@
       </div>
 
       <div class="lg:col-span-5 relative flex flex-col gap-4 py-8 max-w-130 mx-auto w-full">
+        @if (countersData() && countersData()!.length > 0) {
+        @for (counter of countersData(); track counter.id; let even = $even) {
+        <div
+          class="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl w-64 relative overflow-hidden group hover:border-primary/50 transition-all duration-300"
+          [class.self-start]="even" [class.self-end]="!even" [class.animate-float-slow]="even"
+          [class.animate-float-medium]="!even">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none"></div>
+          <div class="flex items-center gap-3">
+            <div class="p-2.5 rounded-lg bg-primary/10 text-primary font-bold text-xl flex-center overflow-hidden">
+              @if (counter.icon) {
+              <img [src]="counter.icon" [alt]="counter.title" class="w-6 h-6 object-contain" />
+              } @else {
+              <app-icons icon="orangeBuild" [width]="24" [height]="24" />
+              }
+            </div>
+            <div>
+              <h3 class="text-3xl font-black text-neutral-900 font-mono">{{ counter.number }}</h3>
+              <p class="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">{{ counter.title }}</p>
+            </div>
+          </div>
+        </div>
+        }
+        } @else {
         @for (stat of stats; track stat.labelKey; let even = $even) {
         <div
           class="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl w-64 relative overflow-hidden group hover:border-primary/50 transition-all duration-300"
@@ -63,6 +84,7 @@
             </div>
           </div>
         </div>
+        }
         }
       </div>
 

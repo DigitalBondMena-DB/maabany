@@ -1,10 +1,11 @@
-import { Component, viewChild, ElementRef, output, inject, AfterViewInit } from '@angular/core';
+import { Component, viewChild, ElementRef, inject, AfterViewInit, input } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { IconsComponent } from '../../../../shared/components/icons/icons.component';
 import { IconName } from '../../../../shared/models/icons.interface';
 import { HeroBg } from "../hero-bg/hero-bg";
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { ViewportScroller } from '@angular/common';
+import { HomeHero, HomeCounter } from '../../models/home-api.model';
 
 export interface HeroStat {
   icon: IconName;
@@ -18,19 +19,25 @@ export interface HeroStat {
   imports: [IconsComponent, HeroBg, ButtonComponent, TranslatePipe],
 })
 export class HomeHeroComponent implements AfterViewInit {
+  readonly heroData = input<HomeHero>();
+  readonly countersData = input<HomeCounter[]>();
+
   private readonly position = inject(ViewportScroller);
   private readonly videoEl = viewChild<ElementRef<HTMLVideoElement>>('video');
-  readonly bgVideoUrl = '/videos/Maabany-hero-video.mp4';
+  readonly fallbackVideoUrl = '/videos/Maabany-hero-video.mp4';
+
   ngAfterViewInit(): void {
     this.videoConf();
   }
+
   videoConf(): void {
     const el = this.videoEl()?.nativeElement;
     if (el) {
       el.defaultMuted = true;
-      el.muted = true
+      el.muted = true;
     }
   }
+
   readonly stats: HeroStat[] = [
     { icon: 'orangeClock', valueKey: 'HERO.STAT_1_NUMBER', labelKey: 'HERO.STAT_1_LABEL' },
     { icon: 'orangeBuild', valueKey: 'HERO.STAT_2_NUMBER', labelKey: 'HERO.STAT_2_LABEL' },

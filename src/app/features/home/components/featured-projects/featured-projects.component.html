@@ -12,16 +12,30 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      @for (proj of projects; track proj.name) {
-        <app-media-card
-          [title]="proj.name"
-          [desc]="proj.desc"
-          [image]="proj.image"
-          [link]="'/projects'"
-          [badge]="proj.category"
-          badgePosition="top-left"
-          imageHeight="h-64"
-        />
+      @if (projectsData() && projectsData()!.length > 0) {
+        @for (proj of projectsData(); track proj.id) {
+          <app-media-card
+            [title]="proj.title"
+            [desc]="proj.small_description"
+            [image]="proj.cover_image"
+            [link]="'/projects/' + proj.slug"
+            badge="PROJECT"
+            badgePosition="top-left"
+            imageHeight="h-64"
+          />
+        }
+      } @else {
+        @for (proj of defaultProjects; track proj.name) {
+          <app-media-card
+            [title]="proj.name"
+            [desc]="proj.desc"
+            [image]="proj.image"
+            [link]="'/projects'"
+            [badge]="proj.category"
+            badgePosition="top-left"
+            imageHeight="h-64"
+          />
+        }
       }
     </div>
 

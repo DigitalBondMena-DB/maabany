@@ -129,7 +129,7 @@
 
           <!-- Progress Bar Navigation -->
           <div class="w-full max-w-[120px] mt-6 md:mt-8 flex gap-2 relative z-10">
-            @for (t of testimonials; track $index) {
+            @for (t of testimonialsList(); track $index) {
             <button type="button" (click)="select($index)"
               [class]="'flex-1 h-1.5 rounded-full relative overflow-hidden transition-all duration-300 cursor-pointer ' + ($index === currentIndex() ? 'bg-[#142b52]' : 'bg-neutral-200 hover:bg-neutral-300')"
               [attr.aria-label]="'Go to slide ' + ($index + 1)">

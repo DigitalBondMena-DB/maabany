@@ -21,11 +21,15 @@ export class LanguageService {
 
   private getInitialLang(): SupportedLanguage {
     try {
-      const pathname = this._DOCUMENT.location?.pathname || '';
-      const segments = pathname.split('/').filter(Boolean);
-      const firstSegment = segments[0];
-      if (firstSegment === 'ar' || firstSegment === 'en') {
-        return firstSegment as SupportedLanguage;
+      const doc = this._DOCUMENT;
+      const rawUrl = doc.location?.href || doc.URL || doc.location?.pathname || '';
+      if (rawUrl) {
+        const parsedUrl = new URL(rawUrl, 'http://localhost');
+        const segments = parsedUrl.pathname.split('/').filter(Boolean);
+        const firstSegment = segments[0];
+        if (firstSegment === 'ar' || firstSegment === 'en') {
+          return firstSegment as SupportedLanguage;
+        }
       }
     } catch (e) {
       // Graceful fallback for non-browser/non-standard environments
@@ -47,11 +51,11 @@ export class LanguageService {
 
   setLanguage(lang: SupportedLanguage): void {
     this.translate.use(lang);
-    this.currentLang.set(lang);
-
+    if (this.currentLang() !== lang) {
+      this.currentLang.set(lang);
+    }
     const direction: Direction = lang === 'ar' ? 'rtl' : 'ltr';
     this.dir.set(direction);
-
     if (this._DOCUMENT.documentElement) {
       this._DOCUMENT.documentElement.dir = direction;
       this._DOCUMENT.documentElement.lang = lang;

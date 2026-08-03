@@ -27,6 +27,7 @@
       <div class="lg:col-span-5">
         <app-contact-branches
           [selectedBranch]="selectedBranch()"
+          [apiBranches]="branchesData()"
           (selectBranch)="onBranchSelect($event)"
         />
       </div>

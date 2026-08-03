@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { FloatingWireframeComponent } from '../../../../shared/components/floating-wireframe/floating-wireframe.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { MediaCardComponent } from '../../../../shared/components/media-card/media-card.component';
+import { HomeProject } from '../../models/home-api.model';
 
 export interface ProjectItem {
   name: string;
@@ -18,7 +19,9 @@ export interface ProjectItem {
   templateUrl: './featured-projects.component.html',
 })
 export class FeaturedProjectsComponent {
-  readonly projects: ProjectItem[] = [
+  readonly projectsData = input<HomeProject[]>();
+
+  readonly defaultProjects: ProjectItem[] = [
     {
       name: 'Riyadh Commercial Tower',
       category: 'Structural Concrete',

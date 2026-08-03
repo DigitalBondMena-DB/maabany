@@ -1,23 +1,23 @@
-<app-home-hero></app-home-hero>
+<app-home-hero [heroData]="homeService.hero()" [countersData]="homeService.counters()" />
 
-<app-home-about></app-home-about>
+<app-home-about [aboutData]="homeService.about()" />
 
-<app-why-choose-us></app-why-choose-us>
+<app-why-choose-us [standardsData]="homeService.standards()" />
 
-<app-solutions-slider></app-solutions-slider>
+<app-solutions-slider [solutionsData]="homeService.solutions()" />
 
-<app-client-marquee></app-client-marquee>
+<app-client-marquee [apiPartners]="homeService.partners()" [apiClients]="homeService.clients()" />
 
-<app-featured-projects></app-featured-projects>
+<app-featured-projects [projectsData]="homeService.projects()" />
 
 @defer (hydrate on viewport) {
-<app-testimonials></app-testimonials>
+<app-testimonials [testimonialsData]="homeService.testimonials()" />
 } @placeholder {
 <div class="min-h-100"></div>
 }
 
-<app-home-blogs></app-home-blogs>
+<app-home-blogs [blogsData]="homeService.blogs()" />
 
-<app-cta-banner></app-cta-banner>
+<app-cta-banner />
 
-<app-contact-section></app-contact-section>
+<app-contact-section [branchesData]="homeService.branches()" />

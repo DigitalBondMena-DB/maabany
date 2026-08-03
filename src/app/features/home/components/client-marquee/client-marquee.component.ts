@@ -1,10 +1,12 @@
 import { Component, computed, input } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ImageComponent } from "../../../../shared/components/image/image.component";
+import { HomePartner, HomeClient } from '../../models/home-api.model';
 
 export interface MarqueeItem {
   name: string;
   text: string;
+  logo?: string;
 }
 
 @Component({
@@ -54,6 +56,8 @@ export class ClientMarqueeComponent {
 
   readonly customPartners = input<MarqueeItem[]>();
   readonly customClients = input<MarqueeItem[]>();
+  readonly apiPartners = input<HomePartner[]>();
+  readonly apiClients = input<HomeClient[]>();
 
   readonly defaultPartners: MarqueeItem[] = [
     { name: 'Ministry of Housing', text: 'MINISTRY OF HOUSING' },
@@ -71,19 +75,32 @@ export class ClientMarqueeComponent {
     { name: 'ROSHN', text: 'ROSHN' },
   ];
 
-  readonly partners = computed(() => this.customPartners() || this.defaultPartners);
-  readonly clients = computed(() => this.customClients() || this.defaultClients);
+  readonly partnersList = computed(() => {
+    const api = this.apiPartners();
+    if (api && api.length > 0) {
+      return api.map(p => ({ name: `Partner ${p.id}`, text: `PARTNER ${p.id}`, logo: p.logo }));
+    }
+    return this.customPartners() || this.defaultPartners;
+  });
+
+  readonly clientsList = computed(() => {
+    const api = this.apiClients();
+    if (api && api.length > 0) {
+      return api.map(c => ({ name: `Client ${c.id}`, text: `CLIENT ${c.id}`, logo: c.logo }));
+    }
+    return this.customClients() || this.defaultClients;
+  });
 
   readonly repeatedPartners = computed(() => {
-    const list = this.partners();
+    const list = this.partnersList();
     return [...list, ...list, ...list, ...list, ...list, ...list];
   });
 
   readonly repeatedClients = computed(() => {
-    const list = this.clients();
+    const list = this.clientsList();
     return [...list, ...list, ...list, ...list, ...list, ...list];
   });
 
-  readonly partnersDuration = computed(() => `${this.partners().length * 6}s`);
-  readonly clientsDuration = computed(() => `${this.clients().length * 6}s`);
+  readonly partnersDuration = computed(() => `${this.partnersList().length * 6}s`);
+  readonly clientsDuration = computed(() => `${this.clientsList().length * 6}s`);
 }

@@ -9,10 +9,12 @@ import {
   NgZone,
   DestroyRef,
   afterNextRender,
+  input,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { FloatingWireframeComponent } from '../../../../shared/components/floating-wireframe/floating-wireframe.component';
 import { ScrollRevealService } from '../../../../shared/services/scroll-reveal.service';
+import { HomeTestimonial } from '../../models/home-api.model';
 
 export interface TestimonialItem {
   quote: string;
@@ -50,6 +52,8 @@ export interface TestimonialItem {
   ],
 })
 export class TestimonialsComponent implements OnDestroy {
+  readonly testimonialsData = input<HomeTestimonial[]>();
+
   private readonly platformId = inject(PLATFORM_ID);
   private readonly el = inject(ElementRef).nativeElement as HTMLElement;
   private readonly ngZone = inject(NgZone);
@@ -62,7 +66,7 @@ export class TestimonialsComponent implements OnDestroy {
   private isVisibleInViewport = false;
   private unregisterObserver?: () => void;
 
-  readonly testimonials: TestimonialItem[] = [
+  readonly defaultTestimonials: TestimonialItem[] = [
     {
       quote:
         'Maabany delivered our premium enterprise headquarters 3 months ahead of schedule without sacrificing a single layer of architectural complexity. Their standard of execution is truly unprecedented.',
@@ -89,10 +93,31 @@ export class TestimonialsComponent implements OnDestroy {
     },
   ];
 
+  readonly testimonialsList = computed<TestimonialItem[]>(() => {
+    const api = this.testimonialsData();
+    if (api && api.length > 0) {
+      return api.map((t) => {
+        const parts = (t.client_name || 'Client').trim().split(' ');
+        const initials =
+          parts.length > 1
+            ? `${parts[0][0] || ''}${parts[1][0] || ''}`.toUpperCase()
+            : (parts[0][0] || 'C').toUpperCase();
+        return {
+          quote: t.text,
+          name: t.client_name,
+          role: t.position,
+          company: '',
+          initials,
+        };
+      });
+    }
+    return this.defaultTestimonials;
+  });
+
   readonly activeItem = computed(
-    () => this.testimonials[this.currentIndex()] || this.testimonials[0]
+    () => this.testimonialsList()[this.currentIndex()] || this.testimonialsList()[0]
   );
-  readonly words = computed(() => this.activeItem().quote.split(' '));
+  readonly words = computed(() => (this.activeItem()?.quote || '').split(' '));
 
   constructor() {
     afterNextRender(() => {
@@ -166,12 +191,16 @@ export class TestimonialsComponent implements OnDestroy {
   }
 
   next(): void {
-    this.currentIndex.update((idx) => (idx + 1) % this.testimonials.length);
+    const list = this.testimonialsList();
+    if (list.length === 0) return;
+    this.currentIndex.update((idx) => (idx + 1) % list.length);
   }
 
   prev(): void {
+    const list = this.testimonialsList();
+    if (list.length === 0) return;
     this.currentIndex.update(
-      (idx) => (idx - 1 + this.testimonials.length) % this.testimonials.length
+      (idx) => (idx - 1 + list.length) % list.length
     );
   }
 

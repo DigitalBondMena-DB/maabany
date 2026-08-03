@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HomeHeroComponent } from './components/hero/hero.component';
 import { HomeAboutComponent } from './components/about/about.component';
 import { WhyChooseUsComponent } from './components/why-choose-us/why-choose-us.component';
@@ -9,6 +9,7 @@ import { TestimonialsComponent } from './components/testimonials/testimonials.co
 import { HomeBlogsComponent } from './components/home-blogs/home-blogs.component';
 import { CtaBannerComponent } from '../../shared/components/cta-banner/cta-banner.component';
 import { ContactSectionComponent } from './components/contact-section/contact-section.component';
+import { HomeService } from './services/home.service';
 
 @Component({
   selector: 'app-home',
@@ -26,4 +27,6 @@ import { ContactSectionComponent } from './components/contact-section/contact-se
   ],
   templateUrl: './home.component.html',
 })
-export class HomeComponent { }
+export class HomeComponent {
+  protected readonly homeService = inject(HomeService);
+}

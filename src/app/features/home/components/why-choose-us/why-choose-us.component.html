@@ -19,43 +19,88 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      @for (reason of reasons; track reason.num; let index = $index) {
-      <div
-        class="bg-white border border-neutral-200/80 p-8 rounded-3xl relative overflow-hidden transition-all duration-300 group hover:border-primary cursor-pointer hover:-translate-y-2.5 hover:scale-[1.02] hover:shadow-[0_30px_60px_-15px_rgba(234,138,34,0.15)]">
+      @if (standardsData() && standardsData()!.length > 0) {
+        @for (standard of standardsData(); track standard.id; let index = $index) {
         <div
-          class="absolute inset-0 w-[200%] h-full bg-linear-to-r from-transparent via-white/15 to-transparent -skew-x-25 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 pointer-events-none z-20">
-        </div>
-
-        <div
-          class="absolute -top-12 -right-12 w-36 h-36 bg-linear-to-br from-primary/8 to-transparent rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700">
-        </div>
-
-        <div class="flex justify-between items-start mb-8 relative z-10">
+          class="bg-white border border-neutral-200/80 p-8 rounded-3xl relative overflow-hidden transition-all duration-300 group hover:border-primary cursor-pointer hover:-translate-y-2.5 hover:scale-[1.02] hover:shadow-[0_30px_60px_-15px_rgba(234,138,34,0.15)]">
           <div
-            class="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 shadow-xs group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-primary/20 flex-center">
-            <app-icons [icon]="reason.icon" [width]="24" [height]="24" classes="brightness-0  group-hover:invert" />
+            class="absolute inset-0 w-[200%] h-full bg-linear-to-r from-transparent via-white/15 to-transparent -skew-x-25 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 pointer-events-none z-20">
           </div>
 
-          <span
-            class="text-4xl font-extrabold text-neutral-200/80 font-mono transition-all duration-500 group-hover:text-primary/30 group-hover:-translate-y-1 group-hover:translate-x-1 block">
-            {{ reason.num }}
-          </span>
+          <div
+            class="absolute -top-12 -right-12 w-36 h-36 bg-linear-to-br from-primary/8 to-transparent rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700">
+          </div>
+
+          <div class="flex justify-between items-start mb-8 relative z-10">
+            <div
+              class="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 shadow-xs group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-primary/20 flex-center overflow-hidden">
+              @if (standard.icon) {
+                <img [src]="standard.icon" [alt]="standard.title" class="w-6 h-6 object-contain" />
+              } @else {
+                <app-icons icon="orangeBuild" [width]="24" [height]="24" classes="brightness-0 group-hover:invert" />
+              }
+            </div>
+
+            <span
+              class="text-4xl font-extrabold text-neutral-200/80 font-mono transition-all duration-500 group-hover:text-primary/30 group-hover:-translate-y-1 group-hover:translate-x-1 block">
+              0{{ standard.order || (index + 1) }}
+            </span>
+          </div>
+
+          <h3
+            class="text-lg font-black text-neutral-900 mb-3 tracking-tight uppercase group-hover:text-primary transition-colors duration-300 relative z-10">
+            {{ standard.title }}
+          </h3>
+
+          <p
+            class="text-xs text-neutral-500 leading-relaxed group-hover:text-neutral-700 transition-colors duration-300 relative z-10">
+            {{ standard.description }}
+          </p>
+
+          <div
+            class="absolute bottom-0 left-0 w-0 h-1 bg-linear-to-r from-primary to-[#ffaa44] transition-all duration-500 group-hover:w-full">
+          </div>
         </div>
-
-        <h3
-          class="text-lg font-black text-neutral-900 mb-3 tracking-tight uppercase group-hover:text-primary transition-colors duration-300 relative z-10">
-          {{ reason.title }}
-        </h3>
-
-        <p
-          class="text-xs text-neutral-500 leading-relaxed group-hover:text-neutral-700 transition-colors duration-300 relative z-10">
-          {{ reason.desc }}
-        </p>
-
+        }
+      } @else {
+        @for (reason of defaultReasons; track reason.num; let index = $index) {
         <div
-          class="absolute bottom-0 left-0 w-0 h-1 bg-linear-to-r from-primary to-[#ffaa44] transition-all duration-500 group-hover:w-full">
+          class="bg-white border border-neutral-200/80 p-8 rounded-3xl relative overflow-hidden transition-all duration-300 group hover:border-primary cursor-pointer hover:-translate-y-2.5 hover:scale-[1.02] hover:shadow-[0_30px_60px_-15px_rgba(234,138,34,0.15)]">
+          <div
+            class="absolute inset-0 w-[200%] h-full bg-linear-to-r from-transparent via-white/15 to-transparent -skew-x-25 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 pointer-events-none z-20">
+          </div>
+
+          <div
+            class="absolute -top-12 -right-12 w-36 h-36 bg-linear-to-br from-primary/8 to-transparent rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700">
+          </div>
+
+          <div class="flex justify-between items-start mb-8 relative z-10">
+            <div
+              class="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 shadow-xs group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-primary/20 flex-center">
+              <app-icons [icon]="reason.icon" [width]="24" [height]="24" classes="brightness-0 group-hover:invert" />
+            </div>
+
+            <span
+              class="text-4xl font-extrabold text-neutral-200/80 font-mono transition-all duration-500 group-hover:text-primary/30 group-hover:-translate-y-1 group-hover:translate-x-1 block">
+              {{ reason.num }}
+            </span>
+          </div>
+
+          <h3
+            class="text-lg font-black text-neutral-900 mb-3 tracking-tight uppercase group-hover:text-primary transition-colors duration-300 relative z-10">
+            {{ reason.title }}
+          </h3>
+
+          <p
+            class="text-xs text-neutral-500 leading-relaxed group-hover:text-neutral-700 transition-colors duration-300 relative z-10">
+            {{ reason.desc }}
+          </p>
+
+          <div
+            class="absolute bottom-0 left-0 w-0 h-1 bg-linear-to-r from-primary to-[#ffaa44] transition-all duration-500 group-hover:w-full">
+          </div>
         </div>
-      </div>
+        }
       }
     </div>
   </div>
