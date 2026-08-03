@@ -4,6 +4,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { ProfileService } from '../../../core/services/profile.service';
 import { ImageComponent } from '../image/image.component';
 import { navLinks } from '../../constants/navigation-links.constant';
+import { LanguageService } from '../../../core/services/language.service';
 
 export interface SocialLinkItem {
   name: string;
@@ -18,7 +19,10 @@ export interface SocialLinkItem {
 })
 export class FooterComponent {
   readonly profileService = inject(ProfileService);
-
+  private readonly languageService = inject(LanguageService);
+  get lang() {
+    return this.languageService.currentLang()
+  }
   readonly socialLinks: SocialLinkItem[] = [
     {
       name: 'LinkedIn',
@@ -51,9 +55,9 @@ export class FooterComponent {
 
 
   readonly resourceLinks = [
-    { label: 'FOOTER.PROFILE_DOWNLOAD', path: '/about#profile' },
-    { label: 'FOOTER.PRIVACY_POLICY', path: '/privacy' },
-    { label: 'FOOTER.CONTACT_US', path: '/contact' },
+    { label: 'FOOTER.PROFILE_DOWNLOAD', path: 'about#profile' },
+    { label: 'FOOTER.PRIVACY_POLICY', path: 'privacy-policy' },
+    { label: 'FOOTER.CONTACT_US', path: 'contact' },
   ];
 
   downloadProfile(): void {

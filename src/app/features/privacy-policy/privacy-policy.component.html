@@ -1,0 +1,255 @@
+<div class="bg-white min-h-screen pb-12">
+
+  <!-- 1. HERO HEADER -->
+  <app-page-hero title="Privacy & Terms" categoryBadge="Privacy Policy"
+    heroImage="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80" />
+
+  <!-- 2. MAIN LAYOUT AND TABLE OF CONTENTS -->
+  <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 py-8 md:py-12">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+      <!-- LEFT COLUMN TOC -->
+      <aside class="lg:col-span-3 h-full">
+        <div class="sticky top-28">
+          <app-table-of-contents [items]="sections" [activeId]="activeSection()" mobileTitle="Document Chapters"
+            (itemClick)="scrollToSection($event)" />
+        </div>
+      </aside>
+
+      <!-- EDITORIAL CONTENT AREA -->
+      <main
+        class="col-span-1 lg:col-span-9 max-w-4xl bg-white border border-neutral-200 rounded-[28px] p-6 md:p-8 lg:p-10 shadow-xl shadow-neutral-100/50">
+        <div class="space-y-12">
+
+          <!-- Section 1: Introduction -->
+          <section id="introduction" class="scroll-mt-28 space-y-4">
+            <div class="flex items-center gap-2 text-primary">
+              <div class="w-8 h-1.5 bg-primary rounded-full"></div>
+              <h2 class="text-xl md:text-2xl font-black text-neutral-900 uppercase tracking-tight font-mono">
+                1. {{ 'Introduction' | translate }}
+              </h2>
+            </div>
+            <p class="text-sm md:text-base text-neutral-600 leading-relaxed font-light">
+              Welcome to Maabany. We are committed to safeguarding your privacy and protecting the integrity of any
+              information you transmit or share with us. This Privacy Policy details how we collect, store, safeguard,
+              and utilize your personal, corporate, or project details across our international locations (Egypt, Saudi
+              Arabia, and Libya) and through our online digital platform.
+            </p>
+            <p class="text-sm md:text-base text-neutral-600 leading-relaxed font-light">
+              By accessing our website, engaging our services, or submitting project specification request queries,
+              you acknowledge and agree to the procedures outlined in this documentation.
+            </p>
+          </section>
+
+          <!-- Section 2: Information We Collect -->
+          <section id="info-collect" class="scroll-mt-28 space-y-6">
+            <div class="flex items-center gap-2 text-primary">
+              <div class="w-8 h-1.5 bg-primary rounded-full"></div>
+              <h2 class="text-xl md:text-2xl font-black text-neutral-900 uppercase tracking-tight font-mono">
+                2. {{ 'Information We Collect' | translate }}
+              </h2>
+            </div>
+
+            <p class="text-sm md:text-base text-neutral-600 leading-relaxed font-light">
+              {{ 'We collect information necessary to deliver premier engineering consulting services, issue accurate
+              construction bids, and manage client relations. This includes:' | translate }}
+            </p>
+
+            <div class="space-y-4 pt-2">
+              <div class="border-l-2 border-primary pl-4 py-1 rtl:border-r-2 rtl:border-l-0 rtl:pr-4 rtl:pl-0">
+                <h4 class="text-sm font-bold uppercase tracking-tight text-neutral-900 font-mono">{{ 'Personal &
+                  Identity Data' | translate }}</h4>
+                <p class="text-sm text-neutral-600 font-light mt-0.5">{{ 'Full Name, designation, company name, and
+                  language preferences.' | translate }}</p>
+              </div>
+              <div class="border-l-2 border-primary pl-4 py-1 rtl:border-r-2 rtl:border-l-0 rtl:pr-4 rtl:pl-0">
+                <h4 class="text-sm font-bold uppercase tracking-tight text-neutral-900 font-mono">{{ 'Contact Details' |
+                  translate }}</h4>
+                <p class="text-sm text-neutral-600 font-light mt-0.5">{{ 'Corporate Email Address, direct phone lines,
+                  and regional branch office contacts.' | translate }}</p>
+              </div>
+              <div class="border-l-2 border-primary pl-4 py-1 rtl:border-r-2 rtl:border-l-0 rtl:pr-4 rtl:pl-0">
+                <h4 class="text-sm font-bold uppercase tracking-tight text-neutral-900 font-mono">{{ 'Project & Tender
+                  Files' | translate }}</h4>
+                <p class="text-sm text-neutral-600 font-light mt-0.5">{{ 'Blueprints, construction site coordinates, MEP
+                  requirements, and tender specifications.' | translate }}</p>
+              </div>
+              <div class="border-l-2 border-primary pl-4 py-1 rtl:border-r-2 rtl:border-l-0 rtl:pr-4 rtl:pl-0">
+                <h4 class="text-sm font-bold uppercase tracking-tight text-neutral-900 font-mono">{{ 'Digital Metadata'
+                  | translate }}</h4>
+                <p class="text-sm text-neutral-600 font-light mt-0.5">{{ 'IP addresses, browser type, referral logs, and
+                  interaction records on this portal.' | translate }}</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 3: How We Use Your Information -->
+          <section id="how-use" class="scroll-mt-28 space-y-4">
+            <div class="flex items-center gap-2 text-primary">
+              <div class="w-8 h-1.5 bg-primary rounded-full"></div>
+              <h2 class="text-xl md:text-2xl font-black text-neutral-900 uppercase tracking-tight font-mono">
+                3. {{ 'How We Use Your Information' | translate }}
+              </h2>
+            </div>
+            <p class="text-sm md:text-base text-neutral-600 leading-relaxed font-light">
+              {{ 'The gathered data is strictly analyzed and deployed under the highest corporate responsibility. We use
+              your details to:' | translate }}
+            </p>
+
+            <ul class="space-y-2.5 pl-6 rtl:pr-6 rtl:pl-0 list-disc text-sm text-neutral-600 font-light">
+              <li><strong>{{ 'Respond to Inquiries:' | translate }}</strong> {{ 'Providing technical responses to
+                contact form requests and engineering questions.' | translate }}</li>
+              <li><strong>{{ 'Prepare Quotations:' | translate }}</strong> {{ 'Drafting structural specs, cost
+                estimations, and custom project scopes for our Egypt, KSA, or Libya branches.' | translate }}</li>
+              <li><strong>{{ 'Improve Website Performance:' | translate }}</strong> {{ 'Enhancing the reading flow,
+                responsive elements, and dynamic loading times.' | translate }}</li>
+              <li><strong>{{ 'Communicate Project Updates:' | translate }}</strong> {{ 'Relaying building status
+                milestones and tender announcements directly to stakeholders.' | translate }}</li>
+              <li><strong>{{ 'Enhance Customer Experience:' | translate }}</strong> {{ 'Upgrading navigation routes,
+                support channels, and regional branch assistance.' | translate }}</li>
+            </ul>
+          </section>
+
+          <!-- Section 4: Cookies & Analytics -->
+          <section id="cookies" class="scroll-mt-28 space-y-4">
+            <div class="flex items-center gap-2 text-primary">
+              <div class="w-8 h-1.5 bg-primary rounded-full"></div>
+              <h2 class="text-xl md:text-2xl font-black text-neutral-900 uppercase tracking-tight font-mono">
+                4. {{ 'Cookies & Analytics' | translate }}
+              </h2>
+            </div>
+            <p class="text-sm md:text-base text-neutral-600 leading-relaxed font-light">
+              {{ 'This website utilizes standard browser cookies to personalize layout experiences and measure web
+              visitor interactions.' | translate }}
+            </p>
+            <p class="text-sm md:text-base text-neutral-600 leading-relaxed font-light">
+              {{ 'We utilize Essential Cookies for basic visual controls, and Analytics Cookies (e.g. Google Analytics)
+              to monitor page views and optimize our engineering blog details structure.' | translate }}
+            </p>
+          </section>
+
+          <!-- Section 5: Data Protection -->
+          <section id="protection" class="scroll-mt-28 space-y-4">
+            <div class="flex items-center gap-2 text-primary">
+              <div class="w-8 h-1.5 bg-primary rounded-full"></div>
+              <h2 class="text-xl md:text-2xl font-black text-neutral-900 uppercase tracking-tight font-mono">
+                5. {{ 'Data Protection' | translate }}
+              </h2>
+            </div>
+            <p class="text-sm md:text-base text-neutral-600 leading-relaxed font-light">
+              {{ 'We deploy rigorous multi-tier security technologies to safeguard your personal details and blueprints.
+              This includes:' | translate }}
+            </p>
+
+            <div class="space-y-3 pt-2">
+              <div class="flex items-start gap-3">
+                <div
+                  class="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                  <div class="w-2 h-2 rounded-full bg-primary"></div>
+                </div>
+                <p class="text-xs md:text-sm text-neutral-600 font-light leading-relaxed">
+                  <strong>{{ 'Secure Cloud Servers:' | translate }}</strong> {{ 'Data is hosted on encrypted cloud
+                  systems under strict firewalls.' | translate }}
+                </p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div
+                  class="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                  <div class="w-2 h-2 rounded-full bg-primary"></div>
+                </div>
+                <p class="text-xs md:text-sm text-neutral-600 font-light leading-relaxed">
+                  <strong>{{ 'SSL Data Encryption:' | translate }}</strong> {{ 'All requests, messages, and tender
+                  specifications are securely transmitted via HTTPS frameworks.' | translate }}
+                </p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div
+                  class="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                  <div class="w-2 h-2 rounded-full bg-primary"></div>
+                </div>
+                <p class="text-xs md:text-sm text-neutral-600 font-light leading-relaxed">
+                  <strong>{{ 'Restricted Staff Access:' | translate }}</strong> {{ 'Only certified project managers and
+                  bid engineers have clearances to view submitted files.' | translate }}
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 6: Third-Party Services -->
+          <section id="third-party" class="scroll-mt-28 space-y-4">
+            <div class="flex items-center gap-2 text-primary">
+              <div class="w-8 h-1.5 bg-primary rounded-full"></div>
+              <h2 class="text-xl md:text-2xl font-black text-neutral-900 uppercase tracking-tight font-mono">
+                6. {{ 'Third-Party Services' | translate }}
+              </h2>
+            </div>
+            <p class="text-sm md:text-base text-neutral-600 leading-relaxed font-light">
+              {{ 'To provide highly customized interactive maps (Google Maps) and capture analytics, we utilize
+              certified and trusted global third-party providers. These external agents only process minimal details
+              necessary to render their designated scripts and operate in strict compliance with safety guidelines.' |
+              translate }}
+            </p>
+          </section>
+
+          <!-- Section 7: Your Rights -->
+          <section id="rights" class="scroll-mt-28 space-y-4">
+            <div class="flex items-center gap-2 text-primary">
+              <div class="w-8 h-1.5 bg-primary rounded-full"></div>
+              <h2 class="text-xl md:text-2xl font-black text-neutral-900 uppercase tracking-tight font-mono">
+                7. {{ 'Your Rights' | translate }}
+              </h2>
+            </div>
+            <p class="text-sm md:text-base text-neutral-600 leading-relaxed font-light">
+              {{ 'As an esteemed visitor and potential client of Maabany, you hold standard legal privileges regarding
+              your personal records. You may request to:' | translate }}
+            </p>
+            <ul class="space-y-2.5 pl-6 rtl:pr-6 rtl:pl-0 list-disc text-sm text-neutral-600 font-light">
+              <li><strong>{{ 'Access:' | translate }}</strong> {{ 'Obtain a copy of all data and past quotes you have
+                requested.' | translate }}</li>
+              <li><strong>{{ 'Rectify:' | translate }}</strong> {{ 'Modify outdated or incorrect phone lines or emails.'
+                | translate }}</li>
+              <li><strong>{{ 'Delete:' | translate }}</strong> {{ 'Purge your inquiry logs completely from our
+                communication archives.' | translate }}</li>
+              <li><strong>{{ 'Inquire:' | translate }}</strong> {{ 'Pose any data privacy or regulatory compliance
+                questions directly to our legal department.' | translate }}</li>
+            </ul>
+          </section>
+
+          <!-- Section 8: Contact Information -->
+          <section id="contact" class="scroll-mt-28 space-y-6">
+            <div class="flex items-center gap-2 text-primary">
+              <div class="w-8 h-1.5 bg-primary rounded-full"></div>
+              <h2 class="text-xl md:text-2xl font-black text-neutral-900 uppercase tracking-tight font-mono">
+                8. {{ 'Contact Information' | translate }}
+              </h2>
+            </div>
+            <p class="text-sm md:text-base text-neutral-600 leading-relaxed font-light">
+              {{ 'If you have privacy inquiries, or would like to request file purging, please contact our
+              administrative legal team:' | translate }}
+            </p>
+
+            <div class="space-y-3 pt-2 font-light">
+              <p class="text-sm text-neutral-600">
+                <strong class="text-neutral-900 font-bold font-mono">{{ 'Email Address:' | translate }}</strong>
+                <a href="mailto:privacy@maabany.com"
+                  class="text-primary hover:underline font-mono ml-1">privacy@maabany.com</a>
+              </p>
+              <p class="text-sm text-neutral-600">
+                <strong class="text-neutral-900 font-bold font-mono">{{ 'Phone Support:' | translate }}</strong>
+                <span class="font-mono ml-1">+966 11 456 7890</span>
+              </p>
+              <p class="text-sm text-neutral-600">
+                <strong class="text-neutral-900 font-bold font-mono">{{ 'HQ Location:' | translate }}</strong>
+                <span class="ml-1">{{ 'Riyadh Office, KSA' | translate }}</span>
+              </p>
+            </div>
+          </section>
+
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+</div>

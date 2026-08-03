@@ -1,0 +1,420 @@
+<div class="bg-white min-h-screen pb-12">
+
+  <!-- 1. HERO HEADER -->
+  <app-page-hero title="Let's Connect" categoryBadge="Contact Us"
+    heroImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80" />
+
+  <!-- 2. GLOBAL OFFICES SECTION -->
+  <section class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 py-12 md:py-20 lg:py-24 space-y-16">
+
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="text-[#142b52]  text-[10px] uppercase font-medium tracking-widest block font-mono">
+        {{ 'OUR LOCATIONS' | translate }}
+      </span>
+      <h2 class="text-2xl md:text-4xl font-bold text-neutral-900 uppercase tracking-tight ">
+        {{ 'Visit or Contact Our Offices' | translate }}
+      </h2>
+    </div>
+
+    <!-- Office Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (office of offices; track office.id) {
+      <div
+        class="bg-white border border-neutral-200/90 rounded-[28px] overflow-hidden shadow-xl shadow-neutral-100/60 flex flex-col justify-between group hover:border-primary transition-all duration-300 hover:-translate-y-1">
+
+        <!-- Office Details Portion -->
+        <div class="p-8 space-y-6">
+          <!-- Flag & Country Header -->
+          <div class="flex items-center gap-3">
+            <span class="text-2xl select-none" role="img" [attr.aria-label]="office.country">{{ office.flag }}</span>
+            <div>
+              <span class=" block text-[10px] tracking-widest text-primary uppercase font-semibold">
+                {{ 'BRANCH' | translate }}
+              </span>
+              <span class="text-lg block font-medium text-neutral-900 uppercase tracking-tight">
+                {{ office.country | translate }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Info lines with Premium Icons -->
+          <div class="space-y-4 pt-2">
+            <!-- Address -->
+            <div class="flex items-start gap-3.5 text-xs">
+              <div
+                class="p-1.5 bg-neutral-50 rounded-lg text-neutral-500 mt-0.5 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div class="space-y-0.5">
+                <p class=" text-[9px] uppercase font-medium text-neutral-400 tracking-wider">
+                  {{ 'Office Address' | translate }}
+                </p>
+                <p class="text-neutral-700  leading-relaxed">
+                  {{ office.address }}
+                </p>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="flex items-start gap-3.5 text-xs">
+              <div
+                class="p-1.5 bg-neutral-50 rounded-lg text-neutral-500 mt-0.5 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+              </div>
+              <div class="space-y-0.5">
+                <p class=" text-[9px] uppercase font-medium text-neutral-400 tracking-wider">
+                  {{ 'Phone Line' | translate }}
+                </p>
+                <p class="text-neutral-900 font-semibold ">
+                  {{ office.phone }}
+                </p>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="flex items-start gap-3.5 text-xs">
+              <div
+                class="p-1.5 bg-neutral-50 rounded-lg text-neutral-500 mt-0.5 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+              </div>
+              <div class="space-y-0.5">
+                <p class=" text-[9px] uppercase font-medium text-neutral-400 tracking-wider">
+                  {{ 'Inquiries Email' | translate }}
+                </p>
+                <a [href]="'mailto:' + office.email" class="text-primary hover:underline font-medium ">
+                  {{ office.email }}
+                </a>
+              </div>
+            </div>
+
+            <!-- Hours -->
+            <div class="flex items-start gap-3.5 text-xs">
+              <div
+                class="p-1.5 bg-neutral-50 rounded-lg text-neutral-500 mt-0.5 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+              <div class="space-y-0.5">
+                <p class=" text-[9px] uppercase font-medium text-neutral-400 tracking-wider">
+                  {{ 'Working Hours' | translate }}
+                </p>
+                <p class="text-neutral-600  whitespace-pre-line leading-snug">
+                  {{ office.hours }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Map Container -->
+        <div class="px-6 pb-6 relative shrink-0">
+          <div
+            class="relative h-60 rounded-2xl overflow-hidden border border-neutral-200/60 bg-neutral-100 shadow-inner group-hover:shadow-md transition-all duration-300">
+
+            <iframe [src]="getSanitizedMapUrl(office.embedQuery, getZoom(office.id))"
+              class="w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-500"
+              allowfullscreen="false" loading="lazy" referrerpolicy="no-referrer"
+              [title]="office.country + ' Map View'">
+            </iframe>
+
+            <!-- Map Overlay Badge -->
+            <div
+              class="absolute top-4 left-4 z-10 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded text-[9px]  text-neutral-500 border border-neutral-200/60 shadow-xs flex items-center gap-1.5">
+              <div class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></div>
+              <span>GPS Active ({{ getZoom(office.id) }}x)</span>
+            </div>
+
+            <!-- Zoom Controls -->
+            <div class="absolute bottom-4 right-4 z-20 flex flex-col gap-1.5">
+              <button type="button" (click)="handleZoomIn(office.id)"
+                class="w-8 h-8 rounded-lg bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-200 shadow-md flex items-center justify-center cursor-pointer active:scale-95 transition-all"
+                title="Zoom In">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" x2="16.65" y1="21" y2="16.65" />
+                  <line x1="11" x2="11" y1="8" y2="14" />
+                  <line x1="8" x2="14" y1="11" y2="11" />
+                </svg>
+              </button>
+              <button type="button" (click)="handleZoomOut(office.id)"
+                class="w-8 h-8 rounded-lg bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-200 shadow-md flex items-center justify-center cursor-pointer active:scale-95 transition-all"
+                title="Zoom Out">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" x2="16.65" y1="21" y2="16.65" />
+                  <line x1="8" x2="14" y1="11" y2="11" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Get Directions Link Button -->
+          <a [href]="'https://www.google.com/maps/dir/?api=1&destination=' + encodeUrl(office.address)" target="_blank"
+            rel="noopener noreferrer" referrerpolicy="no-referrer"
+            class="w-full mt-4 py-3 bg-neutral-50 hover:bg-primary/10 border border-neutral-200 hover:border-primary/30 rounded-xl text-neutral-800 hover:text-primary text-xs  font-medium uppercase tracking-widest flex items-center justify-center gap-2 transition-all cursor-pointer select-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="3 11 22 2 13 21 11 13 3 11" />
+            </svg>
+            <span>{{ 'Get Directions' | translate }}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="rtl:rotate-180">
+              <line x1="7" x2="17" y1="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      }
+    </div>
+  </section>
+
+  <!-- 3. CONTACT FORM SECTION WITH SPLIT LAYOUT -->
+  <section
+    class="bg-neutral-50/50 border-t border-b border-neutral-200/60 py-12 md:py-20 lg:py-24 relative overflow-hidden">
+    <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+        <!-- Left Column: Title & Trust Indicators -->
+        <div class="lg:col-span-5 space-y-8">
+          <div class="space-y-3">
+            <span class="text-[#142b52]  text-[10px] uppercase font-medium tracking-widest block font-mono">
+              {{ 'SEND A MESSAGE' | translate }}
+            </span>
+            <h2 class="text-2xl md:text-4xl font-bold text-neutral-900 uppercase tracking-tight ">
+              {{ "We're Ready to Help" | translate }}
+            </h2>
+            <p class="text-sm text-neutral-500  mt-2 max-w-sm leading-relaxed">
+              {{ "We're here to help. Complete the form and our experts will contact you soon." | translate }}
+            </p>
+          </div>
+
+          <!-- Trust Indicators Cards Grid -->
+          <div class="space-y-4 max-w-md">
+            @for (indicator of trustIndicators; track indicator.title) {
+            <div
+              class="flex items-start gap-4 p-5 bg-white border border-neutral-200 rounded-2xl transition-all duration-300 relative group overflow-hidden hover:translate-x-1.5 hover:shadow-lg hover:border-primary/50 cursor-default">
+              <div
+                class="absolute left-0 top-0 bottom-0 w-1 bg-primary transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300">
+              </div>
+
+              <div
+                class="w-10 h-10 rounded-xl bg-neutral-50 border border-neutral-200 text-primary flex items-center justify-center shrink-0 mt-0.5 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary shadow-xs">
+                @if (indicator.icon === 'clock') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                } @else if (indicator.icon === 'users') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                } @else if (indicator.icon === 'award') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="6" />
+                  <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                </svg>
+                } @else {
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" x2="22" y1="12" y2="12" />
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+                }
+              </div>
+              <div>
+                <h4
+                  class="text-xs font-medium text-neutral-950 uppercase tracking-tight group-hover:text-primary transition-colors duration-200 ">
+                  {{ indicator.title | translate }}
+                </h4>
+                <p class="text-[11px] text-neutral-500  mt-0.5 leading-relaxed">
+                  {{ indicator.desc | translate }}
+                </p>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+
+        <!-- Right Column: Contact Form -->
+        <div class="lg:col-span-7">
+          <div
+            class="bg-white border border-neutral-200 rounded-4xl p-8 md:p-12 shadow-2xl shadow-neutral-100/80 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-44 h-44 bg-primary/5 rounded-bl-[120px] pointer-events-none"></div>
+
+            <form (submit)="onSubmitForm($event)" class="space-y-6 relative z-10">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- Full Name -->
+                <div class="space-y-2">
+                  <label class="text-[10px]  uppercase tracking-widest text-neutral-600 font-medium block">
+                    {{ 'Your Name' | translate }} *
+                  </label>
+                  <div class="relative flex items-center">
+                    <input type="text" required placeholder="e.g. Khalid Al-Faisal" [value]="formData().name"
+                      (input)="updateField('name', $any($event.target).value)" (blur)="onBlurField('name')" [class]="'w-full bg-neutral-50/50 border p-3.5 pr-10 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 transition-all ' +
+                        ((nameTouched() || formSubmitted()) && errors().name ? 'border-red-400 focus:border-red-500 bg-red-50/10' :
+                        (nameTouched() || formSubmitted()) && isNameValid() ? 'border-emerald-500/80 focus:border-emerald-500 bg-emerald-50/10' :
+                        'border-neutral-200/80 focus:border-primary')" />
+                    <div class="absolute right-3 flex items-center pointer-events-none">
+                      @if ((nameTouched() || formSubmitted()) && isNameValid()) {
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-4 h-4 text-emerald-500">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      } @else if ((nameTouched() || formSubmitted()) && errors().name) {
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-4 h-4 text-red-500">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" x2="12" y1="8" y2="12" />
+                        <line x1="12" x2="12.01" y1="16" y2="16" />
+                      </svg>
+                      }
+                    </div>
+                  </div>
+                  @if ((nameTouched() || formSubmitted()) && errors().name) {
+                  <p class="text-red-500 text-[10px]  mt-0.5">{{ errors().name }}</p>
+                  }
+                </div>
+
+                <!-- Email Address -->
+                <div class="space-y-2">
+                  <label class="text-[10px]  uppercase tracking-widest text-neutral-600 font-medium block">
+                    {{ 'Email Address' | translate }} *
+                  </label>
+                  <div class="relative flex items-center">
+                    <input type="email" required placeholder="e.g. khalid@example.com" [value]="formData().email"
+                      (input)="updateField('email', $any($event.target).value)" (blur)="onBlurField('email')" [class]="'w-full bg-neutral-50/50 border p-3.5 pr-10 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 transition-all ' +
+                        ((emailTouched() || formSubmitted()) && errors().email ? 'border-red-400 focus:border-red-500 bg-red-50/10' :
+                        (emailTouched() || formSubmitted()) && isEmailValid() ? 'border-emerald-500/80 focus:border-emerald-500 bg-emerald-50/10' :
+                        'border-neutral-200/80 focus:border-primary')" />
+                    <div class="absolute right-3 flex items-center pointer-events-none">
+                      @if ((emailTouched() || formSubmitted()) && isEmailValid()) {
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-4 h-4 text-emerald-500">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      } @else if ((emailTouched() || formSubmitted()) && errors().email) {
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-4 h-4 text-red-500">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" x2="12" y1="8" y2="12" />
+                        <line x1="12" x2="12.01" y1="16" y2="16" />
+                      </svg>
+                      }
+                    </div>
+                  </div>
+                  @if ((emailTouched() || formSubmitted()) && errors().email) {
+                  <p class="text-red-500 text-[10px]  mt-0.5">{{ errors().email }}</p>
+                  }
+                </div>
+
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- Phone Number using app-tel-input -->
+                <div class="space-y-2">
+                  <label class="text-[10px]  uppercase tracking-widest text-neutral-600 font-medium block">
+                    {{ 'Phone Number' | translate }} *
+                  </label>
+                  <app-tel-input [phoneValue]="formData().phone" [countryCode]="phoneCountryCode()"
+                    [hasError]="!!errors().phone" [isValid]="isPhoneValid()"
+                    [isTouched]="phoneTouched() || formSubmitted()" (phoneValueChange)="updateField('phone', $event)"
+                    (countryCodeChange)="phoneCountryCode.set($event)" (blur)="onBlurField('phone')" />
+                  @if ((phoneTouched() || formSubmitted()) && errors().phone) {
+                  <p class="text-red-500 text-[10px]  mt-0.5">{{ errors().phone }}</p>
+                  }
+                </div>
+
+                <!-- Project Type -->
+                <div class="space-y-2">
+                  <label class="text-[10px]  uppercase tracking-widest text-neutral-600 font-medium block">
+                    {{ 'Project Type' | translate }}
+                  </label>
+                  <div class="relative">
+                    <select [value]="formData().projectType"
+                      (change)="updateField('projectType', $any($event.target).value)"
+                      class="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-700 pl-3.5 pr-10 py-3.5 rounded-xl text-sm focus:outline-none transition-all appearance-none cursor-pointer">
+                      <option value="Commercial Buildings & Offices">{{ 'Commercial Buildings & Offices' | translate }}
+                      </option>
+                      <option value="Infrastructure & Roads">{{ 'Infrastructure & Roads' | translate }}</option>
+                      <option value="Industrial & Warehouses">{{ 'Industrial & Warehouses' | translate }}</option>
+                      <option value="Residential & Housing">{{ 'Residential & Housing' | translate }}</option>
+                    </select>
+                    <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Message optional -->
+              <div class="space-y-2">
+                <label class="text-[10px]  uppercase tracking-widest text-neutral-600 font-medium block">
+                  {{ 'How can we help you?' | translate }}
+                </label>
+                <textarea rows="4" placeholder="Tell us a bit about your project or what you need..."
+                  [value]="formData().message" (input)="updateField('message', $any($event.target).value)"
+                  class="w-full bg-neutral-50/50 border border-neutral-200/80 p-3.5 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 focus:border-primary transition-all resize-none"></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit"
+                class="w-full inline-flex items-center justify-center py-4 bg-primary hover:bg-neutral-900 text-white  text-xs font-medium uppercase tracking-widest rounded-xl shadow-lg transition-all hover:-translate-y-0.5 cursor-pointer select-none group">
+                <span>{{ 'Send Message' | translate }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform rtl:rotate-180">
+                  <line x1="5" x2="19" y1="12" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </button>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SHARED CTA BANNER -->
+  <app-cta-banner />
+
+</div>

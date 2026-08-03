@@ -6,7 +6,7 @@
 
     <app-hero-bg />
 
-    <video autoplay [attr.muted]="true" loop playsinline preload="auto"
+    <video #video autoplay [attr.muted]="true" loop playsinline preload="auto"
       class="absolute inset-0 w-full h-full object-cover transition-all duration-300 z-1"
       style="transform: scale(var(--video-scale)); filter: blur(var(--hero-video-blur));">
       <source [src]="bgVideoUrl" type="video/mp4">

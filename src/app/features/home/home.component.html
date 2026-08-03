@@ -10,7 +10,11 @@
 
 <app-featured-projects></app-featured-projects>
 
+@defer (hydrate on viewport) {
 <app-testimonials></app-testimonials>
+} @placeholder {
+<div class="min-h-100"></div>
+}
 
 <app-home-blogs></app-home-blogs>
 

@@ -1,11 +1,14 @@
 import { Component, signal, inject, output } from '@angular/core';
 import { Router } from '@angular/router';
+import { IconsComponent } from '../icons/icons.component';
 
 @Component({
   selector: 'app-header-search',
+  standalone: true,
+  imports: [IconsComponent],
   template: `
     <form (submit)="onSearchSubmit($event)" class="max-w-4xl mx-auto flex items-center gap-3">
-      <span class="text-neutral-500">🔍</span>
+      <app-icons icon="search" [width]="20" [height]="20" />
       <input
         type="text"
         placeholder="Search solutions, projects, cities..."

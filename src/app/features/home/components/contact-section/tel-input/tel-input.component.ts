@@ -1,9 +1,10 @@
 import { Component, input, output, signal, computed, ElementRef, HostListener, inject } from '@angular/core';
 import { WORLD_COUNTRIES, WorldCountry } from './countries.data';
+import { PreventInputDirective } from '../../../../../shared/directives/prevent-input.directive';
 
 @Component({
   selector: 'app-tel-input',
-  imports: [],
+  imports: [PreventInputDirective],
   template: `
     <div
       [class]="containerClasses() ? containerClasses() : ('relative flex items-center bg-neutral-50/50 border rounded-xl transition-all w-full focus-within:ring-2 ' +
@@ -82,9 +83,10 @@ import { WORLD_COUNTRIES, WorldCountry } from './countries.data';
         }
       </div>
 
-      <!-- Phone Number Input -->
+      <!-- Phone Number Input with preventInput="letters" -->
       <input
         type="tel"
+        preventInput="letters"
         [placeholder]="currentCountry().placeholder"
         [value]="phoneValue()"
         (input)="onPhoneInput($event)"

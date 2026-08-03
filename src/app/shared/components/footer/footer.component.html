@@ -141,10 +141,10 @@
     </div>
 
     <div class="lg:col-span-3 space-y-6">
-      <h4
-        class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-primary">
+      <span
+        class="text-[18px] block font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-primary">
         {{ 'FOOTER.QUICK_LINKS' | translate }}
-      </h4>
+      </span>
       <ul class="grid grid-cols-1 gap-3.5">
         @for (link of quickLinks; track link.path) {
         <li>
@@ -164,10 +164,10 @@
     </div>
 
     <div class="lg:col-span-2 space-y-6">
-      <h4
-        class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-primary">
+      <span
+        class="text-[18px] block font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-primary">
         {{ 'FOOTER.RESOURCES' | translate }}
-      </h4>
+      </span>
       <ul class="grid grid-cols-1 gap-3.5 mb-6">
         @for (link of resourceLinks; track link.path) {
         <li>
@@ -184,7 +184,7 @@
             </span>
           </button>
           } @else {
-          <a [routerLink]="link.path"
+          <a [routerLink]="['/',lang,link.path]"
             class="text-[15px] text-white/80 hover:text-primary transition-all duration-300 inline-flex items-center gap-2 group relative py-1">
             <span
               class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
@@ -214,10 +214,10 @@
 
     <!-- Column 4: Contact Us -->
     <div class="lg:col-span-3 space-y-6">
-      <h4
-        class="text-[18px] font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-primary">
+      <span
+        class="text-[18px] block font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-primary">
         {{ 'FOOTER.CONTACT_US' | translate }}
-      </h4>
+      </span>
       <div class="space-y-4 text-[14px] text-white/75 font-light">
         <div class="flex gap-3 items-start group">
           <div

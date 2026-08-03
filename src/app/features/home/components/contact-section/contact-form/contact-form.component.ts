@@ -1,9 +1,13 @@
-import { Component, input, output, signal, computed, effect } from '@angular/core';
+import { Component, input, output, signal, computed, effect, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { form, schema, required, minLength, email } from '@angular/forms/signals';
 import { TranslatePipe } from '@ngx-translate/core';
 import { TelInputComponent } from '../tel-input/tel-input.component';
 import { BranchCode } from '../contact-branches/contact-branches.component';
+import { LanguageService } from '../../../../../core/services/language.service';
+import { SubmissionService } from '../../../../../core/services/submission.service';
+import { PreventInputDirective } from '../../../../../shared/directives/prevent-input.directive';
 
 export interface ContactFormData {
   name: string;
@@ -64,10 +68,14 @@ export function validateInternationalPhone(countryCode: string, phoneValue: stri
 
 @Component({
   selector: 'app-contact-form',
-  imports: [FormsModule, TelInputComponent, TranslatePipe],
+  imports: [FormsModule, TelInputComponent, TranslatePipe, PreventInputDirective],
   templateUrl: './contact-form.component.html',
 })
 export class ContactFormComponent {
+  private readonly router = inject(Router);
+  private readonly languageService = inject(LanguageService);
+  private readonly submissionService = inject(SubmissionService);
+
   readonly selectedBranch = input<BranchCode>('SA');
   readonly selectBranch = output<BranchCode>();
 
@@ -255,7 +263,8 @@ export class ContactFormComponent {
       this.privacyTouched.set(false);
       this.isSubmitted.set(false);
 
-      setTimeout(() => this.isSuccess.set(false), 5000);
-    }, 1200);
+      this.submissionService.markSubmitted();
+      this.router.navigate(['/', this.languageService.currentLang(), 'thank-you']);
+    }, 800);
   }
 }

@@ -1,6 +1,18 @@
-import { Component, signal, computed, OnInit, OnDestroy, inject, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  signal,
+  computed,
+  OnDestroy,
+  inject,
+  PLATFORM_ID,
+  ElementRef,
+  NgZone,
+  DestroyRef,
+  afterNextRender,
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { FloatingWireframeComponent } from '../../../../shared/components/floating-wireframe/floating-wireframe.component';
+import { ScrollRevealService } from '../../../../shared/services/scroll-reveal.service';
 
 export interface TestimonialItem {
   quote: string;
@@ -14,51 +26,62 @@ export interface TestimonialItem {
   selector: 'app-testimonials',
   imports: [FloatingWireframeComponent],
   templateUrl: './testimonials.component.html',
-  styles: [`
-    @keyframes wordFadeIn {
-      0% {
-        opacity: 0;
-        transform: translateY(8px) scale(0.96);
+  styles: [
+    `
+      @keyframes wordFadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(8px) scale(0.96);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
       }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
 
-    .animate-word {
-      display: inline-block;
-      opacity: 0;
-      animation: wordFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: calc(var(--i, 0) * 32ms);
-      will-change: transform, opacity;
-    }
-  `]
+      .animate-word {
+        display: inline-block;
+        opacity: 0;
+        animation: wordFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation-delay: calc(var(--i, 0) * 32ms);
+        will-change: transform, opacity;
+      }
+    `,
+  ],
 })
-export class TestimonialsComponent implements OnInit, OnDestroy {
+export class TestimonialsComponent implements OnDestroy {
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly el = inject(ElementRef).nativeElement as HTMLElement;
+  private readonly ngZone = inject(NgZone);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly scrollRevealService = inject(ScrollRevealService);
 
   readonly currentIndex = signal<number>(0);
-  readonly isAnimating = signal<boolean>(true);
+
   private timerId?: any;
+  private isVisibleInViewport = false;
+  private unregisterObserver?: () => void;
 
   readonly testimonials: TestimonialItem[] = [
     {
-      quote: 'Maabany delivered our premium enterprise headquarters 3 months ahead of schedule without sacrificing a single layer of architectural complexity. Their standard of execution is truly unprecedented.',
+      quote:
+        'Maabany delivered our premium enterprise headquarters 3 months ahead of schedule without sacrificing a single layer of architectural complexity. Their standard of execution is truly unprecedented.',
       name: 'Eng. Abdulrahman Al-Saud',
       role: 'VP of Urban Development',
       company: 'Riyadh Vision Group',
       initials: 'AA',
     },
     {
-      quote: 'The engineering team at Maabany tackled our complex robotic facility constraints with outstanding ingenuity. Their digital twin models kept us informed of every load test.',
+      quote:
+        'The engineering team at Maabany tackled our complex robotic facility constraints with outstanding ingenuity. Their digital twin models kept us informed of every load test.',
       name: 'Sarah Lindqvist',
       role: 'Operations Lead',
       company: 'Nexa Industrial Labs',
       initials: 'SL',
     },
     {
-      quote: 'For high-scale public infrastructure, trust is non-negotiable. Maabany demonstrated unparalleled structural discipline and clean green-concrete compliance.',
+      quote:
+        'For high-scale public infrastructure, trust is non-negotiable. Maabany demonstrated unparalleled structural discipline and clean green-concrete compliance.',
       name: 'Marcus Thorne',
       role: 'Principal Director',
       company: 'Global Cities Consortium',
@@ -66,13 +89,51 @@ export class TestimonialsComponent implements OnInit, OnDestroy {
     },
   ];
 
-  readonly activeItem = computed(() => this.testimonials[this.currentIndex()] || this.testimonials[0]);
+  readonly activeItem = computed(
+    () => this.testimonials[this.currentIndex()] || this.testimonials[0]
+  );
   readonly words = computed(() => this.activeItem().quote.split(' '));
 
-  ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.startAutoSlide();
-    }
+  constructor() {
+    afterNextRender(() => {
+      if (!isPlatformBrowser(this.platformId)) return;
+
+      // Observe component visibility in the viewport
+      this.unregisterObserver = this.scrollRevealService.register(
+        this.el,
+        { threshold: 0.15 },
+        (entry) => {
+          this.isVisibleInViewport = entry.isIntersecting;
+          if (entry.isIntersecting) {
+            this.startAutoSlide();
+          } else {
+            this.stopAutoSlide();
+          }
+        }
+      );
+
+      // Pause auto-slide when browser tab is hidden
+      const handleVisibilityChange = () => {
+        if (document.hidden) {
+          this.stopAutoSlide();
+        } else if (this.isVisibleInViewport) {
+          this.startAutoSlide();
+        }
+      };
+
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+
+      this.destroyRef.onDestroy(() => {
+        document.removeEventListener(
+          'visibilitychange',
+          handleVisibilityChange
+        );
+        if (this.unregisterObserver) {
+          this.unregisterObserver();
+        }
+        this.stopAutoSlide();
+      });
+    });
   }
 
   ngOnDestroy(): void {
@@ -81,9 +142,20 @@ export class TestimonialsComponent implements OnInit, OnDestroy {
 
   private startAutoSlide(): void {
     this.stopAutoSlide();
-    this.timerId = setInterval(() => {
-      this.next();
-    }, 7000);
+
+    if (!this.isVisibleInViewport || !isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    this.ngZone.runOutsideAngular(() => {
+      this.timerId = setInterval(() => {
+        if (this.isVisibleInViewport && !document.hidden) {
+          this.ngZone.run(() => {
+            this.next();
+          });
+        }
+      }, 7000);
+    });
   }
 
   private stopAutoSlide(): void {
@@ -93,39 +165,25 @@ export class TestimonialsComponent implements OnInit, OnDestroy {
     }
   }
 
-  private triggerReanimation(action: () => void): void {
-    this.isAnimating.set(false);
-    action();
-    if (isPlatformBrowser(this.platformId)) {
-      requestAnimationFrame(() => {
-        this.isAnimating.set(true);
-      });
-    } else {
-      this.isAnimating.set(true);
-    }
-  }
-
   next(): void {
-    this.triggerReanimation(() => {
-      this.currentIndex.update((idx) => (idx + 1) % this.testimonials.length);
-    });
+    this.currentIndex.update((idx) => (idx + 1) % this.testimonials.length);
   }
 
   prev(): void {
-    this.triggerReanimation(() => {
-      this.currentIndex.update((idx) => (idx - 1 + this.testimonials.length) % this.testimonials.length);
-    });
+    this.currentIndex.update(
+      (idx) => (idx - 1 + this.testimonials.length) % this.testimonials.length
+    );
   }
 
   select(idx: number): void {
     if (this.currentIndex() === idx) return;
-    this.triggerReanimation(() => {
-      this.currentIndex.set(idx);
-    });
+    this.currentIndex.set(idx);
   }
 
   isHighlightedWord(word: string): boolean {
     const clean = word.toLowerCase();
-    return ['unprecedented', 'ingenuity', 'unparalleled'].some((k) => clean.includes(k));
+    return ['unprecedented', 'ingenuity', 'unparalleled'].some((k) =>
+      clean.includes(k)
+    );
   }
 }

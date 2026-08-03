@@ -92,16 +92,14 @@
             <!-- Quote text with CSS variables staggered word animation -->
             <div
               class="text-center min-h-[110px] sm:min-h-[100px] flex items-center justify-center px-2 sm:px-4 pt-2 md:pt-0">
-              @if (isAnimating()) {
               <p
                 class="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[19px] text-neutral-800 font-normal leading-[1.7] md:leading-[1.65] tracking-tight">
-                @for (word of words(); track $index) {
+                @for (word of words(); track $index + '-' + currentIndex()) {
                 <span class="animate-word mr-[0.25em]" [style.--i]="$index"
                   [class.text-primary]="isHighlightedWord(word)" [class.font-medium]="isHighlightedWord(word)">{{ word
                   }}</span>
                 }
               </p>
-              }
             </div>
 
             <!-- Profile Block -->

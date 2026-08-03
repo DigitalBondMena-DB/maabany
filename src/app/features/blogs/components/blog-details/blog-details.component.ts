@@ -11,8 +11,10 @@ import { BlogCardComponent } from '../blog-card/blog-card.component';
 import { ProjectLightboxComponent } from '../../../../shared/components/project-lightbox/project-lightbox.component';
 import { CtaBannerComponent } from '../../../../shared/components/cta-banner/cta-banner.component';
 import { TelInputComponent } from '../../../home/components/contact-section/tel-input/tel-input.component';
+import { TableOfContentsComponent, TocItem } from '../../../../shared/components/table-of-contents/table-of-contents.component';
 import { BLOGS_DATA, BlogPostItem } from '../../services/blogs-data';
 import { LanguageService } from '../../../../core/services/language.service';
+import { SubmissionService } from '../../../../core/services/submission.service';
 import { SafeHtmlPipe } from '../../../../shared/pipes/safe-html-pipe';
 
 export interface TocHeading {
@@ -37,6 +39,7 @@ export interface ParsedBlogContent {
     ProjectLightboxComponent,
     CtaBannerComponent,
     TelInputComponent,
+    TableOfContentsComponent,
     SafeHtmlPipe,
   ],
   templateUrl: './blog-details.component.html',
@@ -47,6 +50,7 @@ export class BlogDetailsComponent implements OnDestroy {
   private readonly viewportScroller = inject(ViewportScroller);
   private readonly ngZone = inject(NgZone);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly submissionService = inject(SubmissionService);
   readonly currentLang = this.languageService.currentLang;
 
   readonly slug = input.required<string>();
@@ -73,7 +77,6 @@ export class BlogDetailsComponent implements OnDestroy {
   readonly isLightboxOpen = signal<boolean>(false);
   readonly activeHeadingId = signal<string>('');
   readonly copied = signal<boolean>(false);
-  readonly tocExpanded = signal<boolean>(false);
 
   // Form Signals & Realtime Validation State
   readonly phoneCountryCode = signal<string>('+966');
@@ -123,11 +126,6 @@ export class BlogDetailsComponent implements OnDestroy {
     return errs;
   });
 
-  private scrollListener?: () => void;
-
-  /**
-   * Helper function to extract heading ID and clean text safely from HTML
-   */
   private parseHeadingInfo(attrs: string = '', innerText: string = ''): { id: string; text: string } {
     const safeText = (innerText || '').replace(/<[^>]+>/g, '').trim();
     const safeAttrs = attrs || '';
@@ -176,7 +174,9 @@ export class BlogDetailsComponent implements OnDestroy {
     return { processedHtml, headings };
   });
 
-  readonly tocHeadings = computed(() => this.parsedBlogData().headings);
+  readonly tocHeadings = computed<TocItem[]>(() => 
+    this.parsedBlogData().headings.map(h => ({ id: h.id, title: h.text, level: h.level }))
+  );
   readonly processedContent = computed(() => this.parsedBlogData().processedHtml);
 
   constructor() {
@@ -188,13 +188,8 @@ export class BlogDetailsComponent implements OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    this.cleanupScrollSpy();
-  }
+  ngOnDestroy(): void {}
 
-  /**
-   * Safe, performance-friendly ScrollSpy using RxJS fromEvent and takeUntilDestroyed
-   */
   private initScrollSpy(): void {
     if (typeof window === 'undefined') return;
 
@@ -233,26 +228,10 @@ export class BlogDetailsComponent implements OnDestroy {
     });
   }
 
-  private cleanupScrollSpy(): void {
-    if (typeof window !== 'undefined' && this.scrollListener) {
-      window.removeEventListener('scroll', this.scrollListener);
-      this.scrollListener = undefined;
-    }
-  }
-
-  /**
-   * Uses Angular's native ViewportScroller to scroll to anchor
-   */
-  scrollToHeading(id: string, event: Event): void {
-    event.preventDefault();
+  scrollToHeading(id: string): void {
     this.viewportScroller.setOffset([0, 110]);
     this.viewportScroller.scrollToAnchor(id);
     this.activeHeadingId.set(id);
-    this.tocExpanded.set(false);
-  }
-
-  toggleTocMobile(): void {
-    this.tocExpanded.update(v => !v);
   }
 
   copyShareLink(): void {
@@ -293,6 +272,7 @@ export class BlogDetailsComponent implements OnDestroy {
 
     const errs = this.errors();
     if (!errs.name && !errs.phone && !errs.email) {
+      this.submissionService.markSubmitted();
       this.router.navigate(['/', this.currentLang(), 'thank-you']);
     }
   }

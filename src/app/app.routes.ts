@@ -2,6 +2,7 @@ import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
 import { LanguageService } from './core/services/language.service';
 import { langGuard } from './core/guards/lang.guard';
+import { thankYouGuard } from './core/guards/thank-you.guard';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
 export const routes: Routes = [
@@ -53,6 +54,23 @@ export const routes: Routes = [
       {
         path: 'blogs/:slug',
         loadComponent: () => import('./features/blogs/components/blog-details/blog-details.component').then(m => m.BlogDetailsComponent)
+      },
+      {
+        path: 'contact-us',
+        loadComponent: () => import('./features/contact-us/contact-us.component').then(m => m.ContactUsComponent)
+      },
+      {
+        path: 'request-quote',
+        loadComponent: () => import('./features/request-quote/request-quote.component').then(m => m.RequestQuoteComponent)
+      },
+      {
+        path: 'privacy-policy',
+        loadComponent: () => import('./features/privacy-policy/privacy-policy.component').then(m => m.PrivacyPolicyComponent)
+      },
+      {
+        path: 'thank-you',
+        canActivate: [thankYouGuard],
+        loadComponent: () => import('./features/thank-you/thank-you.component').then(m => m.ThankYouComponent)
       }
     ]
   },

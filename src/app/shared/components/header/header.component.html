@@ -8,7 +8,7 @@
       <!-- Brand Logo -->
       <a [routerLink]="languageService.getLocalizedPath('/')"
         class="relative flex items-center w-40 h-10 md:w-52 md:h-11 group">
-        <app-image src="/main-logo.png" [width]="125" [height]="52" alt="Maabany Integrated Building Solutions"
+        <app-image src="/main-logo.png" [width]="140" [height]="59" alt="Maabany Integrated Building Solutions"
           objectFit="contain" />
       </a>
 
@@ -40,7 +40,8 @@
         </button>
 
         <!-- Request a Quote CTA Button -->
-        <a app-button href="#" variant="primary" size="sm" customClass="hidden! sm:inline-flex!">
+        <a app-button [routerLink]="['/',lang(),'request-quote']" variant="primary" size="sm"
+          customClass="hidden! sm:inline-flex!">
           {{ 'NAV.REQUEST_QUOTE' | translate }}
         </a>
 

@@ -1,4 +1,4 @@
-import { Component, viewChild, ElementRef, output, inject } from '@angular/core';
+import { Component, viewChild, ElementRef, output, inject, AfterViewInit } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { IconsComponent } from '../../../../shared/components/icons/icons.component';
 import { IconName } from '../../../../shared/models/icons.interface';
@@ -17,10 +17,20 @@ export interface HeroStat {
   templateUrl: './hero.component.html',
   imports: [IconsComponent, HeroBg, ButtonComponent, TranslatePipe],
 })
-export class HomeHeroComponent {
-  private readonly position = inject(ViewportScroller)
+export class HomeHeroComponent implements AfterViewInit {
+  private readonly position = inject(ViewportScroller);
+  private readonly videoEl = viewChild<ElementRef<HTMLVideoElement>>('video');
   readonly bgVideoUrl = '/videos/Maabany-hero-video.mp4';
-
+  ngAfterViewInit(): void {
+    this.videoConf();
+  }
+  videoConf(): void {
+    const el = this.videoEl()?.nativeElement;
+    if (el) {
+      el.defaultMuted = true;
+      el.muted = true
+    }
+  }
   readonly stats: HeroStat[] = [
     { icon: 'orangeClock', valueKey: 'HERO.STAT_1_NUMBER', labelKey: 'HERO.STAT_1_LABEL' },
     { icon: 'orangeBuild', valueKey: 'HERO.STAT_2_NUMBER', labelKey: 'HERO.STAT_2_LABEL' },

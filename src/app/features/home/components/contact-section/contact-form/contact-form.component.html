@@ -19,7 +19,7 @@
   </div>
   }
 
-  <form (submit)="submitForm($event)" class="space-y-7 relative z-10" novalidate>
+  <form (submit)="submitForm($event)" class="relative z-10" novalidate>
     <div class="space-y-1.5 pb-1">
       @if (formTitle()) {
       <h3 class="text-xl sm:text-2xl font-black text-neutral-900 uppercase font-mono tracking-tight">
@@ -42,7 +42,7 @@
       }
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-7">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
       <!-- Realtime Validated Name -->
       <div class="relative space-y-1.5 pb-6">
         <div class="flex items-center justify-between">
@@ -61,8 +61,8 @@
           }
         </div>
         <div class="relative">
-          <input id="contact-name" type="text" [placeholder]="'e.g. Khalid Al-Faisal' | translate" [value]="name()"
-            (input)="onNameInput($any($event.target).value)" (blur)="nameTouched.set(true)" [class]="'w-full bg-neutral-50/50 border text-neutral-800 placeholder-neutral-400 p-3.5 pr-9 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 ' +
+          <input id="contact-name" preventInput="number" type="text" [placeholder]="'e.g. Khalid Al-Faisal' | translate"
+            [value]="name()" (input)="onNameInput($any($event.target).value)" (blur)="nameTouched.set(true)" [class]="'w-full bg-neutral-50/50 border text-neutral-800 placeholder-neutral-400 p-3.5 pr-9 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 ' +
               ((nameTouched() || isSubmitted()) && nameError()
                 ? 'border-red-400 focus:border-red-500 focus:ring-red-500/15 bg-red-50/10'
                 : (nameTouched() || isSubmitted()) && !nameError()
@@ -160,7 +160,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-7">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
       <!-- Realtime Tel Input -->
       <div [class]="showProjectType() ? 'relative space-y-1.5 pb-6' : 'relative space-y-1.5 pb-6 md:col-span-2'">
         <div class="flex items-center justify-between">
