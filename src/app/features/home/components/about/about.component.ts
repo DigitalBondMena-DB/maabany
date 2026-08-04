@@ -8,9 +8,11 @@ import { ScrollRevealDirective } from '../../../../shared/directives/scroll-reve
 import { HomeAbout } from '../../models/home-api.model';
 import { LanguageService } from '../../../../core/services/language.service';
 
+import { TranslatePipe } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-home-about',
-  imports: [RouterLink, FloatingWireframeComponent, ImageComponent, ButtonComponent, IconsComponent, ScrollRevealDirective],
+  imports: [RouterLink, FloatingWireframeComponent, ImageComponent, ButtonComponent, IconsComponent, ScrollRevealDirective, TranslatePipe],
   templateUrl: './about.component.html'
 })
 export class HomeAboutComponent {

@@ -17,9 +17,11 @@ export interface RegionalBranchInfo {
   coordinates: { x: number; y: number };
 }
 
+import { TranslatePipe } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-contact-branches',
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './contact-branches.component.html',
 })
 export class ContactBranchesComponent {

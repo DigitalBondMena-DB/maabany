@@ -1,11 +1,12 @@
 import { Component, input, signal, inject, computed, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageService } from '../../../core/services/language.service';
 
 @Component({
   selector: 'app-cta-banner',
-  imports: [RouterLink],
+  imports: [RouterLink, TranslatePipe],
   templateUrl: './cta-banner.component.html',
   styles: [`
     @keyframes blueprintDraw {
@@ -45,10 +46,10 @@ export class CtaBannerComponent {
   private readonly languageService = inject(LanguageService);
 
   readonly lang = this.languageService.currentLang;
-  readonly subtitle = input<string>('READY TO START?');
-  readonly title = input<string>("Let's Build Your Next Project Together");
-  readonly primaryBtnText = input<string>('Request a Quote');
-  readonly secondaryBtnText = input<string>('Download Company Profile');
+  readonly subtitle = input<string>('CTA.SUBTITLE');
+  readonly title = input<string>('CTA.TITLE');
+  readonly primaryBtnText = input<string>('CTA.PRIMARY_BTN');
+  readonly secondaryBtnText = input<string>('CTA.SECONDARY_BTN');
   readonly primaryLink = input<string>('request-quote');
 
   readonly computedPrimaryLink = computed(() => {
@@ -69,7 +70,6 @@ export class CtaBannerComponent {
       this.downloadSuccess.set(true);
 
       if (isPlatformBrowser(this.platformId)) {
-        // Trigger simulated file download or anchor link
         const link = document.createElement('a');
         link.href = '#';
         link.setAttribute('download', 'Maabany_Company_Profile.pdf');

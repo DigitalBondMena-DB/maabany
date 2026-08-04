@@ -27,6 +27,8 @@ export interface TrustIndicator {
   desc: string;
 }
 
+import { ContactFormComponent } from '../home/components/contact-section/contact-form/contact-form.component';
+
 @Component({
   selector: 'app-contact-us',
   imports: [
@@ -34,7 +36,7 @@ export interface TrustIndicator {
     TranslatePipe,
     PageHeroComponent,
     CtaBannerComponent,
-    TelInputComponent,
+    ContactFormComponent,
   ],
   templateUrl: './contact-us.component.html',
 })

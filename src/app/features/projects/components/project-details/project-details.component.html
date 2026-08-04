@@ -47,120 +47,12 @@
           </div>
         </div>
 
-        <!-- Right Column (Floating Specification Form with Full Reactive Validation) -->
+        <!-- Right Column (Floating Specification Form with Shared Contact Form) -->
         <div class="lg:col-span-5 lg:sticky lg:top-32">
-          <div
-            class="bg-neutral-50/90 backdrop-blur-xl border border-neutral-200/80 rounded-3xl p-8 shadow-xl relative overflow-hidden">
-            <!-- Ambient glow decoration -->
-            <div class="absolute -top-12 -right-12 w-32 h-32 bg-primary/10 rounded-full blur-2xl pointer-events-none">
-            </div>
-
-            <h3
-              class="text-xl font-black text-neutral-900 uppercase tracking-tight font-mono mb-6 pb-4 border-b border-neutral-200 flex items-center justify-between">
-              <span>{{ 'Ask about this Project' | translate }}</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="text-primary">
-                <polygon points="12 2 2 7 12 12 22 7 12 2" />
-                <polyline points="2 17 12 22 22 17" />
-                <polyline points="2 12 12 17 22 12" />
-              </svg>
-            </h3>
-
-            @if (formSuccess()) {
-            <div
-              class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700 text-sm font-semibold mb-4 animate-fadeIn">
-              {{ 'Thank you! Your inquiry has been sent successfully.' | translate }}
-            </div>
-            }
-
-            <form [formGroup]="inquiryForm" (submit)="handleFormSubmit($event)" class="space-y-4" novalidate>
-              <!-- Name Field -->
-              <div class="space-y-1">
-                <label for="spec-name"
-                  class="text-[10px] font-mono uppercase tracking-wider text-neutral-600 font-bold block">
-                  {{ 'Your Name' | translate }} *
-                </label>
-                <input id="spec-name" type="text" formControlName="formName" placeholder="e.g. Abdullah"
-                  [attr.aria-invalid]="isFieldInvalid('formName')" aria-describedby="name-error"
-                  [class]="'w-full bg-white border text-neutral-800 placeholder-neutral-400 p-3 rounded-xl text-sm focus:outline-none transition-colors ' + 
-                    (isFieldInvalid('formName') ? 'border-red-500 focus:border-red-500' : 'border-neutral-200 focus:border-neutral-400')" />
-                @if (isFieldInvalid('formName')) {
-                <p id="name-error" class="text-xs text-red-500 font-mono mt-1">
-                  {{ 'Please enter your name (at least 2 characters).' | translate }}
-                </p>
-                }
-              </div>
-
-              <!-- Email Field -->
-              <div class="space-y-1">
-                <label for="spec-email"
-                  class="text-[10px] font-mono uppercase tracking-wider text-neutral-600 font-bold block">
-                  {{ 'Email Address' | translate }} *
-                </label>
-                <input id="spec-email" type="email" formControlName="formEmail" placeholder="e.g. abdullah@example.com"
-                  [attr.aria-invalid]="isFieldInvalid('formEmail')" aria-describedby="email-error"
-                  [class]="'w-full bg-white border text-neutral-800 placeholder-neutral-400 p-3 rounded-xl text-sm focus:outline-none transition-colors ' + 
-                    (isFieldInvalid('formEmail') ? 'border-red-500 focus:border-red-500' : 'border-neutral-200 focus:border-neutral-400')" />
-                @if (isFieldInvalid('formEmail')) {
-                <p id="email-error" class="text-xs text-red-500 font-mono mt-1">
-                  {{ 'Please enter a valid email address.' | translate }}
-                </p>
-                }
-              </div>
-
-              <!-- Interest Area Field -->
-              <div class="space-y-1">
-                <label for="spec-topic"
-                  class="text-[10px] font-mono uppercase tracking-wider text-neutral-600 font-bold block">
-                  {{ 'Interest Area' | translate }}
-                </label>
-                <div class="relative">
-                  <select id="spec-topic" formControlName="formTopic"
-                    class="w-full bg-white border border-neutral-200 focus:border-neutral-400 text-neutral-700 pl-3 pr-10 py-3 rounded-xl text-sm focus:outline-none transition-colors appearance-none">
-                    <option value="General Consultation">General Question</option>
-                    <option value="Material Specifications">Materials used</option>
-                    <option value="HVAC & MEP Layouts">System & layout design</option>
-                    <option value="Structural Integrity Specs">Structural details</option>
-                  </select>
-                  <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="m6 9 6 6 6-6" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Help Textarea Field -->
-              <div class="space-y-1">
-                <label for="spec-details"
-                  class="text-[10px] font-mono uppercase tracking-wider text-neutral-600 font-bold block">
-                  {{ 'How can we help?' | translate }}
-                </label>
-                <textarea id="spec-details" rows="3" formControlName="formSpecs"
-                  placeholder="What would you like to know about this project?"
-                  class="w-full bg-white border border-neutral-200 focus:border-neutral-400 text-neutral-800 placeholder-neutral-400 p-3 rounded-xl text-sm focus:outline-none transition-colors resize-none"></textarea>
-              </div>
-
-              <!-- Submit Button -->
-              <button type="submit" [disabled]="formSubmitting()"
-                class="w-full mt-4 py-3.5 bg-primary hover:bg-[#df7d1a] disabled:bg-neutral-200 text-white font-mono font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-md shadow-primary/20 cursor-pointer">
-                @if (formSubmitting()) {
-                <span class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                {{ 'Sending...' | translate }}
-                } @else {
-                <span>{{ 'Send Message' | translate }}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="group-hover:translate-x-1 transition-transform rtl:rotate-180">
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
-                }
-              </button>
-            </form>
-          </div>
+          <app-contact-form [pageSlug]="'projects-' + slug()"
+            [formTitle]="'Ask about this Project'"
+            [formSubtitle]="'Inquire directly regarding ' + currentProject().name"
+            [cardClasses]="'bg-neutral-50/90 backdrop-blur-xl border border-neutral-200/80 rounded-3xl p-8 shadow-xl relative overflow-hidden'" />
         </div>
 
       </div>

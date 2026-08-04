@@ -28,6 +28,8 @@ export interface ParsedBlogContent {
   headings: TocHeading[];
 }
 
+import { ContactFormComponent } from '../../../home/components/contact-section/contact-form/contact-form.component';
+
 @Component({
   selector: 'app-blog-details',
   imports: [
@@ -38,9 +40,9 @@ export interface ParsedBlogContent {
     BlogCardComponent,
     ProjectLightboxComponent,
     CtaBannerComponent,
-    TelInputComponent,
     TableOfContentsComponent,
     SafeHtmlPipe,
+    ContactFormComponent,
   ],
   templateUrl: './blog-details.component.html',
 })

@@ -1,12 +1,12 @@
 <section class="relative bg-neutral-50 overflow-hidden z-10 transition-all duration-200 py-12 md:py-20 lg:py-24">
   <div class="max-w-350 mx-auto relative z-10 px-(--outer-padding-x) transition-all duration-200">
     <div
-      class="bg-[#0a0f1d] border border-neutral-800/80 p-10 md:p-16 rounded-[32px] shadow-2xl relative overflow-hidden group">
+      class="bg-[#0a0f1d] border border-neutral-800/80 p-10 md:p-16 rounded-4xl shadow-2xl relative overflow-hidden group">
       <!-- Construction & Engineering Background Image -->
       <div class="absolute inset-0 pointer-events-none select-none overflow-hidden">
         <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80"
           alt="Construction and Engineering"
-          class="w-full h-full object-cover opacity-28 mix-blend-luminosity scale-[1.03] group-hover:scale-100 transition-transform duration-[1200ms] ease-out" />
+          class="w-full h-full object-cover opacity-28 mix-blend-luminosity scale-[1.03] group-hover:scale-100 transition-transform duration-1200 ease-out" />
         <div class="absolute inset-0 bg-linear-to-r from-[#0a0f1d]/75 via-[#0a0f1d]/40 to-[#0a0f1d]/20"></div>
         <div class="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-[#0a0f1d]/30"></div>
       </div>
@@ -15,7 +15,7 @@
         class="absolute inset-0 translate-x-[-150%] -skew-x-25 w-1/2 bg-linear-to-r from-transparent via-white/5 to-transparent group-hover:animate-sweep">
       </div>
       <div
-        class="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[100px] pointer-events-none">
+        class="absolute top-1/2 right-0 -translate-y-1/2 size-150 bg-primary/15 rounded-full blur-[100px] pointer-events-none">
       </div>
 
       <!-- Architectural & Engineering Blueprint Vector Overlay -->
@@ -113,10 +113,10 @@
         <!-- Left Text Column -->
         <div class="lg:col-span-7 space-y-3">
           <span class="text-primary font-mono text-xs tracking-[0.25em] font-bold uppercase block">
-            {{ subtitle() }}
+            {{ subtitle() | translate }}
           </span>
           <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase leading-[1.1]">
-            Let's Build Your <br class="hidden sm:inline" />Next Project Together
+            {{ title() | translate }}
           </h2>
         </div>
 
@@ -124,7 +124,7 @@
         <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-4">
           <a [routerLink]="computedPrimaryLink()"
             class="w-full px-8 py-5 bg-primary hover:bg-[#d97d1b] text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-primary/40 flex items-center justify-center gap-2 font-mono group cursor-pointer">
-            <span>{{ primaryBtnText() }}</span>
+            <span>{{ primaryBtnText() | translate }}</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
               class="w-4 h-4 group-hover:translate-x-1 transition-transform">
@@ -136,11 +136,11 @@
           <button type="button" (click)="handleDownloadProfile()" [disabled]="downloadingProfile()"
             class="w-full px-8 py-5 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 font-mono group backdrop-blur-sm disabled:opacity-55 cursor-pointer">
             @if (downloadingProfile()) {
-            <span class="animate-pulse">Preparing file...</span>
+            <span class="animate-pulse">{{ 'CTA.PREPARING' | translate }}</span>
             } @else if (downloadSuccess()) {
-            <span class="text-primary">Profile Downloaded ✔</span>
+            <span class="text-primary">{{ 'CTA.DOWNLOADED' | translate }}</span>
             } @else {
-            <span>{{ secondaryBtnText() }}</span>
+            <span>{{ secondaryBtnText() | translate }}</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
               class="w-4 h-4 group-hover:translate-y-0.5 transition-transform">

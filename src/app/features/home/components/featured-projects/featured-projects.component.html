@@ -20,8 +20,8 @@
       }
       } @else {
       <div class="col-span-full">
-        <app-empty-state icon="orangeBuild" title="No Projects Available"
-          description="There are currently no featured projects to display at this moment." badge="PROJECTS // EMPTY" />
+        <app-empty-state icon="orangeBuild" [title]="'EMPTY_STATES.NO_PROJECTS_TITLE' | translate"
+          [description]="'EMPTY_STATES.NO_PROJECTS_DESC' | translate" badge="PROJECTS // EMPTY" />
       </div>
       }
     </div>

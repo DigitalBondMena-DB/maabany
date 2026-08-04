@@ -8,6 +8,7 @@ import { ProjectSliderComponent } from '../project-slider/project-slider.compone
 import { OtherProjectsComponent } from '../other-projects/other-projects.component';
 import { ProjectGalleryButtonComponent } from '../../../../shared/components/project-gallery-button/project-gallery-button.component';
 import { ProjectLightboxComponent } from '../../../../shared/components/project-lightbox/project-lightbox.component';
+import { ContactFormComponent } from '../../../../features/home/components/contact-section/contact-form/contact-form.component';
 import { PROJECTS_DATA, ProjectItem } from '../../services/projects-data';
 
 @Component({
@@ -22,6 +23,7 @@ import { PROJECTS_DATA, ProjectItem } from '../../services/projects-data';
     OtherProjectsComponent,
     ProjectGalleryButtonComponent,
     ProjectLightboxComponent,
+    ContactFormComponent,
   ],
   templateUrl: './project-details.component.html',
 })

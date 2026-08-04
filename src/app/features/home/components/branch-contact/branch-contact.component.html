@@ -47,46 +47,9 @@
       </div>
 
       <!-- Right Column: Quick Contact Form -->
-      <div class="p-8 md:p-12 rounded-3xl bg-slate-900 border border-slate-800">
-        <h3 class="text-2xl font-bold mb-2">Request an Engineering Consultation</h3>
-        <p class="text-slate-400 text-sm font-light mb-8">Direct line to our technical project advisory committee.</p>
-
-        @if (isSuccess()) {
-        <div
-          class="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-center font-bold mb-6 animate-fadeIn">
-          ✓ Your request has been received. Our team will contact you shortly.
-        </div>
-        }
-
-        <form (submit)="submitForm($event)" class="space-y-6">
-          <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Your Full Name</label>
-            <input type="text" [value]="contactName()" (input)="contactName.set($any($event.target).value)"
-              placeholder="Eng. Ahmed Mansoor" required
-              class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-colors" />
-          </div>
-
-          <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Phone Number</label>
-            <div class="flex gap-2">
-              <input type="text" [value]="contactPhoneCountry()" readonly
-                class="w-24 px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-amber-400 font-mono font-bold text-center" />
-              <input type="tel" [value]="contactPhone()" (input)="contactPhone.set($any($event.target).value)"
-                placeholder="50 123 4567" required
-                class="flex-1 px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-colors" />
-            </div>
-          </div>
-
-          <button type="submit" [disabled]="isSubmitting()"
-            class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300 flex items-center justify-center gap-2">
-            @if (isSubmitting()) {
-            <span class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-            Submitting...
-            } @else {
-            Submit Consultation Request →
-            }
-          </button>
-        </form>
+      <div>
+        <app-contact-form [formTitle]="'Request an Engineering Consultation'"
+          [formSubtitle]="'Direct line to our technical project advisory committee.'" />
       </div>
     </div>
   </div>

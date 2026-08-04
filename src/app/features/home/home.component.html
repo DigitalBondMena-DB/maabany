@@ -1,3 +1,71 @@
+@if (homeService.isLoading()) {
+<app-skeleton>
+    <div class="w-full max-w-350 mx-auto"
+        style="padding-left: var(--outer-padding-x); padding-right: var(--outer-padding-x); padding-top: var(--outer-padding-top); padding-bottom: var(--outer-padding-bottom);">
+        <section
+            class="relative w-full min-h-[calc(100vh-48px)] flex flex-col overflow-hidden py-12 px-6 bg-neutral-900 shadow-2xl"
+            style="border-radius: var(--hero-border-radius);">
+            <div class="relative max-w-350 w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="skeleton-item h-16 w-3/4 rounded-xl"></div>
+                    <div class="skeleton-item h-10 w-1/2 rounded-xl"></div>
+                    <div class="skeleton-item h-20 w-full rounded-xl"></div>
+                    <div class="skeleton-item h-12 w-44 rounded-xl"></div>
+                </div>
+                <div class="lg:col-span-5 flex flex-col gap-4 max-w-130 mx-auto w-full">
+                    <div class="skeleton-item h-24 w-64 rounded-2xl"></div>
+                    <div class="skeleton-item h-24 w-64 rounded-2xl self-end"></div>
+                    <div class="skeleton-item h-24 w-64 rounded-2xl"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="bg-white py-12 md:py-20 lg:py-24">
+        <div class="max-w-350 px-(--outer-padding-x) mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div class="lg:col-span-6">
+                <div class="skeleton-item h-125 w-full rounded-3xl"></div>
+            </div>
+            <div class="lg:col-span-6 space-y-6">
+                <div class="skeleton-item h-4 w-24 rounded-md"></div>
+                <div class="skeleton-item h-10 w-3/4 rounded-xl"></div>
+                <div class="skeleton-item h-24 w-full rounded-xl"></div>
+                <div class="skeleton-item h-20 w-full rounded-xl"></div>
+                <div class="skeleton-item h-20 w-full rounded-xl"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white border-y border-neutral-200/60 py-12 md:py-20 lg:py-24">
+        <div class="max-w-350 mx-auto px-(--outer-padding-x)">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3 flex flex-col items-center">
+                <div class="skeleton-item h-4 w-32 rounded-md"></div>
+                <div class="skeleton-item h-10 w-80 rounded-xl"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="skeleton-item h-64 rounded-3xl"></div>
+                <div class="skeleton-item h-64 rounded-3xl"></div>
+                <div class="skeleton-item h-64 rounded-3xl"></div>
+                <div class="skeleton-item h-64 rounded-3xl"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white py-12 md:py-20 lg:py-24">
+        <div class="max-w-350 mx-auto px-(--outer-padding-x)">
+            <div class="mb-16 space-y-3">
+                <div class="skeleton-item h-4 w-32 rounded-md"></div>
+                <div class="skeleton-item h-10 w-72 rounded-xl"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="skeleton-item h-80 rounded-3xl"></div>
+                <div class="skeleton-item h-80 rounded-3xl"></div>
+                <div class="skeleton-item h-80 rounded-3xl"></div>
+            </div>
+        </div>
+    </section>
+</app-skeleton>
+} @else {
 <app-home-hero [heroData]="homeService.hero()" [countersData]="homeService.counters()" />
 
 <app-home-about [aboutData]="homeService.about()" />
@@ -10,14 +78,12 @@
 
 <app-featured-projects [projectsData]="homeService.projects()" />
 
-@defer (hydrate on viewport) {
 <app-testimonials [testimonialsData]="homeService.testimonials()" />
-} @placeholder {
-<div class="min-h-100"></div>
-}
+
 
 <app-home-blogs [blogsData]="homeService.blogs()" />
 
 <app-cta-banner />
 
 <app-contact-section [branchesData]="homeService.branches()" />
+}

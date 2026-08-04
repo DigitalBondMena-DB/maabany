@@ -12,9 +12,8 @@
       <polyline points="22 4 12 14.01 9 11.01" />
     </svg>
     <div class="text-xs space-y-1">
-      <div class="font-bold text-sm">{{ 'Inquiry Received Successfully!' | translate }}</div>
-      <div>{{ 'Thank you. Your inquiry has been routed. Our engineering team will contact you within 24 hours.' |
-        translate }}</div>
+      <div class="font-bold text-sm">{{ 'CONTACT.SUCCESS_TITLE' | translate }}</div>
+      <div>{{ 'CONTACT.SUCCESS_DESC' | translate }}</div>
     </div>
   </div>
   }
@@ -32,12 +31,12 @@
       }
       } @else {
       <span class="text-primary font-mono text-xs uppercase font-extrabold tracking-widest block">
-        @if (selectedBranch() === 'SA') { {{ 'RIYADH OFFICE ROUTING' | translate }} }
-        @else if (selectedBranch() === 'EG') { {{ 'CAIRO OFFICE ROUTING' | translate }} }
-        @else if (selectedBranch() === 'LY') { {{ 'TRIPOLI OFFICE ROUTING' | translate }} }
+        @if (selectedBranch() === 'SA') { {{ 'CONTACT.ROUTING_SA' | translate }} }
+        @else if (selectedBranch() === 'EG') { {{ 'CONTACT.ROUTING_EG' | translate }} }
+        @else if (selectedBranch() === 'LY') { {{ 'CONTACT.ROUTING_LY' | translate }} }
       </span>
       <h3 class="text-xl font-bold text-neutral-950 uppercase tracking-tight">
-        {{ 'Inquire About Your Project' | translate }}
+        {{ 'CONTACT.TITLE' | translate }}
       </h3>
       }
     </div>
@@ -48,34 +47,34 @@
         <div class="flex items-center justify-between">
           <label htmlFor="contact-name"
             class="text-[10px] font-mono uppercase tracking-widest text-neutral-600 font-bold block">
-            {{ 'Your Name *' | translate }}
+            {{ 'CONTACT.NAME_LABEL' | translate }}
           </label>
-          @if ((nameTouched() || isSubmitted()) && !nameError()) {
+          @if ((contactForm.name().touched() || isSubmitted()) && contactForm.name().valid()) {
           <span class="text-[10px] font-mono text-emerald-600 font-bold flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3">
               <polyline points="20 6 9 17 4 12" />
             </svg>
-            VALID
+            {{ 'CONTACT.VALID' | translate }}
           </span>
           }
         </div>
         <div class="relative">
-          <input id="contact-name" preventInput="number" type="text" [placeholder]="'e.g. Khalid Al-Faisal' | translate"
-            [value]="name()" (input)="onNameInput($any($event.target).value)" (blur)="nameTouched.set(true)" [class]="'w-full bg-neutral-50/50 border text-neutral-800 placeholder-neutral-400 p-3.5 pr-9 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 ' +
-              ((nameTouched() || isSubmitted()) && nameError()
+          <input [formField]="contactForm.name" id="contact-name" preventInput="number" type="text"
+            [placeholder]="'CONTACT.NAME_PLACEHOLDER' | translate" [class]="'w-full bg-neutral-50/50 border text-neutral-800 placeholder-neutral-400 p-3.5 pr-9 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 ' +
+              ((contactForm.name().touched() || isSubmitted()) && !contactForm.name().valid()
                 ? 'border-red-400 focus:border-red-500 focus:ring-red-500/15 bg-red-50/10'
-                : (nameTouched() || isSubmitted()) && !nameError()
+                : (contactForm.name().touched() || isSubmitted()) && contactForm.name().valid()
                 ? 'border-emerald-500/80 focus:border-emerald-500 focus:ring-emerald-500/15 bg-emerald-50/10'
                 : 'border-neutral-200/80 focus:border-primary focus:bg-white focus:ring-primary/15')" />
           <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-            @if ((nameTouched() || isSubmitted()) && !nameError()) {
+            @if ((contactForm.name().touched() || isSubmitted()) && contactForm.name().valid()) {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
               class="w-4 h-4 text-emerald-500">
               <polyline points="20 6 9 17 4 12" />
             </svg>
-            } @else if ((nameTouched() || isSubmitted()) && nameError()) {
+            } @else if ((contactForm.name().touched() || isSubmitted()) && !contactForm.name().valid()) {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
               class="w-4 h-4 text-red-500">
@@ -86,7 +85,7 @@
             }
           </div>
         </div>
-        @if ((nameTouched() || isSubmitted()) && nameError()) {
+        @if ((contactForm.name().touched() || isSubmitted()) && !contactForm.name().valid()) {
         <div
           class="absolute bottom-0 left-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
@@ -96,7 +95,7 @@
             <line x1="12" x2="12" y1="8" y2="12" />
             <line x1="12" x2="12.01" y1="16" y2="16" />
           </svg>
-          <span class="truncate">{{ nameError() }}</span>
+          <span class="truncate">{{ (contactForm.name().errors()?.[0]?.message || '') | translate }}</span>
         </div>
         }
       </div>
@@ -106,34 +105,34 @@
         <div class="flex items-center justify-between">
           <label htmlFor="contact-email"
             class="text-[10px] font-mono uppercase tracking-widest text-neutral-600 font-bold block">
-            {{ 'Email Address *' | translate }}
+            {{ 'CONTACT.EMAIL_LABEL' | translate }}
           </label>
-          @if ((emailTouched() || isSubmitted()) && !emailError()) {
+          @if ((contactForm.email().touched() || isSubmitted()) && contactForm.email().valid()) {
           <span class="text-[10px] font-mono text-emerald-600 font-bold flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3">
               <polyline points="20 6 9 17 4 12" />
             </svg>
-            VALID
+            {{ 'CONTACT.VALID' | translate }}
           </span>
           }
         </div>
         <div class="relative">
-          <input id="contact-email" type="email" [placeholder]="'e.g. khalid@example.com' | translate" [value]="email()"
-            (input)="onEmailInput($any($event.target).value)" (blur)="emailTouched.set(true)" [class]="'w-full bg-neutral-50/50 border text-neutral-800 placeholder-neutral-400 p-3.5 pr-9 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 ' +
-              ((emailTouched() || isSubmitted()) && emailError()
+          <input [formField]="contactForm.email" id="contact-email" type="email"
+            [placeholder]="'CONTACT.EMAIL_PLACEHOLDER' | translate" [class]="'w-full bg-neutral-50/50 border text-neutral-800 placeholder-neutral-400 p-3.5 pr-9 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 ' +
+              ((contactForm.email().touched() || isSubmitted()) && !contactForm.email().valid()
                 ? 'border-red-400 focus:border-red-500 focus:ring-red-500/15 bg-red-50/10'
-                : (emailTouched() || isSubmitted()) && !emailError()
+                : (contactForm.email().touched() || isSubmitted()) && contactForm.email().valid()
                 ? 'border-emerald-500/80 focus:border-emerald-500 focus:ring-emerald-500/15 bg-emerald-50/10'
                 : 'border-neutral-200/80 focus:border-primary focus:bg-white focus:ring-primary/15')" />
           <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-            @if ((emailTouched() || isSubmitted()) && !emailError()) {
+            @if ((contactForm.email().touched() || isSubmitted()) && contactForm.email().valid()) {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
               class="w-4 h-4 text-emerald-500">
               <polyline points="20 6 9 17 4 12" />
             </svg>
-            } @else if ((emailTouched() || isSubmitted()) && emailError()) {
+            } @else if ((contactForm.email().touched() || isSubmitted()) && !contactForm.email().valid()) {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
               class="w-4 h-4 text-red-500">
@@ -144,7 +143,7 @@
             }
           </div>
         </div>
-        @if ((emailTouched() || isSubmitted()) && emailError()) {
+        @if ((contactForm.email().touched() || isSubmitted()) && !contactForm.email().valid()) {
         <div
           class="absolute bottom-0 left-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
@@ -154,7 +153,7 @@
             <line x1="12" x2="12" y1="8" y2="12" />
             <line x1="12" x2="12.01" y1="16" y2="16" />
           </svg>
-          <span class="truncate">{{ emailError() }}</span>
+          <span class="truncate">{{ (contactForm.email().errors()?.[0]?.message || '') | translate }}</span>
         </div>
         }
       </div>
@@ -162,11 +161,11 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
       <!-- Realtime Tel Input -->
-      <div [class]="showProjectType() ? 'relative space-y-1.5 pb-6' : 'relative space-y-1.5 pb-6 md:col-span-2'">
+      <div [class]="shouldShowSolutionType() ? 'relative space-y-1.5 pb-6' : 'relative space-y-1.5 pb-6 md:col-span-2'">
         <div class="flex items-center justify-between">
           <label htmlFor="contact-phone"
             class="text-[10px] font-mono uppercase tracking-widest text-neutral-600 font-bold block">
-            {{ 'Phone Number *' | translate }}
+            {{ 'CONTACT.PHONE_LABEL' | translate }}
           </label>
           @if ((phoneTouched() || isSubmitted()) && !phoneError()) {
           <span class="text-[10px] font-mono text-emerald-600 font-bold flex items-center gap-1">
@@ -174,11 +173,11 @@
               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3">
               <polyline points="20 6 9 17 4 12" />
             </svg>
-            VALID
+            {{ 'CONTACT.VALID' | translate }}
           </span>
           }
         </div>
-        <app-tel-input [phoneValue]="phone()" [countryCode]="phoneCountry()" [hasError]="!!phoneError()"
+        <app-tel-input [phoneValue]="contactModel().phone" [countryCode]="phoneCountry()" [hasError]="!!phoneError()"
           [isValid]="!phoneError()" [isTouched]="phoneTouched() || isSubmitted()"
           (phoneValueChange)="onPhoneInput($event)" (countryCodeChange)="onPhoneCountryChange($event)"
           (blur)="phoneTouched.set(true)" />
@@ -192,23 +191,23 @@
             <line x1="12" x2="12" y1="8" y2="12" />
             <line x1="12" x2="12.01" y1="16" y2="16" />
           </svg>
-          <span class="truncate">{{ phoneError() }}</span>
+          <span class="truncate">{{ (phoneError() || '') | translate }}</span>
         </div>
         }
       </div>
 
-      <!-- Project Type Selection (Optional/Conditional) -->
-      @if (showProjectType()) {
+      <!-- Solution Type Selection (Conditional - hidden when pageSlug is present) -->
+      @if (shouldShowSolutionType()) {
       <div class="relative space-y-1.5 pb-6">
         <label htmlFor="contact-segment"
           class="text-[10px] font-mono uppercase tracking-widest text-neutral-600 font-bold block">
-          {{ 'Project Type *' | translate }}
+          {{ 'CONTACT.SOLUTION_TYPE_LABEL' | translate }}
         </label>
         <div class="relative">
-          <select id="contact-segment" [value]="projectType()" (change)="projectType.set($any($event.target).value)"
+          <select [formField]="contactForm.solutionType" id="contact-segment"
             class="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-700 pl-3.5 pr-10 py-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-primary/15 appearance-none cursor-pointer">
-            @for (type of projectTypes; track type) {
-            <option [value]="type">{{ type | translate }}</option>
+            @for (type of solutionTypes(); track type.slug) {
+            <option [value]="type.slug">{{ type.title }}</option>
             }
           </select>
           <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
@@ -227,27 +226,27 @@
       <div class="flex items-center justify-between">
         <label htmlFor="contact-brief"
           class="text-[10px] font-mono uppercase tracking-widest text-neutral-600 font-bold block">
-          {{ 'How can we help you? *' | translate }}
+          {{ 'CONTACT.MESSAGE_LABEL' | translate }}
         </label>
-        @if ((messageTouched() || isSubmitted()) && !messageError()) {
+        @if ((contactForm.message().touched() || isSubmitted()) && contactForm.message().valid()) {
         <span class="text-[10px] font-mono text-emerald-600 font-bold flex items-center gap-1">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3">
             <polyline points="20 6 9 17 4 12" />
           </svg>
-          VALID
+          {{ 'CONTACT.VALID' | translate }}
         </span>
         }
       </div>
-      <textarea id="contact-brief" rows="4"
-        [placeholder]="'Tell us a bit about your project or what you need...' | translate" [value]="message()"
-        (input)="onMessageInput($any($event.target).value)" (blur)="messageTouched.set(true)" [class]="'w-full bg-neutral-50/50 border text-neutral-800 placeholder-neutral-400 p-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 resize-none ' +
-          ((messageTouched() || isSubmitted()) && messageError()
+      <textarea [formField]="contactForm.message" id="contact-brief" rows="4"
+        [placeholder]="'CONTACT.MESSAGE_PLACEHOLDER' | translate"
+        [class]="'w-full bg-neutral-50/50 border text-neutral-800 placeholder-neutral-400 p-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 resize-none ' +
+          ((contactForm.message().touched() || isSubmitted()) && !contactForm.message().valid()
             ? 'border-red-400 focus:border-red-500 focus:ring-red-500/15 bg-red-50/10'
-            : (messageTouched() || isSubmitted()) && !messageError()
+            : (contactForm.message().touched() || isSubmitted()) && contactForm.message().valid()
             ? 'border-emerald-500/80 focus:border-emerald-500 focus:ring-emerald-500/15 bg-emerald-50/10'
             : 'border-neutral-200/80 focus:border-primary focus:bg-white focus:ring-primary/15')"></textarea>
-      @if ((messageTouched() || isSubmitted()) && messageError()) {
+      @if ((contactForm.message().touched() || isSubmitted()) && !contactForm.message().valid()) {
       <div
         class="absolute bottom-0 left-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
@@ -257,29 +256,7 @@
           <line x1="12" x2="12" y1="8" y2="12" />
           <line x1="12" x2="12.01" y1="16" y2="16" />
         </svg>
-        <span class="truncate">{{ messageError() }}</span>
-      </div>
-      }
-    </div>
-
-    <!-- Privacy Agreement Checkbox -->
-    <div class="relative space-y-1 pb-6">
-      <label class="flex items-center gap-2.5 text-xs text-neutral-600 cursor-pointer select-none">
-        <input type="checkbox" [checked]="privacyAgreed()" (change)="onPrivacyChange($any($event.target).checked)"
-          class="w-4 h-4 rounded border-neutral-300 text-primary focus:ring-primary cursor-pointer" />
-        <span>{{ 'I agree to the Privacy Policy and consent to data routing.' | translate }}</span>
-      </label>
-      @if ((privacyTouched() || isSubmitted()) && privacyError()) {
-      <div
-        class="absolute bottom-0 left-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
-        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="w-3 h-3 shrink-0">
-          <circle cx="12" cy="12" r="10" />
-          <line x1="12" x2="12" y1="8" y2="12" />
-          <line x1="12" x2="12.01" y1="16" y2="16" />
-        </svg>
-        <span class="truncate">{{ privacyError() }}</span>
+        <span class="truncate">{{ (contactForm.message().errors()?.[0]?.message || '') | translate }}</span>
       </div>
       }
     </div>
@@ -290,11 +267,11 @@
       @if (isSubmitting()) {
       <span class="flex items-center gap-2">
         <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-        {{ 'SENDING INQUIRY...' | translate }}
+        {{ 'CONTACT.SENDING_BTN' | translate }}
       </span>
       } @else {
       <span class="flex items-center gap-2">
-        {{ 'SEND MESSAGE' | translate }}
+        {{ 'CONTACT.SUBMIT_BTN' | translate }}
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
           <path d="M5 12h14" />

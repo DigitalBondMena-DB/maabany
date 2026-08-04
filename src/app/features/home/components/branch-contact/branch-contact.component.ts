@@ -2,9 +2,11 @@ import { Component, inject, signal, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HomeDataService } from '../../services/home-data.service';
 
+import { ContactFormComponent } from '../contact-section/contact-form/contact-form.component';
+
 @Component({
   selector: 'app-branch-contact',
-  imports: [FormsModule],
+  imports: [FormsModule, ContactFormComponent],
   templateUrl: './branch-contact.component.html'
 })
 export class BranchContactComponent {

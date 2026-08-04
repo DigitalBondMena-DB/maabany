@@ -1,11 +1,11 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PageHeroComponent } from '../../shared/components/page-hero/page-hero.component';
 import { MediaCardComponent } from '../../shared/components/media-card/media-card.component';
 import { FloatingWireframeComponent } from '../../shared/components/floating-wireframe/floating-wireframe.component';
 import { TelInputComponent } from '../home/components/contact-section/tel-input/tel-input.component';
-import { validateInternationalPhone } from '../home/components/contact-section/contact-form/contact-form.component';
+import { ContactFormComponent, validateInternationalPhone } from '../home/components/contact-section/contact-form/contact-form.component';
 import { INDUSTRIES_DATA, IndustryItem } from './services/industries-data';
 import { LanguageService } from '../../core/services/language.service';
 
@@ -25,7 +25,7 @@ export interface QuoteFormData {
     PageHeroComponent,
     MediaCardComponent,
     FloatingWireframeComponent,
-    TelInputComponent,
+    ContactFormComponent,
   ],
   templateUrl: './industries.component.html',
   styles: [`

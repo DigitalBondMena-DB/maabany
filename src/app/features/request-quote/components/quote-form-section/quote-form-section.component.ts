@@ -6,12 +6,14 @@ import { TelInputComponent } from '../../../home/components/contact-section/tel-
 import { LanguageService } from '../../../../core/services/language.service';
 import { SubmissionService } from '../../../../core/services/submission.service';
 
+import { ContactFormComponent } from '../../../home/components/contact-section/contact-form/contact-form.component';
+
 @Component({
   selector: 'app-quote-form-section',
   imports: [
     FormsModule,
     TranslatePipe,
-    TelInputComponent,
+    ContactFormComponent,
   ],
   templateUrl: './quote-form-section.component.html',
 })

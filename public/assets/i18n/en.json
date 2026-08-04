@@ -24,6 +24,18 @@
     "STAT_4_NUMBER": "99%",
     "STAT_4_LABEL": "Satisfaction Index"
   },
+  "ABOUT": {
+    "SUBTITLE": "About Us",
+    "READ_MORE": "Read More About Us",
+    "COMPLIANCE_TITLE": "Rigorous Security & Compliance",
+    "COMPLIANCE_DESC": "ISO 9001, 14001, and 45001 certified. We practice deep-risk containment on every development level.",
+    "SUSTAINABILITY_TITLE": "Sustainability Certifications",
+    "SUSTAINABILITY_DESC": "Specializing in LEED Platinum layouts. Integrating self-contained power and graywater infrastructure by default."
+  },
+  "WHY_US": {
+    "SUBTITLE": "THE MAABANY STANDARD",
+    "TITLE": "ENGINEERED FOR SUPREMACY"
+  },
   "PROJECTS": {
     "SUBTITLE": "FEATURED PORTFOLIO",
     "TITLE": "Featured Projects",
@@ -35,12 +47,26 @@
     "DESCRIPTION": "End-to-end engineering excellence from concept design to turnkey execution.",
     "EXPLORE_ALL": "Explore All Solutions"
   },
+  "TESTIMONIALS": {
+    "SUBTITLE": "Client Success Stories",
+    "TITLE": "Trusted by Global Leaders"
+  },
   "BLOGS": {
     "SUBTITLE": "INSIGHTS & NEWS",
     "TITLE": "Latest Industry Insights",
     "EXPLORE_ALL": "View All Blogs"
   },
+  "CTA": {
+    "SUBTITLE": "READY TO START?",
+    "TITLE": "Let's Build Your Next Project Together",
+    "PRIMARY_BTN": "Request a Quote",
+    "SECONDARY_BTN": "Download Company Profile",
+    "PREPARING": "Preparing file...",
+    "DOWNLOADED": "Profile Downloaded ✔"
+  },
   "CONTACT": {
+    "SECTION_SUBTITLE": "Global Headquarters & Branches",
+    "SECTION_TITLE": "LET'S BUILD TOGETHER",
     "SUBTITLE": "REGIONAL HEADQUARTERS",
     "TITLE": "Inquire About Your Project",
     "ROUTING_SA": "RIYADH OFFICE ROUTING",
@@ -52,13 +78,57 @@
     "EMAIL_PLACEHOLDER": "e.g. khalid@example.com",
     "PHONE_LABEL": "Phone Number *",
     "PROJECT_TYPE_LABEL": "Project Type *",
+    "SOLUTION_TYPE_LABEL": "Solution Type *",
     "MESSAGE_LABEL": "How can we help you? *",
     "MESSAGE_PLACEHOLDER": "Tell us a bit about your project or what you need...",
-    "PRIVACY_AGREE": "I agree to the Privacy Policy and consent to data routing.",
     "SUBMIT_BTN": "SEND MESSAGE",
     "SENDING_BTN": "SENDING INQUIRY...",
     "SUCCESS_TITLE": "Inquiry Received Successfully!",
-    "SUCCESS_DESC": "Thank you. Your inquiry has been routed. Our engineering team will contact you within 24 hours."
+    "SUCCESS_DESC": "Thank you. Your inquiry has been routed. Our engineering team will contact you within 24 hours.",
+    "SELECT_OFFICE_HELPER": "Select a regional office to view its contact details.",
+    "OFFICE_PROFILE": "OFFICE PROFILE",
+    "OFFICE_ADDRESS": "OFFICE ADDRESS",
+    "TELEPHONE": "TELEPHONE",
+    "GENERAL_INQUIRIES": "GENERAL INQUIRIES",
+    "WORKING_HOURS": "WORKING HOURS",
+    "VALID": "VALID",
+    "REGIONAL_CONNECTIONS": "REGIONAL CONNECTIONS // MAABANY_NET",
+    "ACTIVE_NODE": "ACTIVE_NODE"
+  },
+  "EMPTY_STATES": {
+    "NO_PROJECTS_TITLE": "No Projects Available",
+    "NO_PROJECTS_DESC": "There are currently no featured projects to display at this moment."
+  },
+  "VALIDATION": {
+    "NAME_REQUIRED": "Name is required.",
+    "NAME_MIN_LENGTH": "Name must be at least 2 characters.",
+    "EMAIL_REQUIRED": "Email address is required.",
+    "EMAIL_INVALID": "Please enter a valid email address.",
+    "PHONE_REQUIRED": "Phone number is required.",
+    "PHONE_INVALID_LENGTH": "Phone number must be between 7 and 15 digits.",
+    "PHONE_SA_DIGITS": "Saudi phone number must be 9 digits (e.g. 50 123 4567).",
+    "PHONE_SA_START": "Saudi mobile number must start with 5.",
+    "PHONE_EG_DIGITS": "Egyptian phone number must be 10 digits (e.g. 10 1234 5678).",
+    "PHONE_EG_START": "Egyptian mobile number must start with 1.",
+    "PHONE_LY_DIGITS": "Libyan phone number must be 8-9 digits.",
+    "PHONE_UAE_DIGITS": "UAE phone number must be 9 digits (e.g. 50 123 4567).",
+    "PHONE_UAE_START": "UAE mobile number must start with 5.",
+    "PHONE_QATAR_DIGITS": "Qatar phone number must be 8 digits.",
+    "PHONE_KUWAIT_DIGITS": "Kuwait phone number must be 8 digits.",
+    "PHONE_BAHRAIN_DIGITS": "Bahrain phone number must be 8 digits.",
+    "PHONE_OMAN_DIGITS": "Oman phone number must be 8 digits.",
+    "PHONE_JORDAN_DIGITS": "Jordanian phone number must be 9 digits.",
+    "PHONE_JORDAN_START": "Jordanian mobile number must start with 7.",
+    "PHONE_LEBANON_DIGITS": "Lebanese phone number must be 7-8 digits.",
+    "PHONE_IRAQ_DIGITS": "Iraqi phone number must be 10 digits.",
+    "PHONE_IRAQ_START": "Iraqi mobile number must start with 7.",
+    "PHONE_US_DIGITS": "US/Canada phone number must be 10 digits.",
+    "PHONE_UK_DIGITS": "UK phone number must be 10-11 digits.",
+    "PHONE_TURKEY_DIGITS": "Turkish phone number must be 10 digits.",
+    "PHONE_TURKEY_START": "Turkish mobile number must start with 5.",
+    "SOLUTION_TYPE_REQUIRED": "Please select a solution type.",
+    "MESSAGE_REQUIRED": "Message detail is required.",
+    "MESSAGE_MIN_LENGTH": "Message must be at least 5 characters."
   },
   "FOOTER": {
     "BRAND_DESC": "Maabany Integrated Building Solutions delivers innovative engineering, construction, and facility management services across the Kingdom of Saudi Arabia (KSA) with a commitment to quality, precision, and long-term value.",

@@ -30,7 +30,7 @@
 
       <!-- Right Column: Floating Inquiry Card (Shared app-contact-form matching exact SolutionDetails.tsx style) -->
       <div class="lg:col-span-6">
-        <app-contact-form [showProjectType]="false" [presetProjectType]="currentSolution().title"
+        <app-contact-form [pageSlug]="'solutions-' + currentSolution().slug"
           [formTitle]="'ASK ABOUT THIS SOLUTION'"
           [formSubtitle]="'We\'re here to help. Complete the form and our experts will contact you soon.'"
           [cardClasses]="'bg-white border border-neutral-200/90 rounded-3xl p-6 sm:p-8 md:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.06)] relative overflow-hidden h-full'" />

@@ -50,7 +50,7 @@
             <div class="relative z-10 space-y-6 text-neutral-900">
                 <div class="space-y-2">
                     <span class="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
-                        About Us
+                        {{ 'ABOUT.SUBTITLE' | translate }}
                     </span>
                     <h2 class="text-3xl md:text-4xl font-black text-neutral-900 uppercase tracking-tight">
                         {{ aboutData()?.title }}
@@ -67,10 +67,9 @@
                         <div class="p-2 rounded bg-primary/10 text-primary h-fit font-bold flex-center"><app-icons
                                 icon="orangeShild" [width]="24" [height]="24" /></div>
                         <div>
-                            <h4 class="text-sm font-bold text-neutral-900 uppercase">Rigorous Security & Compliance</h4>
+                            <h4 class="text-sm font-bold text-neutral-900 uppercase">{{ 'ABOUT.COMPLIANCE_TITLE' | translate }}</h4>
                             <p class="text-xs text-[#4b4b4b] mt-1">
-                                ISO 9001, 14001, and 45001 certified. We practice deep-risk containment on every
-                                development level.
+                                {{ 'ABOUT.COMPLIANCE_DESC' | translate }}
                             </p>
                         </div>
                     </div>
@@ -80,10 +79,9 @@
                         <div class="p-2 rounded bg-primary/10 text-primary h-fit font-bold flex-center"><app-icons
                                 icon="orangeTrophy" [width]="24" [height]="24" /></div>
                         <div>
-                            <h4 class="text-sm font-bold text-neutral-900 uppercase">Sustainability Certifications</h4>
+                            <h4 class="text-sm font-bold text-neutral-900 uppercase">{{ 'ABOUT.SUSTAINABILITY_TITLE' | translate }}</h4>
                             <p class="text-xs text-[#4b4b4b] mt-1">
-                                Specializing in LEED Platinum layouts. Integrating self-contained power and graywater
-                                infrastructure by default.
+                                {{ 'ABOUT.SUSTAINABILITY_DESC' | translate }}
                             </p>
                         </div>
                     </div>
@@ -91,7 +89,7 @@
 
                 <div class="pt-2">
                     <a app-button [routerLink]="['/',lang(),'about']" variant="outline" size="md" [showArrow]="true">
-                        Read More About Us
+                        {{ 'ABOUT.READ_MORE' | translate }}
                     </a>
                 </div>
             </div>

@@ -9,6 +9,7 @@ import { TestimonialsComponent } from './components/testimonials/testimonials.co
 import { HomeBlogsComponent } from './components/home-blogs/home-blogs.component';
 import { CtaBannerComponent } from '../../shared/components/cta-banner/cta-banner.component';
 import { ContactSectionComponent } from './components/contact-section/contact-section.component';
+import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.component';
 import { HomeService } from './services/home.service';
 
 @Component({
@@ -23,7 +24,8 @@ import { HomeService } from './services/home.service';
     TestimonialsComponent,
     HomeBlogsComponent,
     CtaBannerComponent,
-    ContactSectionComponent
+    ContactSectionComponent,
+    SkeletonComponent,
   ],
   templateUrl: './home.component.html',
 })

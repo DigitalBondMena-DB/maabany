@@ -7,6 +7,8 @@ import { ImageComponent } from "../../../../shared/components/image/image.compon
 import { EmptyStateComponent } from "../../../../shared/components/empty-state/empty-state.component";
 import { PadZeroPipe } from '../../../../shared/pipes/pad-zero-pipe';
 
+import { TranslatePipe } from '@ngx-translate/core';
+
 export interface WhyChooseUsReason {
   num: string;
   title: string;
@@ -16,7 +18,7 @@ export interface WhyChooseUsReason {
 
 @Component({
   selector: 'app-why-choose-us',
-  imports: [IconsComponent, FloatingWireframeComponent, ImageComponent, EmptyStateComponent, PadZeroPipe],
+  imports: [IconsComponent, FloatingWireframeComponent, ImageComponent, EmptyStateComponent, PadZeroPipe, TranslatePipe],
   templateUrl: './why-choose-us.component.html',
 })
 export class WhyChooseUsComponent {

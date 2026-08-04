@@ -4,7 +4,7 @@
     <!-- Discoverability Helper Text -->
     <div class="flex items-center gap-2 text-xs font-mono font-medium text-neutral-500 tracking-wide select-none">
       <div class="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse"></div>
-      <span>Select a regional office to view its contact details.</span>
+      <span>{{ 'CONTACT.SELECT_OFFICE_HELPER' | translate }}</span>
     </div>
 
     <!-- Modern interactive strip showing regional nodes (The Main Navigation Strip) -->
@@ -16,7 +16,7 @@
 
       <!-- Map labels -->
       <div class="absolute top-2.5 left-3.5 font-mono text-[8px] text-neutral-500 tracking-wider">
-        REGIONAL CONNECTIONS // MAABANY_NET
+        {{ 'CONTACT.REGIONAL_CONNECTIONS' | translate }}
       </div>
 
       @if (activeBranch(); as branch) {
@@ -24,7 +24,7 @@
         class="absolute bottom-2.5 right-3.5 font-mono text-[9px] text-primary/90 tracking-widest animate-pulse font-bold flex items-center gap-1.5">
         <img [src]="'https://flagcdn.com/w40/' + branch.code.toLowerCase() + '.png'" [alt]="branch.code"
           class="w-4 h-3 object-cover rounded-2xs border border-neutral-700 shrink-0" />
-        <span>• {{ selectedBranch() }} ACTIVE_NODE</span>
+        <span>• {{ selectedBranch() }} {{ 'CONTACT.ACTIVE_NODE' | translate }}</span>
       </div>
       }
 
@@ -102,7 +102,7 @@
       <!-- Office Profile Title -->
       <div class="space-y-1">
         <span class="font-mono text-[10px] uppercase font-extrabold tracking-widest text-[#142b52]">
-          OFFICE PROFILE
+          {{ 'CONTACT.OFFICE_PROFILE' | translate }}
         </span>
         <h4 class="text-xl font-black text-neutral-900 tracking-tight flex items-center gap-2.5">
           <img [src]="'https://flagcdn.com/w40/' + branch.code.toLowerCase() + '.png'"
@@ -125,7 +125,7 @@
             </svg>
           </div>
           <div class="space-y-0.5">
-            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">OFFICE ADDRESS</p>
+            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">{{ 'CONTACT.OFFICE_ADDRESS' | translate }}</p>
             <p class="text-neutral-700 text-sm leading-relaxed">{{ branch.address }}</p>
           </div>
         </div>
@@ -142,7 +142,7 @@
             </svg>
           </div>
           <div class="space-y-0.5">
-            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">TELEPHONE</p>
+            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">{{ 'CONTACT.TELEPHONE' | translate }}</p>
             <a [href]="branch.phoneRaw"
               class="text-neutral-800 text-sm font-mono font-bold block hover:text-primary transition-colors focus:outline-none focus:underline">
               {{ branch.phone }}
@@ -162,8 +162,7 @@
             </svg>
           </div>
           <div class="space-y-0.5">
-            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">GENERAL INQUIRIES
-            </p>
+            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">{{ 'CONTACT.GENERAL_INQUIRIES' | translate }}</p>
             <a [href]="'mailto:' + branch.email"
               class="text-neutral-800 text-sm font-bold block hover:text-primary transition-colors focus:outline-none focus:underline">
               {{ branch.email }}
@@ -183,7 +182,7 @@
             </svg>
           </div>
           <div class="space-y-0.5">
-            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">WORKING HOURS</p>
+            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">{{ 'CONTACT.WORKING_HOURS' | translate }}</p>
             <p class="text-neutral-600 text-xs leading-relaxed font-mono">{{ branch.hours }}</p>
           </div>
         </div>

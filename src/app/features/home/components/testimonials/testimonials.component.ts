@@ -16,6 +16,8 @@ import { FloatingWireframeComponent } from '../../../../shared/components/floati
 import { ScrollRevealService } from '../../../../shared/services/scroll-reveal.service';
 import { HomeTestimonial } from '../../models/home-api.model';
 
+import { TranslatePipe } from '@ngx-translate/core';
+
 export interface TestimonialItem {
   quote: string;
   name: string;
@@ -26,7 +28,7 @@ export interface TestimonialItem {
 
 @Component({
   selector: 'app-testimonials',
-  imports: [FloatingWireframeComponent],
+  imports: [FloatingWireframeComponent, TranslatePipe],
   templateUrl: './testimonials.component.html',
   styles: [
     `
