@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageService } from '../../../core/services/language.service';
+import { WebInfoService } from '../../../core/services/web-info.service';
 
 @Component({
   selector: 'app-cta-banner',
@@ -44,6 +45,7 @@ import { LanguageService } from '../../../core/services/language.service';
 export class CtaBannerComponent {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly languageService = inject(LanguageService);
+  readonly webInfoService = inject(WebInfoService);
 
   readonly lang = this.languageService.currentLang;
   readonly subtitle = input<string>('CTA.SUBTITLE');
@@ -70,9 +72,15 @@ export class CtaBannerComponent {
       this.downloadSuccess.set(true);
 
       if (isPlatformBrowser(this.platformId)) {
-        const link = document.createElement('a');
-        link.href = '#';
-        link.setAttribute('download', 'Maabany_Company_Profile.pdf');
+        const profileUrl = this.webInfoService.companyProfile();
+        if (profileUrl) {
+          window.open(profileUrl, '_blank');
+        } else {
+          const link = document.createElement('a');
+          link.href = '/docs/Company-Profile.pdf';
+          link.setAttribute('download', 'Maabany_Company_Profile.pdf');
+          link.click();
+        }
       }
 
       setTimeout(() => {

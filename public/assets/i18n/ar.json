@@ -96,6 +96,22 @@
     "REGIONAL_CONNECTIONS": "الاتصالات الإقليمية // شبكة ماباني",
     "ACTIVE_NODE": "عقدة نشطة"
   },
+  "SEARCH": {
+    "PAGE_TITLE": "نتائج البحث",
+    "SUBTITLE": "نتائج البحث",
+    "HERO_DESC": "أدخل كلمة البحث أدناه لاستكشاف مشاريع ماباني وحلولها ومقالاتها.",
+    "RESULTS_FOUND": "تم العثور على {{count}} نتيجة تطابق",
+    "INPUT_PLACEHOLDER": "ابحث عن المشاريع، الحلول، المقالات، القطاعات...",
+    "SEARCH_BTN": "بحث",
+    "NO_RESULTS_TITLE": "لم يتم العثور على نتائج",
+    "NO_RESULTS_DESC": "لم نتمكن من العثور على أي نتائج تطابق بحثك. جرب كلمات مفتاحية أخرى.",
+    "BROWSE_SOLUTIONS": "تصفح الحلول",
+    "VIEW_PROJECTS": "عرض المشاريع",
+    "TYPE_BLOG": "مقال",
+    "TYPE_SOLUTION": "حل هندسي",
+    "TYPE_INDUSTRY": "قطاع",
+    "TYPE_PROJECT": "مشروع"
+  },
   "EMPTY_STATES": {
     "NO_PROJECTS_TITLE": "لا توجد مشاريع متاحة حالياً",
     "NO_PROJECTS_DESC": "لا توجد مشاريع مميزة لعرضها في الوقت الحالي."

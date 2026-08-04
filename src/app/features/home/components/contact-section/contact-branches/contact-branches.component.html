@@ -105,8 +105,7 @@
           {{ 'CONTACT.OFFICE_PROFILE' | translate }}
         </span>
         <h4 class="text-xl font-black text-neutral-900 tracking-tight flex items-center gap-2.5">
-          <img [src]="'https://flagcdn.com/w40/' + branch.code.toLowerCase() + '.png'"
-            [alt]="branch.officeName"
+          <img [src]="'https://flagcdn.com/w40/' + branch.code.toLowerCase() + '.png'" [alt]="branch.officeName"
             class="w-6 h-4.5 object-cover rounded-xs border border-neutral-200/80 shadow-2xs shrink-0" />
           <span>{{ branch.officeName }}</span>
         </h4>
@@ -125,7 +124,8 @@
             </svg>
           </div>
           <div class="space-y-0.5">
-            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">{{ 'CONTACT.OFFICE_ADDRESS' | translate }}</p>
+            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">{{
+              'CONTACT.OFFICE_ADDRESS' | translate }}</p>
             <p class="text-neutral-700 text-sm leading-relaxed">{{ branch.address }}</p>
           </div>
         </div>
@@ -142,8 +142,9 @@
             </svg>
           </div>
           <div class="space-y-0.5">
-            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">{{ 'CONTACT.TELEPHONE' | translate }}</p>
-            <a [href]="branch.phoneRaw"
+            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">{{
+              'CONTACT.TELEPHONE' | translate }}</p>
+            <a [href]="branch.phoneRaw" dir="ltr"
               class="text-neutral-800 text-sm font-mono font-bold block hover:text-primary transition-colors focus:outline-none focus:underline">
               {{ branch.phone }}
             </a>
@@ -162,7 +163,8 @@
             </svg>
           </div>
           <div class="space-y-0.5">
-            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">{{ 'CONTACT.GENERAL_INQUIRIES' | translate }}</p>
+            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">{{
+              'CONTACT.GENERAL_INQUIRIES' | translate }}</p>
             <a [href]="'mailto:' + branch.email"
               class="text-neutral-800 text-sm font-bold block hover:text-primary transition-colors focus:outline-none focus:underline">
               {{ branch.email }}
@@ -182,7 +184,8 @@
             </svg>
           </div>
           <div class="space-y-0.5">
-            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">{{ 'CONTACT.WORKING_HOURS' | translate }}</p>
+            <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">{{
+              'CONTACT.WORKING_HOURS' | translate }}</p>
             <p class="text-neutral-600 text-xs leading-relaxed font-mono">{{ branch.hours }}</p>
           </div>
         </div>

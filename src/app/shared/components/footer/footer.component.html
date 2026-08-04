@@ -121,14 +121,12 @@
       </div>
 
       <p class="text-[14px] text-white/80 leading-[1.8] font-light pr-4">
-        {{ `Maabany Integrated Building Solutions delivers innovative engineering, construction, and facility management
-        services across the Kingdom of Saudi Arabia (KSA) with a commitment to quality, precision, and long-term value.`
-        | translate }}
+        {{ webInfoService.footerDescription() || ('Maabany Integrated Building Solutions delivers innovative engineering, construction, and facility management services across the Kingdom of Saudi Arabia (KSA) with a commitment to quality, precision, and long-term value.' | translate) }}
       </p>
 
       <!-- Social Media Links -->
       <div class="flex items-center gap-3 pt-4">
-        @for (social of socialLinks; track social.name) {
+        @for (social of socialLinks(); track social.name) {
         <a [href]="social.href" target="_blank" rel="noopener noreferrer" [title]="social.name"
           class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-primary hover:bg-primary transition-all duration-250 transform hover:scale-110">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -267,9 +265,9 @@
           </div>
           <div class="space-y-1 mt-0.5">
             <p class="font-medium text-white text-[14px]">Email</p>
-            <a href="mailto:sales@maabany.com"
+            <a [href]="'mailto:' + (webInfoService.email() || 'info@mabany.com')"
               class="text-white/60 text-[12px] hover:text-primary transition-colors focus:outline-none focus:underline block">
-              sales@maabany.com
+              {{ webInfoService.email() || 'info@mabany.com' }}
             </a>
           </div>
         </div>

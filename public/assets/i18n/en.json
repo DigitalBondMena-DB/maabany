@@ -95,6 +95,22 @@
     "REGIONAL_CONNECTIONS": "REGIONAL CONNECTIONS // MAABANY_NET",
     "ACTIVE_NODE": "ACTIVE_NODE"
   },
+  "SEARCH": {
+    "PAGE_TITLE": "Search Results",
+    "SUBTITLE": "Search Results",
+    "HERO_DESC": "Enter a query below to explore Maabany systems, projects, solutions, and articles.",
+    "RESULTS_FOUND": "Found {{count}} results matching",
+    "INPUT_PLACEHOLDER": "Search projects, solutions, blogs, industries...",
+    "SEARCH_BTN": "SEARCH",
+    "NO_RESULTS_TITLE": "No Results Found",
+    "NO_RESULTS_DESC": "We couldn't find anything matching your search query. Try different keywords.",
+    "BROWSE_SOLUTIONS": "Browse Solutions",
+    "VIEW_PROJECTS": "View Projects",
+    "TYPE_BLOG": "Blog",
+    "TYPE_SOLUTION": "Solution",
+    "TYPE_INDUSTRY": "Industry",
+    "TYPE_PROJECT": "Project"
+  },
   "EMPTY_STATES": {
     "NO_PROJECTS_TITLE": "No Projects Available",
     "NO_PROJECTS_DESC": "There are currently no featured projects to display at this moment."

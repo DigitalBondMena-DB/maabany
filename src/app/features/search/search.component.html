@@ -1,0 +1,156 @@
+<div class="bg-white min-h-screen">
+  <!-- Hero Section -->
+  <app-page-hero
+    [title]="'SEARCH.PAGE_TITLE' | translate"
+    [categoryBadge]="'SEARCH.SUBTITLE' | translate"
+    [description]="heroDescription()"
+    heroImage="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80"
+  />
+
+  <!-- Search Input Bar Section -->
+  <section class="relative z-40 max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 -mt-7">
+    <div class="max-w-3xl mx-auto relative">
+      <form (submit)="onSearchSubmit($event)"
+        class="flex items-center bg-white border border-neutral-200/80 rounded-2xl shadow-[0_12px_30px_rgba(0,0,0,0.06)] p-1.5 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-all duration-300">
+        <div class="pl-4 pr-2 text-neutral-400 shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+        </div>
+
+        <input
+          type="text"
+          [value]="inputQuery()"
+          (input)="inputQuery.set($any($event.target).value)"
+          [placeholder]="'SEARCH.INPUT_PLACEHOLDER' | translate"
+          class="w-full bg-transparent border-none text-neutral-800 focus:outline-none text-sm py-3.5 placeholder-neutral-400 font-medium"
+        />
+
+        @if (inputQuery()) {
+        <button
+          type="button"
+          (click)="inputQuery.set('')"
+          class="p-1.5 hover:bg-neutral-100 rounded-lg text-neutral-400 hover:text-neutral-700 transition-colors mr-1 cursor-pointer"
+          title="Clear"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+        }
+
+        <button
+          type="submit"
+          class="bg-primary hover:bg-[#d97d1b] text-white font-mono text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-xl shadow-md transition-all duration-200 cursor-pointer shrink-0"
+        >
+          {{ 'SEARCH.SEARCH_BTN' | translate }}
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Search Results Content Section -->
+  <section class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 pt-12 pb-24">
+    <!-- Loading Skeleton Grid -->
+    @if (isLoading()) {
+    <app-skeleton>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @for (item of [1, 2, 3, 4, 5, 6]; track item) {
+        <div class="bg-white border border-neutral-200/80 rounded-[24px] overflow-hidden p-6 space-y-4">
+          <div class="skeleton-item h-48 w-full rounded-xl"></div>
+          <div class="skeleton-item h-6 w-3/4 rounded-md"></div>
+          <div class="skeleton-item h-12 w-full rounded-md"></div>
+        </div>
+        }
+      </div>
+    </app-skeleton>
+    } @else if (results().length > 0) {
+    <!-- Results Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (item of results(); track item.id) {
+      <a [routerLink]="getItemLink(item)"
+        class="block group h-full focus:outline-none focus:ring-2 focus:ring-primary rounded-[24px]">
+        <div class="flex flex-col h-full bg-white border border-neutral-200/80 rounded-[24px] overflow-hidden hover:border-primary hover:shadow-[0_20px_40px_rgba(234,138,34,0.08)] hover:-translate-y-1.5 transition-all duration-300">
+          <!-- Thumbnail Image -->
+          <div class="h-60 sm:h-64 w-full overflow-hidden relative bg-neutral-100 border-b border-neutral-200/80 shrink-0">
+            @if (item.image) {
+            <app-image [src]="item.image" [alt]="item.title" customClass="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            } @else {
+            <div class="w-full h-full flex items-center justify-center bg-neutral-100 text-neutral-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 opacity-40">
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                <circle cx="9" cy="9" r="2" />
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+              </svg>
+            </div>
+            }
+          </div>
+
+          <!-- Card Content with Text Highlight -->
+          <div class="flex-1 p-6 sm:p-8 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <h3 class="text-base sm:text-lg font-bold text-neutral-900 group-hover:text-primary transition-colors leading-snug line-clamp-2"
+                [innerHTML]="item.title | highlight: searchQuery()">
+              </h3>
+              <p class="text-xs sm:text-sm text-neutral-500 font-light leading-relaxed line-clamp-3"
+                [innerHTML]="item.description | highlight: searchQuery()">
+              </p>
+            </div>
+          </div>
+        </div>
+      </a>
+      }
+    </div>
+
+    <!-- Pagination -->
+    @if (totalPages() > 1) {
+    <div class="mt-12">
+      <app-pagination
+        [currentPage]="currentPage()"
+        [totalPages]="totalPages()"
+        (pageChange)="onPageChange($event)"
+      />
+    </div>
+    }
+    } @else if (searchQuery()) {
+    <!-- Empty State -->
+    <div class="text-center py-20 px-6 border border-dashed border-neutral-200 rounded-[32px] bg-neutral-50/50 max-w-2xl mx-auto space-y-6">
+      <div class="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto shadow-inner">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="text-lg font-black text-neutral-900 uppercase tracking-tight">
+          {{ 'SEARCH.NO_RESULTS_TITLE' | translate }}
+        </h3>
+        <p class="text-xs text-neutral-500 font-light max-w-sm mx-auto leading-relaxed">
+          {{ 'SEARCH.NO_RESULTS_DESC' | translate }}
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+        <a [routerLink]="['/', currentLang(), 'solutions']"
+          class="px-6 py-3 bg-primary hover:bg-[#d97d1b] text-white font-mono text-[10px] font-bold uppercase tracking-wider rounded-xl shadow-md transition-colors">
+          {{ 'SEARCH.BROWSE_SOLUTIONS' | translate }}
+        </a>
+        <a [routerLink]="['/', currentLang(), 'projects']"
+          class="px-6 py-3 border border-neutral-200 bg-white hover:bg-neutral-50 text-neutral-700 font-mono text-[10px] font-bold uppercase tracking-wider rounded-xl transition-colors">
+          {{ 'SEARCH.VIEW_PROJECTS' | translate }}
+        </a>
+      </div>
+    </div>
+    }
+  </section>
+
+  <!-- CTA Banner -->
+  <app-cta-banner />
+</div>

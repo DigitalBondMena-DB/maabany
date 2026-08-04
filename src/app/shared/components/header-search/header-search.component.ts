@@ -1,17 +1,18 @@
 import { Component, signal, inject, output } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { IconsComponent } from '../icons/icons.component';
+import { LanguageService } from '../../../core/services/language.service';
 
 @Component({
   selector: 'app-header-search',
-  standalone: true,
-  imports: [IconsComponent],
+  imports: [IconsComponent, TranslatePipe],
   template: `
     <form (submit)="onSearchSubmit($event)" class="max-w-4xl mx-auto flex items-center gap-3">
       <app-icons icon="search" [width]="20" [height]="20" />
       <input
         type="text"
-        placeholder="Search solutions, projects, cities..."
+        [placeholder]="'SEARCH.INPUT_PLACEHOLDER' | translate"
         [value]="searchQuery()"
         (input)="searchQuery.set($any($event.target).value)"
         class="flex-1 bg-transparent border-none focus:outline-none text-sm text-neutral-900 placeholder-neutral-400"
@@ -30,6 +31,7 @@ import { IconsComponent } from '../icons/icons.component';
 })
 export class HeaderSearchComponent {
   private readonly router = inject(Router);
+  private readonly languageService = inject(LanguageService);
 
   readonly close = output<void>();
   readonly searchQuery = signal<string>('');
@@ -38,7 +40,8 @@ export class HeaderSearchComponent {
     e.preventDefault();
     const query = this.searchQuery().trim();
     if (query) {
-      this.router.navigate(['/search'], { queryParams: { q: query } });
+      const lang = this.languageService.currentLang();
+      this.router.navigate(['/', lang, 'search'], { queryParams: { q: query } });
       this.close.emit();
     }
   }

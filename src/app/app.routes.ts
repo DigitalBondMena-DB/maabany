@@ -68,6 +68,10 @@ export const routes: Routes = [
         loadComponent: () => import('./features/privacy-policy/privacy-policy.component').then(m => m.PrivacyPolicyComponent)
       },
       {
+        path: 'search',
+        loadComponent: () => import('./features/search/search.component').then(m => m.SearchComponent)
+      },
+      {
         path: 'thank-you',
         canActivate: [thankYouGuard],
         loadComponent: () => import('./features/thank-you/thank-you.component').then(m => m.ThankYouComponent)

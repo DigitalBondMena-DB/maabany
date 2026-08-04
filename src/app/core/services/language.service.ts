@@ -96,7 +96,7 @@ export class LanguageService {
     }
 
     const newUrl = '/' + segments.join('/') + queryAndHash;
-    this.router.navigateByUrl(newUrl);
+    this.router.navigateByUrl(newUrl, { scroll: 'manual' });
   }
 
   getLocalizedPath(path: string): string {
