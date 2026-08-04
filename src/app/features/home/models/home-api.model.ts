@@ -71,6 +71,7 @@ export interface HomeProject {
   slug: string;
   small_description: string;
   cover_image: string;
+  project_type: string;
   order: number;
 }
 

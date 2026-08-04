@@ -1,6 +1,7 @@
-import { Component, input, signal, inject, PLATFORM_ID } from '@angular/core';
+import { Component, input, signal, inject, computed, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { LanguageService } from '../../../core/services/language.service';
 
 @Component({
   selector: 'app-cta-banner',
@@ -41,12 +42,20 @@ import { RouterLink } from '@angular/router';
 })
 export class CtaBannerComponent {
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly languageService = inject(LanguageService);
 
+  readonly lang = this.languageService.currentLang;
   readonly subtitle = input<string>('READY TO START?');
   readonly title = input<string>("Let's Build Your Next Project Together");
   readonly primaryBtnText = input<string>('Request a Quote');
   readonly secondaryBtnText = input<string>('Download Company Profile');
-  readonly primaryLink = input<string>('/contact');
+  readonly primaryLink = input<string>('request-quote');
+
+  readonly computedPrimaryLink = computed(() => {
+    const link = this.primaryLink();
+    const cleanPath = link.startsWith('/') ? link.slice(1) : link;
+    return ['/', this.lang(), cleanPath];
+  });
 
   readonly downloadingProfile = signal<boolean>(false);
   readonly downloadSuccess = signal<boolean>(false);

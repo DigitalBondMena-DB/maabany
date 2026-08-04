@@ -4,11 +4,13 @@ import { HomeBranch } from '../../../models/home-api.model';
 export type BranchCode = 'SA' | 'EG' | 'LY';
 
 export interface RegionalBranchInfo {
+  id: number;
   code: BranchCode;
   officeName: string;
   address: string;
   phone: string;
   phoneRaw: string;
+  email: string;
   hours: string;
   directionsUrl: string;
   flag: string;
@@ -27,69 +29,55 @@ export class ContactBranchesComponent {
 
   readonly hoveredBranch = signal<BranchCode | null>(null);
 
-  readonly defaultBranches: RegionalBranchInfo[] = [
-    {
-      code: 'SA',
-      officeName: 'Riyadh Headquarters',
-      address: 'Tower B, 18th Floor, King Fahd Road, Al Olaya, Riyadh, KSA',
-      phone: '+966 11 456 7890',
-      phoneRaw: 'tel:+966114567890',
-      hours: 'Sunday – Thursday: 08:00 AM – 05:00 PM (GMT +3)',
-      directionsUrl: 'https://maps.google.com/?q=Tower+B,+18th+Floor,+King+Fahd+Road,+Al+Olaya,+Riyadh,+KSA',
-      flag: '🇸🇦',
-      coordinates: { x: 260, y: 55 },
-    },
-    {
-      code: 'EG',
-      officeName: 'Cairo Regional Branch',
-      address: 'Plot 12, Sector 1, Fifth Settlement, New Cairo, Egypt',
-      phone: '+20 2 2345 6789',
-      phoneRaw: 'tel:+20223456789',
-      hours: 'Sunday – Thursday: 08:30 AM – 05:30 PM (GMT +2)',
-      directionsUrl: 'https://maps.google.com/?q=Plot+12,+Sector+1,+Fifth+Settlement,+New+Cairo,+Egypt',
-      flag: '🇪🇬',
-      coordinates: { x: 160, y: 58 },
-    },
-    {
-      code: 'LY',
-      officeName: 'Tripoli Regional Branch',
-      address: 'Al Andalus District, Gargarish Road, Tripoli, Libya',
-      phone: '+218 21 360 1234',
-      phoneRaw: 'tel:+218213601234',
-      hours: 'Sunday – Thursday: 08:00 AM – 04:30 PM (GMT +2)',
-      directionsUrl: 'https://maps.google.com/?q=Al+Andalus+District,+Gargarish+Road,+Tripoli,+Libya',
-      flag: '🇱🇾',
-      coordinates: { x: 60, y: 65 },
-    },
-  ];
-
-  readonly activeBranch = computed(() => {
+  readonly branches = computed<RegionalBranchInfo[]>(() => {
     const api = this.apiBranches();
-    const sel = this.selectedBranch();
-    if (api && api.length > 0) {
-      // Find matching branch by country
-      const matched = api.find(b => {
-        if (sel === 'SA' && b.country.toUpperCase().includes('SAUDI')) return true;
-        if (sel === 'EG' && b.country.toUpperCase().includes('EGYPT')) return true;
-        if (sel === 'LY' && b.country.toUpperCase().includes('LIBYA')) return true;
-        return false;
-      }) || api[0];
-
-      if (matched && matched.address) {
-        return {
-          code: sel,
-          officeName: matched.country,
-          address: matched.address,
-          phone: matched.phone || '',
-          phoneRaw: matched.phone ? `tel:${matched.phone.replace(/\s+/g, '')}` : '#',
-          hours: matched.working_hours || '',
-          directionsUrl: matched.map_url || '#',
-          flag: sel === 'SA' ? '🇸🇦' : sel === 'EG' ? '🇪🇬' : '🇱🇾',
-          coordinates: sel === 'SA' ? { x: 260, y: 55 } : sel === 'EG' ? { x: 160, y: 58 } : { x: 60, y: 65 },
-        };
-      }
+    if (!api || api.length === 0) {
+      return [];
     }
-    return this.defaultBranches.find((b) => b.code === sel) || this.defaultBranches[0];
+
+    return api.map((b) => {
+      const countryUpper = (b.country || '').toUpperCase();
+      let code: BranchCode = 'SA';
+      let coordinates = { x: 260, y: 55 };
+
+      if (countryUpper.includes('EGYPT') || countryUpper.includes('EG') || countryUpper.includes('مصر')) {
+        code = 'EG';
+        coordinates = { x: 160, y: 58 };
+      } else if (countryUpper.includes('LIBYA') || countryUpper.includes('LY') || countryUpper.includes('ليبيا')) {
+        code = 'LY';
+        coordinates = { x: 60, y: 65 };
+      } else if (countryUpper.includes('SAUDI') || countryUpper.includes('KSA') || countryUpper.includes('SA') || countryUpper.includes('السعودية')) {
+        code = 'SA';
+        coordinates = { x: 260, y: 55 };
+      }
+
+      return {
+        id: b.id,
+        code,
+        officeName: b.country,
+        address: b.address || '',
+        phone: b.phone || '',
+        phoneRaw: b.phone ? `tel:${b.phone.replace(/\s+/g, '')}` : '#',
+        email: b.email || '',
+        hours: b.working_hours || '',
+        directionsUrl: b.map_url || '#',
+        flag: code === 'SA' ? '🇸🇦' : code === 'EG' ? '🇪🇬' : '🇱🇾',
+        coordinates,
+      };
+    });
+  });
+
+  readonly activeBranch = computed<RegionalBranchInfo | null>(() => {
+    const list = this.branches();
+    if (list.length === 0) return null;
+    const sel = this.selectedBranch();
+    return list.find((b) => b.code === sel) || list[0];
+  });
+
+  readonly hoveredBranchInfo = computed<RegionalBranchInfo | null>(() => {
+    const code = this.hoveredBranch();
+    if (!code) return null;
+    return this.branches().find((b) => b.code === code) || null;
   });
 
   onSelect(code: BranchCode): void {

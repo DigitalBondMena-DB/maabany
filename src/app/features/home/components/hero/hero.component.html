@@ -36,7 +36,7 @@
           </p>
 
           <div class="flex flex-wrap items-center gap-4 pt-2">
-            <a app-button href="#" variant="primary" size="md" [showArrow]="true">
+            <a app-button [routerLink]="['/',lang(),'request-quote']" variant="primary" size="md" [showArrow]="true">
               {{ 'NAV.REQUEST_QUOTE' | translate }}
             </a>
           </div>
@@ -54,9 +54,7 @@
           <div class="flex items-center gap-3">
             <div class="p-2.5 rounded-lg bg-primary/10 text-primary font-bold text-xl flex-center overflow-hidden">
               @if (counter.icon) {
-              <img [src]="counter.icon" [alt]="counter.title" class="w-6 h-6 object-contain" />
-              } @else {
-              <app-icons icon="orangeBuild" [width]="24" [height]="24" />
+              <app-image [src]="counter.icon" [alt]="counter.title" [width]="24" [height]="24" objectFit="contain" />
               }
             </div>
             <div>
@@ -66,26 +64,8 @@
           </div>
         </div>
         }
-        } @else {
-        @for (stat of stats; track stat.labelKey; let even = $even) {
-        <div
-          class="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl w-64 relative overflow-hidden group hover:border-primary/50 transition-all duration-300"
-          [class.self-start]="even" [class.self-end]="!even" [class.animate-float-slow]="even"
-          [class.animate-float-medium]="!even">
-          <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none"></div>
-          <div class="flex items-center gap-3">
-            <div class="p-2.5 rounded-lg bg-primary/10 text-primary font-bold text-xl flex-center">
-              <app-icons [icon]="stat.icon" [width]="24" [height]="24" />
-            </div>
-            <div>
-              <h3 class="text-3xl font-black text-neutral-900 font-mono">{{ stat.valueKey | translate }}</h3>
-              <p class="text-[11px] text-neutral-500 font-semibold uppercase tracking-wider">{{ stat.labelKey |
-                translate }}</p>
-            </div>
-          </div>
-        </div>
         }
-        }
+
       </div>
 
     </div>

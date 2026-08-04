@@ -6,6 +6,8 @@ import { HeroBg } from "../hero-bg/hero-bg";
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { ViewportScroller } from '@angular/common';
 import { HomeHero, HomeCounter } from '../../models/home-api.model';
+import { ImageComponent } from "../../../../shared/components/image/image.component";
+import { LanguageService } from '../../../../core/services/language.service';
 
 export interface HeroStat {
   icon: IconName;
@@ -16,9 +18,11 @@ export interface HeroStat {
 @Component({
   selector: 'app-home-hero',
   templateUrl: './hero.component.html',
-  imports: [IconsComponent, HeroBg, ButtonComponent, TranslatePipe],
+  imports: [HeroBg, ButtonComponent, TranslatePipe, ImageComponent],
 })
 export class HomeHeroComponent implements AfterViewInit {
+  private readonly languageService = inject(LanguageService);
+  lang = this.languageService.currentLang;
   readonly heroData = input<HomeHero>();
   readonly countersData = input<HomeCounter[]>();
 
@@ -38,12 +42,7 @@ export class HomeHeroComponent implements AfterViewInit {
     }
   }
 
-  readonly stats: HeroStat[] = [
-    { icon: 'orangeClock', valueKey: 'HERO.STAT_1_NUMBER', labelKey: 'HERO.STAT_1_LABEL' },
-    { icon: 'orangeBuild', valueKey: 'HERO.STAT_2_NUMBER', labelKey: 'HERO.STAT_2_LABEL' },
-    { icon: 'orangeI18n', valueKey: 'HERO.STAT_3_NUMBER', labelKey: 'HERO.STAT_3_LABEL' },
-    { icon: 'orangeAvatar', valueKey: 'HERO.STAT_4_NUMBER', labelKey: 'HERO.STAT_4_LABEL' },
-  ];
+
 
   scrollToNext(): void {
     this.position.scrollToAnchor('about');

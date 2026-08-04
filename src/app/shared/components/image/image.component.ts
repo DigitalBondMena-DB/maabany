@@ -10,7 +10,8 @@ import { NgOptimizedImage } from '@angular/common';
     '[class.block]': 'isFill()',
     '[class.inline-block]': '!isFill()',
     '[style.width]': 'width() ? (width() + "px") : (isFill() ? "100%" : "auto")',
-    '[style.height]': 'height() ? (height() + "px") : (isFill() ? "100%" : "auto")',
+    '[style.height]': 'height() ? (height() + "px") : (isFill() ? "100%" : "auto")'
+
   },
   template: `
     @if (placeholder() && !isLoaded()) {
@@ -27,7 +28,7 @@ import { NgOptimizedImage } from '@angular/common';
         [loading]="priority() ? undefined : loading()"
         [decoding]="priority() ? 'sync' : 'async'"
         fill
-        [style.object-fit]="objectFit()"
+        [style.object-fit]="objectFitSignal()"
         [class.opacity-0]="!isLoaded()"
         [class.opacity-100]="isLoaded()"
         [class]="classes()"
@@ -44,9 +45,11 @@ import { NgOptimizedImage } from '@angular/common';
         [decoding]="priority() ? 'sync' : 'async'"
         [width]="width()"
         [height]="height()"
-        [style.object-fit]="objectFit()"
+        [style.object-fit]="objectFitSignal()"
         [class.opacity-0]="!isLoaded()"
         [class.opacity-100]="isLoaded()"
+        [style.width]="width() ? (width() + 'px') : '100%'"
+        [style.height]="height() ? (height() + 'px') : '100%'"
         [class]="classes()"
         (load)="onLoad()"
         (error)="onError()"
@@ -69,6 +72,7 @@ export class ImageComponent {
 
   readonly isLoaded = signal(false);
 
+  readonly objectFitSignal = linkedSignal(this.objectFit);
   readonly currentSrc = linkedSignal({
     source: this.src,
     computation: (src) => src,
@@ -83,6 +87,7 @@ export class ImageComponent {
   onError() {
     if (this.currentSrc() !== this.fallback()) {
       this.currentSrc.set(this.fallback());
+      this.objectFitSignal.set('contain');
     }
   }
 }

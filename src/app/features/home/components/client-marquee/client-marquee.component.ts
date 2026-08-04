@@ -1,7 +1,8 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, inject, input, PLATFORM_ID } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ImageComponent } from "../../../../shared/components/image/image.component";
 import { HomePartner, HomeClient } from '../../models/home-api.model';
+import { isPlatformServer } from '@angular/common';
 
 export interface MarqueeItem {
   name: string;
@@ -59,48 +60,23 @@ export class ClientMarqueeComponent {
   readonly apiPartners = input<HomePartner[]>();
   readonly apiClients = input<HomeClient[]>();
 
-  readonly defaultPartners: MarqueeItem[] = [
-    { name: 'Ministry of Housing', text: 'MINISTRY OF HOUSING' },
-    { name: 'Diriyah Gate Development', text: 'DIRIYAH GATE' },
-    { name: 'Royal Commission for Riyadh', text: 'RCRC RIYADH' },
-    { name: 'MODON Industrial Cities', text: 'MODON CITIES' },
-    { name: 'KAFD Financial District', text: 'KAFD RIYADH' },
-  ];
-
-  readonly defaultClients: MarqueeItem[] = [
-    { name: 'Aramco', text: 'ARAMCO' },
-    { name: 'NEOM', text: 'NEOM' },
-    { name: 'Red Sea Global', text: 'RED SEA GLOBAL' },
-    { name: 'Qiddiya', text: 'QIDDIYA' },
-    { name: 'ROSHN', text: 'ROSHN' },
-  ];
-
-  readonly partnersList = computed(() => {
-    const api = this.apiPartners();
-    if (api && api.length > 0) {
-      return api.map(p => ({ name: `Partner ${p.id}`, text: `PARTNER ${p.id}`, logo: p.logo }));
-    }
-    return this.customPartners() || this.defaultPartners;
-  });
-
-  readonly clientsList = computed(() => {
-    const api = this.apiClients();
-    if (api && api.length > 0) {
-      return api.map(c => ({ name: `Client ${c.id}`, text: `CLIENT ${c.id}`, logo: c.logo }));
-    }
-    return this.customClients() || this.defaultClients;
-  });
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly isServer = isPlatformServer(this.platformId);
 
   readonly repeatedPartners = computed(() => {
-    const list = this.partnersList();
+    const list = (this.apiPartners()?.length ? this.apiPartners() : this.customPartners()) || [];
+    if (list.length === 0) return [];
+    if (this.isServer) return list;
     return [...list, ...list, ...list, ...list, ...list, ...list];
   });
 
   readonly repeatedClients = computed(() => {
-    const list = this.clientsList();
+    const list = (this.apiClients()?.length ? this.apiClients() : this.customClients()) || [];
+    if (list.length === 0) return [];
+    if (this.isServer) return list;
     return [...list, ...list, ...list, ...list, ...list, ...list];
   });
 
-  readonly partnersDuration = computed(() => `${this.partnersList().length * 6}s`);
-  readonly clientsDuration = computed(() => `${this.clientsList().length * 6}s`);
+  readonly partnersDuration = computed(() => `${this.repeatedPartners().length * 2}s`);
+  readonly clientsDuration = computed(() => `${this.repeatedClients().length * 2}s`);
 }

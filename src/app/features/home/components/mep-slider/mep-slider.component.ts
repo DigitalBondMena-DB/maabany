@@ -12,7 +12,9 @@ import { ImageComponent } from '../../../../shared/components/image/image.compon
 export class MepSliderComponent {
   readonly images = input<string[]>([]);
   readonly activeIdx = signal<number>(0);
-
+  ngOnInit() {
+    console.log(this.images());
+  }
   prev(e: MouseEvent): void {
     e.preventDefault();
     e.stopPropagation();

@@ -19,27 +19,25 @@
         REGIONAL CONNECTIONS // MAABANY_NET
       </div>
 
+      @if (activeBranch(); as branch) {
       <div
         class="absolute bottom-2.5 right-3.5 font-mono text-[9px] text-primary/90 tracking-widest animate-pulse font-bold flex items-center gap-1.5">
-        <img [src]="'https://flagcdn.com/w40/' + activeBranch().code.toLowerCase() + '.png'" [alt]="activeBranch().code"
+        <img [src]="'https://flagcdn.com/w40/' + branch.code.toLowerCase() + '.png'" [alt]="branch.code"
           class="w-4 h-3 object-cover rounded-2xs border border-neutral-700 shrink-0" />
         <span>• {{ selectedBranch() }} ACTIVE_NODE</span>
       </div>
+      }
 
       <!-- Tooltip -->
-      @if (hoveredBranch()) {
+      @if (hoveredBranchInfo(); as hovered) {
       <div
         class="absolute bg-neutral-900/95 backdrop-blur-xs text-[10px] text-white font-mono font-bold px-2.5 py-1.5 rounded-lg border border-neutral-700/80 pointer-events-none z-30 shadow-lg transition-all duration-150 flex items-center gap-1.5"
-        [style.left]="hoveredBranch() === 'SA' ? '260px' : hoveredBranch() === 'EG' ? '160px' : '60px'"
-        [style.top]="hoveredBranch() === 'SA' ? '15px' : hoveredBranch() === 'EG' ? '18px' : '25px'"
+        [style.left]="hovered.coordinates.x + 'px'"
+        [style.top]="(hovered.code === 'SA' ? '15px' : hovered.code === 'EG' ? '18px' : '25px')"
         style="transform: translateX(-50%);">
-        <img [src]="'https://flagcdn.com/w40/' + hoveredBranch()?.toLowerCase() + '.png'" [alt]="hoveredBranch() || ''"
+        <img [src]="'https://flagcdn.com/w40/' + hovered.code.toLowerCase() + '.png'" [alt]="hovered.officeName"
           class="w-4 h-3 object-cover rounded-2xs shrink-0" />
-        <span>
-          @if (hoveredBranch() === 'SA') { KSA (Riyadh Headquarters) }
-          @else if (hoveredBranch() === 'EG') { Egypt (Cairo Branch) }
-          @else if (hoveredBranch() === 'LY') { Libya (Tripoli Branch) }
-        </span>
+        <span>{{ hovered.officeName }}</span>
       </div>
       }
 
@@ -65,7 +63,7 @@
           [style.opacity]="selectedBranch() === 'SA' || selectedBranch() === 'EG' ? 0.85 : 0.25" />
 
         <!-- Interactive Pins -->
-        @for (node of defaultBranches; track node.code) {
+        @for (node of branches(); track node.id) {
         <g class="cursor-pointer group" (click)="onSelect(node.code)" (mouseenter)="onHover(node.code)"
           (mouseleave)="onHover(null)">
           @if (selectedBranch() === node.code) {
@@ -99,6 +97,7 @@
     </div>
 
     <!-- Unified Regional Office Info Block (Matches React exact layout) -->
+    @if (activeBranch(); as branch) {
     <div class="relative space-y-6 pt-2">
       <!-- Office Profile Title -->
       <div class="space-y-1">
@@ -106,16 +105,17 @@
           OFFICE PROFILE
         </span>
         <h4 class="text-xl font-black text-neutral-900 tracking-tight flex items-center gap-2.5">
-          <img [src]="'https://flagcdn.com/w40/' + activeBranch().code.toLowerCase() + '.png'"
-            [alt]="activeBranch().officeName"
+          <img [src]="'https://flagcdn.com/w40/' + branch.code.toLowerCase() + '.png'"
+            [alt]="branch.officeName"
             class="w-6 h-4.5 object-cover rounded-xs border border-neutral-200/80 shadow-2xs shrink-0" />
-          <span>{{ activeBranch().officeName }}</span>
+          <span>{{ branch.officeName }}</span>
         </h4>
       </div>
 
       <!-- Details List -->
       <div class="space-y-5">
         <!-- Office Address -->
+        @if (branch.address) {
         <div class="flex gap-3.5 items-start">
           <div class="p-1.5 text-primary shrink-0 mt-0.5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -126,11 +126,13 @@
           </div>
           <div class="space-y-0.5">
             <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">OFFICE ADDRESS</p>
-            <p class="text-neutral-700 text-sm leading-relaxed">{{ activeBranch().address }}</p>
+            <p class="text-neutral-700 text-sm leading-relaxed">{{ branch.address }}</p>
           </div>
         </div>
+        }
 
         <!-- Telephone -->
+        @if (branch.phone) {
         <div class="flex gap-3.5 items-start">
           <div class="p-1.5 text-primary shrink-0 mt-0.5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -141,14 +143,16 @@
           </div>
           <div class="space-y-0.5">
             <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">TELEPHONE</p>
-            <a [href]="activeBranch().phoneRaw"
+            <a [href]="branch.phoneRaw"
               class="text-neutral-800 text-sm font-mono font-bold block hover:text-primary transition-colors focus:outline-none focus:underline">
-              {{ activeBranch().phone }}
+              {{ branch.phone }}
             </a>
           </div>
         </div>
+        }
 
         <!-- General Inquiries -->
+        @if (branch.email) {
         <div class="flex gap-3.5 items-start">
           <div class="p-1.5 text-primary shrink-0 mt-0.5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -160,14 +164,16 @@
           <div class="space-y-0.5">
             <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">GENERAL INQUIRIES
             </p>
-            <a href="mailto:info@maabany.com"
+            <a [href]="'mailto:' + branch.email"
               class="text-neutral-800 text-sm font-bold block hover:text-primary transition-colors focus:outline-none focus:underline">
-              info@maabany.com
+              {{ branch.email }}
             </a>
           </div>
         </div>
+        }
 
         <!-- Working Hours -->
+        @if (branch.hours) {
         <div class="flex gap-3.5 items-start">
           <div class="p-1.5 text-primary shrink-0 mt-0.5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -178,10 +184,12 @@
           </div>
           <div class="space-y-0.5">
             <p class="font-mono text-[9px] font-extrabold tracking-widest text-neutral-400 uppercase">WORKING HOURS</p>
-            <p class="text-neutral-600 text-xs leading-relaxed font-mono">{{ activeBranch().hours }}</p>
+            <p class="text-neutral-600 text-xs leading-relaxed font-mono">{{ branch.hours }}</p>
           </div>
         </div>
+        }
       </div>
     </div>
+    }
   </div>
 </div>

@@ -3,11 +3,16 @@
     @if (images().length > 0) {
     <app-image [src]="images()[activeIdx()]" alt="MEP Engineering Systems" fill
         classes="w-full h-full object-cover grayscale contrast-115 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out " />
+    } @else {
+    <div class="w-full h-full bg-neutral-100 flex items-center justify-center">
+        <p class="text-neutral-500 font-mono text-sm">No images available</p>
+    </div>
     }
 
     <div class="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-black/65 pointer-events-none"></div>
 
     <!-- Carousel Navigation buttons -->
+    @if (images().length > 0){
     <button type="button" (click)="prev($event)"
         class="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-neutral-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md border border-neutral-100 cursor-pointer z-20 hover:scale-105 active:scale-95"
         title="Previous image">
@@ -36,4 +41,5 @@
         </button>
         }
     </div>
+    }
 </div>

@@ -8,39 +8,26 @@
       <span class="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
         {{ 'PROJECTS.SUBTITLE' | translate }}
       </span>
-      <h2 class="text-3xl md:text-5xl font-black text-neutral-900 uppercase tracking-tight">{{ 'PROJECTS.TITLE' | translate }}</h2>
+      <h2 class="text-3xl md:text-5xl font-black text-neutral-900 uppercase tracking-tight">{{ 'PROJECTS.TITLE' |
+        translate }}</h2>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       @if (projectsData() && projectsData()!.length > 0) {
-        @for (proj of projectsData(); track proj.id) {
-          <app-media-card
-            [title]="proj.title"
-            [desc]="proj.small_description"
-            [image]="proj.cover_image"
-            [link]="'/projects/' + proj.slug"
-            badge="PROJECT"
-            badgePosition="top-left"
-            imageHeight="h-64"
-          />
-        }
+      @for (proj of projectsData(); track proj.id) {
+      <app-media-card [title]="proj.title" [desc]="proj.small_description" [image]="proj.cover_image"
+        [link]="'/' + lang() + '/projects/' + proj.slug" [badge]="proj.project_type" badgePosition="top-left" imageHeight="h-64" />
+      }
       } @else {
-        @for (proj of defaultProjects; track proj.name) {
-          <app-media-card
-            [title]="proj.name"
-            [desc]="proj.desc"
-            [image]="proj.image"
-            [link]="'/projects'"
-            [badge]="proj.category"
-            badgePosition="top-left"
-            imageHeight="h-64"
-          />
-        }
+      <div class="col-span-full">
+        <app-empty-state icon="orangeBuild" title="No Projects Available"
+          description="There are currently no featured projects to display at this moment." badge="PROJECTS // EMPTY" />
+      </div>
       }
     </div>
 
     <div class="mt-16 flex justify-center">
-      <a routerLink="/projects" app-button [showArrow]="true" variant="outline">
+      <a [routerLink]="['/', lang(), 'projects']" app-button [showArrow]="true" variant="outline">
         {{ 'PROJECTS.EXPLORE_ALL' | translate }}
       </a>
     </div>

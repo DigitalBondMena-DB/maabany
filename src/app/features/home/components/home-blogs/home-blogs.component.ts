@@ -1,10 +1,11 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { MediaCardComponent } from '../../../../shared/components/media-card/media-card.component';
 import { HomeBlog } from '../../models/home-api.model';
+import { LanguageService } from '../../../../core/services/language.service';
 
 export interface HomeBlogPost {
   slug: string;
@@ -20,6 +21,9 @@ export interface HomeBlogPost {
   templateUrl: './home-blogs.component.html',
 })
 export class HomeBlogsComponent {
+  private readonly languageService = inject(LanguageService);
+
+  readonly lang = this.languageService.currentLang;
   readonly blogsData = input<HomeBlog[]>();
 
   readonly defaultBlogs: HomeBlogPost[] = [

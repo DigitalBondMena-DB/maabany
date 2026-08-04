@@ -12,6 +12,7 @@ export class ContactSectionComponent {
   readonly branchesData = input<HomeBranch[]>();
   readonly selectedBranch = signal<BranchCode>('SA');
 
+
   onBranchSelect(branch: BranchCode): void {
     this.selectedBranch.set(branch);
   }
