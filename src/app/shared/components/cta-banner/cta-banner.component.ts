@@ -40,6 +40,7 @@ import { WebInfoService } from '../../../core/services/web-info.service';
     .bp-fade-slow {
       animation: blueprintFade 6s ease-in-out infinite;
     }
+    
   `]
 })
 export class CtaBannerComponent {

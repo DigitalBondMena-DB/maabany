@@ -1,23 +1,70 @@
+@if (aboutService.isLoading()) {
+<app-skeleton>
+  <div class="w-full max-w-350 mx-auto"
+    style="padding-left: var(--outer-padding-x); padding-right: var(--outer-padding-x); padding-top: var(--outer-padding-top); padding-bottom: var(--outer-padding-bottom);">
+    <section
+      class="relative w-full h-95 md:h-115 lg:h-135 flex flex-col justify-center overflow-hidden bg-neutral-100 shadow-xl"
+      style="border-radius: var(--hero-border-radius, 40px)">
+      <div class="relative max-w-350 w-full mx-auto px-6 space-y-4">
+        <div class="skeleton-item h-4 w-32 rounded-md"></div>
+        <div class="skeleton-item h-16 w-3/4 rounded-xl"></div>
+        <div class="skeleton-item h-12 w-1/2 rounded-xl"></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="py-12 md:py-20 lg:py-24 bg-white">
+    <div class="max-w-350 mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="skeleton-item h-112 rounded-3xl w-full"></div>
+      <div class="space-y-6">
+        <div class="skeleton-item h-4 w-24 rounded-md"></div>
+        <div class="skeleton-item h-10 w-3/4 rounded-xl"></div>
+        <div class="skeleton-item h-24 w-full rounded-xl"></div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="skeleton-item h-16 rounded-2xl"></div>
+          <div class="skeleton-item h-16 rounded-2xl"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</app-skeleton>
+} @else {
 <div class="relative bg-white text-neutral-900 min-h-screen">
   <!-- 1. Shared Page Hero Section -->
   <app-page-hero 
-    title="Building Beyond Expectations"
-    categoryBadge="About"
-    heroImage="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80"
-  />
+    [title]="aboutService.about()?.banner_title || ('ABOUT_PAGE.WHO_WE_ARE' | translate)" 
+    categoryBadge="NAV.ABOUT"
+    [heroImage]="aboutService.about()?.banner_image || 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80'" />
 
   <!-- 2. Company Overview -->
-  <app-about-overview />
+  <app-about-overview [aboutData]="aboutService.about()" />
 
   <!-- 3. Statistics -->
-  <app-about-stats />
+  <app-about-stats [countersData]="aboutService.counters()" />
 
   <!-- 4. Mission / Vision / Values -->
-  <app-about-values />
+  <app-about-values [aboutData]="aboutService.about()" />
 
-  <!-- 5. Our Partners Section (Using Marquee) -->
-  <app-client-marquee />
+  <!-- 5. Partners Marquee -->
+  <app-client-marquee 
+    [apiPartners]="aboutService.partners()" 
+    sliderPadding="py-12" 
+    title="CLIENT_MARQUEE.OUR_PARTNERS"
+    subtitle="CLIENT_MARQUEE.TRUSTED_BY_THE_BEST" />
 
-  <!-- 6. Shared CTA Banner Section -->
+  <!-- 6. Why Choose Us -->
+  <app-about-why-choose-us 
+    [whyChooseUsData]="aboutService.whyChooseUs()"
+    [aboutInfoWhyChooseUs]="aboutService.about()?.why_choose_us" />
+
+  <!-- 7. Clients Marquee -->
+  <app-client-marquee 
+    [apiClients]="aboutService.clients()" 
+    sliderPadding="py-12" 
+    subtitle="CLIENT_MARQUEE.BUILDING_WITH_EXCELLENCE"
+    title="CLIENT_MARQUEE.OUR_CLIENTS" />
+
+  <!-- 8. Shared CTA Banner Section -->
   <app-cta-banner />
 </div>
+}

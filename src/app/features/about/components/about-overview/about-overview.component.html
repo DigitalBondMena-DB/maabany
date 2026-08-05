@@ -11,7 +11,7 @@
 
       <!-- Left Image -->
       <div class="relative rounded-3xl overflow-hidden aspect-square md:aspect-4/3 lg:aspect-4/3 shadow-2xl">
-        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80"
+        <img [src]="aboutData()?.about_image || 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80'"
           alt="Maabany Architecture" class="w-full h-full object-cover" />
         <div class="absolute inset-0 border border-black/10 rounded-3xl z-10 pointer-events-none"></div>
       </div>
@@ -29,15 +29,15 @@
               {{ 'ABOUT_PAGE.WHO_WE_ARE' | translate }}
             </span>
             <h2 class="text-4xl md:text-5xl font-black text-neutral-900 tracking-tighter uppercase leading-[1.1]">
-              {{ 'ABOUT_PAGE.ABOUT_MAABANY' | translate }}
+              {{ aboutData()?.title || ('ABOUT_PAGE.ABOUT_MAABANY' | translate) }}
             </h2>
-            <p class="mt-6 text-neutral-600 leading-relaxed text-lg">
-              {{ 'ABOUT_PAGE.COMPANY_DESC' | translate }}
+            <p class="mt-6 text-neutral-600 leading-relaxed text-lg whitespace-pre-line">
+              {{ aboutData()?.description || ('ABOUT_PAGE.COMPANY_DESC' | translate) }}
             </p>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            @for (item of features; track item.titleKey) {
+            @for (item of defaultFeatures; track item.titleKey) {
             <div
               class="relative flex items-center gap-4 bg-white/80 backdrop-blur-sm border border-neutral-200/80 p-4 rounded-2xl overflow-hidden group transition-all duration-300 hover:border-primary hover:-translate-y-1 hover:shadow-xl">
               <div

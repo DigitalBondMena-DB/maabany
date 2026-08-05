@@ -45,8 +45,6 @@ export interface MarqueeItem {
 })
 export class ClientMarqueeComponent {
   readonly showHeading = input<boolean>(true);
-  readonly showPartners = input<boolean>(true);
-  readonly showClients = input<boolean>(true);
   readonly sliderPadding = input<string>('py-4');
   readonly sectionPadding = input<string>('py-12 md:py-20 lg:py-24');
   readonly title = input<string>('Our Partners & Clients');

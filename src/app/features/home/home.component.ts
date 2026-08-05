@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { HomeHeroComponent } from './components/hero/hero.component';
 import { HomeAboutComponent } from './components/about/about.component';
 import { WhyChooseUsComponent } from './components/why-choose-us/why-choose-us.component';
@@ -11,6 +11,7 @@ import { CtaBannerComponent } from '../../shared/components/cta-banner/cta-banne
 import { ContactSectionComponent } from './components/contact-section/contact-section.component';
 import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.component';
 import { HomeService } from './services/home.service';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-home',
@@ -31,4 +32,14 @@ import { HomeService } from './services/home.service';
 })
 export class HomeComponent {
   protected readonly homeService = inject(HomeService);
+  private readonly seoService = inject(SeoService);
+  constructor() {
+    effect(() => {
+      const response = this.homeService;
+      if (response?.seo()) {
+        console.log(response.seo());
+        this.seoService.updateSeo(response.seo()!);
+      }
+    });
+  }
 }

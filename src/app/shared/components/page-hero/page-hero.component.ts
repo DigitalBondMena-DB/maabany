@@ -1,7 +1,8 @@
-import { Component, input, computed } from '@angular/core';
+import { Component, input, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ImageComponent } from "../image/image.component";
+import { LanguageService } from '../../../core/services/language.service';
 
 @Component({
   selector: 'app-page-hero',
@@ -9,6 +10,8 @@ import { ImageComponent } from "../image/image.component";
   templateUrl: './page-hero.component.html',
 })
 export class PageHeroComponent {
+  private readonly languageService = inject(LanguageService);
+  readonly lang = computed(() => this.languageService.currentLang());
   readonly title = input<string>('');
   readonly titleHighlight = input<string>('');
   readonly highlightTitle = input<boolean>(true);

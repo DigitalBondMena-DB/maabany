@@ -16,7 +16,7 @@ export class WebInfoService {
     },
   }));
 
-  readonly infoData = computed(() => this.infoResource.value()?.data);
+  readonly infoData = computed(() => (this.infoResource.hasValue() ? this.infoResource.value()?.data : undefined));
   readonly footerDescription = computed(() => this.infoData()?.footer_description ?? '');
   readonly socialLinks = computed(() => this.infoData()?.social_media_links);
   readonly email = computed(() => this.infoData()?.email ?? '');

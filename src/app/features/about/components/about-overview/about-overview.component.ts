@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ImageComponent } from "../../../../shared/components/image/image.component";
 import { SafeHtmlPipe } from '../../../../shared/pipes/safe-html-pipe';
 import { FloatingWireframeComponent } from "../../../../shared/components/floating-wireframe/floating-wireframe.component";
+import { AboutInfo } from '../../models/about-api.model';
 
 export interface OverviewFeature {
   titleKey: string;
@@ -15,7 +16,9 @@ export interface OverviewFeature {
   templateUrl: './about-overview.component.html',
 })
 export class AboutOverviewComponent {
-  readonly features: OverviewFeature[] = [
+  readonly aboutData = input<AboutInfo | undefined>(undefined);
+
+  readonly defaultFeatures: OverviewFeature[] = [
     {
       titleKey: 'ABOUT_PAGE.ESTABLISHED_2013',
       iconSvg: `

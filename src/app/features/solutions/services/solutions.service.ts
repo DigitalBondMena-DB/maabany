@@ -18,7 +18,7 @@ export class SolutionsService {
     },
   }));
 
-  readonly solutionTypesData = computed(() => this.solutionTypesResource.value()?.data);
+  readonly solutionTypesData = computed(() => (this.solutionTypesResource.hasValue() ? this.solutionTypesResource.value()?.data : undefined));
   readonly solutionTypes = computed(() => this.solutionTypesData()?.solutions ?? []);
   readonly isLoading = computed(() => this.solutionTypesResource.isLoading());
   readonly error = computed(() => this.solutionTypesResource.error());

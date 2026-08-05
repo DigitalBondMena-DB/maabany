@@ -17,7 +17,7 @@ export class HomeService {
     }
   }));
 
-  readonly homeData = computed(() => this.homeResource.value()?.data);
+  readonly homeData = computed(() => (this.homeResource.hasValue() ? this.homeResource.value()?.data : undefined));
   readonly hero = computed(() => this.homeData()?.hero);
   readonly counters = computed(() => this.homeData()?.counters ?? []);
   readonly about = computed(() => this.homeData()?.about);
@@ -29,6 +29,7 @@ export class HomeService {
   readonly testimonials = computed(() => this.homeData()?.testimonials ?? []);
   readonly blogs = computed(() => this.homeData()?.blogs ?? []);
   readonly branches = computed(() => this.homeData()?.branches ?? []);
+  readonly seo = computed(() => this.homeData()?.seo);
   readonly isLoading = computed(() => this.homeResource.isLoading());
   readonly error = computed(() => this.homeResource.error());
 }

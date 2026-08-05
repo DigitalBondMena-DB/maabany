@@ -146,7 +146,7 @@
       <ul class="grid grid-cols-1 gap-3.5">
         @for (link of quickLinks; track link.path) {
         <li>
-          <a [routerLink]="link.path"
+          <a [routerLink]="link.path ? ['/', lang, link.path] : ['/', lang]"
             class="text-[15px] text-white/80 hover:text-primary transition-all duration-300 inline-flex items-center gap-2 group relative py-1">
             <span
               class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>

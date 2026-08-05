@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Direction, SupportedLanguage } from '../../shared/models/language.interface';
+import { StorageService } from './storage.service';
 
 
 
@@ -11,6 +12,8 @@ export class LanguageService {
   private readonly translate = inject(TranslateService);
   private readonly _DOCUMENT = inject(DOCUMENT);
   private readonly router = inject(Router);
+
+  private readonly storageService = inject(StorageService);
 
   readonly currentLang = signal<SupportedLanguage>(this.getInitialLang());
   readonly dir = signal<Direction>(this.currentLang() === 'ar' ? 'rtl' : 'ltr');
@@ -45,12 +48,17 @@ export class LanguageService {
   }
 
   getBrowserOrSavedLang(): SupportedLanguage {
+    const saved = this.storageService.getItem('app_lang');
+    if (saved === 'ar' || saved === 'en') {
+      return saved as SupportedLanguage;
+    }
     const browserLang = this.translate.getBrowserLang();
     return browserLang?.match(/en|ar/) ? (browserLang as SupportedLanguage) : 'en';
   }
 
   setLanguage(lang: SupportedLanguage): void {
     this.translate.use(lang);
+    this.storageService.setItem('app_lang', lang);
     if (this.currentLang() !== lang) {
       this.currentLang.set(lang);
     }
@@ -86,8 +94,14 @@ export class LanguageService {
   switchLanguage(targetLang: SupportedLanguage): void {
     const currentUrl = this.router.url || '/en';
     const rawPath = currentUrl.split('?')[0].split('#')[0];
-    const queryAndHash = currentUrl.substring(rawPath.length);
     const segments = rawPath.split('/').filter(Boolean);
+
+    if (segments.includes('search')) {
+      this.router.navigateByUrl(`/${targetLang}`);
+      return;
+    }
+
+    const queryAndHash = currentUrl.substring(rawPath.length);
 
     if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'ar')) {
       segments[0] = targetLang;

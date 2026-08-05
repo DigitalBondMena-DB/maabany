@@ -1,3 +1,5 @@
+import { SeoData } from "../../../core/models/seo.interface";
+
 export interface ApiResponse<T> {
   success: boolean;
   message: string;
@@ -115,4 +117,5 @@ export interface HomeData {
   blogs: HomeBlog[];
   company_profile: any;
   branches: HomeBranch[];
+  seo: SeoData;
 }

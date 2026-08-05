@@ -188,5 +188,15 @@
     "ADVANTAGE_4_DESC": "Deploying the latest in BIM modeling, drone surveying, and automated safety monitoring.",
     "ADVANTAGE_5_TITLE": "Safety Commitment",
     "ADVANTAGE_5_DESC": "Zero-tolerance safety culture with comprehensive on-site health matrices."
+  },
+  "CLIENT_MARQUEE": {
+    "OUR_PARTNERS": "Our Partners",
+    "TRUSTED_BY_THE_BEST": "Trusted by the Best",
+    "OUR_CLIENTS": "Our Clients",
+    "BUILDING_WITH_EXCELLENCE": "Building with Excellence"
+  },
+  "ERRORS": {
+    "TIMEOUT": "The request timed out. Please try again later.",
+    "GENERIC": "An unexpected error occurred. Please try again."
   }
 }

@@ -14,7 +14,7 @@
 
     <div class="flex flex-col gap-18">
       <!-- Partners Infinite Marquee Strip Left -->
-      @if (showPartners()) {
+      @if ((apiPartners()?.length ?? 0) > 0) {
       <div [class]="'relative w-full overflow-hidden border-y border-neutral-200 bg-neutral-50/80 ' + sliderPadding()">
         <div class="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-white to-transparent z-10 pointer-events-none">
         </div>
@@ -33,7 +33,7 @@
       }
 
       <!-- Clients Infinite Marquee Strip Right -->
-      @if (showClients()) {
+      @if ((apiClients()?.length ?? 0) > 0) {
       <div [class]="'relative w-full overflow-hidden border-y border-neutral-200 bg-neutral-50/80 ' + sliderPadding()">
         <div class="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-white to-transparent z-10 pointer-events-none">
         </div>

@@ -10,10 +10,10 @@
         {{ 'ABOUT_PAGE.CORE_ADVANTAGES' | translate }}
       </span>
       <h2 class="text-4xl md:text-5xl font-black text-neutral-900 tracking-tighter uppercase leading-[1.1]">
-        {{ 'ABOUT_PAGE.WHY_CHOOSE_MAABANY' | translate }}
+        {{ title() | translate }}
       </h2>
-      <p class="mt-4 text-neutral-600 leading-relaxed font-light text-lg">
-        {{ 'ABOUT_PAGE.WHY_CHOOSE_SUBTITLE' | translate }}
+      <p class="mt-4 text-neutral-600 leading-relaxed font-light text-lg whitespace-pre-line">
+        {{ description() | translate }}
       </p>
     </div>
 
@@ -24,7 +24,7 @@
           <div
             class="rounded-[2.5rem] overflow-hidden flex-1 h-full min-h-112.5 lg:h-full relative shadow-2xl border border-neutral-200/50 group bg-neutral-100">
             <app-image
-              src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&w=800&q=80"
+              [src]="sectionImage()"
               alt="Engineering detail"
               class="transition-transform duration-700 group-hover:scale-105 will-change-transform" />
             <div
@@ -36,7 +36,7 @@
 
       <!-- Right column for cards -->
       <div class="lg:col-span-7 space-y-4">
-        @for (feature of advantages; track feature.titleKey) {
+        @for (feature of cards(); track $index) {
         <div
           class="group bg-white border border-neutral-200/80 p-6 rounded-[1.75rem] transition-all duration-300 relative overflow-hidden hover:border-primary hover:-translate-y-1 hover:shadow-xl cursor-default">
           <div
@@ -44,20 +44,24 @@
           </div>
 
           <div class="flex gap-6 relative z-10 items-start sm:items-center">
+            @if (feature.image) {
             <div class="shrink-0">
-              <div [innerHTML]="feature.iconSvg | safeHtml"
+              <div
                 class="w-12 h-12 rounded-2xl bg-neutral-50 border border-neutral-150 text-primary flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 shadow-sm group-hover:shadow-primary/20">
-
+                <app-image [src]="feature.image" [width]="24" [height]="24" alt="card icon" objectFit="contain" />
               </div>
             </div>
+            }
             <div>
               <h4
                 class="text-lg font-bold text-neutral-900 tracking-tight mb-1 group-hover:text-primary transition-colors">
-                {{ feature.titleKey | translate }}
+                {{ feature.title | translate }}
               </h4>
-              <p class="text-neutral-600 text-sm leading-relaxed font-light">
-                {{ feature.descKey | translate }}
+              @if (feature.description) {
+              <p class="text-neutral-600 text-sm leading-relaxed font-light whitespace-pre-line">
+                {{ feature.description | translate }}
               </p>
+              }
             </div>
           </div>
         </div>
