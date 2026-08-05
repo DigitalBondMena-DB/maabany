@@ -1,3 +1,4 @@
+@if (items() && items()!.length > 0) {
 <section class="bg-neutral-50 border-t border-neutral-200 py-12 md:py-20 lg:py-24">
   <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
     
@@ -13,13 +14,13 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      @for (p of otherProjects(); track p.slug) {
+      @for (p of items(); track p.slug) {
         <app-media-card
-          [title]="p.name"
-          [desc]="p.desc"
-          [image]="p.image"
+          [title]="p.title"
+          [desc]="p.small_description"
+          [image]="p.cover_image"
           [link]="'/' + currentLang() + '/projects/' + p.slug"
-          [badge]="p.category"
+          [badge]="p.industry_title"
           badgePosition="top-left"
           imageHeight="h-48"
         />
@@ -28,3 +29,4 @@
 
   </div>
 </section>
+}

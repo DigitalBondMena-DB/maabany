@@ -1,13 +1,46 @@
+@if (projectDetailsService.isLoading()) {
+<app-skeleton>
+  <div class="w-full max-w-350 mx-auto"
+    style="padding-left: var(--outer-padding-x); padding-right: var(--outer-padding-x); padding-top: var(--outer-padding-top); padding-bottom: var(--outer-padding-bottom);">
+    <section
+      class="relative w-full h-95 md:h-115 lg:h-135 flex flex-col justify-center overflow-hidden bg-neutral-100 shadow-xl"
+      style="border-radius: var(--hero-border-radius, 40px)">
+      <div class="relative max-w-350 w-full mx-auto px-6 space-y-4">
+        <div class="skeleton-item h-4 w-32 rounded-md"></div>
+        <div class="skeleton-item h-16 w-3/4 rounded-xl"></div>
+        <div class="skeleton-item h-12 w-1/2 rounded-xl"></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="py-12 md:py-20 lg:py-24 bg-white">
+    <div class="max-w-350 mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="skeleton-item h-8 w-48 rounded-md"></div>
+        <div class="skeleton-item h-12 w-full rounded-xl"></div>
+        <div class="skeleton-item h-40 w-full rounded-xl"></div>
+      </div>
+      <div class="lg:col-span-5">
+        <div class="skeleton-item h-100 rounded-3xl w-full"></div>
+      </div>
+    </div>
+  </section>
+</app-skeleton>
+} @else {
 <div class="relative bg-white text-neutral-900 min-h-screen">
   <!-- 1. Hero Header Section -->
-  <app-page-hero [title]="currentProject().name" [categoryBadge]="'Projects' | translate"
-    [heroImage]="currentProject().image" />
+  <app-page-hero 
+    [title]="projectData()?.title || ''" 
+    [categoryBadge]="projectData()?.industry_title || ('NAV.PROJECTS' | translate)"
+    [heroImage]="projectData()?.cover_image || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80'" />
 
   <!-- 2. Project Specification Metrics Panel -->
-  <app-project-metrics [project]="currentProject()" />
+  <app-project-metrics [projectDetails]="projectData()" />
 
   <!-- 3. Cinematic Multi-Image Slider Component -->
-  <app-project-slider [images]="projectImages()" [projectName]="currentProject().name" />
+  @if (projectImages().length > 0) {
+  <app-project-slider [images]="projectImages()" [projectName]="projectData()?.title || ''" />
+  }
 
   <!-- 4. Project Details: Two-Column Editorial Layout -->
   <section class="bg-white relative pt-4 pb-12 mt-0">
@@ -24,34 +57,29 @@
           </div>
 
           <h2 class="text-3xl sm:text-4xl font-black text-neutral-900 tracking-tight uppercase leading-none font-mono">
-            {{ 'Delivering High-Precision Engineering Solutions' | translate }}
+            {{ projectData()?.title }}
           </h2>
 
-          <div class="text-neutral-700 leading-relaxed font-light text-base md:text-lg space-y-6">
+          <div class="text-neutral-700 leading-relaxed font-light text-base md:text-lg space-y-6 whitespace-pre-line">
             <p>
-              Every layout element in <strong>{{ currentProject().name }}</strong> was engineered to meet structural,
-              spatial, and functional specifications under a zero-delay plan. Sourced materials and smart HVAC designs
-              ensure that the facility excels in daily operational performance.
-            </p>
-            <p>
-              At Maabany, we utilize state-of-the-art technologies and robust engineering methodologies to ensure that
-              every stage of our work complies with the highest international protocols of quality, safety, and modern
-              performance standards.
+              {{ projectData()?.full_description }}
             </p>
           </div>
 
           <!-- View Project Gallery Button Component -->
+          @if (projectImages().length > 0) {
           <div class="pt-4">
             <app-project-gallery-button (buttonClick)="openGallery()" [imageCount]="projectImages().length"
               [label]="'View Project Gallery'" />
           </div>
+          }
         </div>
 
         <!-- Right Column (Floating Specification Form with Shared Contact Form) -->
         <div class="lg:col-span-5 lg:sticky lg:top-32">
           <app-contact-form [pageSlug]="'projects-' + slug()"
             [formTitle]="'Ask about this Project'"
-            [formSubtitle]="'Inquire directly regarding ' + currentProject().name"
+            [formSubtitle]="'Inquire directly regarding ' + (projectData()?.title || '')"
             [cardClasses]="'bg-neutral-50/90 backdrop-blur-xl border border-neutral-200/80 rounded-3xl p-8 shadow-xl relative overflow-hidden'" />
         </div>
 
@@ -60,12 +88,15 @@
   </section>
 
   <!-- Gallery Lightbox Modal Component -->
-  <app-project-lightbox [isOpen]="isGalleryOpen()" [images]="projectImages()" [projectTitle]="currentProject().name"
+  @if (projectImages().length > 0) {
+  <app-project-lightbox [isOpen]="isGalleryOpen()" [images]="projectImages()" [projectTitle]="projectData()?.title || ''"
     (close)="closeGallery()" />
+  }
 
   <!-- 5. Recommended Projects Grid -->
-  <app-other-projects [currentSlug]="slug()" />
+  <app-other-projects [items]="projectData()?.other_projects" />
 
   <!-- 6. CTA Banner -->
   <app-cta-banner />
 </div>
+}

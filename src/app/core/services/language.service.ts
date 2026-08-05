@@ -70,10 +70,13 @@ export class LanguageService {
     }
   }
 
+  readonly alternateSlug = signal<string | null>(null);
+
   private listenToRouteChanges(): void {
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe((event) => {
+        this.alternateSlug.set(null);
         const url = event.urlAfterRedirects || event.url;
         if (!url) return;
         const segments = url.split('?')[0].split('#')[0].split('/').filter(Boolean);
@@ -109,8 +112,13 @@ export class LanguageService {
       segments.unshift(targetLang);
     }
 
+    const altSlug = this.alternateSlug();
+    if (altSlug && segments.length >= 3) {
+      segments[segments.length - 1] = altSlug;
+    }
+
     const newUrl = '/' + segments.join('/') + queryAndHash;
-    this.router.navigateByUrl(newUrl, { scroll: 'manual' });
+    this.router.navigateByUrl(newUrl);
   }
 
   getLocalizedPath(path: string): string {

@@ -5,4 +5,6 @@ export const API_ENDPOINTS = {
   solutionTypes: `/solutions-types`,
   search: `/search`,
   info: `/info`,
+  projects: `/projects`,
+  projectTypes: `/projects-types`,
 } as const;

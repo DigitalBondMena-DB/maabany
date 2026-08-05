@@ -1,6 +1,6 @@
 import { Component, input, computed } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ProjectItem } from '../../services/projects-data';
+import { ProjectDetailsData } from '../../models/projects-api.model';
 
 export interface MetricItem {
   label: string;
@@ -31,20 +31,30 @@ export interface MetricItem {
   `
 })
 export class ProjectMetricsComponent {
-  readonly project = input<ProjectItem>();
+  readonly projectDetails = input<ProjectDetailsData>();
   readonly customItems = input<MetricItem[]>();
 
   readonly items = computed<MetricItem[]>(() => {
     if (this.customItems()) {
       return this.customItems()!;
     }
-    const p = this.project();
+    const p = this.projectDetails();
     if (!p) return [];
-    return [
-      { label: 'Location', value: p.location, icon: 'location' },
-      { label: 'Category', value: p.category, icon: 'category' },
-      { label: 'Completion Year', value: p.year, icon: 'calendar' },
-      { label: 'Project Status', value: 'Delivered Successfully', icon: 'status', type: 'status' },
-    ];
+
+    const result: MetricItem[] = [];
+    if (p.Location) {
+      result.push({ label: 'Location', value: p.Location, icon: 'location' });
+    }
+    if (p.industry_title) {
+      result.push({ label: 'Category', value: p.industry_title, icon: 'category' });
+    }
+    if (p['Completion Year']) {
+      result.push({ label: 'Completion Year', value: p['Completion Year'], icon: 'calendar' });
+    }
+    if (p['Project Status']) {
+      result.push({ label: 'Project Status', value: p['Project Status'], icon: 'status', type: 'status' });
+    }
+
+    return result;
   });
 }

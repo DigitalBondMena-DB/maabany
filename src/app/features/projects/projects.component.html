@@ -1,7 +1,38 @@
+@if (projectsService.isTypesLoading() && !projectsService.projectTypes().length) {
+<app-skeleton>
+  <div class="w-full max-w-350 mx-auto"
+    style="padding-left: var(--outer-padding-x); padding-right: var(--outer-padding-x); padding-top: var(--outer-padding-top); padding-bottom: var(--outer-padding-bottom);">
+    <section
+      class="relative w-full h-95 md:h-115 lg:h-135 flex flex-col justify-center overflow-hidden bg-neutral-100 shadow-xl"
+      style="border-radius: var(--hero-border-radius, 40px)">
+      <div class="relative max-w-350 w-full mx-auto px-6 space-y-4">
+        <div class="skeleton-item h-4 w-32 rounded-md"></div>
+        <div class="skeleton-item h-16 w-3/4 rounded-xl"></div>
+        <div class="skeleton-item h-12 w-1/2 rounded-xl"></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="py-12 md:py-20 lg:py-24 bg-white">
+    <div class="max-w-350 mx-auto px-6 space-y-12">
+      <div class="flex gap-3 overflow-hidden">
+        <div class="skeleton-item h-10 w-24 rounded-full"></div>
+        <div class="skeleton-item h-10 w-32 rounded-full"></div>
+        <div class="skeleton-item h-10 w-28 rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div class="skeleton-item h-122 rounded-3xl w-full"></div>
+        <div class="skeleton-item h-122 rounded-3xl w-full"></div>
+        <div class="skeleton-item h-122 rounded-3xl w-full"></div>
+      </div>
+    </div>
+  </section>
+</app-skeleton>
+} @else {
 <div class="relative bg-white text-neutral-900 min-h-screen selection:bg-primary selection:text-white">
   <!-- 1. Hero Header Section -->
-  <app-page-hero [title]="'Engineering Excellence Projects' | translate" [categoryBadge]="'Our Projects' | translate"
-    [heroImage]="'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80'" />
+  <app-page-hero [title]="projectsService.banner()?.title || ('NAV.PROJECTS' | translate)" categoryBadge="NAV.PROJECTS"
+    [heroImage]="projectsService.banner()?.image || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80'" />
 
   <!-- 2. Our Projects Section -->
   <section class="pt-20 md:pt-24 lg:pt-28 pb-12 md:pb-20 lg:pb-24 bg-white" id="projects-section">
@@ -40,24 +71,27 @@
       <div class="mb-12 max-w-full overflow-x-auto scrollbar-none -mx-5 px-5 md:mx-0 md:px-0">
         <div role="tablist" aria-label="Project categories filter" aria-orientation="horizontal"
           class="flex items-center gap-1.5 bg-white p-1.5 rounded-full border border-neutral-200 shadow-xs w-max focus-within:ring-2 focus-within:ring-primary/20">
-          @for (cat of categories(); track cat; let idx = $index) {
-          @let isSelected = selectedCategory() === cat;
-          <button #tabBtn type="button" role="tab" [id]="'tab-' + (cat | lowercase)" [attr.aria-selected]="isSelected"
+          @for (typeItem of projectsService.projectTypes(); track typeItem.id; let idx = $index) {
+          @let isSelected = projectsService.selectedType() === typeItem.slug || (projectsService.selectedType() ===
+          'all' && typeItem.slug === 'all');
+          <button #tabBtn type="button" role="tab" [id]="'tab-' + typeItem.slug" [attr.aria-selected]="isSelected"
             aria-controls="projects-grid-panel" [attr.tabindex]="isSelected ? 0 : -1"
-            (keydown)="onTabKeyDown($event, idx)" (click)="selectCategory(cat)"
+            (keydown)="onTabKeyDown($event, idx)" (click)="selectType(typeItem)"
             [class]="'px-5 py-2.5 rounded-full text-xs font-mono uppercase font-bold tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ' + 
                 (isSelected ? 'bg-primary text-white shadow-xs' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100')">
-            {{ cat | translate }}
+            {{ typeItem.title | translate }}
           </button>
           }
         </div>
       </div>
 
       <!-- Projects Grid Panel (Tabpanel) -->
-      <div id="projects-grid-panel" role="tabpanel" [attr.aria-labelledby]="'tab-' + (selectedCategory() | lowercase)"
-        tabindex="0" class="focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 rounded-3xl">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
-          @for (proj of displayedProjects(); track proj.slug; let idx = $index) {
+      <div id="projects-grid-panel" role="tabpanel" [attr.aria-labelledby]="'tab-' + projectsService.selectedType()"
+        tabindex="0" class="focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 rounded-3xl min-h-[550px] relative">
+        
+        <div [class.opacity-40]="projectsService.isLoading()" [class.pointer-events-none]="projectsService.isLoading()"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 transition-opacity duration-300">
+          @for (proj of projectsService.projects(); track proj.id; let idx = $index) {
           @let isTall = idx % 3 === 1;
 
           <article animate.enter="enter-animation"
@@ -65,7 +99,7 @@
             <!-- Card Navigation Link -->
             <a [routerLink]="'/' + currentLang() + '/projects/' + proj.slug"
               class="absolute inset-0 z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-3xl"
-              [attr.aria-label]="proj.name"></a>
+              [attr.aria-label]="proj.title"></a>
 
             <!-- Orange Border Hover Glow -->
             <div
@@ -74,19 +108,21 @@
 
             <!-- Image Frame -->
             <div class="relative overflow-hidden w-full h-[62%] bg-neutral-950">
-              <app-image [src]="proj.image" [alt]="proj.name"
+              <app-image [src]="proj.cover_image" [alt]="proj.title"
                 class="group-hover:scale-108 transition-transform duration-700 ease-out will-change-transform" />
               <div
                 class="absolute inset-0 bg-linear-to-t from-neutral-950/40 via-transparent to-transparent pointer-events-none">
               </div>
 
               <!-- Category Badge -->
+              @if (proj.project_type) {
               <div
                 class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-neutral-200/80 shadow-xs">
-                <span class="text-[10px] font-mono text-[#142b52] font-bold uppercase">
-                  {{ proj.category | translate }}
+                <span class="text-[10px] font-mono text-[#142b52] font-bold uppercase flex">
+                  {{ proj.project_type | translate }}
                 </span>
               </div>
+              }
             </div>
 
             <!-- Content Area -->
@@ -94,10 +130,10 @@
               <div class="relative z-10 space-y-2">
                 <h3
                   class="text-xl font-bold text-neutral-900 uppercase font-mono transition-colors duration-300 line-clamp-1 group-hover:text-primary">
-                  {{ proj.name | translate }}
+                  {{ proj.title | translate }}
                 </h3>
                 <p class="text-xs text-neutral-500 font-light line-clamp-3 leading-relaxed">
-                  {{ proj.desc | translate }}
+                  {{ proj.small_description | translate }}
                 </p>
               </div>
             </div>
@@ -106,7 +142,7 @@
         </div>
 
         <!-- Empty State -->
-        @if (filteredProjects().length === 0) {
+        @if (!projectsService.isLoading() && projectsService.projects().length === 0) {
         <div class="text-center py-20 bg-neutral-50 rounded-3xl border border-neutral-200">
           <p class="text-lg font-bold uppercase font-mono text-neutral-700">
             {{ 'No projects found' | translate }}
@@ -119,7 +155,10 @@
       </div>
 
       <!-- Reusable Shared Pagination Component -->
-      <app-pagination [currentPage]="currentPage()" [totalPages]="totalPages()" (pageChange)="goToPage($event)" />
+      @if ((projectsService.pagination()?.last_page ?? 1) > 1) {
+      <app-pagination [currentPage]="projectsService.pagination()?.current_page ?? 1"
+        [totalPages]="projectsService.pagination()?.last_page ?? 1" (pageChange)="goToPage($event)" />
+      }
 
     </div>
   </section>
@@ -127,3 +166,4 @@
   <!-- 3. CTA Banner Section -->
   <app-cta-banner />
 </div>
+}

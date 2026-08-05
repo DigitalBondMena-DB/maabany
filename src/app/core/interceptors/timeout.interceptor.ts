@@ -1,13 +1,17 @@
 import { HttpContextToken, HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { TimeoutError, throwError } from 'rxjs';
 import { catchError, timeout } from 'rxjs/operators';
 import { ToastService } from '../services/toast.service';
 import { LanguageService } from '../services/language.service';
 
-/** Default HTTP timeout duration in milliseconds (15 seconds) */
-export const DEFAULT_TIMEOUT_MS = 15000;
+/** Default HTTP timeout duration in milliseconds for Browser (8 seconds) */
+export const DEFAULT_TIMEOUT_MS = 8000;
+
+/** Default HTTP timeout duration in milliseconds for Server SSR (4 seconds) */
+export const DEFAULT_SERVER_TIMEOUT_MS = 4000;
 
 /** Token to specify a custom timeout duration in ms for a specific request */
 export const REQUEST_TIMEOUT = new HttpContextToken<number>(() => DEFAULT_TIMEOUT_MS);
@@ -21,7 +25,14 @@ export const timeoutInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
 
-  const timeoutMs = req.context.get(REQUEST_TIMEOUT);
+  const platformId = inject(PLATFORM_ID);
+  const isBrowser = isPlatformBrowser(platformId);
+
+  const configuredTimeout = req.context.get(REQUEST_TIMEOUT);
+  const timeoutMs = isBrowser
+    ? configuredTimeout
+    : Math.min(configuredTimeout, DEFAULT_SERVER_TIMEOUT_MS);
+
   const toastService = inject(ToastService);
   const translate = inject(TranslateService);
   const langService = inject(LanguageService);
@@ -38,13 +49,16 @@ export const timeoutInterceptor: HttpInterceptorFn = (req, next) => {
         error?.error?.cause?.name === 'ConnectTimeoutError';
 
       if (isTimeout) {
-        const fallbackMsg =
-          langService.currentLang() === 'ar'
-            ? 'استغرقت الاستجابة وقتاً أطول من المتوقع، يرجى المحاولة لاحقاً.'
-            : 'The request timed out. Please try again later.';
-        
-        const message = translate.instant('ERRORS.TIMEOUT') || fallbackMsg;
-        toastService.error(message);
+        // Toast notifications should only be displayed in the browser
+        if (isBrowser) {
+          const fallbackMsg =
+            langService.currentLang() === 'ar'
+              ? 'استغرقت الاستجابة وقتاً أطول من المتوقع، يرجى المحاولة لاحقاً.'
+              : 'The request timed out. Please try again later.';
+
+          const message = translate.instant('ERRORS.TIMEOUT') || fallbackMsg;
+          toastService.error(message);
+        }
 
         // Normalize to HttpErrorResponse if it's an RxJS TimeoutError
         const formattedError =
@@ -64,3 +78,4 @@ export const timeoutInterceptor: HttpInterceptorFn = (req, next) => {
     })
   );
 };
+

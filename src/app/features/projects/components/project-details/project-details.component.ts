@@ -1,4 +1,5 @@
-import { Component, input, computed, signal, inject } from '@angular/core';
+import { Component, input, computed, signal, inject, effect } from '@angular/core';
+import { Location } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PageHeroComponent } from '../../../../shared/components/page-hero/page-hero.component';
@@ -9,7 +10,10 @@ import { OtherProjectsComponent } from '../other-projects/other-projects.compone
 import { ProjectGalleryButtonComponent } from '../../../../shared/components/project-gallery-button/project-gallery-button.component';
 import { ProjectLightboxComponent } from '../../../../shared/components/project-lightbox/project-lightbox.component';
 import { ContactFormComponent } from '../../../../features/home/components/contact-section/contact-form/contact-form.component';
-import { PROJECTS_DATA, ProjectItem } from '../../services/projects-data';
+import { SkeletonComponent } from '../../../../shared/components/skeleton/skeleton.component';
+import { ProjectDetailsService } from '../../services/project-details.service';
+import { SeoService } from '../../../../core/services/seo.service';
+import { LanguageService } from '../../../../core/services/language.service';
 
 @Component({
   selector: 'app-project-details',
@@ -24,13 +28,63 @@ import { PROJECTS_DATA, ProjectItem } from '../../services/projects-data';
     ProjectGalleryButtonComponent,
     ProjectLightboxComponent,
     ContactFormComponent,
+    SkeletonComponent,
   ],
   templateUrl: './project-details.component.html',
 })
 export class ProjectDetailsComponent {
+  protected readonly projectDetailsService = inject(ProjectDetailsService);
+  private readonly seoService = inject(SeoService);
+  private readonly languageService = inject(LanguageService);
+  private readonly location = inject(Location);
   private readonly fb = inject(FormBuilder);
 
   readonly slug = input.required<string>();
+
+  constructor() {
+    effect(() => {
+      const s = this.slug();
+      if (s) {
+        this.projectDetailsService.setSlug(s);
+      }
+    });
+
+    effect(() => {
+      const seo = this.projectDetailsService.seo();
+      if (seo) {
+        this.seoService.updateSeo(seo);
+      }
+    });
+
+    effect(() => {
+      const p = this.projectDetailsService.project();
+      if (p) {
+        // other_slug contains the localized slug for the alternate language
+        const altSlug = p.other_slug || null;
+        this.languageService.alternateSlug.set(altSlug);
+
+        // Keep URL in sync with p.slug for current language
+        const currentLang = this.languageService.currentLang();
+        const currentSlug = this.slug();
+        if (p.slug && p.slug !== currentSlug) {
+          this.location.replaceState(`/${currentLang}/projects/${p.slug}`);
+        }
+      }
+    });
+  }
+
+  readonly projectData = computed(() => this.projectDetailsService.project());
+
+  readonly projectImages = computed<string[]>(() => {
+    const p = this.projectData();
+    if (!p) return [];
+    if (p.project_images && p.project_images.length > 0) {
+      return p.project_images;
+    }
+    return p.cover_image ? [p.cover_image] : [];
+  });
+
+  readonly isGalleryOpen = signal<boolean>(false);
 
   readonly inquiryForm = this.fb.nonNullable.group({
     formName: ['', [Validators.required, Validators.minLength(2)]],
@@ -42,41 +96,6 @@ export class ProjectDetailsComponent {
   readonly isSubmitted = signal<boolean>(false);
   readonly formSubmitting = signal<boolean>(false);
   readonly formSuccess = signal<boolean>(false);
-  readonly isGalleryOpen = signal<boolean>(false);
-
-  readonly currentProject = computed<ProjectItem>(() => {
-    const s = this.slug();
-    const found = PROJECTS_DATA.find(p => p.slug === s);
-    if (found) return found;
-
-    return {
-      slug: s,
-      name: s.replace(/-/g, ' ').toUpperCase(),
-      location: 'Riyadh, KSA',
-      category: 'Commercial',
-      year: '2025',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
-      desc: 'Engineering and construction project delivered according to international quality and safety standards.',
-    };
-  });
-
-  readonly projectImages = computed<string[]>(() => {
-    const p = this.currentProject();
-    return [
-      p.image,
-      p.category === 'Commercial'
-        ? 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80'
-        : p.category === 'Residential'
-        ? 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'
-        : 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80',
-      p.category === 'Industrial'
-        ? 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80'
-        : 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
-    ];
-  });
 
   isFieldInvalid(fieldName: 'formName' | 'formEmail'): boolean {
     const field = this.inquiryForm.get(fieldName);

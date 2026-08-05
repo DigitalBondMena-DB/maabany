@@ -1,113 +1,103 @@
-import { Component, signal, computed, inject, ElementRef, viewChildren } from '@angular/core';
+import { Component, effect, inject, ElementRef, viewChildren } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LowerCasePipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PageHeroComponent } from '../../shared/components/page-hero/page-hero.component';
 import { CtaBannerComponent } from '../../shared/components/cta-banner/cta-banner.component';
 import { ImageComponent } from '../../shared/components/image/image.component';
 import { InteractiveBlueprintComponent } from './components/interactive-blueprint/interactive-blueprint.component';
 import { PaginationComponent } from '../../shared/components/pagination/pagination.component';
-import { PROJECTS_DATA, ProjectItem } from './services/projects-data';
+import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.component';
 import { LanguageService } from '../../core/services/language.service';
-import { ProfileService } from '../../core/services/profile.service';
+import { ProjectsService } from './services/projects.service';
+import { SeoService } from '../../core/services/seo.service';
+import { ProjectTypeItem } from './models/projects-api.model';
 
 @Component({
   selector: 'app-projects',
   imports: [
     RouterLink,
-    LowerCasePipe,
     TranslatePipe,
     PageHeroComponent,
     CtaBannerComponent,
     ImageComponent,
     InteractiveBlueprintComponent,
     PaginationComponent,
+    SkeletonComponent,
   ],
   templateUrl: './projects.component.html',
   styles: `
   .enter-animation {
-  animation: slide-fade 1s;
-}
-@keyframes slide-fade {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+    animation: slide-fade 0.6s ease-out;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  @keyframes slide-fade {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-}
   `
 })
 export class ProjectsComponent {
+  protected readonly projectsService = inject(ProjectsService);
   private readonly languageService = inject(LanguageService);
-  private readonly profileService = inject(ProfileService);
-  readonly currentLang = this.languageService.currentLang;
+  private readonly seoService = inject(SeoService);
 
+  readonly currentLang = this.languageService.currentLang;
   readonly tabButtons = viewChildren<ElementRef<HTMLButtonElement>>('tabBtn');
 
-  readonly projects = signal<ProjectItem[]>(PROJECTS_DATA);
-  readonly selectedCategory = signal<string>('All');
-  readonly currentPage = signal<number>(1);
-  readonly pageSize = signal<number>(6);
+  constructor() {
+    effect(() => {
+      const seo = this.projectsService.seo();
+      if (seo) {
+        this.seoService.updateSeo(seo);
+      }
+    });
+  }
 
-  readonly categories = computed(() => {
-    const cats = new Set(this.projects().map(p => p.category));
-    return ['All', ...Array.from(cats)];
-  });
-
-  readonly filteredProjects = computed(() => {
-    const cat = this.selectedCategory();
-    if (cat === 'All') return this.projects();
-    return this.projects().filter(p => p.category === cat);
-  });
-
-  readonly totalPages = computed(() => {
-    return Math.ceil(this.filteredProjects().length / this.pageSize()) || 1;
-  });
-
-  readonly displayedProjects = computed(() => {
-    const start = (this.currentPage() - 1) * this.pageSize();
-    return this.filteredProjects().slice(start, start + this.pageSize());
-  });
-
-  selectCategory(category: string): void {
-    this.selectedCategory.set(category);
-    this.currentPage.set(1);
+  selectType(typeItem: ProjectTypeItem): void {
+    const slugOrId = typeItem.slug || typeItem.id.toString();
+    this.projectsService.setType(slugOrId);
   }
 
   goToPage(page: number): void {
-    if (page >= 1 && page <= this.totalPages()) {
-      this.currentPage.set(page);
+    const lastPage = this.projectsService.pagination()?.last_page ?? 1;
+    if (page >= 1 && page <= lastPage) {
+      this.projectsService.setPage(page);
+      const el = document.getElementById('projects-section');
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < 0) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     }
   }
 
   onTabKeyDown(event: KeyboardEvent, index: number): void {
-    const cats = this.categories();
+    const types = this.projectsService.projectTypes();
     let nextIndex = index;
 
     if (event.key === 'ArrowRight') {
-      nextIndex = (index + 1) % cats.length;
+      nextIndex = (index + 1) % types.length;
     } else if (event.key === 'ArrowLeft') {
-      nextIndex = (index - 1 + cats.length) % cats.length;
+      nextIndex = (index - 1 + types.length) % types.length;
     } else if (event.key === 'Home') {
       nextIndex = 0;
     } else if (event.key === 'End') {
-      nextIndex = cats.length - 1;
+      nextIndex = types.length - 1;
     } else {
       return;
     }
 
     event.preventDefault();
-    this.selectCategory(cats[nextIndex]);
+    this.selectType(types[nextIndex]);
     const buttons = this.tabButtons();
     if (buttons[nextIndex]) {
       buttons[nextIndex].nativeElement.focus();
     }
-  }
-
-  downloadProfile(): void {
-    this.profileService.downloadProfile();
   }
 }
