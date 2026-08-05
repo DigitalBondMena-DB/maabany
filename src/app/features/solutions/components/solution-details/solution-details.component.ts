@@ -1,33 +1,35 @@
-import { Component, input, computed } from '@angular/core';
+import { Component, input, computed, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { ContactFormComponent } from '../../../home/components/contact-section/contact-form/contact-form.component';
-import { OtherServicesComponent } from '../other-services/other-services.component';
-import { SOLUTIONS_DATA, SolutionDetail } from '../../services/solutions-data';
-import { WhyChooseUsComponent } from "../../../home/components/why-choose-us/why-choose-us.component";
+import { WhyChooseUsComponent } from '../../../home/components/why-choose-us/why-choose-us.component';
+import { ImageComponent } from '../../../../shared/components/image/image.component';
+import { IconsComponent } from '../../../../shared/components/icons/icons.component';
+import { SkeletonComponent } from '../../../../shared/components/skeleton/skeleton.component';
+import { SolutionDetailData } from '../../models/solution-types-api.model';
+import { LanguageService } from '../../../../core/services/language.service';
 
 @Component({
   selector: 'app-solution-details',
   imports: [
+    RouterLink,
+    TranslatePipe,
     ContactFormComponent,
-    OtherServicesComponent,
-    WhyChooseUsComponent
+    WhyChooseUsComponent,
+    ImageComponent,
+    IconsComponent,
+    SkeletonComponent,
   ],
   templateUrl: './solution-details.component.html',
 })
 export class SolutionDetailsComponent {
-  readonly slug = input.required<string>();
+  private readonly languageService = inject(LanguageService);
+  readonly currentLang = this.languageService.currentLang;
 
-  readonly currentSolution = computed<SolutionDetail>(() => {
-    const s = this.slug();
-    const found = SOLUTIONS_DATA.details.find(d => d.slug === s);
-    if (found) return found;
+  readonly detail = input<SolutionDetailData | undefined>();
+  readonly parentPath = input<string>('');
+  readonly isLoading = input<boolean>(false);
 
-    return {
-      slug: s,
-      title: s.replace(/-/g, ' ').toUpperCase(),
-      desc: 'Engineering solutions built to international quality and safety standards.',
-      aboutTitle: `About ${s.replace(/-/g, ' ')}`,
-      aboutDesc: 'Maabany delivers comprehensive civil engineering and construction services tailored to residential, commercial, and industrial developments with precision, quality, and the highest safety standards.',
-      image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80',
-    };
-  });
+  readonly standards = computed(() => this.detail()?.standards ?? []);
+  readonly relatedSolutions = computed(() => this.detail()?.related_solutions ?? []);
 }

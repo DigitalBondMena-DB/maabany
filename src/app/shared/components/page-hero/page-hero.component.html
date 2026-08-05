@@ -23,12 +23,7 @@
 
         <!-- Left Title & Description -->
         <div class="lg:col-span-7 space-y-4">
-          <div class="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-bold text-neutral-400">
-            <a [routerLink]="['/', lang()]" class="hover:text-primary transition-colors">{{ 'NAV.HOME' | translate
-              }}</a>
-            <span>/</span>
-            <span class="text-[#142b52] font-bold">{{ categoryBadge() | translate }}</span>
-          </div>
+          <app-breadcrumb [items]="breadcrumbItems()" [categoryBadge]="categoryBadge()" />
 
           <div>
             <h1

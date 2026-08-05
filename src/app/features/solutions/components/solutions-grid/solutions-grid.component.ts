@@ -1,28 +1,48 @@
-import { Component, input, computed, inject } from '@angular/core';
+import { Component, input, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { FloatingWireframeComponent } from '../../../../shared/components/floating-wireframe/floating-wireframe.component';
 import { ImageComponent } from '../../../../shared/components/image/image.component';
-import { SOLUTIONS_DATA, SolutionCategory } from '../../services/solutions-data';
+import { SkeletonComponent } from '../../../../shared/components/skeleton/skeleton.component';
 import { LanguageService } from '../../../../core/services/language.service';
+
+export interface GridSolutionItem {
+  id?: number | string;
+  title: string;
+  description: string;
+  main_image: string;
+  slug: string;
+  other_slug?: string;
+  children_count?: number;
+}
 
 @Component({
   selector: 'app-solutions-grid',
-  imports: [RouterLink, TranslatePipe, FloatingWireframeComponent, ImageComponent],
+  imports: [
+    RouterLink,
+    TranslatePipe,
+    FloatingWireframeComponent,
+    ImageComponent,
+    SkeletonComponent,
+  ],
   templateUrl: './solutions-grid.component.html',
 })
 export class SolutionsGridComponent {
   private readonly languageService = inject(LanguageService);
   readonly currentLang = this.languageService.currentLang;
 
-  readonly activeSlug = input<string>();
+  readonly items = input<GridSolutionItem[]>([]);
+  readonly title = input<string>('');
+  readonly subtitle = input<string>('');
+  readonly parentPath = input<string>('');
+  readonly isSubView = input<boolean>(false);
+  readonly isLoading = input<boolean>(false);
+  readonly parentTitle = input<string>('');
+  readonly backPath = input<string>('');
 
-  readonly solutions: SolutionCategory[] = SOLUTIONS_DATA.categories;
-
-  readonly selectedCategory = computed<SolutionCategory | null>(() => {
-    const slug = this.activeSlug();
-    if (!slug) return null;
-    const cat = this.solutions.find(s => s.slug === slug);
-    return (cat && cat.subcategories.length > 0) ? cat : null;
-  });
+  getCardLink(slug: string): string {
+    const base = this.parentPath() || `/${this.currentLang()}/solutions`;
+    const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base;
+    return `${cleanBase}/${slug}`;
+  }
 }

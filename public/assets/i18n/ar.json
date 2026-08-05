@@ -45,7 +45,20 @@
     "SUBTITLE": "قدراتنا الأساسية",
     "TITLE": "حلول البناء والتطوير المتكاملة",
     "DESCRIPTION": "تميز هندسي شامل من مرحلة التصميم حتى التسليم الكامل.",
-    "EXPLORE_ALL": "عرض جميع الحلول"
+    "EXPLORE_ALL": "عرض جميع الحلول",
+    "TITLE_SUFFIX": "الحلول",
+    "DEFAULT_HERO_TITLE": "الهندسة والكهروميكانيك",
+    "SUB_CAPABILITIES": "قسم الخدمات // القدرات الفرعية",
+    "SUB_SERVICE": "خدمة فرعية // مباني",
+    "SERVICES": "الخدمات",
+    "SERVICES_AVAILABLE": "خدمات متاحة",
+    "DIRECT_SOLUTION": "حل مباشر شامل",
+    "BACK": "العودة",
+    "OVERVIEW": "نظرة عامة",
+    "DISCOVER_MORE": "اكتشف المزيد",
+    "EXPLORE_RELATED": "استكشف الحلول ذات الصلة",
+    "ASK_ABOUT_TITLE": "استفسر عن هذا الحل",
+    "ASK_ABOUT_SUBTITLE": "نحن هنا للمساعدة. أكمل النموذج وسيتصل بك خبراءنا قريباً."
   },
   "TESTIMONIALS": {
     "SUBTITLE": "قصص نجاح عملائنا",

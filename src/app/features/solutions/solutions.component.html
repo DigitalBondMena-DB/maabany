@@ -1,16 +1,38 @@
 <div class="relative bg-white text-neutral-900 min-h-screen">
   <!-- 1. Shared Page Hero Section -->
   <app-page-hero 
-    [title]="heroTitle() + ' Solutions'"
+    [title]="heroTitle() + ' ' + ('SOLUTIONS.TITLE_SUFFIX' | translate)"
+    [breadcrumbItems]="breadcrumbItems()"
     categoryBadge="Solutions"
     heroImage="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1920&q=80"
   />
 
-  <!-- 2. Middle Section: Either Grid with Services OR Solution Details with Shared Form -->
-  @if (hasSubcategories()) {
-    <app-solutions-grid [activeSlug]="slug()" />
+  <!-- 2. Middle Section: Root Grid vs Sub-Solutions Grid vs Leaf Detail -->
+  @if (!leafSlug()) {
+    <!-- Level 1 Root Solutions Grid -->
+    <app-solutions-grid
+      [items]="solutionsService.solutions()"
+      [isLoading]="solutionsService.isListLoading()"
+      [parentPath]="parentPath()"
+      [isSubView]="false"
+    />
+  } @else if (hasChildren()) {
+    <!-- Sub-Solutions Grid for parent solutions that contain children -->
+    <app-solutions-grid
+      [items]="solutionDetail()?.children || []"
+      [isLoading]="solutionsService.isDetailLoading()"
+      [title]="solutionDetail()?.title || ''"
+      [parentPath]="parentPath()"
+      [backPath]="backPath()"
+      [isSubView]="true"
+    />
   } @else {
-    <app-solution-details [slug]="slug()!" />
+    <!-- Final Leaf Solution Details View -->
+    <app-solution-details
+      [detail]="solutionDetail()"
+      [parentPath]="parentPath()"
+      [isLoading]="solutionsService.isDetailLoading()"
+    />
   }
 
   <!-- 3. Shared CTA Banner Section -->

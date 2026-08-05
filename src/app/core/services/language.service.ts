@@ -1,17 +1,17 @@
-import { inject, signal, DOCUMENT, Service } from '@angular/core';
+import { inject, signal, DOCUMENT, Service, Injector } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Direction, SupportedLanguage } from '../../shared/models/language.interface';
 import { StorageService } from './storage.service';
-
-
+import { SolutionsService } from '../../features/solutions/services/solutions.service';
 
 @Service()
 export class LanguageService {
   private readonly translate = inject(TranslateService);
   private readonly _DOCUMENT = inject(DOCUMENT);
   private readonly router = inject(Router);
+  private readonly injector = inject(Injector);
 
   private readonly storageService = inject(StorageService);
 
@@ -106,6 +106,27 @@ export class LanguageService {
 
     const queryAndHash = currentUrl.substring(rawPath.length);
 
+    // Special handling for solutions routes (multi-level slugs)
+    if (segments.includes('solutions') && segments.length > 2) {
+      try {
+        const solutionsService = this.injector.get(SolutionsService);
+        const altPath = solutionsService.getAlternatePathForUrl(rawPath);
+        const altSegments = altPath.split('/').filter(Boolean);
+
+        if (altSegments.length > 0 && (altSegments[0] === 'en' || altSegments[0] === 'ar')) {
+          altSegments[0] = targetLang;
+        } else {
+          altSegments.unshift(targetLang);
+        }
+
+        const newUrl = '/' + altSegments.join('/') + queryAndHash;
+        this.router.navigateByUrl(newUrl);
+        return;
+      } catch (e) {
+        // Fallback if SolutionsService fails to instantiate
+      }
+    }
+
     if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'ar')) {
       segments[0] = targetLang;
     } else {
@@ -131,3 +152,4 @@ export class LanguageService {
     return this.currentLang() === 'ar' ? ar : en;
   }
 }
+

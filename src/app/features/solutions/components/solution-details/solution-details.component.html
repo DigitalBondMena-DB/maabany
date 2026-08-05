@@ -1,3 +1,28 @@
+@if (isLoading()) {
+<app-skeleton>
+  <section class="py-12 md:py-20 lg:py-24 bg-white relative">
+    <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        <div class="lg:col-span-6 space-y-6">
+          <div class="skeleton-item h-4 w-32 rounded-md"></div>
+          <div class="skeleton-item h-12 w-3/4 rounded-xl"></div>
+          <div class="skeleton-item h-40 w-full rounded-xl"></div>
+        </div>
+        <div class="lg:col-span-6">
+          <div class="skeleton-item h-100 rounded-3xl w-full"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="py-12 md:py-20 bg-neutral-50 border-t border-neutral-200">
+    <div class="max-w-350 mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-6">
+      @for (i of [1, 2, 3, 4]; track i) {
+        <div class="skeleton-item h-56 rounded-3xl w-full"></div>
+      }
+    </div>
+  </section>
+</app-skeleton>
+} @else if (detail(); as d) {
 <section class="py-12 md:py-20 lg:py-24 bg-white relative">
   <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
@@ -7,32 +32,25 @@
         <div class="inline-flex items-center gap-2">
           <span class="w-8 h-0.5 bg-primary"></span>
           <span class="text-xs font-mono font-bold text-primary uppercase tracking-widest">
-            OVERVIEW
+            {{ 'SOLUTIONS.OVERVIEW' | translate }}
           </span>
         </div>
 
         <h2
           class="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-900 tracking-tight uppercase leading-tight font-mono">
-          {{ currentSolution().aboutTitle }}
+          {{ d.title }}
         </h2>
 
         <div class="space-y-6 text-neutral-600 font-normal leading-relaxed text-base md:text-lg">
-          <p>
-            {{ currentSolution().aboutDesc }}
-          </p>
-          <p>
-            At Maabany, we utilize state-of-the-art technologies and robust engineering methodologies to ensure that
-            every stage of our work complies with the highest international protocols of quality, safety, and modern
-            performance standards.
-          </p>
+          <p>{{ d.full_description || d.description }}</p>
         </div>
       </div>
 
-      <!-- Right Column: Floating Inquiry Card (Shared app-contact-form matching exact SolutionDetails.tsx style) -->
+      <!-- Right Column: Floating Inquiry Card -->
       <div class="lg:col-span-6">
-        <app-contact-form [pageSlug]="'solutions-' + currentSolution().slug"
-          [formTitle]="'ASK ABOUT THIS SOLUTION'"
-          [formSubtitle]="'We\'re here to help. Complete the form and our experts will contact you soon.'"
+        <app-contact-form [pageSlug]="'solutions-' + d.slug"
+          [formTitle]="'SOLUTIONS.ASK_ABOUT_TITLE' | translate"
+          [formSubtitle]="'SOLUTIONS.ASK_ABOUT_SUBTITLE' | translate"
           [cardClasses]="'bg-white border border-neutral-200/90 rounded-3xl p-6 sm:p-8 md:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.06)] relative overflow-hidden h-full'" />
       </div>
 
@@ -40,8 +58,112 @@
   </div>
 </section>
 
-<!-- The Maabany Standard / Why Choose Us Section -->
-<app-why-choose-us />
+<!-- Standards Section if available -->
+@if (standards().length > 0) {
+<section id="why-us"
+  class="bg-white border-y border-neutral-200/60 relative z-10 transition-all duration-200 py-12 md:py-20 lg:py-24 overflow-hidden">
+  <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
+      <span class="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
+        {{ 'WHY_US.SUBTITLE' | translate }}
+      </span>
+      <h2 class="text-3xl md:text-5xl font-black text-neutral-900 uppercase tracking-tight">
+        {{ 'WHY_US.TITLE' | translate }}
+      </h2>
+    </div>
 
-<!-- Other Services Section -->
-<app-other-services [currentSlug]="slug()" />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      @for (standard of standards(); track standard.title; let index = $index) {
+      <div
+        class="bg-white border border-neutral-200/80 p-8 rounded-3xl relative overflow-hidden transition-all duration-300 group hover:border-primary cursor-pointer hover:-translate-y-2.5 hover:scale-[1.02] hover:shadow-[0_30px_60px_-15px_rgba(234,138,34,0.15)]">
+        <div
+          class="absolute inset-0 w-[200%] h-full bg-linear-to-r from-transparent via-white/15 to-transparent -skew-x-25 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 pointer-events-none z-20">
+        </div>
+
+        <div
+          class="absolute -top-12 -right-12 w-36 h-36 bg-linear-to-br from-primary/8 to-transparent rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700">
+        </div>
+
+        <div class="flex justify-between items-start mb-8 relative z-10">
+          <div
+            class="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60 text-neutral-800 transition-all duration-300 shadow-xs group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-primary/20 flex items-center justify-center overflow-hidden">
+            @if (standard?.icon) {
+            <app-image [src]="standard.icon" [alt]="standard.title" [width]="24" [height]="24" objectFit="contain" />
+            } @else {
+            <app-icons icon="orangeBuild" [width]="24" [height]="24" classes="brightness-0 group-hover:invert" />
+            }
+          </div>
+
+          <span
+            class="text-4xl font-extrabold text-neutral-200/80 font-mono transition-all duration-500 group-hover:text-primary/30 group-hover:-translate-y-1 group-hover:translate-x-1 block">
+            0{{ index + 1 }}
+          </span>
+        </div>
+
+        <h3
+          class="text-lg font-black text-neutral-900 mb-3 tracking-tight uppercase group-hover:text-primary transition-colors duration-300 relative z-10">
+          {{ standard?.title }}
+        </h3>
+
+        <p
+          class="text-xs text-neutral-500 leading-relaxed group-hover:text-neutral-700 transition-colors duration-300 relative z-10">
+          {{ standard?.description }}
+        </p>
+
+        <div
+          class="absolute bottom-0 left-0 w-0 h-1 bg-linear-to-r from-primary to-[#ffaa44] transition-all duration-500 group-hover:w-full">
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+} @else {
+<app-why-choose-us />
+}
+
+<!-- Related Solutions Section if available -->
+@if (relatedSolutions().length > 0) {
+<section class="py-12 md:py-20 lg:py-24 bg-neutral-50 relative overflow-hidden">
+  <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
+    <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-16 gap-6">
+      <div>
+        <span class="text-[#142b52] font-mono text-xs tracking-[0.2em] font-bold uppercase block mb-3">
+          {{ 'SOLUTIONS.DISCOVER_MORE' | translate }}
+        </span>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-900 tracking-tighter uppercase leading-none font-mono">
+          {{ 'SOLUTIONS.EXPLORE_RELATED' | translate }}
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      @for (rel of relatedSolutions(); track rel.slug) {
+      <a [routerLink]="parentPath() ? (parentPath() + '/' + rel.slug) : ('/' + currentLang() + '/solutions/' + rel.slug)"
+        class="group bg-white rounded-3xl overflow-hidden border border-neutral-200 hover:border-primary shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col relative">
+
+        <div class="absolute inset-0 border-2 border-primary/0 group-hover:border-primary transition-colors duration-500 rounded-3xl pointer-events-none z-30"></div>
+
+        <div class="h-48 overflow-hidden relative">
+          <app-image [src]="rel.main_image" [alt]="rel.title"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
+          <div class="absolute inset-0 bg-neutral-900/10 pointer-events-none"></div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col justify-between bg-white">
+          <div>
+            <h3 class="text-lg font-bold text-neutral-900 uppercase font-mono transition-colors group-hover:text-primary line-clamp-1 mb-2">
+              {{ rel.title }}
+            </h3>
+            <p class="text-xs text-neutral-600 font-light leading-relaxed line-clamp-4">
+              {{ rel.description }}
+            </p>
+          </div>
+        </div>
+      </a>
+      }
+    </div>
+  </div>
+</section>
+}
+}

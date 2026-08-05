@@ -38,7 +38,7 @@ import { PreventInputDirective } from '../../../../../shared/directives/prevent-
         <!-- Dropdown Popup -->
         @if (isDropdownOpen()) {
           <div
-            class="absolute top-full left-0 mt-2 w-72 bg-white border border-neutral-200/90 rounded-2xl shadow-xl z-50 overflow-hidden animate-fadeIn py-2"
+            class="absolute top-full inset-s-0 mt-2 w-72 bg-white border border-neutral-200/90 rounded-2xl shadow-xl z-50 overflow-hidden animate-fadeIn py-2"
           >
             <!-- Search Bar -->
             <div class="px-3 pb-2 border-b border-neutral-100">
@@ -95,7 +95,7 @@ import { PreventInputDirective } from '../../../../../shared/directives/prevent-
       />
 
       <!-- Realtime Validation Indicator Icon -->
-      <div class="pr-3.5 flex items-center pointer-events-none">
+      <div class="pe-3.5 flex items-center pointer-events-none">
         @if (isTouched() && isValid()) {
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-emerald-500"><polyline points="20 6 9 17 4 12"/></svg>
         } @else if (isTouched() && hasError()) {

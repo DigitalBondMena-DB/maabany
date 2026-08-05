@@ -24,7 +24,15 @@ export const routes: Routes = [
         loadComponent: () => import('./features/solutions/solutions.component').then(m => m.SolutionsComponent)
       },
       {
-        path: 'solutions/:slug',
+        path: 'solutions/:slug1',
+        loadComponent: () => import('./features/solutions/solutions.component').then(m => m.SolutionsComponent)
+      },
+      {
+        path: 'solutions/:slug1/:slug2',
+        loadComponent: () => import('./features/solutions/solutions.component').then(m => m.SolutionsComponent)
+      },
+      {
+        path: 'solutions/:slug1/:slug2/:slug3',
         loadComponent: () => import('./features/solutions/solutions.component').then(m => m.SolutionsComponent)
       },
       {

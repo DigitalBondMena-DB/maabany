@@ -145,11 +145,11 @@ export class ContactFormComponent {
     });
 
     required(schemaPath.message, {
-      when: () => !this.pageSlug(),
+      // when: () => !this.pageSlug(),
       message: 'VALIDATION.MESSAGE_REQUIRED',
     });
     minLength(schemaPath.message, 5, {
-      when: () => !this.pageSlug(),
+      // when: () => !this.pageSlug(),
       message: 'VALIDATION.MESSAGE_MIN_LENGTH',
     });
   });

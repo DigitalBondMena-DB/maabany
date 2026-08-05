@@ -45,7 +45,20 @@
     "SUBTITLE": "OUR CORE CAPABILITIES",
     "TITLE": "Integrated Building Solutions",
     "DESCRIPTION": "End-to-end engineering excellence from concept design to turnkey execution.",
-    "EXPLORE_ALL": "Explore All Solutions"
+    "EXPLORE_ALL": "Explore All Solutions",
+    "TITLE_SUFFIX": "Solutions",
+    "DEFAULT_HERO_TITLE": "Engineering & Electromechanical",
+    "SUB_CAPABILITIES": "SERVICE DIVISION // SUB-CAPABILITIES",
+    "SUB_SERVICE": "SUB-SERVICE // MAABANY",
+    "SERVICES": "Services",
+    "SERVICES_AVAILABLE": "Services Available",
+    "DIRECT_SOLUTION": "Comprehensive Direct Solution",
+    "BACK": "Back",
+    "OVERVIEW": "OVERVIEW",
+    "DISCOVER_MORE": "DISCOVER MORE",
+    "EXPLORE_RELATED": "Explore Related Solutions",
+    "ASK_ABOUT_TITLE": "ASK ABOUT THIS SOLUTION",
+    "ASK_ABOUT_SUBTITLE": "We're here to help. Complete the form and our experts will contact you soon."
   },
   "TESTIMONIALS": {
     "SUBTITLE": "Client Success Stories",

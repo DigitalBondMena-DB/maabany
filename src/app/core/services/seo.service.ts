@@ -135,4 +135,41 @@ export class SeoService {
       this.renderer.appendChild(this.document.head, script);
     }
   }
+
+  setBreadcrumbSchema(items: { label: string; url?: string | any[] }[]): void {
+    const existingSchema = this.document.getElementById('app-breadcrumb-schema');
+    if (existingSchema) {
+      this.renderer.removeChild(this.document.head, existingSchema);
+    }
+
+    if (!items || items.length === 0) return;
+
+    const siteUrl = environment.siteUrl;
+    const itemListElement = items.map((item, index) => {
+      let itemUrl = siteUrl;
+      if (item.url) {
+        const path = Array.isArray(item.url) ? item.url.filter(Boolean).join('/') : item.url;
+        itemUrl = path.startsWith('http') ? path : `${siteUrl}${path.startsWith('/') ? '' : '/'}${path}`;
+      }
+
+      return {
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.label,
+        item: itemUrl
+      };
+    });
+
+    const schemaObj = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement
+    };
+
+    const script = this.renderer.createElement('script');
+    this.renderer.setAttribute(script, 'id', 'app-breadcrumb-schema');
+    this.renderer.setAttribute(script, 'type', 'application/ld+json');
+    this.renderer.setProperty(script, 'text', JSON.stringify(schemaObj));
+    this.renderer.appendChild(this.document.head, script);
+  }
 }
