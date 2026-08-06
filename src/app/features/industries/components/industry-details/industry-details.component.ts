@@ -1,3 +1,4 @@
+import { SeoService } from '../../../../core/services/seo.service';
 import { Component, input, computed, inject, effect } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -21,6 +22,7 @@ import { SkeletonComponent } from '../../../../shared/components/skeleton/skelet
   templateUrl: './industry-details.component.html',
 })
 export class IndustryDetailsComponent {
+  private readonly seoService = inject(SeoService);
   private readonly languageService = inject(LanguageService);
   private readonly industriesService = inject(IndustriesService);
   readonly currentLang = this.languageService.currentLang;
@@ -28,6 +30,12 @@ export class IndustryDetailsComponent {
   readonly slug = input.required<string>();
 
   constructor() {
+    effect(() => {
+      const data = this.currentIndustry();
+      if (data?.seo) {
+        this.seoService.updateSeo(data.seo);
+      }
+    });
     effect(() => {
       this.industriesService.setSlug(this.slug());
     });

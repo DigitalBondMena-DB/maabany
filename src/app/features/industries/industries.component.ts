@@ -1,15 +1,15 @@
-import { Component, inject, signal, computed } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, inject, signal, computed, effect } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PageHeroComponent } from '../../shared/components/page-hero/page-hero.component';
 import { MediaCardComponent } from '../../shared/components/media-card/media-card.component';
 import { FloatingWireframeComponent } from '../../shared/components/floating-wireframe/floating-wireframe.component';
-import { TelInputComponent } from '../home/components/contact-section/tel-input/tel-input.component';
 import { ContactFormComponent, validateInternationalPhone } from '../home/components/contact-section/contact-form/contact-form.component';
 import { IndustriesService } from './services/industries.service';
 import { LanguageService } from '../../core/services/language.service';
 import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.component';
 import { ImageComponent } from '../../shared/components/image/image.component';
+import { SeoService } from '../../core/services/seo.service';
 
 export interface QuoteFormData {
   name: string;
@@ -66,6 +66,16 @@ export interface QuoteFormData {
   `]
 })
 export class IndustriesComponent {
+  private readonly seoService = inject(SeoService);
+
+  constructor() {
+    effect(() => {
+      const data = this.industriesData();
+      if (data?.seo) {
+        this.seoService.updateSeo(data.seo);
+      }
+    });
+  }
   private readonly router = inject(Router);
   private readonly languageService = inject(LanguageService);
   private readonly industriesService = inject(IndustriesService);

@@ -1,3 +1,4 @@
+import { SeoService } from '../../../../core/services/seo.service';
 import { Component, input, computed, signal, inject, OnDestroy, effect, NgZone, DestroyRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
@@ -46,18 +47,25 @@ export interface ParsedBlogContent {
   templateUrl: './blog-details.component.html',
 })
 export class BlogDetailsComponent implements OnDestroy {
+  private readonly seoService = inject(SeoService);
   private readonly languageService = inject(LanguageService);
   private readonly blogsService = inject(BlogsService);
   private readonly router = inject(Router);
   private readonly viewportScroller = inject(ViewportScroller);
   private readonly ngZone = inject(NgZone);
   private readonly destroyRef = inject(DestroyRef);
-  
+
   readonly currentLang = this.languageService.currentLang;
 
   readonly slug = input.required<string>();
 
   constructor() {
+    effect(() => {
+      const p = this.post();
+      if (p?.seo) {
+        this.seoService.updateSeo(p.seo);
+      }
+    });
     // Set the active slug on the service whenever it changes
     effect(() => {
       this.blogsService.setSlug(this.slug());
@@ -128,8 +136,8 @@ export class BlogDetailsComponent implements OnDestroy {
         .replace(/\s*id=["'][^"']*["']/gi, '')
         .replace(/\s*class=["'][^"']*["']/gi, '');
 
-      const textClass = level === 2 
-        ? 'text-2xl md:text-3xl mt-12 mb-6 pb-2.5 border-b border-neutral-100 text-neutral-900 font-bold uppercase font-mono tracking-tight' 
+      const textClass = level === 2
+        ? 'text-2xl md:text-3xl mt-12 mb-6 pb-2.5 border-b border-neutral-100 text-neutral-900 font-bold uppercase font-mono tracking-tight'
         : 'text-lg md:text-xl mt-8 mb-4 text-neutral-800 font-extrabold uppercase font-mono';
 
       return `<h${level} id="${generatedId}" ${cleanAttrs} class="scroll-mt-28 ${textClass}">${safeText}</h${level}>`;
@@ -138,12 +146,12 @@ export class BlogDetailsComponent implements OnDestroy {
     return { processedHtml, headings };
   });
 
-  readonly tocHeadings = computed<TocItem[]>(() => 
+  readonly tocHeadings = computed<TocItem[]>(() =>
     this.parsedBlogData().headings.map(h => ({ id: h.id, title: h.text, level: h.level }))
   );
   readonly processedContent = computed(() => this.parsedBlogData().processedHtml);
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void { }
 
   private initScrollSpy(): void {
     if (typeof window === 'undefined') return;

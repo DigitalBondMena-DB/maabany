@@ -1,4 +1,4 @@
-import { Component, signal, computed, inject } from '@angular/core';
+import { Component, signal, computed, inject, effect } from '@angular/core';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -8,26 +8,16 @@ import { CtaBannerComponent } from '../../shared/components/cta-banner/cta-banne
 import { TelInputComponent } from '../home/components/contact-section/tel-input/tel-input.component';
 import { LanguageService } from '../../core/services/language.service';
 import { SubmissionService } from '../../core/services/submission.service';
-
-export interface OfficeBranch {
-  id: string;
-  country: string;
-  flag: string;
-  city: string;
-  address: string;
-  phone: string;
-  email: string;
-  hours: string;
-  embedQuery: string;
-}
+import { ContactUsService } from './services/contact-us.service';
+import { SeoService } from '../../core/services/seo.service';
+import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.component';
+import { ContactFormComponent } from '../home/components/contact-section/contact-form/contact-form.component';
 
 export interface TrustIndicator {
   icon: string;
   title: string;
   desc: string;
 }
-
-import { ContactFormComponent } from '../home/components/contact-section/contact-form/contact-form.component';
 
 @Component({
   selector: 'app-contact-us',
@@ -37,6 +27,7 @@ import { ContactFormComponent } from '../home/components/contact-section/contact
     PageHeroComponent,
     CtaBannerComponent,
     ContactFormComponent,
+    SkeletonComponent
   ],
   templateUrl: './contact-us.component.html',
 })
@@ -45,8 +36,23 @@ export class ContactUsComponent {
   private readonly router = inject(Router);
   private readonly sanitizer = inject(DomSanitizer);
   private readonly submissionService = inject(SubmissionService);
+  private readonly contactUsService = inject(ContactUsService);
+  private readonly seoService = inject(SeoService);
 
   readonly currentLang = this.languageService.currentLang;
+
+  readonly banner = this.contactUsService.banner;
+  readonly branches = this.contactUsService.branches;
+  readonly isLoading = this.contactUsService.isLoading;
+
+  constructor() {
+    effect(() => {
+      const data = this.contactUsService.data();
+      if (data?.seo) {
+        this.seoService.updateSeo(data.seo);
+      }
+    });
+  }
 
   readonly heroCards = [
     { value: '12h Response', label: 'Maximum Reply Time' },
@@ -54,48 +60,8 @@ export class ContactUsComponent {
     { value: 'ISO Certified', label: 'Design & Engineering' },
   ];
 
-  readonly offices: OfficeBranch[] = [
-    {
-      id: 'ksa',
-      country: 'Kingdom of Saudi Arabia',
-      flag: '🇸🇦',
-      city: 'Jeddah',
-      address: '2923 Al-Sharif Ahmed bin Abdul Muttalib, Al-Salhiya District, Jeddah, Saudi Arabia',
-      phone: '+966 54 231 4500',
-      email: 'Amir.yahia@maabany.com',
-      hours: 'Eng. Amir Yahia\nSunday – Thursday\n8:00 AM – 5:00 PM',
-      embedQuery: '2923 Al-Sharif Ahmed bin Abdul Muttalib, Al-Salhiya District, Jeddah, Saudi Arabia'
-    },
-    {
-      id: 'egypt',
-      country: 'Egypt',
-      flag: '🇪🇬',
-      city: 'Cairo',
-      address: '53 Hassan El Sherif Street, Nasr City, Cairo, Egypt',
-      phone: '+20 10 4422 7666',
-      email: 'Mohamed.youssef@maabany.com',
-      hours: 'Eng. Mohamed Youssef\nSunday – Thursday\n9:00 AM – 5:00 PM',
-      embedQuery: '53 Hassan El Sherif Street, Nasr City, Cairo, Egypt'
-    },
-    {
-      id: 'libya',
-      country: 'Libya',
-      flag: '🇱🇾',
-      city: 'Tripoli',
-      address: 'Tripoli Operations Branch, Tripoli, Libya',
-      phone: '+218 91 000 0000 (Via Sales)',
-      email: 'sales@maabany.com',
-      hours: 'General Operations\nSunday – Thursday\n8:00 AM – 4:00 PM',
-      embedQuery: 'Tripoli, Libya'
-    }
-  ];
-
   // Dynamic zoom levels for maps
-  readonly zoomLevels = signal<Record<string, number>>({
-    ksa: 14,
-    egypt: 14,
-    libya: 14,
-  });
+  readonly zoomLevels = signal<Record<number, number>>({});
 
   readonly trustIndicators: TrustIndicator[] = [
     { icon: 'clock', title: 'Fast Response', desc: 'Consultants respond within 12 business hours' },
@@ -158,31 +124,46 @@ export class ContactUsComponent {
     return errs;
   });
 
+  getFlag(country: string): string {
+    const c = (country || '').toLowerCase();
+    if (c.includes('saudi')) return '🇸🇦';
+    if (c.includes('egypt')) return '🇪🇬';
+    if (c.includes('libya')) return '🇱🇾';
+    return '🌍';
+  }
+
   encodeUrl(str: string): string {
     return encodeURIComponent(str);
   }
 
-  getZoom(id: string): number {
+  getZoom(id: number): number {
     return this.zoomLevels()[id] || 14;
   }
 
-  handleZoomIn(id: string): void {
+  handleZoomIn(id: number): void {
     this.zoomLevels.update(levels => ({
       ...levels,
       [id]: Math.min((levels[id] || 14) + 1, 19)
     }));
   }
 
-  handleZoomOut(id: string): void {
+  handleZoomOut(id: number): void {
     this.zoomLevels.update(levels => ({
       ...levels,
       [id]: Math.max((levels[id] || 14) - 1, 10)
     }));
   }
 
-  getSanitizedMapUrl(embedQuery: string, zoom: number): SafeResourceUrl {
-    const url = `https://maps.google.com/maps?q=${encodeURIComponent(embedQuery)}&t=&z=${zoom}&ie=UTF8&iwloc=&output=embed`;
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  getSanitizedMapUrl(mapUrl: string, zoom: number): SafeResourceUrl {
+    let q = 'Jeddah'; // fallback
+    try {
+      const urlObj = new URL(mapUrl);
+      q = urlObj.searchParams.get('q') || urlObj.searchParams.get('query') || mapUrl;
+    } catch {
+      q = mapUrl;
+    }
+    const embedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(q)}&t=&z=${zoom}&ie=UTF8&iwloc=&output=embed`;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
 
   updateField(field: 'name' | 'email' | 'phone' | 'projectType' | 'message', value: string): void {

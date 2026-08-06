@@ -1,4 +1,5 @@
-import { Component, computed, inject } from '@angular/core';
+import { SeoService } from '../../core/services/seo.service';
+import { Component, computed, inject, effect } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PageHeroComponent } from '../../shared/components/page-hero/page-hero.component';
 import { BlogCardComponent } from './components/blog-card/blog-card.component';
@@ -21,14 +22,24 @@ import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.com
   templateUrl: './blogs.component.html',
 })
 export class BlogsComponent {
+  private readonly seoService = inject(SeoService);
+
+  constructor() {
+    effect(() => {
+      const seoData = this.blogsService.seo();
+      if (seoData) {
+        this.seoService.updateSeo(seoData);
+      }
+    });
+  }
   private readonly languageService = inject(LanguageService);
   private readonly blogsService = inject(BlogsService);
-  
+
   readonly currentLang = this.languageService.currentLang;
 
   readonly displayedPosts = this.blogsService.blogs;
   readonly isLoading = this.blogsService.isListLoading;
-  
+
   readonly currentPage = this.blogsService.currentPage;
   readonly totalPages = computed(() => this.blogsService.pagination()?.last_page || 1);
 

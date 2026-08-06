@@ -37,7 +37,6 @@ export class HomeComponent {
     effect(() => {
       const response = this.homeService;
       if (response?.seo()) {
-        console.log(response.seo());
         this.seoService.updateSeo(response.seo()!);
       }
     });

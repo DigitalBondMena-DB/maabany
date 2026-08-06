@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, effect } from '@angular/core';
 import { PageHeroComponent } from '../../shared/components/page-hero/page-hero.component';
 import { ClientMarqueeComponent } from '../home/components/client-marquee/client-marquee.component';
 import { WhyChooseUsComponent } from './components/why-choose-us/why-choose-us.component';
@@ -6,6 +6,7 @@ import { CtaBannerComponent } from '../../shared/components/cta-banner/cta-banne
 import { ClientsPartnersService } from './services/clients-partners.service';
 import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-clients-partners',
@@ -20,6 +21,16 @@ import { TranslatePipe } from '@ngx-translate/core';
   templateUrl: './clients-partners.component.html',
 })
 export class ClientsPartnersComponent {
+  private readonly seoService = inject(SeoService);
+
+  constructor() {
+    effect(() => {
+      const data = this.data();
+      if (data?.seo) {
+        this.seoService.updateSeo(data.seo);
+      }
+    });
+  }
   private readonly clientsPartnersService = inject(ClientsPartnersService);
 
   readonly data = this.clientsPartnersService.data;
