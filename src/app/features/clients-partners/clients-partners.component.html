@@ -22,7 +22,7 @@
     sliderPadding="py-12" headerClass=" max-w-full mb-8 space-y-2 px-5 md:px-6 lg:px-7 xl:px-8 max-w-350 mx-auto"
     subtitleClass="text-[10px] font-mono tracking-[0.25em] text-primary font-black uppercase block"
     titleClass="text-xl md:text-3.5xl font-black text-neutral-900 uppercase tracking-tight font-mono"
-    [apiClients]="clients()" />
+    [apiClients]="clients()" revealDirection="bottom" [revealDelay]="150" />
   }
 
   @if (partners().length > 0) {
@@ -31,15 +31,15 @@
     headerClass=" max-w-full mb-8 space-y-2 px-5 md:px-6 lg:px-7 xl:px-8 max-w-350 mx-auto"
     subtitleClass="text-[10px] font-mono tracking-[0.25em] text-primary font-black uppercase block"
     titleClass="text-xl md:text-3.5xl font-black text-neutral-900 uppercase tracking-tight font-mono"
-    [apiPartners]="partners()" />
+    [apiPartners]="partners()" revealDirection="bottom" [revealDelay]="150" />
   }
 
   <!-- 4. Why Maabany Section Component -->
   @if (data()?.why_choose_us; as whyChooseUsData) {
-  <app-clients-why-choose-us [data]="whyChooseUsData" />
+  <app-clients-why-choose-us [data]="whyChooseUsData" revealDirection="right" [revealDelay]="150" />
   }
 
   <!-- 5. Shared CTA Banner Section -->
-  <app-cta-banner />
+  <app-cta-banner revealDirection="left" [revealDelay]="150" />
   }
 </div>

@@ -4,6 +4,7 @@ import { ImageComponent } from "../../../../shared/components/image/image.compon
 import { SafeHtmlPipe } from '../../../../shared/pipes/safe-html-pipe';
 import { FloatingWireframeComponent } from "../../../../shared/components/floating-wireframe/floating-wireframe.component";
 import { AboutInfo } from '../../models/about-api.model';
+import { ScrollRevealDirective, ScrollDirection } from '../../../../shared/directives/scroll-reveal.directive';
 
 export interface OverviewFeature {
   titleKey: string;
@@ -12,11 +13,14 @@ export interface OverviewFeature {
 
 @Component({
   selector: 'app-about-overview',
-  imports: [TranslatePipe, ImageComponent, SafeHtmlPipe, FloatingWireframeComponent],
+  imports: [TranslatePipe, ImageComponent, SafeHtmlPipe, FloatingWireframeComponent, ScrollRevealDirective],
   templateUrl: './about-overview.component.html',
 })
 export class AboutOverviewComponent {
   readonly aboutData = input<AboutInfo | undefined>(undefined);
+  readonly revealDirection = input<ScrollDirection>('bottom');
+  readonly revealDelay = input<number>(0);
+
 
   readonly defaultFeatures: OverviewFeature[] = [
     {

@@ -8,6 +8,7 @@ import { CtaBannerComponent } from '../../shared/components/cta-banner/cta-banne
 import { BlogsService } from './services/blogs.service';
 import { LanguageService } from '../../core/services/language.service';
 import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.component';
+import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-blogs',
@@ -17,7 +18,8 @@ import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.com
     BlogCardComponent,
     PaginationComponent,
     CtaBannerComponent,
-    SkeletonComponent
+    SkeletonComponent,
+    ScrollRevealDirective,
   ],
   templateUrl: './blogs.component.html',
 })

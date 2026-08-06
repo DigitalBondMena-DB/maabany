@@ -19,7 +19,7 @@
     [categoryBadge]="'Industries We Serve' | translate"
     [heroImage]="industriesData()!.banner?.image || 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80'" />
 
-  <section class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 py-12 md:py-20 lg:py-24 space-y-16">
+  <section [appScrollReveal]="revealDirection()" [delay]="revealDelay()" class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 py-12 md:py-20 lg:py-24 space-y-16">
     <div class="max-w-3xl space-y-3">
       <span class="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
         {{ 'OUR SECTORS' | translate }}
@@ -38,7 +38,7 @@
     </div>
   </section>
   }
-  <section
+  <section [appScrollReveal]="'left'" [delay]="150"
     class="bg-neutral-50/50 border-t border-b border-neutral-200/60 py-12 md:py-20 lg:py-24 relative overflow-hidden">
     <div class="absolute -right-16 bottom-16 size-80 opacity-15 pointer-events-none hidden xl:block">
       <app-floating-wireframe shape="tower" color="#142b52" />

@@ -30,33 +30,33 @@
 </app-skeleton>
 } @else {
 <div class="relative bg-white text-neutral-900 min-h-screen">
-  <!-- 1. Shared Page Hero Section -->
+  <!-- 1. Shared Page Hero Section (No animation) -->
   <app-page-hero [title]="aboutService.about()?.banner_title || ('ABOUT_PAGE.WHO_WE_ARE' | translate)"
     categoryBadge="NAV.ABOUT"
     [heroImage]="aboutService.about()?.banner_image || 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80'" />
 
   <!-- 2. Company Overview -->
-  <app-about-overview [aboutData]="aboutService.about()" />
+  <app-about-overview [aboutData]="aboutService.about()" revealDirection="bottom" [revealDelay]="150" />
 
   <!-- 3. Statistics -->
-  <app-about-stats [countersData]="aboutService.counters()" />
+  <app-about-stats [countersData]="aboutService.counters()" revealDirection="bottom" [revealDelay]="100" />
 
   <!-- 4. Mission / Vision / Values -->
-  <app-about-values [aboutData]="aboutService.about()" />
+  <app-about-values [aboutData]="aboutService.about()" revealDirection="left" [revealDelay]="150" />
 
   <!-- 5. Partners Marquee -->
   <app-client-marquee [apiPartners]="aboutService.partners()" sliderPadding="py-12" title="CLIENT_MARQUEE.OUR_PARTNERS"
-    subtitle="CLIENT_MARQUEE.TRUSTED_BY_THE_BEST" />
+    subtitle="CLIENT_MARQUEE.TRUSTED_BY_THE_BEST" revealDirection="bottom" [revealDelay]="100" />
 
   <!-- 6. Why Choose Us -->
   <app-about-why-choose-us [whyChooseUsData]="aboutService.whyChooseUs()"
-    [aboutInfoWhyChooseUs]="aboutService.about()?.why_choose_us" />
+    [aboutInfoWhyChooseUs]="aboutService.about()?.why_choose_us" revealDirection="right" [revealDelay]="150" />
 
   <!-- 7. Clients Marquee -->
   <app-client-marquee [apiClients]="aboutService.clients()" sliderPadding="py-12"
-    subtitle="CLIENT_MARQUEE.BUILDING_WITH_EXCELLENCE" title="CLIENT_MARQUEE.OUR_CLIENTS" />
+    subtitle="CLIENT_MARQUEE.BUILDING_WITH_EXCELLENCE" title="CLIENT_MARQUEE.OUR_CLIENTS" revealDirection="bottom" [revealDelay]="100" />
 
   <!-- 8. Shared CTA Banner Section -->
-  <app-cta-banner />
+  <app-cta-banner revealDirection="left" [revealDelay]="150" />
 </div>
 }

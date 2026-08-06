@@ -35,7 +35,7 @@
     [heroImage]="projectsService.banner()?.image || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80'" />
 
   <!-- 2. Our Projects Section -->
-  <section class="pt-20 md:pt-24 lg:pt-28 pb-12 md:pb-20 lg:pb-24 bg-white" id="projects-section">
+  <section [appScrollReveal]="revealDirection()" [delay]="revealDelay()" class="pt-20 md:pt-24 lg:pt-28 pb-12 md:pb-20 lg:pb-24 bg-white" id="projects-section">
     <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
 
       <!-- Section Header -->

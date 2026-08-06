@@ -149,7 +149,7 @@ export class ScrollRevealDirective {
       this.revealAnimation.onfinish = () => {
         // Apply final inline styles manually after animation finishes
         this.el.style.opacity = '1';
-        this.el.style.transform = 'translate3d(0, 0, 0)';
+        this.el.style.transform = '';
         // Remove will-change after animation finishes
         this.el.style.willChange = 'auto';
       };

@@ -7,12 +7,15 @@ import { PageHeroComponent } from '../../shared/components/page-hero/page-hero.c
 import { TableOfContentsComponent, TocItem } from '../../shared/components/table-of-contents/table-of-contents.component';
 import { LanguageService } from '../../core/services/language.service';
 
+import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
+
 @Component({
   selector: 'app-privacy-policy',
   imports: [
     TranslatePipe,
     PageHeroComponent,
     TableOfContentsComponent,
+    ScrollRevealDirective,
   ],
   templateUrl: './privacy-policy.component.html',
 })

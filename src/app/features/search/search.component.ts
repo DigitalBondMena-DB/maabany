@@ -14,6 +14,8 @@ import { SearchService } from './services/search.service';
 import { SearchResultItem, SearchPagination } from './models/search-api.model';
 import { LanguageService } from '../../core/services/language.service';
 
+import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
+
 @Component({
   selector: 'app-search',
   imports: [
@@ -25,6 +27,7 @@ import { LanguageService } from '../../core/services/language.service';
     CtaBannerComponent,
     ImageComponent,
     SkeletonComponent,
+    ScrollRevealDirective,
   ],
   templateUrl: './search.component.html',
 })

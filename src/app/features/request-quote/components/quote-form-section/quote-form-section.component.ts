@@ -1,4 +1,4 @@
-import { Component, signal, computed, inject } from '@angular/core';
+import { Component, signal, computed, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -9,6 +9,7 @@ import { SubmissionService } from '../../../../core/services/submission.service'
 import { ContactFormComponent } from '../../../home/components/contact-section/contact-form/contact-form.component';
 
 import { ImageComponent } from '../../../../shared/components/image/image.component';
+import { ScrollRevealDirective, ScrollDirection } from '../../../../shared/directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-quote-form-section',
@@ -17,6 +18,7 @@ import { ImageComponent } from '../../../../shared/components/image/image.compon
     TranslatePipe,
     ContactFormComponent,
     ImageComponent,
+    ScrollRevealDirective,
   ],
   templateUrl: './quote-form-section.component.html',
 })
@@ -26,6 +28,9 @@ export class QuoteFormSectionComponent {
   private readonly submissionService = inject(SubmissionService);
 
   readonly currentLang = this.languageService.currentLang;
+  readonly revealDirection = input<ScrollDirection>('bottom');
+  readonly revealDelay = input<number>(0);
+
 
   // Form Signals & Real-time Validation State
   readonly phoneCountryCode = signal<string>('+966');

@@ -1,4 +1,4 @@
-import { Component, effect, inject, ElementRef, viewChildren } from '@angular/core';
+import { Component, effect, inject, ElementRef, viewChildren, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PageHeroComponent } from '../../shared/components/page-hero/page-hero.component';
@@ -11,6 +11,7 @@ import { LanguageService } from '../../core/services/language.service';
 import { ProjectsService } from './services/projects.service';
 import { SeoService } from '../../core/services/seo.service';
 import { ProjectTypeItem } from './models/projects-api.model';
+import { ScrollRevealDirective, ScrollDirection } from '../../shared/directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-projects',
@@ -23,6 +24,7 @@ import { ProjectTypeItem } from './models/projects-api.model';
     InteractiveBlueprintComponent,
     PaginationComponent,
     SkeletonComponent,
+    ScrollRevealDirective,
   ],
   templateUrl: './projects.component.html',
   styles: `
@@ -48,6 +50,9 @@ export class ProjectsComponent {
 
   readonly currentLang = this.languageService.currentLang;
   readonly tabButtons = viewChildren<ElementRef<HTMLButtonElement>>('tabBtn');
+  readonly revealDirection = input<ScrollDirection>('bottom');
+  readonly revealDelay = input<number>(0);
+
 
   constructor() {
     effect(() => {

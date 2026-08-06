@@ -1,4 +1,4 @@
-import { Component, inject, signal, computed, effect } from '@angular/core';
+import { Component, inject, signal, computed, effect, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PageHeroComponent } from '../../shared/components/page-hero/page-hero.component';
@@ -10,6 +10,7 @@ import { LanguageService } from '../../core/services/language.service';
 import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.component';
 import { ImageComponent } from '../../shared/components/image/image.component';
 import { SeoService } from '../../core/services/seo.service';
+import { ScrollRevealDirective, ScrollDirection } from '../../shared/directives/scroll-reveal.directive';
 
 export interface QuoteFormData {
   name: string;
@@ -29,9 +30,11 @@ export interface QuoteFormData {
     FloatingWireframeComponent,
     ContactFormComponent,
     ImageComponent,
-    SkeletonComponent
+    SkeletonComponent,
+    ScrollRevealDirective,
   ],
   templateUrl: './industries.component.html',
+
   styles: [`
     @keyframes bpDraw {
       0% { stroke-dashoffset: 1200; }
@@ -80,6 +83,8 @@ export class IndustriesComponent {
   private readonly languageService = inject(LanguageService);
   private readonly industriesService = inject(IndustriesService);
   readonly currentLang = this.languageService.currentLang;
+  readonly revealDirection = input<ScrollDirection>('bottom');
+  readonly revealDelay = input<number>(0);
 
   readonly topPaddingClasses = [
     'lg:pt-0',

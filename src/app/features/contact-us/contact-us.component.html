@@ -5,7 +5,7 @@
     [heroImage]="banner()?.image || 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80'" />
 
   <!-- 2. GLOBAL OFFICES SECTION -->
-  <section class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 py-12 md:py-20 lg:py-24 space-y-16">
+  <section [appScrollReveal]="revealDirection()" [delay]="revealDelay()" class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 py-12 md:py-20 lg:py-24 space-y-16">
 
     <!-- Section Header -->
     <div class="text-center max-w-3xl mx-auto space-y-3">
@@ -192,7 +192,7 @@
     </div>
   </section>
 
-  <section
+  <section [appScrollReveal]="'left'" [delay]="150"
     class="bg-neutral-50/50 border-t border-b border-neutral-200/60 py-12 md:py-20 lg:py-24 relative overflow-hidden">
     <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

@@ -1,6 +1,7 @@
 import { Component, computed, input } from '@angular/core';
 import { CountUpDirective } from '../../../../shared/directives/count-up.directive';
 import { AboutCounter } from '../../models/about-api.model';
+import { ScrollRevealDirective, ScrollDirection } from '../../../../shared/directives/scroll-reveal.directive';
 
 export interface StatItem {
   target: number;
@@ -10,11 +11,14 @@ export interface StatItem {
 
 @Component({
   selector: 'app-about-stats',
-  imports: [CountUpDirective],
+  imports: [CountUpDirective, ScrollRevealDirective],
   templateUrl: './about-stats.component.html',
 })
 export class AboutStatsComponent {
   readonly countersData = input<AboutCounter[] | undefined>(undefined);
+  readonly revealDirection = input<ScrollDirection>('bottom');
+  readonly revealDelay = input<number>(0);
+
 
   readonly parsedCounters = computed(() => {
     let data = this.countersData();

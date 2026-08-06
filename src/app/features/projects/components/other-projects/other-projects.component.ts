@@ -3,10 +3,11 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { OtherProjectItem } from '../../models/projects-api.model';
 import { MediaCardComponent } from '../../../../shared/components/media-card/media-card.component';
 import { LanguageService } from '../../../../core/services/language.service';
+import { ScrollRevealDirective, ScrollDirection } from '../../../../shared/directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-other-projects',
-  imports: [TranslatePipe, MediaCardComponent],
+  imports: [TranslatePipe, MediaCardComponent, ScrollRevealDirective],
   templateUrl: './other-projects.component.html',
 })
 export class OtherProjectsComponent {
@@ -14,4 +15,7 @@ export class OtherProjectsComponent {
   readonly currentLang = this.languageService.currentLang;
 
   readonly items = input<OtherProjectItem[]>();
+  readonly revealDirection = input<ScrollDirection>('left');
+  readonly revealDelay = input<number>(0);
 }
+

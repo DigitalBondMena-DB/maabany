@@ -1,4 +1,4 @@
-import { Component, signal, computed, inject, effect } from '@angular/core';
+import { Component, signal, computed, inject, effect, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +15,8 @@ import { IconsComponent } from "../../shared/components/icons/icons.component";
 
 import { IconName } from '../../shared/models/icons.interface';
 
+import { ScrollRevealDirective, ScrollDirection } from '../../shared/directives/scroll-reveal.directive';
+
 export interface TrustIndicator {
   icon: IconName;
   title: string;
@@ -30,7 +32,8 @@ export interface TrustIndicator {
     CtaBannerComponent,
     ContactFormComponent,
     SkeletonComponent,
-    IconsComponent
+    IconsComponent,
+    ScrollRevealDirective,
   ],
   templateUrl: './contact-us.component.html',
 })
@@ -43,6 +46,9 @@ export class ContactUsComponent {
   private readonly seoService = inject(SeoService);
 
   readonly currentLang = this.languageService.currentLang;
+  readonly revealDirection = input<ScrollDirection>('bottom');
+  readonly revealDelay = input<number>(0);
+
 
   readonly banner = this.contactUsService.banner;
   readonly branches = this.contactUsService.branches;
