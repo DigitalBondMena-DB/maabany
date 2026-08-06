@@ -8,12 +8,15 @@ import { SubmissionService } from '../../../../core/services/submission.service'
 
 import { ContactFormComponent } from '../../../home/components/contact-section/contact-form/contact-form.component';
 
+import { ImageComponent } from '../../../../shared/components/image/image.component';
+
 @Component({
   selector: 'app-quote-form-section',
   imports: [
     FormsModule,
     TranslatePipe,
     ContactFormComponent,
+    ImageComponent,
   ],
   templateUrl: './quote-form-section.component.html',
 })

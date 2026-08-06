@@ -1,9 +1,11 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { ImageComponent } from '../../../../shared/components/image/image.component';
+
 @Component({
   selector: 'app-blog-card',
-  imports: [RouterLink],
+  imports: [RouterLink, ImageComponent],
   templateUrl: './blog-card.component.html',
 })
 export class BlogCardComponent {

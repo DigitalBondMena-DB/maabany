@@ -226,7 +226,9 @@ export class ContactFormComponent {
       payload['message'] = data.message.trim() || null;
     }
 
-    this.http.post(environment.baseUrl + API_ENDPOINTS.contact, payload).subscribe({
+    this.http.post(environment.baseUrl + API_ENDPOINTS.contact, payload, {
+      headers: { 'Accept-Language': this.languageService.currentLang() }
+    }).subscribe({
       next: () => {
         this.finishSubmission();
       },

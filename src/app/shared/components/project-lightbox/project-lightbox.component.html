@@ -52,8 +52,8 @@
     <div (click)="$event.stopPropagation()" (dblclick)="toggleZoom($event)"
       class="relative max-w-full max-h-full flex items-center justify-center cursor-zoom-in transition-transform duration-300 ease-out"
       [style.transform]="'scale(' + zoomScale() + ')'">
-      <img [src]="activeSrc" [alt]="projectTitle() + ' View ' + (currentIndex() + 1)"
-        class="max-w-full max-h-[78vh] w-auto h-auto object-contain rounded-2xl shadow-2xl pointer-events-auto" />
+      <app-image [src]="activeSrc" [alt]="projectTitle() + ' View ' + (currentIndex() + 1)"
+        objectFit="contain" classes="max-w-full max-h-[78vh] w-auto h-auto object-contain rounded-2xl shadow-2xl pointer-events-auto" />
     </div>
   </div>
 
@@ -65,7 +65,7 @@
         [class]="'relative w-12 h-10 md:w-16 md:h-12 rounded-lg overflow-hidden shrink-0 transition-all duration-300 cursor-pointer ' + 
               ($index === currentIndex() ? 'ring-2 ring-primary scale-105 opacity-100' : 'opacity-40 hover:opacity-80 border border-neutral-800')"
         [attr.aria-label]="'Select thumbnail ' + ($index + 1)">
-        <img [src]="img" [alt]="'Thumbnail ' + ($index + 1)" class="w-full h-full object-cover" />
+        <app-image [src]="img" [alt]="'Thumbnail ' + ($index + 1)" classes="w-full h-full object-cover" />
       </button>
       }
     </div>

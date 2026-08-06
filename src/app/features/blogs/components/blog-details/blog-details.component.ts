@@ -12,10 +12,13 @@ import { ProjectLightboxComponent } from '../../../../shared/components/project-
 import { CtaBannerComponent } from '../../../../shared/components/cta-banner/cta-banner.component';
 import { TelInputComponent } from '../../../home/components/contact-section/tel-input/tel-input.component';
 import { TableOfContentsComponent, TocItem } from '../../../../shared/components/table-of-contents/table-of-contents.component';
-import { BLOGS_DATA, BlogPostItem } from '../../services/blogs-data';
 import { LanguageService } from '../../../../core/services/language.service';
 import { SubmissionService } from '../../../../core/services/submission.service';
 import { SafeHtmlPipe } from '../../../../shared/pipes/safe-html-pipe';
+import { ContactFormComponent } from '../../../home/components/contact-section/contact-form/contact-form.component';
+import { ImageComponent } from '../../../../shared/components/image/image.component';
+import { BlogsService } from '../../services/blogs.service';
+import { SkeletonComponent } from '../../../../shared/components/skeleton/skeleton.component';
 
 export interface TocHeading {
   id: string;
@@ -27,8 +30,6 @@ export interface ParsedBlogContent {
   processedHtml: string;
   headings: TocHeading[];
 }
-
-import { ContactFormComponent } from '../../../home/components/contact-section/contact-form/contact-form.component';
 
 @Component({
   selector: 'app-blog-details',
@@ -43,38 +44,52 @@ import { ContactFormComponent } from '../../../home/components/contact-section/c
     TableOfContentsComponent,
     SafeHtmlPipe,
     ContactFormComponent,
+    ImageComponent,
+    SkeletonComponent
   ],
   templateUrl: './blog-details.component.html',
 })
 export class BlogDetailsComponent implements OnDestroy {
   private readonly languageService = inject(LanguageService);
+  private readonly blogsService = inject(BlogsService);
   private readonly router = inject(Router);
   private readonly viewportScroller = inject(ViewportScroller);
   private readonly ngZone = inject(NgZone);
   private readonly destroyRef = inject(DestroyRef);
   private readonly submissionService = inject(SubmissionService);
+  
   readonly currentLang = this.languageService.currentLang;
 
   readonly slug = input.required<string>();
 
-  readonly post = computed<BlogPostItem>(() => {
-    const s = this.slug();
-    return BLOGS_DATA.find(b => b.slug === s) || BLOGS_DATA[0];
-  });
+  constructor() {
+    // Set the active slug on the service whenever it changes
+    effect(() => {
+      this.blogsService.setSlug(this.slug());
+    });
+
+    effect(() => {
+      const headings = this.tocHeadings();
+      if (headings.length > 0) {
+        setTimeout(() => this.initScrollSpy(), 100);
+      }
+    });
+  }
+
+  readonly isLoading = this.blogsService.isDetailLoading;
+  readonly post = this.blogsService.blogDetailData;
 
   readonly blogMetrics = computed<MetricItem[]>(() => {
     const p = this.post();
+    if (!p) return [];
     return [
-      { label: 'Author', value: p.author, icon: 'user' },
-      { label: 'Published Date', value: p.date, icon: 'calendar' },
-      { label: 'Last Updated', value: p.lastUpdated || p.date, icon: 'update' },
+      { label: 'Author', value: p.Author, icon: 'user' },
+      { label: 'Published Date', value: p['Published Date'], icon: 'calendar' },
+      { label: 'Last Updated', value: p['last update'] || p['Published Date'], icon: 'update' },
     ];
   });
 
-  readonly relatedPosts = computed<BlogPostItem[]>(() => {
-    const current = this.post();
-    return BLOGS_DATA.filter(b => b.slug !== current.slug).slice(0, 3);
-  });
+  readonly relatedPosts = computed(() => this.post()?.related_articles ?? []);
 
   readonly isLightboxOpen = signal<boolean>(false);
   readonly activeHeadingId = signal<string>('');
@@ -140,14 +155,14 @@ export class BlogDetailsComponent implements OnDestroy {
   }
 
   readonly parsedBlogData = computed<ParsedBlogContent>(() => {
-    const content = this.post().content;
-    if (!content) return { processedHtml: '', headings: [] };
+    const p = this.post();
+    if (!p || !p.content) return { processedHtml: '', headings: [] };
 
     const headings: TocHeading[] = [];
     const regex = /<h([23])([^>]*)>(.*?)<\/h[23]>/gi;
 
     let index = 0;
-    const processedHtml = content.replace(regex, (_, levelStr, attrs, innerText) => {
+    const processedHtml = p.content.replace(regex, (_, levelStr, attrs, innerText) => {
       index++;
       const level = parseInt(levelStr, 10);
       const safeAttrs = attrs || '';
@@ -180,15 +195,6 @@ export class BlogDetailsComponent implements OnDestroy {
     this.parsedBlogData().headings.map(h => ({ id: h.id, title: h.text, level: h.level }))
   );
   readonly processedContent = computed(() => this.parsedBlogData().processedHtml);
-
-  constructor() {
-    effect(() => {
-      const headings = this.tocHeadings();
-      if (headings.length > 0) {
-        setTimeout(() => this.initScrollSpy(), 100);
-      }
-    });
-  }
 
   ngOnDestroy(): void {}
 

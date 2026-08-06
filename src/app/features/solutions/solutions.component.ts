@@ -166,33 +166,26 @@ export class SolutionsComponent {
       return '';
     };
 
-    const getParentTitles = (pt?: any): string[] => {
-      if (!pt) return [];
-      if (Array.isArray(pt)) {
-        return pt.map(extractStringTitle).filter(Boolean);
-      }
-      const single = extractStringTitle(pt);
-      return single ? [single] : [];
-    };
-
-    const parentTitles = getParentTitles(detail?.parent_title);
+    let parentTitle = '';
+    if (Array.isArray(detail?.parent_title)) {
+      parentTitle = extractStringTitle(detail.parent_title[detail.parent_title.length - 1]);
+    } else {
+      parentTitle = extractStringTitle(detail?.parent_title);
+    }
 
     if (s3 && s1 && s2) {
-      const l1Title = parentTitles[0] || s1.replace(/-/g, ' ');
-      const l2Title = parentTitles[1] || parentTitles[0] || s2.replace(/-/g, ' ');
-
+      // If we are at level 3, the immediate parent is level 2. 
+      // We skip level 1 to keep breadcrumb short and avoid missing translations.
+      const immediateParentTitle = parentTitle || s2.replace(/-/g, ' ');
       items.push({
-        label: l1Title,
-        url: ['/', lang, 'solutions', s1]
-      });
-      items.push({
-        label: l2Title,
+        label: immediateParentTitle,
         url: ['/', lang, 'solutions', s1, s2]
       });
     } else if (s2 && s1) {
-      const l1Title = parentTitles[0] || (detail?.parent_slug ? detail.parent_slug.replace(/-/g, ' ') : s1.replace(/-/g, ' '));
+      // If we are at level 2, the immediate parent is level 1.
+      const immediateParentTitle = parentTitle || (detail?.parent_slug ? detail.parent_slug.replace(/-/g, ' ') : s1.replace(/-/g, ' '));
       items.push({
-        label: l1Title,
+        label: immediateParentTitle,
         url: ['/', lang, 'solutions', s1]
       });
     }

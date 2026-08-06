@@ -9,39 +9,47 @@
     <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 space-y-12">
 
       <!-- Articles Grid -->
-      @if (displayedPosts().length > 0) {
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-        @for (post of displayedPosts(); track post.slug) {
-        <app-blog-card [title]="post.title" [desc]="post.desc" [image]="post.image" [date]="post.date"
-          [category]="post.category" [link]="'/' + currentLang() + '/blogs/' + post.slug" />
-        }
-      </div>
+      @if (isLoading()) {
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          @for (item of [1, 2, 3, 4, 5, 6]; track $index) {
+            <app-skeleton class="h-[450px] w-full rounded-2xl" />
+          }
+        </div>
+      } @else if (displayedPosts().length > 0) {
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          @for (post of displayedPosts(); track post.slug) {
+            <app-blog-card [title]="post.title" [desc]="post.excerpt" [image]="post.cover_image" [date]="post.published_at"
+              [category]="post.author" [link]="'/' + currentLang() + '/blogs/' + post.slug" />
+          }
+        </div>
       } @else {
-      <!-- Empty State -->
-      <div
-        class="max-w-md mx-auto text-center py-20 px-6 border border-neutral-200 rounded-3xl bg-neutral-50/50 shadow-xs flex flex-col items-center space-y-6">
-        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" />
-            <path
-              d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
-          </svg>
+        <!-- Empty State -->
+        <div
+          class="max-w-md mx-auto text-center py-20 px-6 border border-neutral-200 rounded-3xl bg-neutral-50/50 shadow-xs flex flex-col items-center space-y-6">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" />
+              <path
+                d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
+            </svg>
+          </div>
+  
+          <div class="space-y-2">
+            <h3 class="text-xl font-bold text-neutral-900 uppercase tracking-tight font-mono">
+              {{ 'No Articles Available' | translate }}
+            </h3>
+            <p class="text-xs text-neutral-500 leading-relaxed font-light">
+              {{ 'We are preparing valuable engineering insights and industry updates. Please check back soon.' | translate }}
+            </p>
+          </div>
         </div>
-
-        <div class="space-y-2">
-          <h3 class="text-xl font-bold text-neutral-900 uppercase tracking-tight font-mono">
-            {{ 'No Articles Available' | translate }}
-          </h3>
-          <p class="text-xs text-neutral-500 leading-relaxed font-light">
-            {{ 'We are preparing valuable engineering insights and industry updates. Please check back soon.' | translate }}
-          </p>
-        </div>
-      </div>
       }
 
       <!-- Reusable Shared Pagination Component -->
-      <app-pagination [currentPage]="currentPage()" [totalPages]="totalPages()" (pageChange)="goToPage($event)" />
+      @if (totalPages() > 1 && !isLoading()) {
+        <app-pagination [currentPage]="currentPage()" [totalPages]="totalPages()" (pageChange)="goToPage($event)" />
+      }
 
     </div>
   </section>

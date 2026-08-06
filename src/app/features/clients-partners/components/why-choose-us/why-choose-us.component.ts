@@ -8,9 +8,11 @@ interface FeatureCard {
   icon: 'award' | 'handshake' | 'cpu' | 'shield';
 }
 
+import { ImageComponent } from '../../../../shared/components/image/image.component';
+
 @Component({
   selector: 'app-clients-why-choose-us',
-  imports: [TranslatePipe],
+  imports: [TranslatePipe, ImageComponent],
   templateUrl: './why-choose-us.component.html',
 })
 export class WhyChooseUsComponent {

@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PageHeroComponent } from '../../shared/components/page-hero/page-hero.component';
@@ -6,8 +6,10 @@ import { MediaCardComponent } from '../../shared/components/media-card/media-car
 import { FloatingWireframeComponent } from '../../shared/components/floating-wireframe/floating-wireframe.component';
 import { TelInputComponent } from '../home/components/contact-section/tel-input/tel-input.component';
 import { ContactFormComponent, validateInternationalPhone } from '../home/components/contact-section/contact-form/contact-form.component';
-import { INDUSTRIES_DATA, IndustryItem } from './services/industries-data';
+import { IndustriesService } from './services/industries.service';
 import { LanguageService } from '../../core/services/language.service';
+import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.component';
+import { ImageComponent } from '../../shared/components/image/image.component';
 
 export interface QuoteFormData {
   name: string;
@@ -26,6 +28,8 @@ export interface QuoteFormData {
     MediaCardComponent,
     FloatingWireframeComponent,
     ContactFormComponent,
+    ImageComponent,
+    SkeletonComponent
   ],
   templateUrl: './industries.component.html',
   styles: [`
@@ -64,6 +68,7 @@ export interface QuoteFormData {
 export class IndustriesComponent {
   private readonly router = inject(Router);
   private readonly languageService = inject(LanguageService);
+  private readonly industriesService = inject(IndustriesService);
   readonly currentLang = this.languageService.currentLang;
 
   readonly topPaddingClasses = [
@@ -72,7 +77,9 @@ export class IndustriesComponent {
     'lg:pt-12',
   ] as const;
 
-  readonly industries: IndustryItem[] = INDUSTRIES_DATA;
+  readonly industriesData = this.industriesService.industriesData;
+  readonly industries = this.industriesService.industries;
+  readonly isLoading = this.industriesService.isListLoading;
 
   // Realtime Quote Form Signals
   readonly phoneCountryCode = signal<string>('+966');

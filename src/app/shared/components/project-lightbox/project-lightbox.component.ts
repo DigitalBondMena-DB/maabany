@@ -1,8 +1,9 @@
 import { Component, input, output, signal, HostListener, effect } from '@angular/core';
+import { ImageComponent } from '../image/image.component';
 
 @Component({
   selector: 'app-project-lightbox',
-  imports: [],
+  imports: [ImageComponent],
   templateUrl: './project-lightbox.component.html',
 })
 export class ProjectLightboxComponent {

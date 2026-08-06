@@ -3,8 +3,8 @@
         class="bg-white border border-neutral-200 rounded-3xl overflow-hidden group hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 flex flex-col h-full cursor-pointer relative">
         <div [class]="'overflow-hidden relative block shrink-0 ' + imageHeight()">
             @if (isCarousel()) {
-            <img [src]="displayImages()[currentIdx()]" [alt]="title() + ' slide ' + currentIdx()"
-                class="w-full h-full object-cover transition-opacity duration-300" />
+            <app-image [src]="displayImages()[currentIdx()]" [alt]="title() + ' slide ' + currentIdx()"
+                classes="w-full h-full object-cover transition-opacity duration-300" />
 
             <div class="absolute inset-0 bg-linear-to-t from-neutral-950/40 to-transparent pointer-events-none"></div>
 

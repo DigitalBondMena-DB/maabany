@@ -1,11 +1,12 @@
-import { Component, signal, computed, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PageHeroComponent } from '../../shared/components/page-hero/page-hero.component';
 import { BlogCardComponent } from './components/blog-card/blog-card.component';
 import { PaginationComponent } from '../../shared/components/pagination/pagination.component';
 import { CtaBannerComponent } from '../../shared/components/cta-banner/cta-banner.component';
-import { BLOGS_DATA, BlogPostItem } from './services/blogs-data';
+import { BlogsService } from './services/blogs.service';
 import { LanguageService } from '../../core/services/language.service';
+import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.component';
 
 @Component({
   selector: 'app-blogs',
@@ -15,29 +16,25 @@ import { LanguageService } from '../../core/services/language.service';
     BlogCardComponent,
     PaginationComponent,
     CtaBannerComponent,
+    SkeletonComponent
   ],
   templateUrl: './blogs.component.html',
 })
 export class BlogsComponent {
   private readonly languageService = inject(LanguageService);
+  private readonly blogsService = inject(BlogsService);
+  
   readonly currentLang = this.languageService.currentLang;
 
-  readonly posts = signal<BlogPostItem[]>(BLOGS_DATA);
-  readonly currentPage = signal<number>(1);
-  readonly pageSize = signal<number>(6);
-
-  readonly totalPages = computed(() => {
-    return Math.ceil(this.posts().length / this.pageSize()) || 1;
-  });
-
-  readonly displayedPosts = computed(() => {
-    const start = (this.currentPage() - 1) * this.pageSize();
-    return this.posts().slice(start, start + this.pageSize());
-  });
+  readonly displayedPosts = this.blogsService.blogs;
+  readonly isLoading = this.blogsService.isListLoading;
+  
+  readonly currentPage = this.blogsService.currentPage;
+  readonly totalPages = computed(() => this.blogsService.pagination()?.last_page || 1);
 
   goToPage(page: number): void {
     if (page >= 1 && page <= this.totalPages()) {
-      this.currentPage.set(page);
+      this.blogsService.setPage(page);
     }
   }
 }

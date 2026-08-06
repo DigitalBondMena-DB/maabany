@@ -8,4 +8,9 @@ export const API_ENDPOINTS = {
   info: `/info`,
   projects: `/projects`,
   projectTypes: `/projects-types`,
+  industries: `/industries`,
+  blogs: `/blogs`,
+  clientsPartner: `/clients-partner`,
+  privacyPolicy: `/privacy-policy`,
+  requestQuote: `/request-quote`,
 } as const;

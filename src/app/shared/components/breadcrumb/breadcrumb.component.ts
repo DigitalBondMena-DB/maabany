@@ -14,9 +14,7 @@ export interface BreadcrumbItem {
   imports: [RouterLink, TranslatePipe],
   template: `
     <nav aria-label="Breadcrumb"
-         [style.--item-count]="breadcrumbItems().length"
-         class="flex flex-wrap items-center gap-y-1.5 gap-x-2 font-mono tracking-wider uppercase font-semibold text-neutral-500"
-         style="font-size: clamp(0.65rem, calc(0.92rem - (var(--item-count, 2) * 0.04rem)), 0.85rem)">
+         class="breadcrumb-nav flex flex-wrap items-center gap-y-1.5 gap-x-2 font-mono tracking-wider uppercase font-semibold text-neutral-500">
       @for (item of breadcrumbItems(); track $index; let last = $last) {
         @if (item.url) {
           <a [routerLink]="item.url"
@@ -35,7 +33,18 @@ export interface BreadcrumbItem {
         }
       }
     </nav>
-  `
+  `,
+  styles: [`
+    .breadcrumb-nav {
+      --item-count: 2;
+      font-size: clamp(0.55rem, calc(0.92rem - (var(--item-count) * 0.05rem)), 0.85rem);
+    }
+    /* Total elements = items + separators = 2N - 1 */
+    .breadcrumb-nav:has(> *:nth-child(5)) { --item-count: 3; }
+    .breadcrumb-nav:has(> *:nth-child(7)) { --item-count: 4; }
+    .breadcrumb-nav:has(> *:nth-child(9)) { --item-count: 5; }
+    .breadcrumb-nav:has(> *:nth-child(11)) { --item-count: 6; }
+  `]
 })
 export class BreadcrumbComponent {
   private readonly languageService = inject(LanguageService);

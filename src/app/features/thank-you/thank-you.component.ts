@@ -4,11 +4,14 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageService } from '../../core/services/language.service';
 import { SubmissionService } from '../../core/services/submission.service';
 
+import { ImageComponent } from '../../shared/components/image/image.component';
+
 @Component({
   selector: 'app-thank-you',
   imports: [
     RouterLink,
     TranslatePipe,
+    ImageComponent,
   ],
   templateUrl: './thank-you.component.html',
 })

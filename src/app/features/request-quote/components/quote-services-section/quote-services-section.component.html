@@ -9,27 +9,42 @@
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      @for (solution of solutions; track solution.id) {
-        <a
-          [routerLink]="['/', currentLang(), 'solutions', solution.id]"
-          class="bg-white rounded-2xl overflow-hidden shadow-xs border border-neutral-100 group hover:shadow-md transition-all duration-300 block cursor-pointer">
-          <div class="aspect-video overflow-hidden">
-            <img
-              [src]="solution.image"
-              [alt]="solution.title"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+    @if (isLoading()) {
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (item of [1, 2, 3]; track $index) {
+          <div class="bg-white rounded-2xl overflow-hidden shadow-xs border border-neutral-100 block">
+            <app-skeleton class="aspect-video w-full block" />
+            <div class="p-8 space-y-3">
+              <app-skeleton class="h-6 w-3/4 block" />
+              <app-skeleton class="h-4 w-full block" />
+              <app-skeleton class="h-4 w-5/6 block" />
+            </div>
           </div>
-          <div class="p-8">
-            <h3 class="text-xl font-bold text-neutral-900 mb-3 group-hover:text-primary transition-colors font-mono">
-              {{ solution.title | translate }}
-            </h3>
-            <p class="text-neutral-600 text-sm leading-relaxed mb-0 font-light">
-              {{ solution.desc | translate }}
-            </p>
-          </div>
-        </a>
-      }
-    </div>
+        }
+      </div>
+    } @else {
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (solution of solutions(); track solution.slug) {
+          <a
+            [routerLink]="['/', currentLang(), 'solutions', solution.slug]"
+            class="bg-white rounded-2xl overflow-hidden shadow-xs border border-neutral-100 group hover:shadow-md transition-all duration-300 block cursor-pointer">
+            <div class="aspect-video overflow-hidden relative">
+              <app-image
+                [src]="solution.image"
+                [alt]="solution.title"
+                classes="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-bold text-neutral-900 mb-3 group-hover:text-primary transition-colors font-mono">
+                {{ solution.title }}
+              </h3>
+              <p class="text-neutral-600 text-sm leading-relaxed mb-0 font-light">
+                {{ solution.description }}
+              </p>
+            </div>
+          </a>
+        }
+      </div>
+    }
   </div>
 </section>
