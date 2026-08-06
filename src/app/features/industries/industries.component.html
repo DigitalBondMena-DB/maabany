@@ -1,48 +1,46 @@
 <div class="relative bg-white text-neutral-900 min-h-screen selection:bg-primary selection:text-white">
   @if (isLoading()) {
-    <app-skeleton class="h-[60vh] w-full block" />
-    <section class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 py-12 md:py-20 lg:py-24 space-y-16">
-      <div class="max-w-3xl space-y-3">
-        <app-skeleton class="h-4 w-24 block" />
-        <app-skeleton class="h-12 w-3/4 block" />
+  <app-skeleton class="h-[60vh] w-full block" />
+  <section class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 py-12 md:py-20 lg:py-24 space-y-16">
+    <div class="max-w-3xl space-y-3">
+      <app-skeleton class="h-4 w-24 block" />
+      <app-skeleton class="h-12 w-3/4 block" />
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (item of [1, 2, 3, 4, 5, 6]; track $index; let idx = $index) {
+      <div [class]="topPaddingClasses[idx % topPaddingClasses.length]">
+        <app-skeleton class="h-[400px] w-full rounded-2xl block" />
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        @for (item of [1, 2, 3, 4, 5, 6]; track $index; let idx = $index) {
-          <div [class]="topPaddingClasses[idx % topPaddingClasses.length]">
-            <app-skeleton class="h-[400px] w-full rounded-2xl block" />
-          </div>
-        }
-      </div>
-    </section>
+      }
+    </div>
+  </section>
   } @else if (industriesData()) {
-    <app-page-hero 
-      [title]="industriesData()!.banner?.title || ('Solutions Across Industries' | translate)" 
-      [categoryBadge]="'Industries We Serve' | translate"
-      [heroImage]="industriesData()!.banner?.image || 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80'" />
-    
-    <section class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 py-12 md:py-20 lg:py-24 space-y-16">
-      <div class="max-w-3xl space-y-3">
-        <span class="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
-          {{ 'OUR SECTORS' | translate }}
-        </span>
-        <h2 class="text-3xl md:text-5xl font-black text-neutral-900 uppercase tracking-tight font-mono">
-          {{ 'Industries We Proudly Serve' | translate }}
-        </h2>
+  <app-page-hero [title]="industriesData()!.banner?.title || ('Solutions Across Industries' | translate)"
+    [categoryBadge]="'Industries We Serve' | translate"
+    [heroImage]="industriesData()!.banner?.image || 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80'" />
+
+  <section class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 py-12 md:py-20 lg:py-24 space-y-16">
+    <div class="max-w-3xl space-y-3">
+      <span class="text-[#142b52] font-mono text-xs uppercase font-bold tracking-widest block">
+        {{ 'OUR SECTORS' | translate }}
+      </span>
+      <h2 class="text-3xl md:text-5xl font-black text-neutral-900 uppercase tracking-tight font-mono">
+        {{ 'Industries We Proudly Serve' | translate }}
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (ind of industries(); track ind.slug; let idx = $index) {
+      <div [class]="topPaddingClasses[idx % topPaddingClasses.length]">
+        <app-media-card [title]="ind.title" [desc]="ind.description" [image]="ind.image"
+          [link]="'/' + currentLang() + '/industries/' + ind.slug" badgePosition="top-left" imageHeight="h-64" />
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        @for (ind of industries(); track ind.slug; let idx = $index) {
-        <div [class]="topPaddingClasses[idx % topPaddingClasses.length]">
-          <app-media-card [title]="ind.title" [desc]="ind.description" [image]="ind.image"
-            [link]="'/' + currentLang() + '/industries/' + ind.slug" badgePosition="top-left"
-            imageHeight="h-64" />
-        </div>
-        }
-      </div>
-    </section>
+      }
+    </div>
+  </section>
   }
   <section
     class="bg-neutral-50/50 border-t border-b border-neutral-200/60 py-12 md:py-20 lg:py-24 relative overflow-hidden">
-    <div class="absolute -right-16 bottom-16 w-80 h-80 opacity-15 pointer-events-none hidden xl:block">
+    <div class="absolute -right-16 bottom-16 size-80 opacity-15 pointer-events-none hidden xl:block">
       <app-floating-wireframe shape="tower" color="#142b52" />
     </div>
     <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 relative z-10">
@@ -62,11 +60,12 @@
               class="p-5 bg-white border border-neutral-200 rounded-2xl shadow-xs hover:border-primary transition-colors group flex flex-col justify-between">
               <div>
                 <div class="relative h-36 w-full overflow-hidden rounded-xl mb-4 bg-neutral-100">
-                  <app-image src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80"
+                  <app-image
+                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80"
                     alt="Industry-Specific Expertise"
-                    classes="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    classes="size-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div
-                    class="absolute top-3 left-3 w-8 h-8 rounded-lg bg-white/90 backdrop-blur-xs text-primary flex items-center justify-center shadow-xs">
+                    class="absolute top-3 start-3 size-8 rounded-lg bg-white/90 backdrop-blur-xs text-primary flex items-center justify-center shadow-xs">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <rect width="16" height="16" x="4" y="4" rx="2" />
@@ -95,11 +94,12 @@
               class="p-5 bg-white border border-neutral-200 rounded-2xl shadow-xs hover:border-primary transition-colors group flex flex-col justify-between">
               <div>
                 <div class="relative h-36 w-full overflow-hidden rounded-xl mb-4 bg-neutral-100">
-                  <app-image src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80"
+                  <app-image
+                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80"
                     alt="Certified Engineering Teams"
-                    classes="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    classes="size-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div
-                    class="absolute top-3 left-3 w-8 h-8 rounded-lg bg-white/90 backdrop-blur-xs text-primary flex items-center justify-center shadow-xs">
+                    class="absolute top-3 start-3 size-8 rounded-lg bg-white/90 backdrop-blur-xs text-primary flex items-center justify-center shadow-xs">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path
@@ -124,9 +124,9 @@
                   <app-image
                     src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80"
                     alt="International Standards"
-                    classes="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    classes="size-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div
-                    class="absolute top-3 left-3 w-8 h-8 rounded-lg bg-white/90 backdrop-blur-xs text-primary flex items-center justify-center shadow-xs">
+                    class="absolute top-3 start-3 size-8 rounded-lg bg-white/90 backdrop-blur-xs text-primary flex items-center justify-center shadow-xs">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <circle cx="12" cy="8" r="6" />
@@ -150,9 +150,9 @@
                   <app-image
                     src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
                     alt="End-to-End Delivery"
-                    classes="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    classes="size-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div
-                    class="absolute top-3 left-3 w-8 h-8 rounded-lg bg-white/90 backdrop-blur-xs text-primary flex items-center justify-center shadow-xs">
+                    class="absolute top-3 start-3 size-8 rounded-lg bg-white/90 backdrop-blur-xs text-primary flex items-center justify-center shadow-xs">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
@@ -175,14 +175,15 @@
         <div class="lg:col-span-5 relative">
           <div
             class="relative rounded-3xl overflow-hidden shadow-2xl border border-neutral-200/60 bg-neutral-150 aspect-4/5 max-w-sm mx-auto group">
-            <app-image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
+            <app-image
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
               alt="Industrial municipal construction planning"
-              classes="w-full h-full object-cover grayscale brightness-95 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700" />
+              classes="size-full object-cover grayscale brightness-95 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700" />
 
             <div class="absolute inset-0 bg-linear-to-t from-neutral-950/80 via-neutral-950/20 to-transparent"></div>
 
             <div
-              class="absolute bottom-6 left-6 right-6 p-5 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-white/20">
+              class="absolute bottom-6 start-6 end-6 p-5 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-white/20">
               <span class="text-[10px] font-mono font-bold text-primary tracking-wider uppercase block">
                 {{ 'SAUDI VISION 2030 PARTNER' | translate }}
               </span>
@@ -208,7 +209,7 @@
       <div class="absolute inset-0 pointer-events-none select-none overflow-hidden">
         <app-image src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80"
           alt="Construction and Engineering"
-          classes="w-full h-full object-cover opacity-28 mix-blend-luminosity scale-[1.03] group-hover:scale-100 transition-transform duration-[1200ms] ease-out" />
+          classes="size-full object-cover opacity-28 mix-blend-luminosity scale-[1.03] group-hover:scale-100 transition-transform duration-[1200ms] ease-out" />
         <div class="absolute inset-0 bg-linear-to-r from-[#0a0f1d]/75 via-[#0a0f1d]/40 to-[#0a0f1d]/20"></div>
         <div class="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-[#0a0f1d]/30"></div>
       </div>
@@ -216,13 +217,13 @@
         class="absolute inset-0 translate-x-[-150%] -skew-x-25 w-1/2 bg-linear-to-r from-transparent via-white/5 to-transparent group-hover:animate-sweep">
       </div>
       <div
-        class="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[100px] pointer-events-none">
+        class="absolute top-1/2 end-0 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[100px] pointer-events-none">
       </div>
 
       <!-- Architectural & Engineering Blueprint Vector Overlay -->
       <div
-        class="absolute right-0 top-0 bottom-0 w-full lg:w-1/2 pointer-events-none select-none overflow-hidden opacity-22 lg:opacity-28">
-        <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        class="absolute end-0 top-0 bottom-0 w-full lg:w-1/2 pointer-events-none select-none overflow-hidden opacity-22 lg:opacity-28">
+        <svg class="absolute inset-0 size-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="cta-grid-ticks" width="40" height="40" patternUnits="userSpaceOnUse">
               <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5" opacity="0.2" />
@@ -233,8 +234,8 @@
           <rect width="100%" height="100%" fill="url(#cta-grid-ticks)" />
         </svg>
 
-        <div class="absolute inset-0 flex items-center justify-end pr-4">
-          <svg viewBox="0 0 700 600" class="w-full h-full max-w-none transform translate-x-12 translate-y-8 scale-105"
+        <div class="absolute inset-0 flex items-center justify-end pe-4">
+          <svg viewBox="0 0 700 600" class="size-full max-w-none transform translate-x-12 translate-y-8 scale-105"
             fill="none" stroke="white" stroke-width="1" xmlns="http://www.w3.org/2000/svg">
             <g class="bp-line-draw" stroke-width="1" stroke="white">
               <line x1="50" y1="140" x2="650" y2="140" stroke-width="1.5" />
@@ -296,11 +297,10 @@
       </div>
 
       <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <!-- Left Column Information -->
         <div class="lg:col-span-6 space-y-5">
           <span
             class="inline-flex items-center gap-2 text-xs font-mono tracking-[0.25em] text-primary uppercase font-black">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24"
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-primary" fill="none" viewBox="0 0 24 24"
               stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round"
                 d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />

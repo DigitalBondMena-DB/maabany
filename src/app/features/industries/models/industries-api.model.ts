@@ -26,6 +26,7 @@ export interface IndustryChallenge {
 
 export interface IndustryDetailData {
   title: string;
+  overview_title: string;
   slug: string;
   other_slug: string;
   image: string;

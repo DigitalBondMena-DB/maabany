@@ -1,7 +1,7 @@
 @if (projectDetailsService.isLoading()) {
 <app-skeleton>
   <div class="w-full max-w-350 mx-auto"
-    style="padding-left: var(--outer-padding-x); padding-right: var(--outer-padding-x); padding-top: var(--outer-padding-top); padding-bottom: var(--outer-padding-bottom);">
+    style="padding-inline: var(--outer-padding-x); padding-top: var(--outer-padding-top); padding-bottom: var(--outer-padding-bottom);">
     <section
       class="relative w-full h-95 md:h-115 lg:h-135 flex flex-col justify-center overflow-hidden bg-neutral-100 shadow-xl"
       style="border-radius: var(--hero-border-radius, 40px)">
@@ -29,8 +29,7 @@
 } @else {
 <div class="relative bg-white text-neutral-900 min-h-screen">
   <!-- 1. Hero Header Section -->
-  <app-page-hero 
-    [title]="projectData()?.title || ''" 
+  <app-page-hero [title]="projectData()?.title || ''"
     [categoryBadge]="projectData()?.industry_title || ('NAV.PROJECTS' | translate)"
     [heroImage]="projectData()?.cover_image || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80'" />
 
@@ -47,7 +46,6 @@
     <div class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
-        <!-- Left Column (Overview & Detailed Specification + Gallery Button) -->
         <div class="lg:col-span-7 space-y-6">
           <div class="inline-flex items-center gap-2">
             <span class="w-8 h-0.5 bg-primary"></span>
@@ -77,8 +75,7 @@
 
         <!-- Right Column (Floating Specification Form with Shared Contact Form) -->
         <div class="lg:col-span-5 lg:sticky lg:top-32">
-          <app-contact-form [pageSlug]="'projects-' + slug()"
-            [formTitle]="'Ask about this Project'"
+          <app-contact-form [pageSlug]="'projects-' + slug()" [formTitle]="'Ask about this Project'"
             [formSubtitle]="'Inquire directly regarding ' + (projectData()?.title || '')"
             [cardClasses]="'bg-neutral-50/90 backdrop-blur-xl border border-neutral-200/80 rounded-3xl p-8 shadow-xl relative overflow-hidden'" />
         </div>
@@ -89,8 +86,8 @@
 
   <!-- Gallery Lightbox Modal Component -->
   @if (projectImages().length > 0) {
-  <app-project-lightbox [isOpen]="isGalleryOpen()" [images]="projectImages()" [projectTitle]="projectData()?.title || ''"
-    (close)="closeGallery()" />
+  <app-project-lightbox [isOpen]="isGalleryOpen()" [images]="projectImages()"
+    [projectTitle]="projectData()?.title || ''" (close)="closeGallery()" />
   }
 
   <!-- 5. Recommended Projects Grid -->

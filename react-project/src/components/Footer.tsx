@@ -247,7 +247,7 @@ export function Footer({ setQuoteModalOpen }: FooterProps) {
             />
           </div>
 
-          <p className="text-[14px] text-white/80 leading-[1.8] font-light pr-4">
+          <p className="text-[14px] text-white/80 leading-[1.8] font-light pe-4">
             Maabany Integrated Building Solutions delivers innovative engineering, construction, and facility management services across the Kingdom of Saudi Arabia (KSA) with a commitment to quality, precision, and long-term value.
           </p>
 

@@ -1,7 +1,7 @@
 @if (aboutService.isLoading()) {
 <app-skeleton>
   <div class="w-full max-w-350 mx-auto"
-    style="padding-left: var(--outer-padding-x); padding-right: var(--outer-padding-x); padding-top: var(--outer-padding-top); padding-bottom: var(--outer-padding-bottom);">
+    style="padding-inline: var(--outer-padding-x); padding-top: var(--outer-padding-top); padding-bottom: var(--outer-padding-bottom);">
     <section
       class="relative w-full h-95 md:h-115 lg:h-135 flex flex-col justify-center overflow-hidden bg-neutral-100 shadow-xl"
       style="border-radius: var(--hero-border-radius, 40px)">
@@ -31,8 +31,7 @@
 } @else {
 <div class="relative bg-white text-neutral-900 min-h-screen">
   <!-- 1. Shared Page Hero Section -->
-  <app-page-hero 
-    [title]="aboutService.about()?.banner_title || ('ABOUT_PAGE.WHO_WE_ARE' | translate)" 
+  <app-page-hero [title]="aboutService.about()?.banner_title || ('ABOUT_PAGE.WHO_WE_ARE' | translate)"
     categoryBadge="NAV.ABOUT"
     [heroImage]="aboutService.about()?.banner_image || 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80'" />
 
@@ -46,23 +45,16 @@
   <app-about-values [aboutData]="aboutService.about()" />
 
   <!-- 5. Partners Marquee -->
-  <app-client-marquee 
-    [apiPartners]="aboutService.partners()" 
-    sliderPadding="py-12" 
-    title="CLIENT_MARQUEE.OUR_PARTNERS"
+  <app-client-marquee [apiPartners]="aboutService.partners()" sliderPadding="py-12" title="CLIENT_MARQUEE.OUR_PARTNERS"
     subtitle="CLIENT_MARQUEE.TRUSTED_BY_THE_BEST" />
 
   <!-- 6. Why Choose Us -->
-  <app-about-why-choose-us 
-    [whyChooseUsData]="aboutService.whyChooseUs()"
+  <app-about-why-choose-us [whyChooseUsData]="aboutService.whyChooseUs()"
     [aboutInfoWhyChooseUs]="aboutService.about()?.why_choose_us" />
 
   <!-- 7. Clients Marquee -->
-  <app-client-marquee 
-    [apiClients]="aboutService.clients()" 
-    sliderPadding="py-12" 
-    subtitle="CLIENT_MARQUEE.BUILDING_WITH_EXCELLENCE"
-    title="CLIENT_MARQUEE.OUR_CLIENTS" />
+  <app-client-marquee [apiClients]="aboutService.clients()" sliderPadding="py-12"
+    subtitle="CLIENT_MARQUEE.BUILDING_WITH_EXCELLENCE" title="CLIENT_MARQUEE.OUR_CLIENTS" />
 
   <!-- 8. Shared CTA Banner Section -->
   <app-cta-banner />

@@ -523,8 +523,8 @@ export function RequestQuote() {
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       className={`w-full bg-neutral-50/50 border p-3.5 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 transition-all duration-200 ${errors.fullName
-                          ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15 focus:bg-white'
-                          : 'border-neutral-200/80 focus:border-primary focus:ring-2 focus:ring-primary/15 focus:bg-white'
+                        ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15 focus:bg-white'
+                        : 'border-neutral-200/80 focus:border-primary focus:ring-2 focus:ring-primary/15 focus:bg-white'
                         }`}
                     />
                     {errors.fullName && (
@@ -541,15 +541,15 @@ export function RequestQuote() {
                         Phone Number *
                       </label>
                       <div className={`relative flex items-center bg-neutral-50/50 border rounded-xl transition-all duration-200 w-full ${errors.phone
-                          ? 'border-red-500 bg-white focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-500/15'
-                          : 'border-neutral-200/80 focus-within:border-primary focus-within:bg-white focus-within:ring-2 focus-within:ring-primary/15'
+                        ? 'border-red-500 bg-white focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-500/15'
+                        : 'border-neutral-200/80 focus-within:border-primary focus-within:bg-white focus-within:ring-2 focus-within:ring-primary/15'
                         }`}>
-                        <div className="flex items-center gap-1.5 pl-3.5 pr-2 border-r border-neutral-200 select-none shrink-0">
+                        <div className="flex items-center gap-1.5 pl-3.5 pe-2 border-r border-neutral-200 select-none shrink-0">
                           <CountryFlag countryCode={phoneCountryCode} />
                           <select
                             value={phoneCountryCode}
                             onChange={(e) => setPhoneCountryCode(e.target.value)}
-                            className="bg-transparent border-none text-xs font-mono text-neutral-700 focus:ring-0 focus:outline-none cursor-pointer p-0 pr-4 appearance-none font-bold"
+                            className="bg-transparent border-none text-xs font-mono text-neutral-700 focus:ring-0 focus:outline-none cursor-pointer p-0 pe-4 appearance-none font-bold"
                             style={{ backgroundImage: 'none' }}
                             aria-label="Country phone code"
                           >
@@ -585,8 +585,8 @@ export function RequestQuote() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className={`w-full bg-neutral-50/50 border p-3.5 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 transition-all duration-200 ${errors.email
-                            ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15 focus:bg-white'
-                            : 'border-neutral-200/80 focus:border-primary focus:ring-2 focus:ring-primary/15 focus:bg-white'
+                          ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15 focus:bg-white'
+                          : 'border-neutral-200/80 focus:border-primary focus:ring-2 focus:ring-primary/15 focus:bg-white'
                           }`}
                       />
                       {errors.email && (
@@ -739,7 +739,7 @@ export function RequestQuote() {
             </svg>
 
             {/* Layer 2: Drawing Content */}
-            <div className="absolute inset-0 flex items-center justify-end pr-4">
+            <div className="absolute inset-0 flex items-center justify-end pe-4">
               <svg
                 viewBox="0 0 700 600"
                 className="w-full h-full max-w-none transform translate-x-12 translate-y-8 scale-105"

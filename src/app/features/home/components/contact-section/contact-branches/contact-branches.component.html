@@ -3,7 +3,7 @@
   <div class="space-y-6">
     <!-- Discoverability Helper Text -->
     <div class="flex items-center gap-2 text-xs font-mono font-medium text-neutral-500 tracking-wide select-none">
-      <div class="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse"></div>
+      <div class="size-1.5 rounded-full bg-primary/80 animate-pulse"></div>
       <span>{{ 'CONTACT.SELECT_OFFICE_HELPER' | translate }}</span>
     </div>
 
@@ -15,13 +15,13 @@
       </div>
 
       <!-- Map labels -->
-      <div class="absolute top-2.5 left-3.5 font-mono text-[8px] text-neutral-500 tracking-wider">
+      <div class="absolute top-2.5 start-3.5 font-mono text-[8px] text-neutral-500 tracking-wider">
         {{ 'CONTACT.REGIONAL_CONNECTIONS' | translate }}
       </div>
 
       @if (activeBranch(); as branch) {
       <div
-        class="absolute bottom-2.5 right-3.5 font-mono text-[9px] text-primary/90 tracking-widest animate-pulse font-bold flex items-center gap-1.5">
+        class="absolute bottom-2.5 end-3.5 font-mono text-[9px] text-primary/90 tracking-widest animate-pulse font-bold flex items-center gap-1.5">
         <img [src]="'https://flagcdn.com/w40/' + branch.code.toLowerCase() + '.png'" [alt]="branch.code"
           class="w-4 h-3 object-cover rounded-2xs border border-neutral-700 shrink-0" />
         <span>• {{ selectedBranch() }} {{ 'CONTACT.ACTIVE_NODE' | translate }}</span>
@@ -42,7 +42,7 @@
       }
 
       <!-- Interactive Map SVG with Connection Lines and Node Pins -->
-      <svg class="w-full h-full" viewBox="0 0 320 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="size-full" viewBox="0 0 320 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <radialGradient id="orangeGlowGradient" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stop-color="#EA8A22" stop-opacity="0.5" />
@@ -118,7 +118,7 @@
         <div class="flex gap-3.5 items-start">
           <div class="p-1.5 text-primary shrink-0 mt-0.5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-4">
               <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
@@ -136,7 +136,7 @@
         <div class="flex gap-3.5 items-start">
           <div class="p-1.5 text-primary shrink-0 mt-0.5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-4">
               <path
                 d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
             </svg>
@@ -157,7 +157,7 @@
         <div class="flex gap-3.5 items-start">
           <div class="p-1.5 text-primary shrink-0 mt-0.5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-4">
               <rect width="20" height="16" x="2" y="4" rx="2" />
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
             </svg>
@@ -178,7 +178,7 @@
         <div class="flex gap-3.5 items-start">
           <div class="p-1.5 text-primary shrink-0 mt-0.5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-4">
               <circle cx="12" cy="12" r="10" />
               <polyline points="12 6 12 12 16 14" />
             </svg>

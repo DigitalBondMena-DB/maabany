@@ -122,7 +122,7 @@ Core utility classes for layout, spacing, typography, colors, borders, and shado
 <div class="px-6">Left and right</div>
 <div class="py-3">Top and bottom</div>
 <div class="pt-8">Top</div>
-<div class="pr-4">Right</div>
+<div class="pe-4">Right</div>
 <div class="pb-2">Bottom</div>
 <div class="pl-6">Left</div>
 ```

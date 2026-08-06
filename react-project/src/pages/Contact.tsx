@@ -428,8 +428,8 @@ export function Contact() {
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className={`w-full bg-neutral-50/50 border p-3.5 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 transition-all ${errors.name
-                              ? 'border-red-400 focus:ring-2 focus:ring-red-500/15'
-                              : 'border-neutral-200/80 focus:border-primary focus:ring-2 focus:ring-primary/15'
+                            ? 'border-red-400 focus:ring-2 focus:ring-red-500/15'
+                            : 'border-neutral-200/80 focus:border-primary focus:ring-2 focus:ring-primary/15'
                             }`}
                         />
                         {errors.name && <p className="text-[10px] text-red-500 font-mono pl-1">{errors.name}</p>}
@@ -448,8 +448,8 @@ export function Contact() {
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           className={`w-full bg-neutral-50/50 border p-3.5 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 transition-all ${errors.email
-                              ? 'border-red-400 focus:ring-2 focus:ring-red-500/15'
-                              : 'border-neutral-200/80 focus:border-primary focus:ring-2 focus:ring-primary/15'
+                            ? 'border-red-400 focus:ring-2 focus:ring-red-500/15'
+                            : 'border-neutral-200/80 focus:border-primary focus:ring-2 focus:ring-primary/15'
                             }`}
                         />
                         {errors.email && <p className="text-[10px] text-red-500 font-mono pl-1">{errors.email}</p>}
@@ -463,15 +463,15 @@ export function Contact() {
                           Phone Number *
                         </label>
                         <div className={`relative flex items-center bg-neutral-50/50 border rounded-xl transition-all w-full ${errors.phone
-                            ? 'border-red-400 focus-within:ring-2 focus-within:ring-red-500/15'
-                            : 'border-neutral-200/80 focus-within:border-primary focus-within:bg-white focus-within:ring-2 focus-within:ring-primary/15'
+                          ? 'border-red-400 focus-within:ring-2 focus-within:ring-red-500/15'
+                          : 'border-neutral-200/80 focus-within:border-primary focus-within:bg-white focus-within:ring-2 focus-within:ring-primary/15'
                           }`}>
-                          <div className="flex items-center gap-1.5 pl-3.5 pr-2.5 border-r border-neutral-200 select-none shrink-0">
+                          <div className="flex items-center gap-1.5 pl-3.5 pe-2.5 border-r border-neutral-200 select-none shrink-0">
                             <CountryFlag countryCode={phoneCountryCode} />
                             <select
                               value={phoneCountryCode}
                               onChange={(e) => setPhoneCountryCode(e.target.value)}
-                              className="bg-transparent border-none text-xs font-mono text-neutral-700 focus:ring-0 focus:outline-none cursor-pointer p-0 pr-4 appearance-none font-bold"
+                              className="bg-transparent border-none text-xs font-mono text-neutral-700 focus:ring-0 focus:outline-none cursor-pointer p-0 pe-4 appearance-none font-bold"
                               style={{ backgroundImage: 'none' }}
                               aria-label="Country phone code"
                             >
@@ -504,7 +504,7 @@ export function Contact() {
                             id="project-type"
                             value={formData.projectType}
                             onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                            className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-700 pl-3.5 pr-10 py-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-primary/15 appearance-none"
+                            className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-700 pl-3.5 pe-10 py-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-primary/15 appearance-none"
                           >
                             <option>Commercial Buildings & Offices</option>
                             <option>Infrastructure & Roads</option>
@@ -611,7 +611,7 @@ export function Contact() {
             </svg>
 
             {/* Layer 2: Drawing Content */}
-            <div className="absolute inset-0 flex items-center justify-end pr-4">
+            <div className="absolute inset-0 flex items-center justify-end pe-4">
               <svg
                 viewBox="0 0 700 600"
                 className="w-full h-full max-w-none transform translate-x-12 translate-y-8 scale-105"

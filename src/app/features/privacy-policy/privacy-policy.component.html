@@ -9,7 +9,6 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
-      <!-- LEFT COLUMN TOC -->
       <aside class="lg:col-span-3 h-full">
         <div class="sticky top-28">
           <app-table-of-contents [items]="sections" [activeId]="activeSection()" mobileTitle="Document Chapters"
@@ -52,34 +51,32 @@
             </div>
 
             <p class="text-sm md:text-base text-neutral-600 leading-relaxed font-light">
-              {{ 'We collect information necessary to deliver premier engineering consulting services, issue accurate
-              construction bids, and manage client relations. This includes:' | translate }}
+              We collect information necessary to deliver premier engineering consulting services, issue accurate
+              construction bids, and manage client relations. This includes
             </p>
 
             <div class="space-y-4 pt-2">
-              <div class="border-l-2 border-primary pl-4 py-1 rtl:border-r-2 rtl:border-l-0 rtl:pr-4 rtl:pl-0">
-                <h4 class="text-sm font-bold uppercase tracking-tight text-neutral-900 font-mono">{{ 'Personal &
-                  Identity Data' | translate }}</h4>
-                <p class="text-sm text-neutral-600 font-light mt-0.5">{{ 'Full Name, designation, company name, and
-                  language preferences.' | translate }}</p>
+              <div class="border-s-2 border-primary ps-4 py-1 rtl:border-e-2 rtl:border-s-0 rtl:pe-4 rtl:ps-0">
+                <h4 class="text-sm font-bold uppercase tracking-tight text-neutral-900 font-mono">Personal &
+                  Identity Data</h4>
+                <p class="text-sm text-neutral-600 font-light mt-0.5">Full Name, designation, company name, and
+                  language preferences.</p>
               </div>
-              <div class="border-l-2 border-primary pl-4 py-1 rtl:border-r-2 rtl:border-l-0 rtl:pr-4 rtl:pl-0">
-                <h4 class="text-sm font-bold uppercase tracking-tight text-neutral-900 font-mono">{{ 'Contact Details' |
-                  translate }}</h4>
-                <p class="text-sm text-neutral-600 font-light mt-0.5">{{ 'Corporate Email Address, direct phone lines,
-                  and regional branch office contacts.' | translate }}</p>
+              <div class="border-s-2 border-primary ps-4 py-1 rtl:border-e-2 rtl:border-s-0 rtl:pe-4 rtl:ps-0">
+                <h4 class="text-sm font-bold uppercase tracking-tight text-neutral-900 font-mono">Contact Details</h4>
+                <p class="text-sm text-neutral-600 font-light mt-0.5">Corporate Email Address, direct phone lines,
+                  and regional branch office contacts.</p>
               </div>
-              <div class="border-l-2 border-primary pl-4 py-1 rtl:border-r-2 rtl:border-l-0 rtl:pr-4 rtl:pl-0">
-                <h4 class="text-sm font-bold uppercase tracking-tight text-neutral-900 font-mono">{{ 'Project & Tender
-                  Files' | translate }}</h4>
-                <p class="text-sm text-neutral-600 font-light mt-0.5">{{ 'Blueprints, construction site coordinates, MEP
-                  requirements, and tender specifications.' | translate }}</p>
+              <div class="border-s-2 border-primary ps-4 py-1 rtl:border-e-2 rtl:border-s-0 rtl:pe-4 rtl:ps-0">
+                <h4 class="text-sm font-bold uppercase tracking-tight text-neutral-900 font-mono">Project & Tender
+                  Files</h4>
+                <p class="text-sm text-neutral-600 font-light mt-0.5">Blueprints, construction site coordinates, MEP
+                  requirements, and tender specifications.</p>
               </div>
-              <div class="border-l-2 border-primary pl-4 py-1 rtl:border-r-2 rtl:border-l-0 rtl:pr-4 rtl:pl-0">
-                <h4 class="text-sm font-bold uppercase tracking-tight text-neutral-900 font-mono">{{ 'Digital Metadata'
-                  | translate }}</h4>
-                <p class="text-sm text-neutral-600 font-light mt-0.5">{{ 'IP addresses, browser type, referral logs, and
-                  interaction records on this portal.' | translate }}</p>
+              <div class="border-s-2 border-primary ps-4 py-1 rtl:border-e-2 rtl:border-s-0 rtl:pe-4 rtl:ps-0">
+                <h4 class="text-sm font-bold uppercase tracking-tight text-neutral-900 font-mono">Digital Metadata</h4>
+                <p class="text-sm text-neutral-600 font-light mt-0.5">IP addresses, browser type, referral logs, and
+                  interaction records on this portal.</p>
               </div>
             </div>
           </section>
@@ -93,17 +90,17 @@
               </h2>
             </div>
             <p class="text-sm md:text-base text-neutral-600 leading-relaxed font-light">
-              {{ 'The gathered data is strictly analyzed and deployed under the highest corporate responsibility. We use
-              your details to:' | translate }}
+              The gathered data is strictly analyzed and deployed under the highest corporate responsibility. We use
+              your details to:
             </p>
 
-            <ul class="space-y-2.5 pl-6 rtl:pr-6 rtl:pl-0 list-disc text-sm text-neutral-600 font-light">
-              <li><strong>{{ 'Respond to Inquiries:' | translate }}</strong> {{ 'Providing technical responses to
-                contact form requests and engineering questions.' | translate }}</li>
-              <li><strong>{{ 'Prepare Quotations:' | translate }}</strong> {{ 'Drafting structural specs, cost
-                estimations, and custom project scopes for our Egypt, KSA, or Libya branches.' | translate }}</li>
-              <li><strong>{{ 'Improve Website Performance:' | translate }}</strong> {{ 'Enhancing the reading flow,
-                responsive elements, and dynamic loading times.' | translate }}</li>
+            <ul class="space-y-2.5 ps-6 rtl:pe-6 rtl:ps-0 list-disc text-sm text-neutral-600 font-light">
+              <li><strong>Respond to Inquiries:</strong> Providing technical responses to
+                contact form requests and engineering questions.</li>
+              <li><strong>Prepare Quotations:</strong> Drafting structural specs, cost
+                estimations, and custom project scopes for our Egypt, KSA, or Libya branches.</li>
+              <li><strong>Improve Website Performance:</strong> Enhancing the reading flow,
+                responsive elements, and dynamic loading times.</li>
               <li><strong>{{ 'Communicate Project Updates:' | translate }}</strong> {{ 'Relaying building status
                 milestones and tender announcements directly to stakeholders.' | translate }}</li>
               <li><strong>{{ 'Enhance Customer Experience:' | translate }}</strong> {{ 'Upgrading navigation routes,
@@ -145,8 +142,8 @@
             <div class="space-y-3 pt-2">
               <div class="flex items-start gap-3">
                 <div
-                  class="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
-                  <div class="w-2 h-2 rounded-full bg-primary"></div>
+                  class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                  <div class="size-2 rounded-full bg-primary"></div>
                 </div>
                 <p class="text-xs md:text-sm text-neutral-600 font-light leading-relaxed">
                   <strong>{{ 'Secure Cloud Servers:' | translate }}</strong> {{ 'Data is hosted on encrypted cloud
@@ -155,8 +152,8 @@
               </div>
               <div class="flex items-start gap-3">
                 <div
-                  class="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
-                  <div class="w-2 h-2 rounded-full bg-primary"></div>
+                  class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                  <div class="size-2 rounded-full bg-primary"></div>
                 </div>
                 <p class="text-xs md:text-sm text-neutral-600 font-light leading-relaxed">
                   <strong>{{ 'SSL Data Encryption:' | translate }}</strong> {{ 'All requests, messages, and tender
@@ -165,8 +162,8 @@
               </div>
               <div class="flex items-start gap-3">
                 <div
-                  class="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
-                  <div class="w-2 h-2 rounded-full bg-primary"></div>
+                  class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                  <div class="size-2 rounded-full bg-primary"></div>
                 </div>
                 <p class="text-xs md:text-sm text-neutral-600 font-light leading-relaxed">
                   <strong>{{ 'Restricted Staff Access:' | translate }}</strong> {{ 'Only certified project managers and
@@ -204,7 +201,7 @@
               {{ 'As an esteemed visitor and potential client of Maabany, you hold standard legal privileges regarding
               your personal records. You may request to:' | translate }}
             </p>
-            <ul class="space-y-2.5 pl-6 rtl:pr-6 rtl:pl-0 list-disc text-sm text-neutral-600 font-light">
+            <ul class="space-y-2.5 ps-6 rtl:pe-6 rtl:ps-0 list-disc text-sm text-neutral-600 font-light">
               <li><strong>{{ 'Access:' | translate }}</strong> {{ 'Obtain a copy of all data and past quotes you have
                 requested.' | translate }}</li>
               <li><strong>{{ 'Rectify:' | translate }}</strong> {{ 'Modify outdated or incorrect phone lines or emails.'
@@ -233,15 +230,15 @@
               <p class="text-sm text-neutral-600">
                 <strong class="text-neutral-900 font-bold font-mono">{{ 'Email Address:' | translate }}</strong>
                 <a href="mailto:privacy@maabany.com"
-                  class="text-primary hover:underline font-mono ml-1">privacy@maabany.com</a>
+                  class="text-primary hover:underline font-mono ms-1">privacy@maabany.com</a>
               </p>
               <p class="text-sm text-neutral-600">
                 <strong class="text-neutral-900 font-bold font-mono">{{ 'Phone Support:' | translate }}</strong>
-                <span class="font-mono ml-1">+966 11 456 7890</span>
+                <span class="font-mono ms-1">+966 11 456 7890</span>
               </p>
               <p class="text-sm text-neutral-600">
                 <strong class="text-neutral-900 font-bold font-mono">{{ 'HQ Location:' | translate }}</strong>
-                <span class="ml-1">{{ 'Riyadh Office, KSA' | translate }}</span>
+                <span class="ms-1">{{ 'Riyadh Office, KSA' | translate }}</span>
               </p>
             </div>
           </section>

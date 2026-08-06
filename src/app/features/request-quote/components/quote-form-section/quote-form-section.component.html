@@ -1,14 +1,14 @@
 <section class="max-w-350 mx-auto px-5 md:px-6 lg:px-7 xl:px-8 py-16">
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:items-stretch items-start">
 
-    <!-- Left Column: Information, trust signals and blueprints drawing -->
     <div class="lg:col-span-5 flex flex-col justify-between">
       <div class="space-y-8 mb-8 lg:mb-0">
         <div class="space-y-4">
           <span class="text-[10px] font-mono tracking-[0.25em] text-primary font-black uppercase block">
             {{ 'START YOUR PROJECT' | translate }}
           </span>
-          <h2 class="text-2xl md:text-4.5xl font-black text-neutral-900 uppercase tracking-tight leading-tight font-mono">
+          <h2
+            class="text-2xl md:text-4.5xl font-black text-neutral-900 uppercase tracking-tight leading-tight font-mono">
             {{ 'Tell Us About Your Project' | translate }}
           </h2>
         </div>
@@ -16,29 +16,41 @@
         <!-- Trust Indicators block -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="flex items-center gap-3">
-            <div class="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
             </div>
             <span class="text-xs font-bold text-neutral-800 font-mono">{{ 'Fast Response' | translate }}</span>
           </div>
 
           <div class="flex items-center gap-3">
-            <div class="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
             </div>
             <span class="text-xs font-bold text-neutral-800 font-mono">{{ 'Experienced Engineers' | translate }}</span>
           </div>
 
           <div class="flex items-center gap-3">
-            <div class="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
             </div>
             <span class="text-xs font-bold text-neutral-800 font-mono">{{ 'Tailored Solutions' | translate }}</span>
           </div>
 
           <div class="flex items-center gap-3">
-            <div class="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
             </div>
             <span class="text-xs font-bold text-neutral-800 font-mono">{{ 'Regional Presence' | translate }}</span>
           </div>
@@ -46,15 +58,19 @@
       </div>
 
       <!-- Regional Scope Blueprint Card Overlay -->
-      <div class="p-1 bg-neutral-100/70 border border-neutral-200 rounded-2xl overflow-hidden aspect-16/10 lg:aspect-auto lg:flex-1 lg:mt-8 relative shadow-inner group">
-        <app-image
-          src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80"
+      <div
+        class="p-1 bg-neutral-100/70 border border-neutral-200 rounded-2xl overflow-hidden aspect-16/10 lg:aspect-auto lg:flex-1 lg:mt-8 relative shadow-inner group">
+        <app-image src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80"
           alt="Technical blueprints and structural planning drawings"
-          classes="w-full h-full object-cover rounded-xl filter contrast-110 saturate-90 brightness-95 group-hover:scale-102 transition-transform duration-700" />
-        <div class="absolute inset-0 bg-linear-to-t from-neutral-950/40 via-neutral-950/0 to-transparent pointer-events-none"></div>
-        <div class="absolute bottom-4 left-4 p-3 bg-white/95 backdrop-blur-md border border-white/20 rounded-xl max-w-xs shadow-lg">
+          classes="size-full object-cover rounded-xl filter contrast-110 saturate-90 brightness-95 group-hover:scale-102 transition-transform duration-700" />
+        <div
+          class="absolute inset-0 bg-linear-to-t from-neutral-950/40 via-neutral-950/0 to-transparent pointer-events-none">
+        </div>
+        <div
+          class="absolute bottom-4 start-4 p-3 bg-white/95 backdrop-blur-md border border-white/20 rounded-xl max-w-xs shadow-lg">
           <p class="text-[10px] font-mono text-primary font-black uppercase">{{ 'Regional Scope' | translate }}</p>
-          <p class="text-xs font-bold text-neutral-900 mt-0.5">{{ 'Active offices across Egypt, Saudi Arabia & Libya' | translate }}</p>
+          <p class="text-xs font-bold text-neutral-900 mt-0.5">{{ 'Active offices across Egypt, Saudi Arabia & Libya' |
+            translate }}</p>
         </div>
       </div>
     </div>

@@ -5,16 +5,16 @@
       <!-- Blueprint Grid Overlay Decoration -->
       <div
         class="absolute inset-0 opacity-[0.03] pointer-events-none font-mono text-[7px] text-neutral-900 select-none">
-        <div class="absolute inset-y-0 left-1/4 border-l border-dashed border-neutral-950"></div>
-        <div class="absolute inset-y-0 left-2/4 border-l border-dashed border-neutral-950"></div>
-        <div class="absolute inset-y-0 left-3/4 border-l border-dashed border-neutral-950"></div>
+        <div class="absolute inset-y-0 start-1/4 border-s border-dashed border-neutral-950"></div>
+        <div class="absolute inset-y-0 start-2/4 border-s border-dashed border-neutral-950"></div>
+        <div class="absolute inset-y-0 start-3/4 border-s border-dashed border-neutral-950"></div>
         <div class="absolute inset-x-0 top-1/2 border-t border-dashed border-neutral-950"></div>
-        <div class="absolute top-3 left-8 tracking-widest uppercase">MAABANY SPEC // VER_2.0</div>
-        <div class="absolute bottom-3 right-8 tracking-widest uppercase">SYS_REF: METRICS</div>
+        <div class="absolute top-3 start-8 tracking-widest uppercase">MAABANY SPEC // VER_2.0</div>
+        <div class="absolute bottom-3 end-8 tracking-widest uppercase">SYS_REF: METRICS</div>
       </div>
 
       <!-- Top Right Glow -->
-      <div class="absolute -top-20 -right-20 w-48 h-48 bg-primary/4 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -top-20 -right-20 size-48 bg-primary/4 rounded-full blur-3xl pointer-events-none"></div>
 
       <address
         class="relative not-italic z-10 grid divide-y md:divide-y-0 lg:divide-x lg:divide-y-0 divide-neutral-100/80"
@@ -97,7 +97,7 @@
           <div class="flex flex-col items-center lg:items-start mt-0.5">
             <div class="flex items-center gap-1.5 font-mono">
               <span
-                class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse"></span>
+                class="size-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse"></span>
               <span class="text-xs font-bold tracking-wide text-emerald-600 uppercase">
                 {{ item.value | translate }}
               </span>

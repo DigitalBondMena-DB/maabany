@@ -344,8 +344,8 @@ export function ProjectDetails() {
                     key={dotIdx}
                     onClick={() => setCurrentImgIndex(dotIdx)}
                     className={`h-1.5 rounded-full transition-all duration-300 ${currentImgIndex === dotIdx
-                        ? "w-6 bg-primary"
-                        : "w-1.5 bg-white/40 hover:bg-white/70"
+                      ? "w-6 bg-primary"
+                      : "w-1.5 bg-white/40 hover:bg-white/70"
                       }`}
                     title={`Slide ${dotIdx + 1}`}
                   />
@@ -445,7 +445,7 @@ export function ProjectDetails() {
                         id="spec-topic"
                         value={formTopic}
                         onChange={(e) => setFormTopic(e.target.value)}
-                        className="w-full bg-white border border-neutral-200 focus:border-neutral-400 text-neutral-700 pl-3 pr-10 py-3 rounded-xl text-sm focus:outline-none transition-colors appearance-none"
+                        className="w-full bg-white border border-neutral-200 focus:border-neutral-400 text-neutral-700 pl-3 pe-10 py-3 rounded-xl text-sm focus:outline-none transition-colors appearance-none"
                       >
                         <option value="General Consultation">General Question</option>
                         <option value="Material Specifications">Materials used</option>
@@ -605,7 +605,7 @@ export function ProjectDetails() {
               </svg>
 
               {/* Layer 2: Drawing Content */}
-              <div className="absolute inset-0 flex items-center justify-end pr-4">
+              <div className="absolute inset-0 flex items-center justify-end pe-4">
                 <svg
                   viewBox="0 0 700 600"
                   className="w-full h-full max-w-none transform translate-x-12 translate-y-8 scale-105"

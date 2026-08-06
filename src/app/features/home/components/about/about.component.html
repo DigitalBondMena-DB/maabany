@@ -1,6 +1,6 @@
 <section [appScrollReveal]="'left'" [delay]="500" id="about"
     class="bg-white relative overflow-hidden z-10 py-12 md:py-20 lg:py-24">
-    <div class="absolute -left-12 top-24 w-80 h-80 opacity-15 pointer-events-none hidden xl:block">
+    <div class="absolute -start-12 top-24 size-80 opacity-15 pointer-events-none hidden xl:block">
         @defer (on viewport) {
         <app-floating-wireframe shape="icosahedron" color="#142b52"></app-floating-wireframe>
         } @placeholder {
@@ -23,7 +23,7 @@
                 </div>
                 @if(aboutData()?.currently_underway?.description) {
                 <div
-                    class="absolute bottom-6 left-6 z-20 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-neutral-200/60 shadow-lg">
+                    class="absolute bottom-6 start-6 z-20 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-neutral-200/60 shadow-lg">
                     <span class="text-[10px] uppercase font-mono tracking-wider text-primary block mb-1">
                         {{ aboutData()?.currently_underway?.title || 'CURRENTLY UNDERWAY' }}
                     </span>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="lg:col-span-6 relative overflow-hidden rounded-3xl p-4 md:p-6">
-            <div class="absolute inset-e-0 top-0 z-10">
+            <div class="absolute end-0 top-0 z-10">
                 <app-image src="/images/home/about/about-bg.webp"
                     classes="w-[72%] sm:w-[68%] lg:w-[70%] max-w-[460px] h-auto max-h-[460px] opacity-[0.06] pointer-events-none select-none translate-y-[10px] translate-x-1 sm:translate-y-[8px] sm:translate-x-2"
                     [width]="440" [height]="400" alt="About Image" objectFit="contain" [placeholder]="false" />
@@ -67,7 +67,8 @@
                         <div class="p-2 rounded bg-primary/10 text-primary h-fit font-bold flex-center"><app-icons
                                 icon="orangeShild" [width]="24" [height]="24" /></div>
                         <div>
-                            <h4 class="text-sm font-bold text-neutral-900 uppercase">{{ 'ABOUT.COMPLIANCE_TITLE' | translate }}</h4>
+                            <h4 class="text-sm font-bold text-neutral-900 uppercase">{{ 'ABOUT.COMPLIANCE_TITLE' |
+                                translate }}</h4>
                             <p class="text-xs text-[#4b4b4b] mt-1">
                                 {{ 'ABOUT.COMPLIANCE_DESC' | translate }}
                             </p>
@@ -79,7 +80,8 @@
                         <div class="p-2 rounded bg-primary/10 text-primary h-fit font-bold flex-center"><app-icons
                                 icon="orangeTrophy" [width]="24" [height]="24" /></div>
                         <div>
-                            <h4 class="text-sm font-bold text-neutral-900 uppercase">{{ 'ABOUT.SUSTAINABILITY_TITLE' | translate }}</h4>
+                            <h4 class="text-sm font-bold text-neutral-900 uppercase">{{ 'ABOUT.SUSTAINABILITY_TITLE' |
+                                translate }}</h4>
                             <p class="text-xs text-[#4b4b4b] mt-1">
                                 {{ 'ABOUT.SUSTAINABILITY_DESC' | translate }}
                             </p>

@@ -16,12 +16,12 @@ export interface CountryCodeItem {
       <button
         type="button"
         (click)="toggleOpen()"
-        class="flex items-center gap-2 pl-3.5 pr-2 py-3.5 bg-transparent border-none text-xs font-mono text-neutral-800 font-bold focus:outline-none cursor-pointer select-none"
+        class="flex items-center gap-2 ps-3.5 pe-2 py-3.5 bg-transparent border-none text-xs font-mono text-neutral-800 font-bold focus:outline-none cursor-pointer select-none"
         [attr.aria-expanded]="isOpen()"
         aria-label="Select country phone code">
         <span class="text-base leading-none">{{ selectedCountry().flag }}</span>
         <span>{{ selectedCountry().code }}</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-neutral-400 transition-transform" [class.rotate-180]="isOpen()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-3 text-neutral-400 transition-transform" [class.rotate-180]="isOpen()">
           <path d="m6 9 6 6 6-6"/>
         </svg>
       </button>
@@ -29,7 +29,7 @@ export interface CountryCodeItem {
       <!-- Dropdown Popup -->
       @if (isOpen()) {
         <div
-          class="absolute top-full left-0 mt-2 w-64 bg-white border border-neutral-200/90 rounded-2xl shadow-xl z-50 overflow-hidden animate-fadeIn py-2">
+          class="absolute top-full start-0 mt-2 w-64 bg-white border border-neutral-200/90 rounded-2xl shadow-xl z-50 overflow-hidden animate-fadeIn py-2">
           <!-- Search Input -->
           <div class="px-3 pb-2 border-b border-neutral-100">
             <input
@@ -47,7 +47,7 @@ export interface CountryCodeItem {
               <button
                 type="button"
                 (click)="selectCountry(item)"
-                [class]="'w-full flex items-center justify-between px-3.5 py-2 text-xs font-mono transition-colors text-left cursor-pointer ' + (item.code === value() ? 'bg-orange-50 text-primary font-bold' : 'hover:bg-neutral-50 text-neutral-700')"
+                [class]="'w-full flex items-center justify-between px-3.5 py-2 text-xs font-mono transition-colors cursor-pointer ' + (item.code === value() ? 'bg-orange-50 text-primary font-bold' : 'hover:bg-neutral-50 text-neutral-700')"
               >
                 <div class="flex items-center gap-2">
                   <span class="text-base">{{ item.flag }}</span>

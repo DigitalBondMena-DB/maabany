@@ -296,8 +296,8 @@ export function SolutionDetails() {
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       className={`w-full bg-neutral-50/70 border p-3.5 rounded-xl text-xs sm:text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400/80 transition-all ${formErrors.fullName
-                          ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15'
-                          : 'border-neutral-200/90 focus:border-primary focus:ring-2 focus:ring-primary/15'
+                        ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15'
+                        : 'border-neutral-200/90 focus:border-primary focus:ring-2 focus:ring-primary/15'
                         }`}
                     />
                     {formErrors.fullName && (
@@ -320,8 +320,8 @@ export function SolutionDetails() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className={`w-full bg-neutral-50/70 border p-3 rounded-xl text-xs sm:text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400/80 transition-all ${formErrors.email
-                            ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15'
-                            : 'border-neutral-200/90 focus:border-primary focus:ring-2 focus:ring-primary/15'
+                          ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/15'
+                          : 'border-neutral-200/90 focus:border-primary focus:ring-2 focus:ring-primary/15'
                           }`}
                       />
                       {formErrors.email && (
@@ -337,15 +337,15 @@ export function SolutionDetails() {
                         PHONE NUMBER *
                       </label>
                       <div className={`relative flex items-center bg-neutral-50/70 border rounded-xl transition-all w-full ${formErrors.phone
-                          ? 'border-red-500 focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-500/15'
-                          : 'border-neutral-200/90 focus-within:border-primary focus-within:bg-white focus-within:ring-2 focus-within:ring-primary/15'
+                        ? 'border-red-500 focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-500/15'
+                        : 'border-neutral-200/90 focus-within:border-primary focus-within:bg-white focus-within:ring-2 focus-within:ring-primary/15'
                         }`}>
-                        <div className="flex items-center gap-1.5 pl-3 pr-2 border-r border-neutral-200 select-none shrink-0">
+                        <div className="flex items-center gap-1.5 pl-3 pe-2 border-r border-neutral-200 select-none shrink-0">
                           <CountryFlag countryCode={phoneCountryCode} />
                           <select
                             value={phoneCountryCode}
                             onChange={(e) => setPhoneCountryCode(e.target.value)}
-                            className="bg-transparent border-none text-xs font-mono text-neutral-700 focus:ring-0 focus:outline-none cursor-pointer p-0 pr-2 font-bold"
+                            className="bg-transparent border-none text-xs font-mono text-neutral-700 focus:ring-0 focus:outline-none cursor-pointer p-0 pe-2 font-bold"
                             aria-label="Country phone code"
                           >
                             <option value="+966">+966</option>
@@ -619,7 +619,7 @@ export function SolutionDetails() {
               </svg>
 
               {/* Layer 2: Drawing Content */}
-              <div className="absolute inset-0 flex items-center justify-end pr-4">
+              <div className="absolute inset-0 flex items-center justify-end pe-4">
                 <svg
                   viewBox="0 0 700 600"
                   className="w-full h-full max-w-none transform translate-x-12 translate-y-8 scale-105"

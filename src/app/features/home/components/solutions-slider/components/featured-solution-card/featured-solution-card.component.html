@@ -2,7 +2,7 @@
   class="block w-full bg-linear-to-br from-white via-white to-orange-50/15 border-2 border-primary/25 p-6 lg:p-8 rounded-2xl relative overflow-hidden transition-all duration-500 hover:border-primary/50 hover:shadow-[0_20px_40px_rgba(234,138,34,0.04)] hover:-translate-y-1 hover:scale-[1.005] cursor-pointer group">
   <div
     class="absolute inset-0 opacity-8 group-hover:opacity-12 pointer-events-none transition-opacity duration-500 overflow-hidden">
-    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+    <svg class="size-full" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern id="mep-hero-grid" width="24" height="24" patternUnits="userSpaceOnUse">
           <path d="M 24 0 L 0 0 0 24" fill="none" stroke="currentColor" stroke-width="0.5" class="text-primary" />
@@ -13,7 +13,7 @@
   </div>
 
   <div
-    class="absolute -top-16 -right-16 w-52 h-52 bg-linear-to-br from-primary/10 to-transparent rounded-full blur-3xl group-hover:scale-125 transition-transform duration-750">
+    class="absolute -top-16 -right-16 size-52 bg-linear-to-br from-primary/10 to-transparent rounded-full blur-3xl group-hover:scale-125 transition-transform duration-750">
   </div>
 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
@@ -39,7 +39,7 @@
       <div class="pt-3 border-t border-neutral-100 flex flex-wrap gap-4">
         @for (item of solution().points; track item) {
         <div class="flex items-center gap-2 text-xs text-neutral-600 font-medium">
-          <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+          <div class="size-1.5 rounded-full bg-primary"></div>
           <span>{{ item }}</span>
         </div>
         }

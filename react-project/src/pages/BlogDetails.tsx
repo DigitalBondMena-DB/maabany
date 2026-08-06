@@ -471,12 +471,12 @@ export function BlogDetails() {
                 {
                   id,
                   className: `font-black uppercase tracking-tight scroll-mt-28 transition-all duration-500 ease-in-out ${tagName === 'h2'
-                      ? isActive
-                        ? 'text-3xl md:text-4xl text-primary mt-16 mb-10 pb-4 border-b border-primary/30 scale-[1.02] origin-left font-black'
-                        : 'text-2xl md:text-3xl mt-12 mb-6 pb-2.5 border-b border-neutral-100 text-neutral-900 font-bold'
-                      : isActive
-                        ? 'text-xl md:text-2xl text-primary mt-12 mb-8 scale-[1.02] origin-left font-black'
-                        : 'text-lg md:text-xl mt-8 mb-4 text-neutral-800 font-extrabold'
+                    ? isActive
+                      ? 'text-3xl md:text-4xl text-primary mt-16 mb-10 pb-4 border-b border-primary/30 scale-[1.02] origin-left font-black'
+                      : 'text-2xl md:text-3xl mt-12 mb-6 pb-2.5 border-b border-neutral-100 text-neutral-900 font-bold'
+                    : isActive
+                      ? 'text-xl md:text-2xl text-primary mt-12 mb-8 scale-[1.02] origin-left font-black'
+                      : 'text-lg md:text-xl mt-8 mb-4 text-neutral-800 font-extrabold'
                     }`
                 },
                 text
@@ -496,8 +496,8 @@ export function BlogDetails() {
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={{ duration: 0.5, ease: "easeOut" }}
               className={`text-neutral-600 leading-relaxed font-light mb-8 transition-all duration-300 ${isLead
-                  ? 'text-lg md:text-xl text-neutral-800 font-normal leading-relaxed'
-                  : 'text-base md:text-lg leading-relaxed'
+                ? 'text-lg md:text-xl text-neutral-800 font-normal leading-relaxed'
+                : 'text-base md:text-lg leading-relaxed'
                 }`}
             >
               {parseTextWithLinks(rawText)}
@@ -792,8 +792,8 @@ export function BlogDetails() {
                         <button
                           onClick={() => scrollToSection(heading.id)}
                           className={`text-left text-xs font-medium py-1 transition-all flex items-center gap-1.5 ${activeSection === heading.id
-                              ? 'text-primary font-bold'
-                              : 'text-neutral-500 hover:text-neutral-900'
+                            ? 'text-primary font-bold'
+                            : 'text-neutral-500 hover:text-neutral-900'
                             }`}
                         >
                           <span className={`w-1.5 h-1.5 rounded-full ${activeSection === heading.id ? 'bg-primary' : 'bg-neutral-300'}`} />
@@ -848,10 +848,10 @@ export function BlogDetails() {
                           <button
                             onClick={() => scrollToSection(heading.id)}
                             className={`text-left text-xs tracking-tight transition-all block w-full py-0.5 leading-snug ${isActive
-                                ? 'text-primary font-bold font-sans translate-x-1'
-                                : heading.level === 3
-                                  ? 'text-neutral-400 hover:text-neutral-800 font-light'
-                                  : 'text-neutral-500 hover:text-neutral-800 font-medium'
+                              ? 'text-primary font-bold font-sans translate-x-1'
+                              : heading.level === 3
+                                ? 'text-neutral-400 hover:text-neutral-800 font-light'
+                                : 'text-neutral-500 hover:text-neutral-800 font-medium'
                               }`}
                           >
                             {heading.text}
@@ -934,8 +934,8 @@ export function BlogDetails() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className={`w-full bg-neutral-50 border p-3.5 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 focus:ring-0 transition-all duration-200 shadow-sm ${errors.name
-                            ? 'border-red-500 focus:ring-red-500'
-                            : 'border-neutral-200 focus:border-neutral-400'
+                          ? 'border-red-500 focus:ring-red-500'
+                          : 'border-neutral-200 focus:border-neutral-400'
                           }`}
                       />
                       {errors.name && (
@@ -951,15 +951,15 @@ export function BlogDetails() {
                         Phone Number *
                       </label>
                       <div className={`relative flex items-center bg-neutral-50 border rounded-xl transition-all duration-200 w-full shadow-sm ${errors.phone
-                          ? 'border-red-500 bg-white focus-within:border-red-500'
-                          : 'border-neutral-200 focus-within:border-neutral-400 focus-within:bg-white'
+                        ? 'border-red-500 bg-white focus-within:border-red-500'
+                        : 'border-neutral-200 focus-within:border-neutral-400 focus-within:bg-white'
                         }`}>
-                        <div className="flex items-center gap-1.5 pl-3.5 pr-2 border-r border-neutral-200 select-none shrink-0">
+                        <div className="flex items-center gap-1.5 pl-3.5 pe-2 border-r border-neutral-200 select-none shrink-0">
                           <CountryFlag countryCode={phoneCountryCode} />
                           <select
                             value={phoneCountryCode}
                             onChange={(e) => setPhoneCountryCode(e.target.value)}
-                            className="bg-transparent border-none text-xs font-mono text-neutral-600 focus:ring-0 focus:outline-none cursor-pointer p-0 pr-4 appearance-none font-bold"
+                            className="bg-transparent border-none text-xs font-mono text-neutral-600 focus:ring-0 focus:outline-none cursor-pointer p-0 pe-4 appearance-none font-bold"
                             style={{ backgroundImage: 'none' }}
                           >
                             <option value="+966">+966</option>
@@ -996,8 +996,8 @@ export function BlogDetails() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className={`w-full bg-neutral-50 border p-3.5 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 focus:ring-0 transition-all duration-200 shadow-sm ${errors.email
-                            ? 'border-red-500 focus:ring-red-500'
-                            : 'border-neutral-200 focus:border-neutral-400'
+                          ? 'border-red-500 focus:ring-red-500'
+                          : 'border-neutral-200 focus:border-neutral-400'
                           }`}
                       />
                       {errors.email && (
@@ -1152,7 +1152,7 @@ export function BlogDetails() {
             </svg>
 
             {/* Layer 2: Drawing Content */}
-            <div className="absolute inset-0 flex items-center justify-end pr-4">
+            <div className="absolute inset-0 flex items-center justify-end pe-4">
               <svg
                 viewBox="0 0 700 600"
                 className="w-full h-full max-w-none transform translate-x-12 translate-y-8 scale-105"

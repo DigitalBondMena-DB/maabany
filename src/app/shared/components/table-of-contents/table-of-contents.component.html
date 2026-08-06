@@ -24,7 +24,7 @@
         <a href="#" (click)="onSelect(item.id, $event)" [class]="'text-left text-xs font-medium py-1 transition-all flex items-center gap-2 ' +
                 (activeId() === item.id ? 'text-primary font-bold' : 'text-neutral-500 hover:text-neutral-900')">
           <span
-            [class]="'w-1.5 h-1.5 rounded-full ' + (activeId() === item.id ? 'bg-primary' : 'bg-neutral-300')"></span>
+            [class]="'size-1.5 rounded-full ' + (activeId() === item.id ? 'bg-primary' : 'bg-neutral-300')"></span>
           <span>{{ item.title | translate }}</span>
         </a>
       </li>
@@ -48,22 +48,21 @@
     </div>
 
     <div class="relative">
-      <div class="absolute ltr:left-[3px] rtl:right-[3px] top-1.5 bottom-1.5 w-[2px] bg-neutral-100"></div>
+      <div class="absolute start-0.75 top-1.5 bottom-1.5 w-0.5 bg-neutral-100"></div>
 
       <ul class="space-y-3.5 relative z-10">
         @for (item of items(); track item.id) {
-        <li class="ltr:pl-6 rtl:pr-6 relative">
+        <li class="ltr:ps-6 rtl:pe-6 relative">
           @if (activeId() === item.id) {
-          <div
-            class="absolute ltr:left-[2px] rtl:right-[2px] top-1 bottom-1 w-[4px] bg-primary rounded-full transition-all">
+          <div class="absolute start-0.5 top-1 bottom-1 w-1 bg-primary rounded-full transition-all">
           </div>
           }
 
           <a href="#" (click)="onSelect(item.id, $event)"
-            [class]="'text-left text-xs font-medium tracking-tight transition-all flex items-center gap-2.5 py-0.5 ' +
+            [class]="'text-xs font-medium tracking-tight transition-all flex items-center gap-2.5 py-0.5 ' +
                 (activeId() === item.id ? 'text-primary font-bold ltr:translate-x-1 rtl:-translate-x-1' : 'text-neutral-500 hover:text-neutral-800 font-normal')">
             <span
-              [class]="'w-1.5 h-1.5 rounded-full shrink-0 ' + (activeId() === item.id ? 'bg-primary' : 'bg-neutral-300')"></span>
+              [class]="'size-1.5 rounded-full shrink-0 ' + (activeId() === item.id ? 'bg-primary' : 'bg-neutral-300')"></span>
             <span>{{ item.title | translate }}</span>
           </a>
         </li>

@@ -1,4 +1,4 @@
-<header class="fixed top-0 left-0 right-0 z-50 pointer-events-none w-full">
+<header class="fixed top-0 start-0 end-0 z-50 pointer-events-none w-full">
   <div
     class="relative w-full max-w-350 mx-auto px-5 md:px-6 pt-(--hero-nav-top-spacing) lg:px-7 xl:px-8 transition-transform duration-300"
     [class]="isScrolled() ? 'translate-y-0':'translate-y-5'">
@@ -47,7 +47,7 @@
 
         <!-- Mobile Menu Hamburger -->
         <button (click)="toggleMenu()"
-          class="xl:hidden w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors cursor-pointer"
+          class="xl:hidden size-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors cursor-pointer"
           aria-label="Toggle navigation menu">
           <div class="flex flex-col justify-between w-4 h-3.5">
             <span class="w-full h-0.5 bg-[#142b52] rounded-full"></span>

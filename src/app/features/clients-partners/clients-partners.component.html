@@ -1,50 +1,45 @@
 <div class="relative bg-white text-neutral-900 min-h-screen">
   @if (isLoading()) {
-    <app-skeleton class="h-[60vh] w-full block" />
-    <section class="py-12 md:py-20 lg:py-24">
-      <div class="max-w-3xl mx-auto space-y-4 px-5">
-        <app-skeleton class="h-4 w-32 block mx-auto" />
-        <app-skeleton class="h-10 w-3/4 block mx-auto" />
-      </div>
-      <div class="mt-16 flex gap-6 overflow-hidden px-5">
-        @for (item of [1, 2, 3, 4, 5]; track $index) {
-          <app-skeleton class="w-[200px] h-[100px] rounded-xl shrink-0" />
-        }
-      </div>
-    </section>
+  <app-skeleton class="h-[60vh] w-full block" />
+  <section class="py-12 md:py-20 lg:py-24">
+    <div class="max-w-3xl mx-auto space-y-4 px-5">
+      <app-skeleton class="h-4 w-32 block mx-auto" />
+      <app-skeleton class="h-10 w-3/4 block mx-auto" />
+    </div>
+    <div class="mt-16 flex gap-6 overflow-hidden px-5">
+      @for (item of [1, 2, 3, 4, 5]; track $index) {
+      <app-skeleton class="w-[200px] h-[100px] rounded-xl shrink-0" />
+      }
+    </div>
+  </section>
   } @else if (data()) {
-    <!-- 1. Hero Header Section -->
-    <app-page-hero 
-      [title]="data()!.banner?.title || ('Trusted Partnerships' | translate)" 
-      [categoryBadge]="'Clients & Partners' | translate"
-      [heroImage]="data()!.banner?.image || 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80'" />
+  <app-page-hero [title]="data()!.banner?.title || ('Trusted Partnerships' | translate)"
+    [categoryBadge]="'Clients & Partners' | translate"
+    [heroImage]="data()!.banner?.image || 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80'" />
 
-    <!-- 2. Clients Marquee (Slider 1: Clients Only - Left Aligned Heading) -->
-    @if (clients().length > 0) {
-      <app-client-marquee 
-        [title]="'Organizations That Trust Maabany' | translate" 
-        [subtitle]="'OUR CLIENTS' | translate"
-        headerClass="text-left max-w-full mb-8 space-y-2 px-5 md:px-6 lg:px-7 xl:px-8 max-w-350 mx-auto"
-        subtitleClass="text-[10px] font-mono tracking-[0.25em] text-primary font-black uppercase block"
-        titleClass="text-xl md:text-3.5xl font-black text-neutral-900 uppercase tracking-tight font-mono"
-        [apiClients]="clients()" />
-    }
+  @if (clients().length > 0) {
+  <app-client-marquee [title]="'Organizations That Trust Maabany' | translate" [subtitle]="'OUR CLIENTS' | translate"
+    sliderPadding="py-12" headerClass=" max-w-full mb-8 space-y-2 px-5 md:px-6 lg:px-7 xl:px-8 max-w-350 mx-auto"
+    subtitleClass="text-[10px] font-mono tracking-[0.25em] text-primary font-black uppercase block"
+    titleClass="text-xl md:text-3.5xl font-black text-neutral-900 uppercase tracking-tight font-mono"
+    [apiClients]="clients()" />
+  }
 
-    <!-- 3. Partners Marquee (Slider 2: Partners Only - Left Aligned Heading) -->
-    @if (partners().length > 0) {
-      <app-client-marquee 
-        [title]="'Strategic Partnerships That Drive Success' | translate" 
-        [subtitle]="'OUR PARTNERS' | translate"
-        headerClass="text-left max-w-full mb-8 space-y-2 px-5 md:px-6 lg:px-7 xl:px-8 max-w-350 mx-auto"
-        subtitleClass="text-[10px] font-mono tracking-[0.25em] text-primary font-black uppercase block"
-        titleClass="text-xl md:text-3.5xl font-black text-neutral-900 uppercase tracking-tight font-mono"
-        [apiPartners]="partners()" />
-    }
+  @if (partners().length > 0) {
+  <app-client-marquee [title]="'Strategic Partnerships That Drive Success' | translate"
+    [subtitle]="'OUR PARTNERS' | translate" sliderPadding="py-12"
+    headerClass=" max-w-full mb-8 space-y-2 px-5 md:px-6 lg:px-7 xl:px-8 max-w-350 mx-auto"
+    subtitleClass="text-[10px] font-mono tracking-[0.25em] text-primary font-black uppercase block"
+    titleClass="text-xl md:text-3.5xl font-black text-neutral-900 uppercase tracking-tight font-mono"
+    [apiPartners]="partners()" />
+  }
 
-    <!-- 4. Why Maabany Section Component -->
-    <app-clients-why-choose-us />
+  <!-- 4. Why Maabany Section Component -->
+  @if (data()?.why_choose_us; as whyChooseUsData) {
+  <app-clients-why-choose-us [data]="whyChooseUsData" />
+  }
 
-    <!-- 5. Shared CTA Banner Section -->
-    <app-cta-banner />
+  <!-- 5. Shared CTA Banner Section -->
+  <app-cta-banner />
   }
 </div>

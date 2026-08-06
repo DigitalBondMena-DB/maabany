@@ -65,14 +65,34 @@ export class ClientMarqueeComponent {
     const list = (this.apiPartners()?.length ? this.apiPartners() : this.customPartners()) || [];
     if (list.length === 0) return [];
     if (this.isServer) return list;
-    return [...list, ...list, ...list, ...list, ...list, ...list];
+
+    let copiesNeeded = Math.max(6, Math.ceil(40 / list.length));
+    if (copiesNeeded % 2 !== 0) {
+      copiesNeeded++;
+    }
+
+    const result = [];
+    for (let i = 0; i < copiesNeeded; i++) {
+      result.push(...list);
+    }
+    return result;
   });
 
   readonly repeatedClients = computed(() => {
     const list = (this.apiClients()?.length ? this.apiClients() : this.customClients()) || [];
     if (list.length === 0) return [];
     if (this.isServer) return list;
-    return [...list, ...list, ...list, ...list, ...list, ...list];
+
+    let copiesNeeded = Math.max(6, Math.ceil(40 / list.length));
+    if (copiesNeeded % 2 !== 0) {
+      copiesNeeded++;
+    }
+
+    const result = [];
+    for (let i = 0; i < copiesNeeded; i++) {
+      result.push(...list);
+    }
+    return result;
   });
 
   readonly partnersDuration = computed(() => `${this.repeatedPartners().length * 2}s`);

@@ -8,7 +8,7 @@
   <!-- Authentic Engineering Blueprint Pattern Background -->
   <div class="absolute inset-0 pointer-events-none select-none overflow-hidden">
     <!-- Subtle engineering grid pattern -->
-    <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+    <svg class="absolute inset-0 size-full" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern id="footer-blueprint-grid" width="80" height="80" patternUnits="userSpaceOnUse">
           <path d="M 80 0 L 0 0 0 80" fill="none" stroke="white" stroke-width="1" opacity="0.08" />
@@ -24,7 +24,7 @@
     </svg>
 
     <!-- Blueprint technical vector graphics positioned on the edges -->
-    <svg class="absolute right-0 bottom-0 w-150 h-100 text-white opacity-[0.06] translate-x-20 translate-y-20"
+    <svg class="absolute end-0 bottom-0 w-150 h-100 text-white opacity-[0.06] translate-x-20 translate-y-20"
       viewBox="0 0 600 400" fill="none" stroke="currentColor" stroke-width="0.75">
       <circle cx="300" cy="200" r="180" stroke-dasharray="4,8" />
       <circle cx="300" cy="200" r="120" stroke="#EA8A22" opacity="0.8" stroke-width="1.5" />
@@ -42,7 +42,7 @@
       <text x="360" y="180" fill="#EA8A22" font-size="12" font-family="monospace" font-weight="bold">45.0°</text>
     </svg>
 
-    <svg class="absolute left-0 top-0 w-100 h-75 text-white opacity-[0.05] -translate-x-12 -translate-y-12"
+    <svg class="absolute start-0 top-0 w-100 h-75 text-white opacity-[0.05] -translate-x-12 -translate-y-12"
       viewBox="0 0 400 300" fill="none" stroke="currentColor" stroke-width="0.75">
       <path d="M 50,250 L 150,150 L 350,250 Z" stroke-width="1" />
       <line x1="150" y1="150" x2="150" y2="250" stroke-dasharray="4,4" stroke="#EA8A22" stroke-width="1.5" />
@@ -57,7 +57,7 @@
     </svg>
 
     <!-- Crane Outline in Bottom Left Corner -->
-    <svg class="absolute left-10 bottom-10 w-60 h-80 text-white opacity-[0.06] pointer-events-none hidden md:block"
+    <svg class="absolute start-10 bottom-10 w-60 h-80 text-white opacity-[0.06] pointer-events-none hidden md:block"
       viewBox="0 0 240 320" fill="none" stroke="currentColor" stroke-width="0.8">
       <line x1="80" y1="320" x2="80" y2="100" />
       <line x1="90" y1="320" x2="90" y2="100" />
@@ -86,7 +86,7 @@
     </svg>
 
     <!-- Building Wireframe in Top Right Corner -->
-    <svg class="absolute right-12 top-12 w-50 h-75 text-white opacity-[0.06] pointer-events-none hidden lg:block"
+    <svg class="absolute end-12 top-12 w-50 h-75 text-white opacity-[0.06] pointer-events-none hidden lg:block"
       viewBox="0 0 200 300" fill="none" stroke="currentColor" stroke-width="0.8">
       <line x1="20" y1="280" x2="180" y2="280" />
       <line x1="20" y1="240" x2="180" y2="240" />
@@ -116,11 +116,11 @@
     <!-- Column 1: Brand Info -->
     <div class="lg:col-span-4 flex flex-col items-start relative">
       <!-- Logo Brand Group -->
-      <div class="-mt-7 -ml-6 -mb-2 text-white w-full max-w-50 relative z-20">
+      <div class="-mt-7 -ms-6 -mb-2 text-white w-full max-w-50 relative z-20">
         <app-image src="/main-logo-white.webp" alt="Maabany Logo" classes="w-full h-auto object-contain" />
       </div>
 
-      <p class="text-[14px] text-white/80 leading-[1.8] font-light pr-4">
+      <p class="text-[14px] text-white/80 leading-[1.8] font-light pe-4">
         {{ webInfoService?.footerDescription() || ('Maabany Integrated Building Solutions delivers innovative
         engineering, construction, and facility management services across the Kingdom of Saudi Arabia (KSA) with a
         commitment to quality, precision, and long-term value.' | translate) }}
@@ -130,9 +130,9 @@
       <div class="flex items-center gap-3 pt-4">
         @for (social of socialLinks(); track social?.name) {
         <a [href]="social?.href" target="_blank" rel="noopener noreferrer" [title]="social?.name"
-          class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-primary hover:bg-primary transition-all duration-250 transform hover:scale-110">
+          class="size-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-primary hover:bg-primary transition-all duration-250 transform hover:scale-110">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
             <path [attr.d]="social.iconSvg" />
           </svg>
         </a>
@@ -142,7 +142,7 @@
 
     <div class="lg:col-span-3 space-y-6">
       <span
-        class="text-[18px] block font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-primary">
+        class="text-[18px] block font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:start-0 after:w-8 after:h-0.5 after:bg-primary">
         {{ 'FOOTER.QUICK_LINKS' | translate }}
       </span>
       <ul class="grid grid-cols-1 gap-3.5">
@@ -151,11 +151,11 @@
           <a [routerLink]="link?.path ? ['/', lang, link?.path] : ['/', lang]"
             class="text-[15px] text-white/80 hover:text-primary transition-all duration-300 inline-flex items-center gap-2 group relative py-1">
             <span
-              class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
+              class="size-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
             <span class="relative">
               {{ link?.label | translate }}
               <span
-                class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full"></span>
+                class="absolute bottom-0 start-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full"></span>
             </span>
           </a>
         </li>
@@ -165,7 +165,7 @@
 
     <div class="lg:col-span-2 space-y-6">
       <span
-        class="text-[18px] block font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-primary">
+        class="text-[18px] block font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:start-0 after:w-8 after:h-0.5 after:bg-primary">
         {{ 'FOOTER.RESOURCES' | translate }}
       </span>
       <ul class="grid grid-cols-1 gap-3.5 mb-6">
@@ -175,23 +175,23 @@
           <button (click)="downloadProfile()" [disabled]="profileService?.isDownloading()"
             class="text-[15px] text-white/80 hover:text-primary text-left transition-all duration-300 inline-flex items-center gap-2 group cursor-pointer focus:outline-none relative py-1">
             <span
-              class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
+              class="size-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
             <span class="relative">
               {{ profileService?.isDownloading() ? ('Downloading Profile...' | translate) : ('Company Profile ↓' |
               translate) }}
               <span
-                class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full"></span>
+                class="absolute bottom-0 start-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full"></span>
             </span>
           </button>
           } @else {
           <a [routerLink]="['/',lang,link?.path]"
             class="text-[15px] text-white/80 hover:text-primary transition-all duration-300 inline-flex items-center gap-2 group relative py-1">
             <span
-              class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
+              class="size-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
             <span class="relative">
               {{ link?.label | translate }}
               <span
-                class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full"></span>
+                class="absolute bottom-0 start-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full"></span>
             </span>
           </a>
           }
@@ -201,11 +201,11 @@
           <a [routerLink]="'request-a-quote'"
             class="text-[15px] text-white/80 hover:text-primary text-left transition-all duration-300 inline-flex items-center gap-2 group cursor-pointer focus:outline-none relative py-1">
             <span
-              class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
+              class="size-1.5 rounded-full bg-white/20 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(234,138,34,0.6)] transition-all"></span>
             <span class="relative">
               {{ 'NAV.REQUEST_QUOTE' | translate }}
               <span
-                class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full"></span>
+                class="absolute bottom-0 start-0 w-0 h-[1.5px] bg-primary transition-all duration-300 group-hover:w-full"></span>
             </span>
           </a>
         </li>
@@ -215,7 +215,7 @@
     <!-- Column 4: Contact Us -->
     <div class="lg:col-span-3 space-y-6">
       <span
-        class="text-[18px] block font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:inset-s-0 after:w-8 after:h-0.5 after:bg-primary">
+        class="text-[18px] block font-semibold text-white tracking-wide relative pb-2 after:content-[''] after:absolute after:bottom-0 after:start-0 after:w-8 after:h-0.5 after:bg-primary">
         {{ 'FOOTER.CONTACT_US' | translate }}
       </span>
       <div class="space-y-4 text-[14px] text-white/75 font-light">
@@ -223,7 +223,7 @@
           <div
             class="p-2.5 rounded-xl border border-white/15 text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
               <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
@@ -242,7 +242,7 @@
           <div
             class="p-2.5 rounded-xl border border-white/15 text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
               <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
@@ -260,7 +260,7 @@
         <div class="flex gap-3 items-start">
           <div class="p-2.5 rounded-xl border border-white/15 text-primary shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
               <rect width="20" height="16" x="2" y="4" rx="2" />
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
             </svg>

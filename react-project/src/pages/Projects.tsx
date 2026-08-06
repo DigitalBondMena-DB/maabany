@@ -175,8 +175,8 @@ export function Projects() {
                     setHasLoadedMore(false);
                   }}
                   className={`px-5 py-2.5 rounded-full text-xs font-mono uppercase font-bold tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap shrink-0 ${selectedCategory === cat
-                      ? 'bg-primary text-white shadow-sm'
-                      : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100'
+                    ? 'bg-primary text-white shadow-sm'
+                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100'
                     }`}
                 >
                   {cat}
@@ -293,8 +293,8 @@ export function Projects() {
                         key={`page-${page}`}
                         onClick={() => handlePageChange(Number(page))}
                         className={`w-9 h-9 flex items-center justify-center rounded-full font-mono font-bold text-xs transition-all ${currentPage === page
-                            ? 'bg-primary text-white shadow-sm'
-                            : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 cursor-pointer'
+                          ? 'bg-primary text-white shadow-sm'
+                          : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 cursor-pointer'
                           }`}
                       >
                         {page}
@@ -395,7 +395,7 @@ export function Projects() {
               </svg>
 
               {/* Layer 2: Drawing Content */}
-              <div className="absolute inset-0 flex items-center justify-end pr-4">
+              <div className="absolute inset-0 flex items-center justify-end pe-4">
                 <svg
                   viewBox="0 0 700 600"
                   className="w-full h-full max-w-none transform translate-x-12 translate-y-8 scale-105"

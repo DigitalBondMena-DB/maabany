@@ -438,7 +438,7 @@ export function SearchPage() {
 
           {/* High-fidelity Input container */}
           <div className="flex items-center bg-white border border-neutral-200/80 rounded-2xl shadow-[0_12px_30px_rgba(0,0,0,0.06)] p-1.5 focus-within:ring-0 focus-within:border-neutral-400 transition-all duration-300">
-            <div className="pl-4 pr-2 text-neutral-400 shrink-0">
+            <div className="pl-4 pe-2 text-neutral-400 shrink-0">
               <Search className="w-5 h-5" />
             </div>
 

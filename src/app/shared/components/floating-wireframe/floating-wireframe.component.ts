@@ -28,8 +28,8 @@ export type WireframeShape = 'dome' | 'tower' | 'icosahedron' | 'cube' | 'octahe
 @Component({
   selector: 'app-floating-wireframe',
   template: `
-    <div class="relative w-full h-full flex items-center justify-center pointer-events-none select-none will-change-transform">
-      <svg #svgRef class="w-full h-full overflow-visible transform-gpu" viewBox="0 0 300 300">
+    <div class="relative size-full flex items-center justify-center pointer-events-none select-none will-change-transform">
+      <svg #svgRef class="size-full overflow-visible transform-gpu" viewBox="0 0 300 300">
         @for (edge of edges; track $index) {
           <line
             stroke-width="1.2"
@@ -50,7 +50,7 @@ export type WireframeShape = 'dome' | 'tower' | 'icosahedron' | 'cube' | 'octahe
     </div>
   `,
   host: {
-    'class': 'block w-full h-full'
+    'class': 'block size-full'
   }
 })
 export class FloatingWireframeComponent implements OnInit, OnDestroy {

@@ -7,8 +7,8 @@ export const iconsArch: Icons = {
     orangeAvatar: '/icons/orange-avatar-icon.svg',
     orangeBuild: '/icons/orange-build-icon.svg',
     orangeClock: '/icons/orange-clock-icon.svg',
-    orangeArrow: '/icons/orange-right-arrow-icon.svg',
+    orangeArrow: '/icons/orange-end-arrow-icon.svg',
     orangeTrophy: '/icons/orange-trophy-icon.svg',
     orangeShild: '/icons/orange-shild-icon.svg',
-    whiteArrow: '/icons/white-right-arrow-icon.svg',
+    whiteArrow: '/icons/white-end-arrow-icon.svg',
 }

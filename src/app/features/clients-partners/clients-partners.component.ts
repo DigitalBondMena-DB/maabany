@@ -21,7 +21,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class ClientsPartnersComponent {
   private readonly clientsPartnersService = inject(ClientsPartnersService);
-  
+
   readonly data = this.clientsPartnersService.data;
   readonly clients = this.clientsPartnersService.clients;
   readonly partners = this.clientsPartnersService.partners;

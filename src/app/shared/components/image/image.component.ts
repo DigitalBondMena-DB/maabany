@@ -32,7 +32,7 @@ import { NgOptimizedImage } from '@angular/common';
         [class.opacity-0]="!isLoaded()"
         [class.opacity-100]="isLoaded()"
         [class]="classes()"
-        class="w-full h-full"
+        class="size-full"
         (load)="onLoad()"
         (error)="onError()"
       />
@@ -58,7 +58,7 @@ import { NgOptimizedImage } from '@angular/common';
   `,
 })
 export class ImageComponent {
-  readonly src = input.required<string>();
+  readonly src = input.required<string | undefined | null>();
   readonly alt = input('');
   readonly width = input<number>();
   readonly height = input<number>();
@@ -75,7 +75,13 @@ export class ImageComponent {
   readonly objectFitSignal = linkedSignal(this.objectFit);
   readonly currentSrc = linkedSignal({
     source: this.src,
-    computation: (src) => src,
+    computation: (src) => {
+      let validSrc = src;
+      if (!validSrc || typeof validSrc !== 'string' || validSrc.trim() === '' || validSrc === 'undefined' || validSrc === 'null') {
+        validSrc = this.fallback();
+      }
+      return validSrc;
+    },
   });
 
   readonly isFill = computed(() => !this.width() || !this.height());

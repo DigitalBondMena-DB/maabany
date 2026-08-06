@@ -677,7 +677,7 @@ export function Industries() {
             </svg>
 
             {/* Layer 2: Drawing Content */}
-            <div className="absolute inset-0 flex items-center justify-end pr-4">
+            <div className="absolute inset-0 flex items-center justify-end pe-4">
               <svg
                 viewBox="0 0 700 600"
                 className="w-full h-full max-w-none transform translate-x-12 translate-y-8 scale-105"
@@ -855,15 +855,15 @@ export function Industries() {
                       <div>
                         <label htmlFor="quote-phone" className="block text-[10px] font-mono text-neutral-400 uppercase mb-1">Phone Number *</label>
                         <div className={`relative flex items-center bg-neutral-50 border rounded-xl transition-all duration-200 w-full ${errors.phone
-                            ? 'border-red-400 bg-white focus-within:border-red-400'
-                            : 'border-neutral-200 focus-within:border-neutral-400 focus-within:bg-white'
+                          ? 'border-red-400 bg-white focus-within:border-red-400'
+                          : 'border-neutral-200 focus-within:border-neutral-400 focus-within:bg-white'
                           }`}>
-                          <div className="flex items-center gap-1.5 pl-3.5 pr-2 border-r border-neutral-200 select-none shrink-0">
+                          <div className="flex items-center gap-1.5 pl-3.5 pe-2 border-r border-neutral-200 select-none shrink-0">
                             <CountryFlag countryCode={phoneCountryCode} />
                             <select
                               value={phoneCountryCode}
                               onChange={(e) => setPhoneCountryCode(e.target.value)}
-                              className="bg-transparent border-none text-xs font-mono text-neutral-600 focus:ring-0 focus:outline-none cursor-pointer p-0 pr-4 appearance-none font-bold"
+                              className="bg-transparent border-none text-xs font-mono text-neutral-600 focus:ring-0 focus:outline-none cursor-pointer p-0 pe-4 appearance-none font-bold"
                               style={{ backgroundImage: 'none' }}
                             >
                               <option value="+966">+966</option>
@@ -894,7 +894,7 @@ export function Industries() {
                         <select
                           value={formData.projectType}
                           onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                          className="w-full bg-neutral-50 border border-neutral-200 pl-3.5 pr-10 py-3.5 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 focus:border-neutral-400 focus:ring-0 appearance-none"
+                          className="w-full bg-neutral-50 border border-neutral-200 pl-3.5 pe-10 py-3.5 rounded-xl text-sm focus:outline-none focus:bg-white text-neutral-800 placeholder-neutral-400 focus:border-neutral-400 focus:ring-0 appearance-none"
                         >
                           {industries.map(ind => (
                             <option key={ind.id} value={ind.name}>{ind.name}</option>

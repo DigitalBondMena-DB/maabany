@@ -15,7 +15,7 @@ import { PreventInputDirective } from '../../../../../shared/directives/prevent-
           : 'border-neutral-200/80 focus-within:border-primary focus-within:bg-white focus-within:ring-primary/15'))"
     >
       <!-- Country Selector Button -->
-      <div class="relative border-r border-neutral-200 select-none shrink-0">
+      <div class="relative border-e border-neutral-200 select-none shrink-0">
         <button
           type="button"
           (click)="toggleDropdown()"
@@ -30,7 +30,7 @@ import { PreventInputDirective } from '../../../../../shared/directives/prevent-
             loading="lazy"
           />
           <span>{{ currentCountry().code }}</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-neutral-400 transition-transform" [class.rotate-180]="isDropdownOpen()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-3 text-neutral-400 transition-transform" [class.rotate-180]="isDropdownOpen()">
             <path d="m6 9 6 6 6-6"/>
           </svg>
         </button>
@@ -38,7 +38,7 @@ import { PreventInputDirective } from '../../../../../shared/directives/prevent-
         <!-- Dropdown Popup -->
         @if (isDropdownOpen()) {
           <div
-            class="absolute top-full inset-s-0 mt-2 w-72 bg-white border border-neutral-200/90 rounded-2xl shadow-xl z-50 overflow-hidden animate-fadeIn py-2"
+            class="absolute top-full start-0 mt-2 w-72 bg-white border border-neutral-200/90 rounded-2xl shadow-xl z-50 overflow-hidden animate-fadeIn py-2"
           >
             <!-- Search Bar -->
             <div class="px-3 pb-2 border-b border-neutral-100">
@@ -97,9 +97,9 @@ import { PreventInputDirective } from '../../../../../shared/directives/prevent-
       <!-- Realtime Validation Indicator Icon -->
       <div class="pe-3.5 flex items-center pointer-events-none">
         @if (isTouched() && isValid()) {
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-emerald-500"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-emerald-500"><polyline points="20 6 9 17 4 12"/></svg>
         } @else if (isTouched() && hasError()) {
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-red-500"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-red-500"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
         }
       </div>
     </div>

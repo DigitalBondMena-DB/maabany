@@ -1,13 +1,13 @@
 <div
   [class]="cardClasses() || 'bg-white rounded-3xl p-8 md:p-10 border border-neutral-200/80 shadow-md relative overflow-hidden h-full'">
-  <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[100px] pointer-events-none"></div>
+  <div class="absolute top-0 end-0 size-32 bg-primary/5 rounded-bl-[100px] pointer-events-none"></div>
 
   <!-- Success Notification Banner -->
   @if (isSuccess()) {
   <div
     class="mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 flex items-start gap-3 animate-fadeIn">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5">
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5 text-emerald-600 shrink-0 mt-0.5">
       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
       <polyline points="22 4 12 14.01 9 11.01" />
     </svg>
@@ -52,7 +52,7 @@
           @if ((contactForm.name().touched() || isSubmitted()) && contactForm.name().valid()) {
           <span class="text-[10px] font-mono text-emerald-600 font-bold flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3">
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-3">
               <polyline points="20 6 9 17 4 12" />
             </svg>
             {{ 'CONTACT.VALID' | translate }}
@@ -61,23 +61,23 @@
         </div>
         <div class="relative">
           <input [formField]="contactForm.name" id="contact-name" preventInput="number" type="text"
-            [placeholder]="'CONTACT.NAME_PLACEHOLDER' | translate" [class]="'w-full bg-neutral-50/50 border text-neutral-800 placeholder-neutral-400 p-3.5 pr-9 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 ' +
+            [placeholder]="'CONTACT.NAME_PLACEHOLDER' | translate" [class]="'w-full bg-neutral-50/50 border text-neutral-800 placeholder-neutral-400 p-3.5 pe-9 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 ' +
               ((contactForm.name().touched() || isSubmitted()) && !contactForm.name().valid()
                 ? 'border-red-400 focus:border-red-500 focus:ring-red-500/15 bg-red-50/10'
                 : (contactForm.name().touched() || isSubmitted()) && contactForm.name().valid()
                 ? 'border-emerald-500/80 focus:border-emerald-500 focus:ring-emerald-500/15 bg-emerald-50/10'
                 : 'border-neutral-200/80 focus:border-primary focus:bg-white focus:ring-primary/15')" />
-          <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+          <div class="absolute end-3 top-1/2 -translate-y-1/2 pointer-events-none">
             @if ((contactForm.name().touched() || isSubmitted()) && contactForm.name().valid()) {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-              class="w-4 h-4 text-emerald-500">
+              class="size-4 text-emerald-500">
               <polyline points="20 6 9 17 4 12" />
             </svg>
             } @else if ((contactForm.name().touched() || isSubmitted()) && !contactForm.name().valid()) {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-              class="w-4 h-4 text-red-500">
+              class="size-4 text-red-500">
               <circle cx="12" cy="12" r="10" />
               <line x1="12" x2="12" y1="8" y2="12" />
               <line x1="12" x2="12.01" y1="16" y2="16" />
@@ -87,10 +87,10 @@
         </div>
         @if ((contactForm.name().touched() || isSubmitted()) && !contactForm.name().valid()) {
         <div
-          class="absolute bottom-0 inset-s-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
+          class="absolute bottom-0 start-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="w-3 h-3 shrink-0">
+            class="size-3 shrink-0">
             <circle cx="12" cy="12" r="10" />
             <line x1="12" x2="12" y1="8" y2="12" />
             <line x1="12" x2="12.01" y1="16" y2="16" />
@@ -110,7 +110,7 @@
           @if ((contactForm.email().touched() || isSubmitted()) && contactForm.email().valid()) {
           <span class="text-[10px] font-mono text-emerald-600 font-bold flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3">
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-3">
               <polyline points="20 6 9 17 4 12" />
             </svg>
             {{ 'CONTACT.VALID' | translate }}
@@ -119,23 +119,23 @@
         </div>
         <div class="relative">
           <input [formField]="contactForm.email" id="contact-email" type="email"
-            [placeholder]="'CONTACT.EMAIL_PLACEHOLDER' | translate" [class]="'w-full bg-neutral-50/50 border text-neutral-800 placeholder-neutral-400 p-3.5 pr-9 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 ' +
+            [placeholder]="'CONTACT.EMAIL_PLACEHOLDER' | translate" [class]="'w-full bg-neutral-50/50 border text-neutral-800 placeholder-neutral-400 p-3.5 pe-9 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 ' +
               ((contactForm.email().touched() || isSubmitted()) && !contactForm.email().valid()
                 ? 'border-red-400 focus:border-red-500 focus:ring-red-500/15 bg-red-50/10'
                 : (contactForm.email().touched() || isSubmitted()) && contactForm.email().valid()
                 ? 'border-emerald-500/80 focus:border-emerald-500 focus:ring-emerald-500/15 bg-emerald-50/10'
                 : 'border-neutral-200/80 focus:border-primary focus:bg-white focus:ring-primary/15')" />
-          <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+          <div class="absolute end-3 top-1/2 -translate-y-1/2 pointer-events-none">
             @if ((contactForm.email().touched() || isSubmitted()) && contactForm.email().valid()) {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-              class="w-4 h-4 text-emerald-500">
+              class="size-4 text-emerald-500">
               <polyline points="20 6 9 17 4 12" />
             </svg>
             } @else if ((contactForm.email().touched() || isSubmitted()) && !contactForm.email().valid()) {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-              class="w-4 h-4 text-red-500">
+              class="size-4 text-red-500">
               <circle cx="12" cy="12" r="10" />
               <line x1="12" x2="12" y1="8" y2="12" />
               <line x1="12" x2="12.01" y1="16" y2="16" />
@@ -145,10 +145,10 @@
         </div>
         @if ((contactForm.email().touched() || isSubmitted()) && !contactForm.email().valid()) {
         <div
-          class="absolute bottom-0 inset-s-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
+          class="absolute bottom-0 start-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="w-3 h-3 shrink-0">
+            class="size-3 shrink-0">
             <circle cx="12" cy="12" r="10" />
             <line x1="12" x2="12" y1="8" y2="12" />
             <line x1="12" x2="12.01" y1="16" y2="16" />
@@ -170,7 +170,7 @@
           @if ((phoneTouched() || isSubmitted()) && !phoneError()) {
           <span class="text-[10px] font-mono text-emerald-600 font-bold flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3">
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-3">
               <polyline points="20 6 9 17 4 12" />
             </svg>
             {{ 'CONTACT.VALID' | translate }}
@@ -183,10 +183,10 @@
           (blur)="phoneTouched.set(true)" />
         @if ((phoneTouched() || isSubmitted()) && phoneError()) {
         <div
-          class="absolute bottom-0 inset-s-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
+          class="absolute bottom-0 start-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="w-3 h-3 shrink-0">
+            class="size-3 shrink-0">
             <circle cx="12" cy="12" r="10" />
             <line x1="12" x2="12" y1="8" y2="12" />
             <line x1="12" x2="12.01" y1="16" y2="16" />
@@ -205,14 +205,14 @@
         </label>
         <div class="relative">
           <select [formField]="contactForm.solutionType" id="contact-segment"
-            class="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-700 pl-3.5 pr-10 py-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-primary/15 appearance-none cursor-pointer">
+            class="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-700 ps-3.5 pe-10 py-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-primary/15 appearance-none cursor-pointer">
             @for (type of solutionTypes(); track type.slug) {
             <option [value]="type.slug">{{ type.title }}</option>
             }
           </select>
-          <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
+          <div class="absolute end-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
               <path d="m6 9 6 6 6-6" />
             </svg>
           </div>
@@ -231,7 +231,7 @@
         @if ((contactForm.message().touched() || isSubmitted()) && contactForm.message().valid()) {
         <span class="text-[10px] font-mono text-emerald-600 font-bold flex items-center gap-1">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3">
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-3">
             <polyline points="20 6 9 17 4 12" />
           </svg>
           {{ 'CONTACT.VALID' | translate }}
@@ -247,10 +247,10 @@
             : 'border-neutral-200/80 focus:border-primary focus:bg-white focus:ring-primary/15')"></textarea>
       @if ((contactForm.message().touched() || isSubmitted()) && !contactForm.message().valid()) {
       <div
-        class="absolute bottom-0 inset-s-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
+        class="absolute bottom-0 start-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="w-3 h-3 shrink-0">
+          class="size-3 shrink-0">
           <circle cx="12" cy="12" r="10" />
           <line x1="12" x2="12" y1="8" y2="12" />
           <line x1="12" x2="12.01" y1="16" y2="16" />
@@ -265,7 +265,7 @@
       class="w-full py-4 bg-primary hover:bg-[#d97d1b] disabled:bg-neutral-300 text-white font-mono font-bold text-xs uppercase tracking-widest rounded-full transition-all duration-300 shadow-lg shadow-primary/10 hover:shadow-primary/20 cursor-pointer flex items-center justify-center gap-2 mt-4">
       @if (isSubmitting()) {
       <span class="flex items-center gap-2">
-        <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+        <div class="size-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
         {{ 'CONTACT.SENDING_BTN' | translate }}
       </span>
       } @else {
@@ -273,7 +273,7 @@
         {{ 'CONTACT.SUBMIT_BTN' | translate }}
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="w-4 h-4 rtl:scale-x-[-1]">
+          class="size-4 rtl:scale-x-[-1]">
           <path d="M5 12h14" />
           <path d="m12 5 7 7-7 7" />
         </svg>

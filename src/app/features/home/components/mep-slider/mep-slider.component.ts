@@ -6,7 +6,7 @@ import { ImageComponent } from '../../../../shared/components/image/image.compon
   imports: [ImageComponent],
   templateUrl: './map-slider.component.html',
   host: {
-    'class': 'block w-full h-full'
+    'class': 'block size-full'
   }
 })
 export class MepSliderComponent {

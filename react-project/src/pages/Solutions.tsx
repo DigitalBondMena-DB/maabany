@@ -414,7 +414,7 @@ export function Solutions() {
               </svg>
 
               {/* Layer 2: Drawing Content */}
-              <div className="absolute inset-0 flex items-center justify-end pr-4">
+              <div className="absolute inset-0 flex items-center justify-end pe-4">
                 <svg
                   viewBox="0 0 700 600"
                   className="w-full h-full max-w-none transform translate-x-12 translate-y-8 scale-105"

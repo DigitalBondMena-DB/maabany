@@ -1715,7 +1715,7 @@ export function Home() {
               </svg>
 
               {/* Layer 2: Drawing Content */}
-              <div className="absolute inset-0 flex items-center justify-end pr-4">
+              <div className="absolute inset-0 flex items-center justify-end pe-4">
                 <svg
                   viewBox="0 0 700 600"
                   className="w-full h-full max-w-none transform translate-x-12 translate-y-8 scale-105"
@@ -1932,12 +1932,12 @@ export function Home() {
                       Phone Number
                     </label>
                     <div className="relative flex items-center bg-neutral-50/50 border border-neutral-200/80 focus-within:border-primary focus-within:bg-white rounded-xl transition-all w-full focus-within:ring-2 focus-within:ring-primary/15">
-                      <div className="flex items-center gap-1 pl-3.5 pr-2.5 border-r border-neutral-200 select-none shrink-0">
+                      <div className="flex items-center gap-1 pl-3.5 pe-2.5 border-r border-neutral-200 select-none shrink-0">
                         <CountryFlag countryCode={contactPhoneCountry} />
                         <select
                           value={contactPhoneCountry}
                           onChange={(e) => handlePhoneCountryChange(e.target.value)}
-                          className="bg-transparent border-none text-xs font-mono text-neutral-700 focus:ring-0 focus:outline-none cursor-pointer p-0 pr-4 appearance-none font-bold"
+                          className="bg-transparent border-none text-xs font-mono text-neutral-700 focus:ring-0 focus:outline-none cursor-pointer p-0 pe-4 appearance-none font-bold"
                           style={{ backgroundImage: 'none' }}
                           aria-label="Country phone code"
                         >
@@ -1965,7 +1965,7 @@ export function Home() {
                     <div className="relative">
                       <select
                         id="contact-segment"
-                        className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-700 pl-3.5 pr-10 py-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-primary/15 appearance-none"
+                        className="w-full bg-neutral-50/50 border border-neutral-200/80 focus:border-primary focus:bg-white text-neutral-700 pl-3.5 pe-10 py-3.5 rounded-xl text-sm focus:outline-none transition-all focus:ring-2 focus:ring-primary/15 appearance-none"
                       >
                         <option>Commercial Buildings & Offices</option>
                         <option>Infrastructure & Roads</option>
@@ -2143,8 +2143,8 @@ export function Home() {
                             cy={node.coordinates.y}
                             r={isActive ? "4.5" : "3"}
                             className={`transition-all duration-300 ${isActive
-                                ? 'fill-primary'
-                                : isHovered ? 'fill-primary/90' : 'fill-neutral-500 opacity-60'
+                              ? 'fill-primary'
+                              : isHovered ? 'fill-primary/90' : 'fill-neutral-500 opacity-60'
                               }`}
                           />
                           <circle cx={node.coordinates.x} cy={node.coordinates.y} r="1.5" fill="white" />
@@ -2154,8 +2154,8 @@ export function Home() {
                             x={node.coordinates.x}
                             y={node.coordinates.y - 12}
                             className={`font-mono text-[8.5px] font-bold transition-all duration-300 select-none ${isActive
-                                ? 'fill-primary font-black'
-                                : isHovered ? 'fill-neutral-200' : 'fill-neutral-500 opacity-60'
+                              ? 'fill-primary font-black'
+                              : isHovered ? 'fill-neutral-200' : 'fill-neutral-500 opacity-60'
                               }`}
                             textAnchor="middle"
                           >
