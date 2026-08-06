@@ -124,12 +124,8 @@
           <a [routerLink]="computedPrimaryLink()"
             class="w-full px-8 py-5 bg-primary hover:bg-[#d97d1b] text-white font-bold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-primary/40 flex items-center justify-center gap-2 font-mono group cursor-pointer">
             <span>{{ primaryBtnText() | translate }}</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="size-4 group-hover:translate-x-1 transition-transform">
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
+            <app-icons icon="orangeArrow" [width]="20" [height]="20"
+              [classes]="'transition-all duration-300 rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 brightness-0 invert'" />
           </a>
 
           <button type="button" (click)="handleDownloadProfile()" [disabled]="downloadingProfile()"

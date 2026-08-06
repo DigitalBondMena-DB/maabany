@@ -5,16 +5,18 @@ import { FormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PageHeroComponent } from '../../shared/components/page-hero/page-hero.component';
 import { CtaBannerComponent } from '../../shared/components/cta-banner/cta-banner.component';
-import { TelInputComponent } from '../home/components/contact-section/tel-input/tel-input.component';
 import { LanguageService } from '../../core/services/language.service';
 import { SubmissionService } from '../../core/services/submission.service';
 import { ContactUsService } from './services/contact-us.service';
 import { SeoService } from '../../core/services/seo.service';
 import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.component';
 import { ContactFormComponent } from '../home/components/contact-section/contact-form/contact-form.component';
+import { IconsComponent } from "../../shared/components/icons/icons.component";
+
+import { IconName } from '../../shared/models/icons.interface';
 
 export interface TrustIndicator {
-  icon: string;
+  icon: IconName;
   title: string;
   desc: string;
 }
@@ -27,7 +29,8 @@ export interface TrustIndicator {
     PageHeroComponent,
     CtaBannerComponent,
     ContactFormComponent,
-    SkeletonComponent
+    SkeletonComponent,
+    IconsComponent
   ],
   templateUrl: './contact-us.component.html',
 })
@@ -54,20 +57,14 @@ export class ContactUsComponent {
     });
   }
 
-  readonly heroCards = [
-    { value: '12h Response', label: 'Maximum Reply Time' },
-    { value: '3 Branches', label: 'Egypt, KSA & Libya' },
-    { value: 'ISO Certified', label: 'Design & Engineering' },
-  ];
-
   // Dynamic zoom levels for maps
   readonly zoomLevels = signal<Record<number, number>>({});
 
   readonly trustIndicators: TrustIndicator[] = [
-    { icon: 'clock', title: 'Fast Response', desc: 'Consultants respond within 12 business hours' },
-    { icon: 'users', title: 'Professional Engineering Team', desc: 'ISO certified design & structural planning' },
-    { icon: 'award', title: 'Customized Solutions', desc: 'Tailored construction and MEP specifications' },
-    { icon: 'globe', title: 'Multi-country Support', desc: 'Operating seamlessly in Egypt, Saudi Arabia, & Libya' },
+    { icon: 'orangeClock', title: 'CONTACT.TRUST_1_TITLE', desc: 'CONTACT.TRUST_1_DESC' },
+    { icon: 'orangeUsers', title: 'CONTACT.TRUST_2_TITLE', desc: 'CONTACT.TRUST_2_DESC' },
+    { icon: 'orangeAward', title: 'CONTACT.TRUST_3_TITLE', desc: 'CONTACT.TRUST_3_DESC' },
+    { icon: 'orangeGlobe', title: 'CONTACT.TRUST_4_TITLE', desc: 'CONTACT.TRUST_4_DESC' },
   ];
 
   // Form Signals & Real-time Validation State
@@ -124,13 +121,7 @@ export class ContactUsComponent {
     return errs;
   });
 
-  getFlag(country: string): string {
-    const c = (country || '').toLowerCase();
-    if (c.includes('saudi')) return '🇸🇦';
-    if (c.includes('egypt')) return '🇪🇬';
-    if (c.includes('libya')) return '🇱🇾';
-    return '🌍';
-  }
+
 
   encodeUrl(str: string): string {
     return encodeURIComponent(str);

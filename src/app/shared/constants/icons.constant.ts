@@ -10,5 +10,8 @@ export const iconsArch: Icons = {
     orangeArrow: '/icons/orange-right-arrow-icon.svg',
     orangeTrophy: '/icons/orange-trophy-icon.svg',
     orangeShild: '/icons/orange-shild-icon.svg',
+    orangeUsers: '/icons/orange-users-icon.svg',
+    orangeAward: '/icons/orange-award-icon.svg',
+    orangeGlobe: '/icons/orange-globe-icon.svg',
     whiteArrow: '/icons/white-right-arrow-icon.svg',
 }

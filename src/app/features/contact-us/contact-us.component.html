@@ -1,7 +1,7 @@
 <div class="bg-white min-h-screen pb-12">
 
   <!-- 1. HERO HEADER -->
-  <app-page-hero [title]="banner()?.title || ('Contact Us' | translate)" categoryBadge="Contact Us"
+  <app-page-hero [title]="banner()?.title || ('NAV.CONTACT' | translate)" [categoryBadge]="'NAV.CONTACT' | translate"
     [heroImage]="banner()?.image || 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80'" />
 
   <!-- 2. GLOBAL OFFICES SECTION -->
@@ -10,17 +10,17 @@
     <!-- Section Header -->
     <div class="text-center max-w-3xl mx-auto space-y-3">
       <span class="text-[#142b52]  text-[10px] uppercase font-medium tracking-widest block font-mono">
-        {{ 'OUR LOCATIONS' | translate }}
+        {{ 'CONTACT.SECTION_SUBTITLE' | translate }}
       </span>
       <h2 class="text-2xl md:text-4xl font-bold text-neutral-900 uppercase tracking-tight ">
-        {{ 'Visit or Contact Our Offices' | translate }}
+        {{ 'CONTACT.SECTION_TITLE' | translate }}
       </h2>
     </div>
 
     <!-- Office Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative min-h-[400px]">
       @if (isLoading()) {
-        <app-skeleton class="absolute inset-0 z-10" />
+      <app-skeleton class="absolute inset-0 z-10" />
       }
       @for (office of branches(); track office.id) {
       <div
@@ -30,10 +30,12 @@
         <div class="p-8 space-y-6">
           <!-- Flag & Country Header -->
           <div class="flex items-center gap-3">
-            <span class="text-2xl select-none" role="img" [attr.aria-label]="office.country">{{ getFlag(office.country) }}</span>
+            <span class="text-2xl select-none" role="img" [attr.aria-label]="office.country">
+              <app-icons icon="i18n" [width]="24" [height]="24" />
+            </span>
             <div>
               <span class=" block text-[10px] tracking-widest text-primary uppercase font-semibold">
-                {{ 'BRANCH' | translate }}
+                {{ 'CONTACT.BRANCH' | translate }}
               </span>
               <span class="text-lg block font-medium text-neutral-900 uppercase tracking-tight">
                 {{ office.country | translate }}
@@ -55,7 +57,7 @@
               </div>
               <div class="space-y-0.5">
                 <p class=" text-[9px] uppercase font-medium text-neutral-400 tracking-wider">
-                  {{ 'Office Address' | translate }}
+                  {{ 'CONTACT.OFFICE_ADDRESS' | translate }}
                 </p>
                 <p class="text-neutral-700  leading-relaxed">
                   {{ office.address }}
@@ -75,7 +77,7 @@
               </div>
               <div class="space-y-0.5">
                 <p class=" text-[9px] uppercase font-medium text-neutral-400 tracking-wider">
-                  {{ 'Phone Line' | translate }}
+                  {{ 'CONTACT.TELEPHONE' | translate }}
                 </p>
                 <p class="text-neutral-900 font-semibold ">
                   {{ office.phone }}
@@ -95,7 +97,7 @@
               </div>
               <div class="space-y-0.5">
                 <p class=" text-[9px] uppercase font-medium text-neutral-400 tracking-wider">
-                  {{ 'Inquiries Email' | translate }}
+                  {{ 'CONTACT.GENERAL_INQUIRIES' | translate }}
                 </p>
                 <a [href]="'mailto:' + office.email" class="text-primary hover:underline font-medium ">
                   {{ office.email }}
@@ -115,7 +117,7 @@
               </div>
               <div class="space-y-0.5">
                 <p class=" text-[9px] uppercase font-medium text-neutral-400 tracking-wider">
-                  {{ 'Working Hours' | translate }}
+                  {{ 'CONTACT.WORKING_HOURS' | translate }}
                 </p>
                 <p class="text-neutral-600  whitespace-pre-line leading-snug">
                   {{ office.working_hours }}
@@ -137,16 +139,16 @@
 
             <!-- Map Overlay Badge -->
             <div
-              class="absolute top-4 inset-s-4 z-10 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded text-[9px]  text-neutral-500 border border-neutral-200/60 shadow-xs flex items-center gap-1.5">
+              class="absolute top-4 right-4 z-10 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded text-[9px]  text-neutral-500 border border-neutral-200/60 shadow-xs flex items-center gap-1.5">
               <div class="size-1.5 rounded-full bg-primary animate-ping"></div>
-              <span>GPS Active ({{ getZoom(office.id) }}x)</span>
+              <span>{{ 'CONTACT.GPS_ACTIVE' | translate }} ({{ getZoom(office.id) }}x)</span>
             </div>
 
             <!-- Zoom Controls -->
             <div class="absolute bottom-4 inset-e-4 z-20 flex flex-col gap-1.5">
               <button type="button" (click)="handleZoomIn(office.id)"
                 class="size-8 rounded-lg bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-200 shadow-md flex items-center justify-center cursor-pointer active:scale-95 transition-all"
-                title="Zoom In">
+                [title]="'CONTACT.ZOOM_IN' | translate">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="11" cy="11" r="8" />
@@ -157,7 +159,7 @@
               </button>
               <button type="button" (click)="handleZoomOut(office.id)"
                 class="size-8 rounded-lg bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-200 shadow-md flex items-center justify-center cursor-pointer active:scale-95 transition-all"
-                title="Zoom Out">
+                [title]="'CONTACT.ZOOM_OUT' | translate">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="11" cy="11" r="8" />
@@ -176,7 +178,7 @@
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="3 11 22 2 13 21 11 13 3 11" />
             </svg>
-            <span>{{ 'Get Directions' | translate }}</span>
+            <span>{{ 'CONTACT.GET_DIRECTIONS' | translate }}</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
               class="rtl:rotate-180">
@@ -198,13 +200,13 @@
         <div class="lg:col-span-5 space-y-8">
           <div class="space-y-3">
             <span class="text-[#142b52]  text-[10px] uppercase font-medium tracking-widest block font-mono">
-              {{ 'SEND A MESSAGE' | translate }}
+              {{ 'CONTACT.SUBTITLE' | translate }}
             </span>
             <h2 class="text-2xl md:text-4xl font-bold text-neutral-900 uppercase tracking-tight ">
-              {{ "We're Ready to Help" | translate }}
+              {{ 'CONTACT.TITLE' | translate }}
             </h2>
             <p class="text-sm text-neutral-500  mt-2 max-w-sm leading-relaxed">
-              {{ "We're here to help. Complete the form and our experts will contact you soon." | translate }}
+              {{ 'CONTACT.HELP_DESC' | translate }}
             </p>
           </div>
 
@@ -219,35 +221,8 @@
 
               <div
                 class="size-10 rounded-xl bg-neutral-50 border border-neutral-200 text-primary flex items-center justify-center shrink-0 mt-0.5 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary shadow-xs">
-                @if (indicator.icon === 'clock') {
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-                } @else if (indicator.icon === 'users') {
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-                } @else if (indicator.icon === 'award') {
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="8" r="6" />
-                  <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
-                </svg>
-                } @else {
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" x2="22" y1="12" y2="12" />
-                  <path
-                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                </svg>
-                }
+                <app-icons [icon]="indicator.icon" [width]="20" [height]="20"
+                  classes="w-5 h-5 group-hover:brightness-0 group-hover:invert transition-all duration-300" />
               </div>
               <div>
                 <h4
@@ -265,8 +240,8 @@
 
         <!-- Right Column: Contact Form -->
         <div class="lg:col-span-7">
-          <app-contact-form [formTitle]="'Send Us a Direct Message'"
-            [formSubtitle]="'Fill in your project specifications and our engineering consultants will respond within 12 hours.'" />
+          <app-contact-form [formTitle]="'CONTACT.FORM_TITLE' | translate"
+            [formSubtitle]="'CONTACT.FORM_SUBTITLE' | translate" />
         </div>
 
       </div>

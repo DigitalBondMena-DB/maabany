@@ -6,10 +6,11 @@ import { LanguageService } from '../../../core/services/language.service';
 import { WebInfoService } from '../../../core/services/web-info.service';
 
 import { ImageComponent } from '../image/image.component';
+import { IconsComponent } from "../icons/icons.component";
 
 @Component({
   selector: 'app-cta-banner',
-  imports: [RouterLink, TranslatePipe, ImageComponent],
+  imports: [RouterLink, TranslatePipe, ImageComponent, IconsComponent],
   templateUrl: './cta-banner.component.html',
   styles: [`
     @keyframes blueprintDraw {

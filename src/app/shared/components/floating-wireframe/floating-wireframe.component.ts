@@ -28,7 +28,7 @@ export type WireframeShape = 'dome' | 'tower' | 'icosahedron' | 'cube' | 'octahe
 @Component({
   selector: 'app-floating-wireframe',
   template: `
-    <div class="relative size-full flex items-center justify-center pointer-events-none select-none will-change-transform">
+    <div class="relative size-full flex items-center justify-center pointer-events-none select-none opacity-[0.99]">
       <svg #svgRef class="size-full overflow-visible transform-gpu" viewBox="0 0 300 300">
         @for (edge of edges; track $index) {
           <line

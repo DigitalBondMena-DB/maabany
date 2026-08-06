@@ -9,6 +9,9 @@ export interface Icons {
     whiteArrow: string;
     orangeTrophy: string;
     orangeShild: string;
+    orangeUsers: string;
+    orangeAward: string;
+    orangeGlobe: string;
 }
 
 export type IconName = keyof Icons;
