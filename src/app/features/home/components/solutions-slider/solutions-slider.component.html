@@ -1,7 +1,7 @@
 <section id="solutions"
   class="bg-[#FAFAFA] relative overflow-hidden z-10 transition-all duration-200 py-12 md:py-20 lg:py-24">
   <!-- Floating 3D Geodesic Dome -->
-  <div class="absolute -start-12 top-16 size-82 opacity-15 pointer-events-none hidden xl:block">
+  <div class="absolute -inset-s-12 top-16 size-82 opacity-15 pointer-events-none hidden xl:block">
     @defer (on viewport) {
     <app-floating-wireframe shape="dome" color="#142b52" />
     } @placeholder {
@@ -20,7 +20,7 @@
 
   <!-- Subtle decorative architectural CAD line arts -->
   <div
-    class="absolute start-6 top-24 size-36 opacity-[0.04] pointer-events-none hidden xl:block select-none text-[#142b52]">
+    class="absolute inset-s-6 top-24 size-36 opacity-[0.04] pointer-events-none hidden xl:block select-none text-[#142b52]">
     <svg viewBox="0 0 80 80" class="size-full">
       <rect x="5" y="5" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.5" />
       <line x1="5" y1="28" x2="75" y2="28" stroke="currentColor" stroke-width="0.25" />
@@ -35,7 +35,7 @@
   </div>
 
   <div
-    class="absolute end-6 bottom-24 size-40 opacity-[0.04] pointer-events-none hidden xl:block select-none text-primary">
+    class="absolute inset-e-6 bottom-24 size-40 opacity-[0.04] pointer-events-none hidden xl:block select-none text-primary">
     <svg viewBox="0 0 100 100" class="size-full">
       <path d="M 10 50 A 40 40 0 0 1 50 10" fill="none" stroke="currentColor" stroke-width="0.5"
         stroke-dasharray="2 2" />

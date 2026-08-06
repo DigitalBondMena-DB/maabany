@@ -4,7 +4,7 @@
   role="dialog" aria-modal="true" [attr.aria-label]="projectTitle() + ' Lightbox'">
   <!-- Top-Right Floating Cancel / Exit Icon Button -->
   <button type="button" (click)="onClose(); $event.stopPropagation()"
-    class="absolute top-4 end-4 md:top-6 md:end-6 z-210 p-3 rounded-full bg-neutral-900/80 border border-neutral-700/80 text-white hover:bg-primary hover:border-primary transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
+    class="absolute top-4 inset-e-4 md:top-6 md:inset-e-6 z-210 p-3 rounded-full bg-neutral-900/80 border border-neutral-700/80 text-white hover:bg-primary hover:border-primary transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
     aria-label="Close image popup" title="Close (Esc)">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -16,7 +16,7 @@
   <!-- Top-Left Floating Photo Counter (Shown only if multiple images exist) -->
   @if (images().length > 1) {
   <div (click)="$event.stopPropagation()"
-    class="absolute top-4 start-4 md:top-6 md:start-6 z-210 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/10 text-white font-mono text-xs font-bold uppercase tracking-wider backdrop-blur-sm cursor-default">
+    class="absolute top-4 inset-s-4 md:top-6 md:inset-s-6 z-210 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/10 text-white font-mono text-xs font-bold uppercase tracking-wider backdrop-blur-sm cursor-default">
     {{ currentIndex() + 1 }} / {{ images().length }}
   </div>
   }
@@ -27,7 +27,7 @@
     <!-- Navigation - Left Arrow (Shown only if multiple images exist) -->
     @if (images().length > 1) {
     <button type="button" (click)="prevImage($event)"
-      class="absolute start-2 md:start-6 z-50 p-3 md:p-4 rounded-full bg-neutral-950/70 border border-neutral-800 text-white hover:bg-primary hover:border-primary transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
+      class="absolute inset-s-2 md:inset-s-6 z-50 p-3 md:p-4 rounded-full bg-neutral-950/70 border border-neutral-800 text-white hover:bg-primary hover:border-primary transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
       title="Previous Photo" aria-label="Previous photo">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rtl:rotate-180">
@@ -37,7 +37,7 @@
 
     <!-- Navigation - Right Arrow -->
     <button type="button" (click)="nextImage($event)"
-      class="absolute end-2 md:end-6 z-50 p-3 md:p-4 rounded-full bg-neutral-950/70 border border-neutral-800 text-white hover:bg-primary hover:border-primary transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
+      class="absolute inset-e-2 md:inset-e-6 z-50 p-3 md:p-4 rounded-full bg-neutral-950/70 border border-neutral-800 text-white hover:bg-primary hover:border-primary transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
       title="Next Photo" aria-label="Next photo">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rtl:rotate-180">

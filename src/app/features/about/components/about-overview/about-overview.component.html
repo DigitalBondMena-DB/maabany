@@ -1,5 +1,5 @@
 <section class="py-12 md:py-20 lg:py-24 relative bg-white overflow-hidden">
-  <div class="absolute -start-12 top-24 size-80 opacity-15 pointer-events-none hidden xl:block">
+  <div class="absolute -inset-s-12 top-24 size-80 opacity-15 pointer-events-none hidden xl:block">
     @defer (on viewport) {
     <app-floating-wireframe shape="icosahedron" color="#142b52"></app-floating-wireframe>
     } @placeholder {
@@ -18,7 +18,7 @@
 
       <div class="space-y-8 relative overflow-hidden rounded-3xl p-1 md:p-2">
         <div class="relative z-10 space-y-8">
-          <div class="absolute end-0 top-0 -z-10">
+          <div class="absolute inset-e-0 top-0 -z-10">
             <app-image src="/images/home/about/about-bg.webp"
               classes="w-[72%] sm:w-[68%] lg:w-[70%] max-w-[460px] h-auto max-h-[460px] opacity-[0.06] pointer-events-none select-none translate-y-[10px] translate-x-1 sm:translate-y-[8px] sm:translate-x-2"
               [width]="440" [height]="400" alt="About Image" objectFit="contain" [placeholder]="false" />
@@ -43,7 +43,7 @@
                 class="absolute -right-6 -top-6 size-20 bg-linear-to-br from-primary/8 to-transparent rounded-full blur-xl group-hover:scale-150 transition-transform duration-700 pointer-events-none">
               </div>
               <div
-                class="absolute -start-6 -bottom-6 size-20 bg-linear-to-tr from-[#142b52]/5 to-transparent rounded-full blur-xl group-hover:scale-150 transition-transform duration-700 pointer-events-none">
+                class="absolute -inset-s-6 -bottom-6 size-20 bg-linear-to-tr from-[#142b52]/5 to-transparent rounded-full blur-xl group-hover:scale-150 transition-transform duration-700 pointer-events-none">
               </div>
 
               <div

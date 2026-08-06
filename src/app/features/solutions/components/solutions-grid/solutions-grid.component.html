@@ -1,13 +1,13 @@
 <section id="what-we-offer-grid-section" class="py-12 md:py-20 lg:py-24 bg-white relative overflow-hidden">
   <!-- Floating 3D Wireframes -->
-  <div class="absolute -start-12 top-24 size-72 opacity-15 pointer-events-none hidden xl:block">
+  <div class="absolute -inset-s-12 top-24 size-72 opacity-15 pointer-events-none hidden xl:block">
     @defer (on viewport) {
     <app-floating-wireframe shape="dome" color="#142b52" />
     } @placeholder {
     <div class="size-72"></div>
     }
   </div>
-  <div class="absolute -end-12 bottom-36 size-72 opacity-15 pointer-events-none hidden xl:block">
+  <div class="absolute -inset-e-12 bottom-36 size-72 opacity-15 pointer-events-none hidden xl:block">
     @defer (on viewport) {
     <app-floating-wireframe shape="icosahedron" color="#EA8A22" />
     } @placeholder {
@@ -74,7 +74,7 @@
             </div>
 
             <div
-              class="absolute top-4 start-4 z-20 bg-neutral-900/60 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full flex items-center gap-2">
+              class="absolute top-4 inset-s-4 z-20 bg-neutral-900/60 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full flex items-center gap-2">
               <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
               <span class="text-[9px] font-mono font-bold tracking-widest text-neutral-200 uppercase">
                 0{{ sIdx + 1 }}

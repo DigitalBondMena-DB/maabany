@@ -3,15 +3,15 @@
   <!-- Premium Background Elements -->
   <div class="absolute inset-0 bg-blueprint opacity-[0.03] pointer-events-none"></div>
   <div
-    class="absolute top-0 end-1/4 size-200 bg-[#142b52] rounded-full opacity-[0.04] blur-[150px] pointer-events-none">
+    class="absolute top-0 inset-e-1/4 size-200 bg-[#142b52] rounded-full opacity-[0.04] blur-[150px] pointer-events-none">
   </div>
   <div
-    class="absolute bottom-0 start-1/4 size-0-150 bg-primary rounded-full opacity-[0.03] blur-[120px] pointer-events-none">
+    class="absolute bottom-0 inset-s-1/4 size-0-150 bg-primary rounded-full opacity-[0.03] blur-[120px] pointer-events-none">
   </div>
   <div class="absolute inset-0 bg-linear-to-b from-white via-transparent to-[#fdfdfd] pointer-events-none"></div>
 
   <!-- Floating geometric shapes (3D animated) -->
-  <div class="absolute top-[10%] start-[5%] size-64 opacity-15 pointer-events-none hidden xl:block z-0">
+  <div class="absolute top-[10%] inset-s-[5%] size-64 opacity-15 pointer-events-none hidden xl:block z-0">
     @defer (on viewport) {
     <app-floating-wireframe shape="octahedron" color="#142b52" />
     } @placeholder {
@@ -19,7 +19,7 @@
     }
   </div>
 
-  <div class="absolute bottom-[10%] end-[5%] size-72 opacity-15 pointer-events-none hidden xl:block z-0">
+  <div class="absolute bottom-[10%] inset-e-[5%] size-72 opacity-15 pointer-events-none hidden xl:block z-0">
     @defer (on viewport) {
     <app-floating-wireframe shape="icosahedron" color="#EA8A22" />
     } @placeholder {
@@ -29,10 +29,10 @@
 
   <!-- Floating decorative rings -->
   <div
-    class="absolute top-[20%] start-[10%] size-32 border border-[#142b52]/10 rounded-full pointer-events-none animate-pulse">
+    class="absolute top-[20%] inset-s-[10%] size-32 border border-[#142b52]/10 rounded-full pointer-events-none animate-pulse">
   </div>
   <div
-    class="absolute bottom-[20%] end-[10%] size-48 border border-primary/10 rounded-full pointer-events-none animate-pulse">
+    class="absolute bottom-[20%] inset-e-[10%] size-48 border border-primary/10 rounded-full pointer-events-none animate-pulse">
   </div>
 
   <div class="max-w-350 mx-auto relative z-10 px-(--outer-padding-x) transition-all duration-200">
@@ -49,7 +49,7 @@
     <!-- Premium Testimonial Card Panel -->
     <div class="max-w-3xl mx-auto relative">
       <!-- Navigation Buttons (Desktop floating outside) -->
-      <div class="absolute top-1/2 -start-4 md:-start-12 -translate-y-1/2 z-20 hidden md:block">
+      <div class="absolute top-1/2 -inset-s-4 md:-inset-s-12 -translate-y-1/2 z-20 hidden md:block">
         <button type="button" (click)="prev()"
           class="size-14 rounded-full bg-white backdrop-blur-md border border-neutral-200 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-[#142b52] hover:border-[#142b52] transition-all duration-300 shadow-[0_10px_20px_rgba(20,43,82,0.05)] hover:shadow-[0_10px_20px_rgba(20,43,82,0.2)] group cursor-pointer"
           aria-label="Previous testimonial">
@@ -82,7 +82,7 @@
 
         <!-- Background SVG quote mark (Subtle & responsive size) -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-          class="absolute top-3 start-3 md:top-6 md:start-6 size-10 md:w-14 md:h-14 text-[#142b52]/3 group-hover:text-[#142b52]/6 transition-colors duration-500 pointer-events-none rotate-180">
+          class="absolute top-3 inset-s-3 md:top-6 md:inset-s-6 size-10 md:w-14 md:h-14 text-[#142b52]/3 group-hover:text-[#142b52]/6 transition-colors duration-500 pointer-events-none rotate-180">
           <path
             d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h3c0 2.5-1 4.5-4 5.5V21zm13 0c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h3c0 2.5-1 4.5-4 5.5V21z" />
         </svg>

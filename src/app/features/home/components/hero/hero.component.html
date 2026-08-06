@@ -50,7 +50,7 @@
           class="bg-white/95 backdrop-blur-md border border-neutral-200 p-5 rounded-2xl shadow-xl w-64 relative overflow-hidden group hover:border-primary/50 transition-all duration-300"
           [class.self-start]="even" [class.self-end]="!even" [class.animate-float-slow]="even"
           [class.animate-float-medium]="!even" [style.order]="counter.order">
-          <div class="absolute top-0 end-0 size-24 bg-primary/5 rounded-es-full pointer-events-none"></div>
+          <div class="absolute top-0 inset-e-0 size-24 bg-primary/5 rounded-es-full pointer-events-none"></div>
           <div class="flex items-center gap-3">
             <div class="p-2.5 rounded-lg bg-primary/10 text-primary font-bold text-xl flex-center overflow-hidden">
               @if (counter.icon) {
@@ -70,7 +70,7 @@
 
     </div>
     <button type="button" aria-label="Scroll to next section" (click)="scrollToNext()"
-      class="absolute bottom-4 z-10 start-1/2 -translate-x-1/2 w-5 h-8 border border-neutral-700 rounded-full flex justify-center p-1 bg-neutral-950/40 cursor-pointer hover:border-primary transition-colors">
+      class="absolute bottom-4 z-10 inset-s-1/2 -translate-x-1/2 w-5 h-8 border border-neutral-700 rounded-full flex justify-center p-1 bg-neutral-950/40 cursor-pointer hover:border-primary transition-colors">
       <div class="size-1.5 bg-primary rounded-full animate-bounce"></div>
     </button>
   </section>

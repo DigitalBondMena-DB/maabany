@@ -14,7 +14,7 @@
     <!-- Carousel Navigation buttons -->
     @if (images().length > 0){
     <button type="button" (click)="prev($event)"
-        class="absolute start-3 top-1/2 -translate-y-1/2 size-8 rounded-full bg-white/95 hover:bg-white text-neutral-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md border border-neutral-100 cursor-pointer z-20 hover:scale-105 active:scale-95"
+        class="absolute inset-s-3 top-1/2 -translate-y-1/2 size-8 rounded-full bg-white/95 hover:bg-white text-neutral-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md border border-neutral-100 cursor-pointer z-20 hover:scale-105 active:scale-95"
         title="Previous image">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
@@ -23,7 +23,7 @@
     </button>
 
     <button type="button" (click)="next($event)"
-        class="absolute end-3 top-1/2 -translate-y-1/2 size-8 rounded-full bg-white/95 hover:bg-white text-neutral-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md border border-neutral-100 cursor-pointer z-20 hover:scale-105 active:scale-95"
+        class="absolute inset-e-3 top-1/2 -translate-y-1/2 size-8 rounded-full bg-white/95 hover:bg-white text-neutral-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md border border-neutral-100 cursor-pointer z-20 hover:scale-105 active:scale-95"
         title="Next image">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
@@ -33,7 +33,7 @@
 
     <!-- Carousel Pagination Dots -->
     <div
-        class="absolute bottom-6 start-1/2 -translate-x-1/2 flex gap-1.5 z-20 bg-neutral-950/40 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/10">
+        class="absolute bottom-6 inset-s-1/2 -translate-x-1/2 flex gap-1.5 z-20 bg-neutral-950/40 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/10">
         @for (img of images(); track $index) {
         <button type="button" (click)="select($index, $event)"
             [class]="'h-1.5 rounded-full transition-all duration-300 cursor-pointer ' + ($index === activeIdx() ? 'bg-primary w-3.5' : 'bg-white/40 hover:bg-white/80 w-1.5')"

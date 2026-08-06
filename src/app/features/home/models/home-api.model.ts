@@ -31,8 +31,14 @@ export interface HomeAbout {
   description: string;
   home_image_1: string | null;
   home_image_2: string | null;
-  points: string[];
+  points: HomePoints[];
   currently_underway?: HomeAboutUnderway | null;
+}
+
+export interface HomePoints {
+  title: string;
+  description: string;
+  icon: string;
 }
 
 export interface HomeStandard {

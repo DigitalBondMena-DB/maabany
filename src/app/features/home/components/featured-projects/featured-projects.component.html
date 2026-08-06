@@ -1,5 +1,5 @@
 <section id="projects" class="bg-white relative z-10 py-12 md:py-20 lg:py-24">
-  <div class="absolute end-12 top-12 size-80 opacity-15 pointer-events-none hidden xl:block">
+  <div class="absolute inset-e-12 top-12 size-80 opacity-15 pointer-events-none hidden xl:block">
     <app-floating-wireframe shape="octahedron" color="#142b52"></app-floating-wireframe>
   </div>
 
@@ -16,7 +16,8 @@
       @if (projectsData() && projectsData()!.length > 0) {
       @for (proj of projectsData(); track proj.id) {
       <app-media-card [title]="proj.title" [desc]="proj.small_description" [image]="proj.cover_image"
-        [link]="'/' + lang() + '/projects/' + proj.slug" [badge]="proj.project_type" badgePosition="top-left" imageHeight="h-64" />
+        [link]="'/' + lang() + '/projects/' + proj.slug" [badge]="proj.project_type" badgePosition="top-left"
+        imageHeight="h-64" />
       }
       } @else {
       <div class="col-span-full">

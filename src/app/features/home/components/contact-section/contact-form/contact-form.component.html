@@ -1,6 +1,6 @@
 <div
   [class]="cardClasses() || 'bg-white rounded-3xl p-8 md:p-10 border border-neutral-200/80 shadow-md relative overflow-hidden h-full'">
-  <div class="absolute top-0 end-0 size-32 bg-primary/5 rounded-bl-[100px] pointer-events-none"></div>
+  <div class="absolute top-0 inset-e-0 size-32 bg-primary/5 rounded-bl-[100px] pointer-events-none"></div>
 
   <!-- Success Notification Banner -->
   @if (isSuccess()) {
@@ -67,7 +67,7 @@
                 : (contactForm.name().touched() || isSubmitted()) && contactForm.name().valid()
                 ? 'border-emerald-500/80 focus:border-emerald-500 focus:ring-emerald-500/15 bg-emerald-50/10'
                 : 'border-neutral-200/80 focus:border-primary focus:bg-white focus:ring-primary/15')" />
-          <div class="absolute end-3 top-1/2 -translate-y-1/2 pointer-events-none">
+          <div class="absolute inset-e-3 top-1/2 -translate-y-1/2 pointer-events-none">
             @if ((contactForm.name().touched() || isSubmitted()) && contactForm.name().valid()) {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
@@ -87,7 +87,7 @@
         </div>
         @if ((contactForm.name().touched() || isSubmitted()) && !contactForm.name().valid()) {
         <div
-          class="absolute bottom-0 start-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
+          class="absolute bottom-0 inset-s-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
             class="size-3 shrink-0">
@@ -125,7 +125,7 @@
                 : (contactForm.email().touched() || isSubmitted()) && contactForm.email().valid()
                 ? 'border-emerald-500/80 focus:border-emerald-500 focus:ring-emerald-500/15 bg-emerald-50/10'
                 : 'border-neutral-200/80 focus:border-primary focus:bg-white focus:ring-primary/15')" />
-          <div class="absolute end-3 top-1/2 -translate-y-1/2 pointer-events-none">
+          <div class="absolute inset-e-3 top-1/2 -translate-y-1/2 pointer-events-none">
             @if ((contactForm.email().touched() || isSubmitted()) && contactForm.email().valid()) {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
@@ -145,7 +145,7 @@
         </div>
         @if ((contactForm.email().touched() || isSubmitted()) && !contactForm.email().valid()) {
         <div
-          class="absolute bottom-0 start-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
+          class="absolute bottom-0 inset-s-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
             class="size-3 shrink-0">
@@ -183,7 +183,7 @@
           (blur)="phoneTouched.set(true)" />
         @if ((phoneTouched() || isSubmitted()) && phoneError()) {
         <div
-          class="absolute bottom-0 start-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
+          class="absolute bottom-0 inset-s-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
             class="size-3 shrink-0">
@@ -210,7 +210,7 @@
             <option [value]="type.slug">{{ type.title }}</option>
             }
           </select>
-          <div class="absolute end-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
+          <div class="absolute inset-e-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
               <path d="m6 9 6 6 6-6" />
@@ -247,10 +247,9 @@
             : 'border-neutral-200/80 focus:border-primary focus:bg-white focus:ring-primary/15')"></textarea>
       @if ((contactForm.message().touched() || isSubmitted()) && !contactForm.message().valid()) {
       <div
-        class="absolute bottom-0 start-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
+        class="absolute bottom-0 inset-s-0 text-[11px] font-mono text-red-500 flex items-center gap-1 animate-fadeIn pointer-events-none">
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="size-3 shrink-0">
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3 shrink-0">
           <circle cx="12" cy="12" r="10" />
           <line x1="12" x2="12" y1="8" y2="12" />
           <line x1="12" x2="12.01" y1="16" y2="16" />

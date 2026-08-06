@@ -15,13 +15,13 @@
       </div>
 
       <!-- Map labels -->
-      <div class="absolute top-2.5 start-3.5 font-mono text-[8px] text-neutral-500 tracking-wider">
+      <div class="absolute top-2.5 inset-s-3.5 font-mono text-[8px] text-neutral-500 tracking-wider">
         {{ 'CONTACT.REGIONAL_CONNECTIONS' | translate }}
       </div>
 
       @if (activeBranch(); as branch) {
       <div
-        class="absolute bottom-2.5 end-3.5 font-mono text-[9px] text-primary/90 tracking-widest animate-pulse font-bold flex items-center gap-1.5">
+        class="absolute bottom-2.5 inset-e-3.5 font-mono text-[9px] text-primary/90 tracking-widest animate-pulse font-bold flex items-center gap-1.5">
         <img [src]="'https://flagcdn.com/w40/' + branch.code.toLowerCase() + '.png'" [alt]="branch.code"
           class="w-4 h-3 object-cover rounded-2xs border border-neutral-700 shrink-0" />
         <span>• {{ selectedBranch() }} {{ 'CONTACT.ACTIVE_NODE' | translate }}</span>

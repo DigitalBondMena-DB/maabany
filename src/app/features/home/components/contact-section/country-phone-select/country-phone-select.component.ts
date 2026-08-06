@@ -29,7 +29,7 @@ export interface CountryCodeItem {
       <!-- Dropdown Popup -->
       @if (isOpen()) {
         <div
-          class="absolute top-full start-0 mt-2 w-64 bg-white border border-neutral-200/90 rounded-2xl shadow-xl z-50 overflow-hidden animate-fadeIn py-2">
+          class="absolute top-full inset-s-0 mt-2 w-64 bg-white border border-neutral-200/90 rounded-2xl shadow-xl z-50 overflow-hidden animate-fadeIn py-2">
           <!-- Search Input -->
           <div class="px-3 pb-2 border-b border-neutral-100">
             <input

@@ -99,7 +99,7 @@ export class LanguageService {
     const rawPath = currentUrl.split('?')[0].split('#')[0];
     const segments = rawPath.split('/').filter(Boolean);
 
-    if (segments.includes('search')) {
+    if (segments.includes('search') || segments.includes('blogs')) {
       this.router.navigateByUrl(`/${targetLang}`);
       return;
     }
