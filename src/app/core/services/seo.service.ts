@@ -25,7 +25,7 @@ export class SeoService {
     this.meta.updateTag({ name: 'application-name', content: siteName });
     this.meta.updateTag({ name: 'apple-mobile-web-app-title', content: siteName });
     this.meta.updateTag({ name: 'description', content: seo.meta_description || '' });
-    this.meta.updateTag({ name: 'robots', content: seo.robots || 'index,follow' });
+    // this.meta.updateTag({ name: 'robots', content: seo.robots || 'index,follow' });
 
     // 3. Open Graph Meta Tags
     if (seo.og) {
