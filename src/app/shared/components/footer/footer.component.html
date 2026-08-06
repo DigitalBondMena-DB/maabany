@@ -117,13 +117,11 @@
     <div class="lg:col-span-4 flex flex-col items-start relative">
       <!-- Logo Brand Group -->
       <div class="-mt-7 -ms-6 -mb-2 text-white w-full max-w-50 relative z-20">
-        <app-image src="/main-logo-white.webp" alt="Maabany Logo" classes="w-full h-auto object-contain" />
+        <app-image src="/main-logo-white.webp" alt="Maabany Logo" [width]="200" [height]="135" objectFit="contain" />
       </div>
 
       <p class="text-[14px] text-white/80 leading-[1.8] font-light pe-4">
-        {{ webInfoService?.footerDescription() || ('Maabany Integrated Building Solutions delivers innovative
-        engineering, construction, and facility management services across the Kingdom of Saudi Arabia (KSA) with a
-        commitment to quality, precision, and long-term value.' | translate) }}
+        {{ webInfoService?.footerDescription() }}
       </p>
 
       <!-- Social Media Links -->
@@ -219,6 +217,7 @@
         {{ 'FOOTER.CONTACT_US' | translate }}
       </span>
       <div class="space-y-4 text-[14px] text-white/75 font-light">
+        @for (branch of webInfoService.branches(); track branch.id) {
         <div class="flex gap-3 items-start group">
           <div
             class="p-2.5 rounded-xl border border-white/15 text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -229,33 +228,15 @@
             </svg>
           </div>
           <div class="space-y-1 mt-0.5">
-            <p class="font-medium text-white text-[14px]">{{ 'Saudi Arabia HQ' | translate }}</p>
-            <a href="https://maps.google.com/?q=2923+Al-Sharif+Ahmed+bin+Abdul+Muttalib,+Al-Salhiya+District,+Jeddah,+Saudi+Arabia"
+            <p class="font-medium text-white text-[14px]">{{ branch.country }}</p>
+            <a [href]="branch.map_url"
               target="_blank" rel="noopener noreferrer"
               class="text-white/60 text-[12px] leading-relaxed hover:text-primary transition-colors block">
-              2923 Al-Sharif Ahmed bin Abdul Muttalib, Al-Salhiya District, Jeddah, Saudi Arabia
+              {{ branch.address }}
             </a>
           </div>
         </div>
-
-        <div class="flex gap-3 items-start group">
-          <div
-            class="p-2.5 rounded-xl border border-white/15 text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
-              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-          </div>
-          <div class="space-y-1 mt-0.5">
-            <p class="font-medium text-white text-[14px]">{{ 'Cairo Hub (Egypt)' | translate }}</p>
-            <a href="https://maps.google.com/?q=53+Hassan+El+Sherif+Street,+Nasr+City,+Cairo,+Egypt" target="_blank"
-              rel="noopener noreferrer"
-              class="text-white/60 text-[12px] leading-relaxed hover:text-primary transition-colors block">
-              53 Hassan El Sherif Street, Nasr City, Cairo, Egypt
-            </a>
-          </div>
-        </div>
+        }
 
         <div class="flex gap-3 items-start">
           <div class="p-2.5 rounded-xl border border-white/15 text-primary shrink-0">
@@ -286,8 +267,7 @@
       <span class="text-[12px] text-white/60">{{ 'Powered by' | translate }}</span>
       <a href="https://techhouseksa.com/" target="_blank" title="tech house KSA" rel="noopener noreferrer"
         class="inline-flex items-center">
-        <app-image src="/techhouse-logo.webp" alt="tech house KSA" [width]="24" [height]="24"
-          class="h-7 md:h-8 w-auto opacity-95 hover:opacity-100 transition-opacity cursor-pointer" />
+        <app-image src="/techhouse-logo.webp" alt="tech house KSA" [width]="30" [height]="30" objectFit="contain" />
       </a>
     </div>
   </div>

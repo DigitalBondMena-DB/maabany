@@ -20,7 +20,24 @@ import { NgOptimizedImage } from '@angular/common';
       ></div>
     }
 
-    @if (isFill()) {
+    @if (isExternalUrl()) {
+      <img
+        [src]="currentSrc()"
+        [alt]="alt()"
+        [loading]="priority() ? 'eager' : loading()"
+        [decoding]="priority() ? 'sync' : 'async'"
+        [attr.fetchpriority]="priority() ? 'high' : 'low'"
+        [style.object-fit]="objectFitSignal()"
+        [class.opacity-0]="!isLoaded()"
+        [class.opacity-100]="isLoaded()"
+        [class]="classes()"
+        [style.width]="width() ? (width() + 'px') : '100%'"
+        [style.height]="height() ? (height() + 'px') : '100%'"
+        class="size-full"
+        (load)="onLoad()"
+        (error)="onError()"
+      />
+    } @else if (isFill()) {
       <img
         [ngSrc]="currentSrc()"
         [alt]="alt()"
@@ -43,8 +60,8 @@ import { NgOptimizedImage } from '@angular/common';
         [priority]="priority()"
         [loading]="priority() ? undefined : loading()"
         [decoding]="priority() ? 'sync' : 'async'"
-        [width]="width()"
-        [height]="height()"
+        [width]="width()!"
+        [height]="height()!"
         [style.object-fit]="objectFitSignal()"
         [class.opacity-0]="!isLoaded()"
         [class.opacity-100]="isLoaded()"
@@ -85,6 +102,12 @@ export class ImageComponent {
   });
 
   readonly isFill = computed(() => !this.width() || !this.height());
+
+  // Check if current source is an external URL (starts with http:// or https:// or data:)
+  readonly isExternalUrl = computed(() => {
+    const s = this.currentSrc();
+    return s.startsWith('http://') || s.startsWith('https://') || s.startsWith('data:');
+  });
 
   onLoad() {
     this.isLoaded.set(true);
