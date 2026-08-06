@@ -95,7 +95,7 @@ export class LanguageService {
   }
 
   switchLanguage(targetLang: SupportedLanguage): void {
-    const currentUrl = this.router.url || '/en';
+    const currentUrl = decodeURIComponent(this.router.url || '/en');
     const rawPath = currentUrl.split('?')[0].split('#')[0];
     const segments = rawPath.split('/').filter(Boolean);
 
@@ -107,7 +107,8 @@ export class LanguageService {
     const queryAndHash = currentUrl.substring(rawPath.length);
 
     // Special handling for solutions routes (multi-level slugs)
-    if (segments.includes('solutions') && segments.length > 2) {
+    const solutionsIndex = segments.indexOf('solutions');
+    if (solutionsIndex !== -1 && solutionsIndex < segments.length - 1) {
       try {
         const solutionsService = this.injector.get(SolutionsService);
         const altPath = solutionsService.getAlternatePathForUrl(rawPath);

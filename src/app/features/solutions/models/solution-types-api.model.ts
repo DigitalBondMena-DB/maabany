@@ -64,7 +64,7 @@ export interface SolutionDetailData {
   slug: string;
   other_slug: string;
   parent_id?: number | null;
-  parent_title?: string | null;
+  parent_title?: string[] | string | null;
   parent_slug?: string | null;
   other_parent_slug?: string | null;
   children?: ChildSolutionItem[];

@@ -13,13 +13,25 @@ export interface BreadcrumbItem {
   selector: 'app-breadcrumb',
   imports: [RouterLink, TranslatePipe],
   template: `
-    <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs font-mono tracking-widest uppercase font-bold text-neutral-400">
+    <nav aria-label="Breadcrumb"
+         [style.--item-count]="breadcrumbItems().length"
+         class="flex flex-wrap items-center gap-y-1.5 gap-x-2 font-mono tracking-wider uppercase font-semibold text-neutral-500"
+         style="font-size: clamp(0.65rem, calc(0.92rem - (var(--item-count, 2) * 0.04rem)), 0.85rem)">
       @for (item of breadcrumbItems(); track $index; let last = $last) {
-        @if (!last && item.url) {
-          <a [routerLink]="item.url" class="hover:text-primary transition-colors">{{ item.label | translate }}</a>
-          <span>/</span>
+        @if (item.url) {
+          <a [routerLink]="item.url"
+             [title]="item.label | translate"
+             class="hover:text-primary transition-colors max-w-[140px] sm:max-w-[200px] md:max-w-[280px] truncate inline-block shrink-0 align-middle">
+            {{ item.label | translate }}
+          </a>
         } @else {
-          <span class="text-[#142b52] font-bold">{{ item.label | translate }}</span>
+          <span [title]="item.label | translate"
+                class="text-[#142b52] font-bold max-w-[180px] sm:max-w-[260px] md:max-w-[340px] truncate inline-block shrink-0 align-middle">
+            {{ item.label | translate }}
+          </span>
+        }
+        @if (!last) {
+          <span class="text-neutral-400 select-none shrink-0 font-normal">/</span>
         }
       }
     </nav>

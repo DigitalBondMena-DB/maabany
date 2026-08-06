@@ -78,18 +78,46 @@ export class SolutionsService {
 
   registerMapping(slug: string, otherSlug: string): void {
     if (slug && otherSlug) {
-      this.slugMap.set(slug, otherSlug);
-      this.slugMap.set(otherSlug, slug);
+      const decodedSlug = decodeURIComponent(slug);
+      const decodedOtherSlug = decodeURIComponent(otherSlug);
+
+      this.slugMap.set(slug, decodedOtherSlug);
+      this.slugMap.set(decodedSlug, decodedOtherSlug);
+      this.slugMap.set(otherSlug, decodedSlug);
+      this.slugMap.set(decodedOtherSlug, decodedSlug);
     }
   }
 
   getTranslatedSlug(slug: string): string {
-    return this.slugMap.get(slug) || slug;
+    if (!slug) return slug;
+    const raw = decodeURIComponent(slug);
+    const detail = this.solutionDetail();
+    if (detail) {
+      const dSlug = detail.slug ? decodeURIComponent(detail.slug) : '';
+      const dOtherSlug = detail.other_slug ? decodeURIComponent(detail.other_slug) : '';
+      const dParentSlug = detail.parent_slug ? decodeURIComponent(detail.parent_slug) : '';
+      const dOtherParentSlug = detail.other_parent_slug ? decodeURIComponent(detail.other_parent_slug) : '';
+
+      if ((raw === dSlug || slug === detail.slug) && dOtherSlug) {
+        return dOtherSlug;
+      }
+      if ((raw === dOtherSlug || slug === detail.other_slug) && dSlug) {
+        return dSlug;
+      }
+      if ((raw === dParentSlug || slug === detail.parent_slug) && dOtherParentSlug) {
+        return dOtherParentSlug;
+      }
+      if ((raw === dOtherParentSlug || slug === detail.other_parent_slug) && dParentSlug) {
+        return dParentSlug;
+      }
+    }
+    return this.slugMap.get(raw) || this.slugMap.get(slug) || slug;
   }
 
   // Returns the alternate URL path for language switching
   getAlternatePathForUrl(pathname: string): string {
-    const segments = pathname.split('?')[0].split('#')[0].split('/').filter(Boolean);
+    const rawPathname = decodeURIComponent(pathname);
+    const segments = rawPathname.split('?')[0].split('#')[0].split('/').filter(Boolean);
     const solutionsIndex = segments.indexOf('solutions');
     if (solutionsIndex === -1) return pathname;
 

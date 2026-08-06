@@ -1,4 +1,5 @@
 import { Component, input, computed, inject, effect } from '@angular/core';
+import { Location } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PageHeroComponent } from '../../shared/components/page-hero/page-hero.component';
 import { BreadcrumbItem } from '../../shared/components/breadcrumb/breadcrumb.component';
@@ -24,6 +25,7 @@ export class SolutionsComponent {
   protected readonly solutionsService = inject(SolutionsService);
   private readonly seoService = inject(SeoService);
   private readonly languageService = inject(LanguageService);
+  private readonly location = inject(Location);
 
   readonly currentLang = this.languageService.currentLang;
 
@@ -50,6 +52,48 @@ export class SolutionsComponent {
         : this.solutionsService.solutionsListData()?.seo;
       if (seo) {
         this.seoService.updateSeo(seo);
+      }
+    });
+
+    // Sync alternate slug & canonical URL when solutionDetail updates
+    effect(() => {
+      const detail = this.solutionsService.solutionDetail();
+      if (detail) {
+        if (detail.other_slug) {
+          this.languageService.alternateSlug.set(detail.other_slug);
+        }
+
+        const currentLang = this.languageService.currentLang();
+        const s1 = this.slug1() ? decodeURIComponent(this.slug1()!) : '';
+        const s2 = this.slug2() ? decodeURIComponent(this.slug2()!) : '';
+        const s3 = this.slug3() ? decodeURIComponent(this.slug3()!) : '';
+
+        const dSlug = detail.slug ? decodeURIComponent(detail.slug) : '';
+        const dParentSlug = detail.parent_slug ? decodeURIComponent(detail.parent_slug) : '';
+
+        let canonicalPath = `/${currentLang}/solutions`;
+
+        if (s3) {
+          const s2Slug = dParentSlug || s2;
+          const s3Slug = dSlug || s3;
+          canonicalPath += `/${s1}/${s2Slug}/${s3Slug}`;
+        } else if (s2) {
+          const s1Slug = dParentSlug || s1;
+          const s2Slug = dSlug || s2;
+          canonicalPath += `/${s1Slug}/${s2Slug}`;
+        } else if (s1) {
+          const s1Slug = dSlug || s1;
+          canonicalPath += `/${s1Slug}`;
+        }
+
+        const currentPath = `/${currentLang}/solutions` +
+          (s1 ? `/${s1}` : '') +
+          (s2 ? `/${s2}` : '') +
+          (s3 ? `/${s3}` : '');
+
+        if (decodeURIComponent(currentPath) !== decodeURIComponent(canonicalPath)) {
+          this.location.replaceState(canonicalPath);
+        }
       }
     });
   }
@@ -100,22 +144,56 @@ export class SolutionsComponent {
 
   readonly breadcrumbItems = computed<BreadcrumbItem[]>(() => {
     const lang = this.currentLang();
+    const s1 = this.slug1();
+    const s2 = this.slug2();
+    const s3 = this.slug3();
+
     const items: BreadcrumbItem[] = [
       { label: 'NAV.HOME', url: ['/', lang] },
       { label: 'SOLUTIONS.TITLE_SUFFIX', url: ['/', lang, 'solutions'] }
     ];
 
     const detail = this.solutionDetail();
-    if (detail?.parent_title && detail?.parent_slug) {
-      items.push({
-        label: detail.parent_title,
-        url: ['/', lang, 'solutions', detail.parent_slug]
-      });
-    }
 
-    if (this.leafSlug() && detail?.title) {
+    const extractStringTitle = (item: any): string => {
+      if (!item) return '';
+      if (typeof item === 'string') return item.trim();
+      if (typeof item === 'object') {
+        if (typeof item.title === 'string' && item.title.trim()) return item.title.trim();
+        if (typeof item.name === 'string' && item.name.trim()) return item.name.trim();
+        if (typeof item.label === 'string' && item.label.trim()) return item.label.trim();
+      }
+      return '';
+    };
+
+    const getParentTitles = (pt?: any): string[] => {
+      if (!pt) return [];
+      if (Array.isArray(pt)) {
+        return pt.map(extractStringTitle).filter(Boolean);
+      }
+      const single = extractStringTitle(pt);
+      return single ? [single] : [];
+    };
+
+    const parentTitles = getParentTitles(detail?.parent_title);
+
+    if (s3 && s1 && s2) {
+      const l1Title = parentTitles[0] || s1.replace(/-/g, ' ');
+      const l2Title = parentTitles[1] || parentTitles[0] || s2.replace(/-/g, ' ');
+
       items.push({
-        label: detail.title
+        label: l1Title,
+        url: ['/', lang, 'solutions', s1]
+      });
+      items.push({
+        label: l2Title,
+        url: ['/', lang, 'solutions', s1, s2]
+      });
+    } else if (s2 && s1) {
+      const l1Title = parentTitles[0] || (detail?.parent_slug ? detail.parent_slug.replace(/-/g, ' ') : s1.replace(/-/g, ' '));
+      items.push({
+        label: l1Title,
+        url: ['/', lang, 'solutions', s1]
       });
     }
 
