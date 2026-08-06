@@ -68,22 +68,23 @@
 } @else {
 <app-home-hero [heroData]="homeService.hero()" [countersData]="homeService.counters()" />
 
-<app-home-about [aboutData]="homeService.about()" />
+<app-home-about [aboutData]="homeService.about()" revealDirection="left" [revealDelay]="150" />
 
-<app-why-choose-us [standardsData]="homeService.standards()" />
+<app-why-choose-us [standardsData]="homeService.standards()" revealDirection="bottom" [revealDelay]="200" />
 
-<app-solutions-slider [solutionsData]="homeService.solutions()" />
+<app-solutions-slider [solutionsData]="homeService.solutions()" revealDirection="right" [revealDelay]="100" />
 
-<app-client-marquee [apiPartners]="homeService.partners()" [apiClients]="homeService.clients()" />
+<app-client-marquee [apiPartners]="homeService.partners()" [apiClients]="homeService.clients()" revealDirection="bottom"
+    [revealDelay]="150" />
 
-<app-featured-projects [projectsData]="homeService.projects()" />
+<app-featured-projects [projectsData]="homeService.projects()" revealDirection="left" [revealDelay]="200" />
 
-<app-testimonials [testimonialsData]="homeService.testimonials()" />
+<app-testimonials [testimonialsData]="homeService.testimonials()" revealDirection="right" [revealDelay]="150" />
 
 
-<app-home-blogs [blogsData]="homeService.blogs()" />
+<app-home-blogs [blogsData]="homeService.blogs()" revealDirection="bottom" [revealDelay]="100" />
 
-<app-cta-banner />
+<app-cta-banner revealDirection="left" [revealDelay]="150" />
 
-<app-contact-section [branchesData]="homeService.branches()" />
+<app-contact-section [branchesData]="homeService.branches()" revealDirection="right" [revealDelay]="200" />
 }

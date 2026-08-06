@@ -1,4 +1,4 @@
-<section dir="ltr" id="partners-and-clients"
+<section [appScrollReveal]="revealDirection()" [delay]="revealDelay()" dir="ltr" id="partners-and-clients"
   [class]="'bg-white relative z-10 transition-all duration-200 ' + sectionPadding()">
   <div class="max-w-350 mx-auto transition-all duration-200 px-(--outer-padding-x)">
     @if (showHeading()) {

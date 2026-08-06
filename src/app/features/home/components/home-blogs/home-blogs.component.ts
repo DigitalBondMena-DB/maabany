@@ -6,6 +6,7 @@ import { ButtonComponent } from '../../../../shared/components/button/button.com
 import { MediaCardComponent } from '../../../../shared/components/media-card/media-card.component';
 import { HomeBlog } from '../../models/home-api.model';
 import { LanguageService } from '../../../../core/services/language.service';
+import { ScrollRevealDirective, ScrollDirection } from '../../../../shared/directives/scroll-reveal.directive';
 
 export interface HomeBlogPost {
   slug: string;
@@ -17,7 +18,7 @@ export interface HomeBlogPost {
 
 @Component({
   selector: 'app-home-blogs',
-  imports: [RouterLink, ButtonComponent, MediaCardComponent, TranslatePipe, DatePipe],
+  imports: [RouterLink, ButtonComponent, MediaCardComponent, TranslatePipe, DatePipe, ScrollRevealDirective],
   templateUrl: './home-blogs.component.html',
 })
 export class HomeBlogsComponent {
@@ -25,6 +26,9 @@ export class HomeBlogsComponent {
 
   readonly lang = this.languageService.currentLang;
   readonly blogsData = input<HomeBlog[]>();
+  readonly revealDirection = input<ScrollDirection>('left');
+  readonly revealDelay = input<number>(0);
+
 
   readonly defaultBlogs: HomeBlogPost[] = [
     {

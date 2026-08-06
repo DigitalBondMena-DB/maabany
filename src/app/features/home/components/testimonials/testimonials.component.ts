@@ -15,6 +15,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { FloatingWireframeComponent } from '../../../../shared/components/floating-wireframe/floating-wireframe.component';
 import { ScrollRevealService } from '../../../../shared/services/scroll-reveal.service';
 import { HomeTestimonial } from '../../models/home-api.model';
+import { ScrollRevealDirective, ScrollDirection } from '../../../../shared/directives/scroll-reveal.directive';
 
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -28,8 +29,9 @@ export interface TestimonialItem {
 
 @Component({
   selector: 'app-testimonials',
-  imports: [FloatingWireframeComponent, TranslatePipe],
+  imports: [FloatingWireframeComponent, TranslatePipe, ScrollRevealDirective],
   templateUrl: './testimonials.component.html',
+
   styles: [
     `
       @keyframes wordFadeIn {
@@ -55,6 +57,9 @@ export interface TestimonialItem {
 })
 export class TestimonialsComponent implements OnDestroy {
   readonly testimonialsData = input<HomeTestimonial[]>();
+  readonly revealDirection = input<ScrollDirection>('right');
+  readonly revealDelay = input<number>(0);
+
 
   private readonly platformId = inject(PLATFORM_ID);
   private readonly el = inject(ElementRef).nativeElement as HTMLElement;

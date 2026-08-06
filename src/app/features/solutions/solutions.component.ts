@@ -114,9 +114,9 @@ export class SolutionsComponent {
     const s2 = this.slug2();
     const s3 = this.slug3();
 
-    if (s3) return `/${lang}/solutions/${s1}/${s2}/${s3}`;
-    if (s2) return `/${lang}/solutions/${s1}/${s2}`;
-    if (s1) return `/${lang}/solutions/${s1}`;
+    if (s3) return `/${lang}/solutions/${s1}/${s2}`;
+    if (s2) return `/${lang}/solutions/${s1}`;
+    if (s1) return `/${lang}/solutions`;
     return `/${lang}/solutions`;
   });
 

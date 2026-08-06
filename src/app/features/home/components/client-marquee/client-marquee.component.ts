@@ -3,6 +3,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { ImageComponent } from "../../../../shared/components/image/image.component";
 import { HomePartner, HomeClient } from '../../models/home-api.model';
 import { isPlatformServer } from '@angular/common';
+import { ScrollRevealDirective, ScrollDirection } from '../../../../shared/directives/scroll-reveal.directive';
 
 export interface MarqueeItem {
   name: string;
@@ -12,7 +13,7 @@ export interface MarqueeItem {
 
 @Component({
   selector: 'app-client-marquee',
-  imports: [TranslatePipe, ImageComponent],
+  imports: [TranslatePipe, ImageComponent, ScrollRevealDirective],
   templateUrl: './client-marquee.component.html',
   styles: [`
     @keyframes marquee-left {
@@ -57,6 +58,9 @@ export class ClientMarqueeComponent {
   readonly customClients = input<MarqueeItem[]>();
   readonly apiPartners = input<HomePartner[]>();
   readonly apiClients = input<HomeClient[]>();
+  readonly revealDirection = input<ScrollDirection>('bottom');
+  readonly revealDelay = input<number>(0);
+
 
   private readonly platformId = inject(PLATFORM_ID);
   private readonly isServer = isPlatformServer(this.platformId);

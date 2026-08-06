@@ -7,10 +7,11 @@ import { WebInfoService } from '../../../core/services/web-info.service';
 
 import { ImageComponent } from '../image/image.component';
 import { IconsComponent } from "../icons/icons.component";
+import { ScrollRevealDirective, ScrollDirection } from '../../directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-cta-banner',
-  imports: [RouterLink, TranslatePipe, ImageComponent, IconsComponent],
+  imports: [RouterLink, TranslatePipe, ImageComponent, IconsComponent, ScrollRevealDirective],
   templateUrl: './cta-banner.component.html',
   styles: [`
     @keyframes blueprintDraw {
@@ -57,6 +58,9 @@ export class CtaBannerComponent {
   readonly primaryBtnText = input<string>('CTA.PRIMARY_BTN');
   readonly secondaryBtnText = input<string>('CTA.SECONDARY_BTN');
   readonly primaryLink = input<string>('request-quote');
+  readonly revealDirection = input<ScrollDirection>('bottom');
+  readonly revealDelay = input<number>(0);
+
 
   readonly computedPrimaryLink = computed(() => {
     const link = this.primaryLink();

@@ -1,4 +1,4 @@
-<section [appScrollReveal]="'left'" [delay]="500" id="about"
+<section [appScrollReveal]="revealDirection()" [delay]="revealDelay()" id="about"
     class="bg-white relative overflow-hidden z-10 py-12 md:py-20 lg:py-24">
     <div class="absolute -inset-s-12 top-24 size-80 opacity-15 pointer-events-none hidden xl:block">
         @defer (on viewport) {

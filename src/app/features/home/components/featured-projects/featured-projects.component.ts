@@ -7,10 +7,11 @@ import { MediaCardComponent } from '../../../../shared/components/media-card/med
 import { EmptyStateComponent } from '../../../../shared/components/empty-state/empty-state.component';
 import { HomeProject } from '../../models/home-api.model';
 import { LanguageService } from '../../../../core/services/language.service';
+import { ScrollRevealDirective, ScrollDirection } from '../../../../shared/directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-featured-projects',
-  imports: [RouterLink, FloatingWireframeComponent, ButtonComponent, MediaCardComponent, EmptyStateComponent, TranslatePipe],
+  imports: [RouterLink, FloatingWireframeComponent, ButtonComponent, MediaCardComponent, EmptyStateComponent, TranslatePipe, ScrollRevealDirective],
   templateUrl: './featured-projects.component.html',
 })
 export class FeaturedProjectsComponent {
@@ -18,4 +19,7 @@ export class FeaturedProjectsComponent {
 
   readonly lang = this.languageService.currentLang;
   readonly projectsData = input<HomeProject[]>();
+  readonly revealDirection = input<ScrollDirection>('left');
+  readonly revealDelay = input<number>(0);
 }
+

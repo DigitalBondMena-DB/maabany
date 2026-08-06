@@ -7,6 +7,7 @@ import { HomeSolution } from '../../models/home-api.model';
 import { FeaturedSolutionCardComponent } from './components/featured-solution-card/featured-solution-card.component';
 import { SolutionCardComponent } from './components/solution-card/solution-card.component';
 import { LanguageService } from '../../../../core/services/language.service';
+import { ScrollRevealDirective, ScrollDirection } from '../../../../shared/directives/scroll-reveal.directive';
 
 export interface SolutionCard {
   num: string;
@@ -25,6 +26,7 @@ export interface SolutionCard {
     TranslatePipe,
     FeaturedSolutionCardComponent,
     SolutionCardComponent,
+    ScrollRevealDirective,
   ],
   templateUrl: './solutions-slider.component.html',
 })
@@ -32,6 +34,9 @@ export class SolutionsSliderComponent {
   private readonly langService = inject(LanguageService);
   readonly lang = this.langService.currentLang;
   readonly solutionsData = input<HomeSolution[]>();
+  readonly revealDirection = input<ScrollDirection>('right');
+  readonly revealDelay = input<number>(0);
 
   readonly mepImages = computed(() => this.solutionsData()?.[0]?.images || []);
 }
+
